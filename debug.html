@@ -75,7 +75,7 @@
  "permalink"=>"date",
  "baseurl"=>"/basic-template",
  "include"=>[".htaccess"],
- "exclude"=>[],
+ "exclude"=>["morea"],
  "paginate_path"=>"/page:num",
  "markdown_ext"=>"markdown,mkd,mkdn,md",
  "textile_ext"=>"textile",
@@ -150,7 +150,7 @@
    "reading2"=>#Jekyll:Page @name="reading-2.md",
    "reading3"=>#Jekyll:Page @name="reading-3.md",
    "reading4"=>#Jekyll:Page @name="reading-4.md"},
- "time"=>2014-03-12 11:54:41 -1000,
+ "time"=>2014-03-12 12:13:53 -1000,
  "posts"=>[#Jekyll:Post @id="/jekyll/update/2014/01/14/welcome-to-jekyll"],
  "pages"=>
   [#Jekyll:Page @name="index.md",
@@ -272,7 +272,7 @@
  "title"=>"Modules",
  "url"=>"/modules/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Modules <small>Topics covered in this class.</small></h1>\n  <div class=\"row\">\n     {% for module in site.morea_module_pages %}\n        <div class=\"col-sm-3\">\n          <div class=\"thumbnail\">\n            <img src=\"{{ site.baseurl }}/{{ module.morea_icon_url }}\" width=\"100\" class=\"img-circle img-responsive\">\n            <div class=\"caption\">\n              <h3 style=\"text-align: center; margin-top: 0\">{{ forloop.index }}. {{ module.title }}</h3>\n              {{ module.content | markdownify }}\n              <p>\n              {% for label in module.morea_labels %}\n                <span class=\"badge\">{{ label }}</span>\n              {% endfor %}\n              </p>\n              {% if module.morea_coming_soon %}\n                <p class=\"text-center\"><a href=\"#\" class=\"btn btn-default\" role=\"button\">Coming soon...</a></p>\n              {% else %}\n                <p class=\"text-center\"><a href=\"{{ module.morea_id }}\" class=\"btn btn-primary\" role=\"button\">Learn more...</a></p>\n              {% endif %}\n            </div>\n          </div>\n        </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n     {% endfor %}\n  </div>\n</div>\n\n\n",
+  "<div class=\"container\">\n  <h1>Modules <small>Topics covered in this class.</small></h1>\n  <div class=\"row\">\n     {% for module in site.morea_module_pages %}\n        <div class=\"col-sm-3\">\n          <div class=\"thumbnail\">\n            <img src=\"{{ site.baseurl }}{{ module.morea_icon_url }}\" width=\"100\" class=\"img-circle img-responsive\">\n            <div class=\"caption\">\n              <h3 style=\"text-align: center; margin-top: 0\">{{ forloop.index }}. {{ module.title }}</h3>\n              {{ module.content | markdownify }}\n              <p>\n              {% for label in module.morea_labels %}\n                <span class=\"badge\">{{ label }}</span>\n              {% endfor %}\n              </p>\n              {% if module.morea_coming_soon %}\n                <p class=\"text-center\"><a href=\"#\" class=\"btn btn-default\" role=\"button\">Coming soon...</a></p>\n              {% else %}\n                <p class=\"text-center\"><a href=\"{{ module.morea_id }}\" class=\"btn btn-primary\" role=\"button\">Learn more...</a></p>\n              {% endif %}\n            </div>\n          </div>\n        </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n     {% endfor %}\n  </div>\n</div>\n\n\n",
  "path"=>"modules/index.md"}
 </pre>
 
@@ -436,7 +436,7 @@
  "morea_assessments"=>["assessment1"],
  "morea_module_coming_soon"=>false,
  "morea_type"=>"module",
- "morea_icon_url"=>"/_morea/images/javacoding.png",
+ "morea_icon_url"=>"/morea/images/javacoding.png",
  "morea_labels"=>["required", "intro"],
  "morea_sort_order"=>0,
  "referencing_modules"=>[],
