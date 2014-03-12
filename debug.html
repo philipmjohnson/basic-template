@@ -150,7 +150,7 @@
    "reading2"=>#Jekyll:Page @name="reading-2.md",
    "reading3"=>#Jekyll:Page @name="reading-3.md",
    "reading4"=>#Jekyll:Page @name="reading-4.md"},
- "time"=>2014-03-12 12:13:53 -1000,
+ "time"=>2014-03-12 13:14:00 -1000,
  "posts"=>[#Jekyll:Post @id="/jekyll/update/2014/01/14/welcome-to-jekyll"],
  "pages"=>
   [#Jekyll:Page @name="index.md",
@@ -226,7 +226,7 @@
  "title"=>"Assessments",
  "url"=>"/assessments/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Assessments <small>in module order</small></h1>\n</div>\n\n<div class=\"light-gray-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/data/module-1.html\">Learn to Foo</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Foo</h3>\n      <p>This is the first assessment.</p>\n\n    \n  </div>\n</div>\n\n<div class=\"white-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/data/module-2.html\">Learn to Bar</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Bar</h3>\n      <p>This is the second assessment.</p>\n\n    \n  </div>\n</div>\n\n<div class=\"light-gray-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/data/module-3.html\">Learn to Baz</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Baz</h3>\n      <p>This is the third assessment.</p>\n\n    \n  </div>\n</div>\n",
+  "<div class=\"container\">\n  <h1>Assessments <small>in module order</small></h1>\n</div>\n\n<div class=\"light-gray-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/modules/module1/index.html\">Learn to Foo</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Foo</h3>\n      <p>This is the first assessment.</p>\n\n    \n  </div>\n</div>\n\n<div class=\"white-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/modules/module2/index.html\">Learn to Bar</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Bar</h3>\n      <p>This is the second assessment.</p>\n\n    \n  </div>\n</div>\n\n<div class=\"light-gray-background\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"/modules/module3/index.html\">Learn to Baz</a></h2>\n    \n      \n      <h3>Assessment 1: Assessment of the Baz</h3>\n      <p>This is the third assessment.</p>\n\n    \n  </div>\n</div>\n",
  "path"=>"assessments/index.md"}
 </pre>
 
@@ -249,7 +249,7 @@
  "title"=>"Experiences",
  "url"=>"/experiences/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Experiential Learning <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ module.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_experiences %}\n      {% assign experience = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ experience.morea_url }}\">{{ experience.title }}</a></h4>\n             {{ experience.morea_summary | markdownify }}\n             <p>\n             {% for label in experience.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n      {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
+  "<div class=\"container\">\n  <h1>Experiential Learning <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_experiences %}\n      {% assign experience = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ experience.morea_url }}\">{{ experience.title }}</a></h4>\n             {{ experience.morea_summary | markdownify }}\n             <p>\n             {% for label in experience.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n      {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
  "path"=>"experiences/index.md"}
 </pre>
 
@@ -294,11 +294,11 @@
  "title"=>"Readings",
  "url"=>"/readings/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Readings and other resources <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ module.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_readings %}\n      {% assign reading = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ reading.morea_url }}\">{{ reading.title }}</a></h4>\n             {{ reading.morea_summary | markdownify }}\n             <p>\n             {% for label in reading.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
+  "<div class=\"container\">\n  <h1>Readings and other resources <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_readings %}\n      {% assign reading = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ reading.morea_url }}\">{{ reading.title }}</a></h4>\n             {{ reading.morea_summary | markdownify }}\n             <p>\n             {% for label in reading.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
  "path"=>"readings/index.md"}
 </pre>
 
-<h2>/data/assessment-1.html</h2>
+<h2>/morea/data/assessment-1.html</h2>
 
 <pre>Hash
 {"title"=>"Assessment of the Foo",
@@ -307,12 +307,12 @@
  "morea_type"=>"assessment",
  "morea_sort_order"=>1,
  "referencing_modules"=>[],
- "url"=>"/data/assessment-1.html",
+ "url"=>"/morea/data/assessment-1.html",
  "content"=>"This is the first assessment.",
- "path"=>"data/assessment-1.md"}
+ "path"=>"./morea/data/assessment-1.md"}
 </pre>
 
-<h2>/data/assessment-2.html</h2>
+<h2>/morea/data/assessment-2.html</h2>
 
 <pre>Hash
 {"title"=>"Assessment of the Bar",
@@ -321,12 +321,12 @@
  "morea_type"=>"assessment",
  "morea_sort_order"=>2,
  "referencing_modules"=>[],
- "url"=>"/data/assessment-2.html",
+ "url"=>"/morea/data/assessment-2.html",
  "content"=>"This is the second assessment.",
- "path"=>"data/assessment-2.md"}
+ "path"=>"./morea/data/assessment-2.md"}
 </pre>
 
-<h2>/data/assessment-3.html</h2>
+<h2>/morea/data/assessment-3.html</h2>
 
 <pre>Hash
 {"title"=>"Assessment of the Baz",
@@ -335,12 +335,12 @@
  "morea_type"=>"assessment",
  "morea_sort_order"=>3,
  "referencing_modules"=>[],
- "url"=>"/data/assessment-3.html",
+ "url"=>"/morea/data/assessment-3.html",
  "content"=>"This is the third assessment.",
- "path"=>"data/assessment-3.md"}
+ "path"=>"./morea/data/assessment-3.md"}
 </pre>
 
-<h2>/data/experience-1.html</h2>
+<h2>/morea/data/experience-1.html</h2>
 
 <pre>Hash
 {"title"=>"Experience the Foo",
@@ -349,17 +349,17 @@
  "topdiv"=>"container",
  "morea_id"=>"experience1",
  "morea_type"=>"experience",
- "morea_url"=>"/_morea_dir/experiences/experience1.html",
  "morea_summary"=>"The first experiential learning event.",
  "morea_sort_order"=>1,
  "referencing_modules"=>[],
- "url"=>"/data/experience-1.html",
+ "morea_url"=>"/morea/data/experience-1.html",
+ "url"=>"/morea/data/experience-1.html",
  "content"=>
   "### Experiential Learning 1\n\nAn experiential learning opportunity.",
- "path"=>"data/experience-1.md"}
+ "path"=>"./morea/data/experience-1.md"}
 </pre>
 
-<h2>/data/experience-2.html</h2>
+<h2>/morea/data/experience-2.html</h2>
 
 <pre>Hash
 {"title"=>"Experience the Bar",
@@ -368,18 +368,18 @@
  "topdiv"=>"container",
  "morea_id"=>"experience2",
  "morea_type"=>"experience",
- "morea_url"=>"/_morea_dir/experiences/experience2.html",
  "morea_summary"=>"The second experiential learning event.",
  "morea_sort_order"=>2,
  "morea_labels"=>["25 min"],
  "referencing_modules"=>[],
- "url"=>"/data/experience-2.html",
+ "morea_url"=>"/morea/data/experience-2.html",
+ "url"=>"/morea/data/experience-2.html",
  "content"=>
   "### Experiential Learning 2\n\nAn experiential learning opportunity.",
- "path"=>"data/experience-2.md"}
+ "path"=>"./morea/data/experience-2.md"}
 </pre>
 
-<h2>/data/experience-3.html</h2>
+<h2>/morea/data/experience-3.html</h2>
 
 <pre>Hash
 {"title"=>"Experience the Baz",
@@ -388,43 +388,43 @@
  "topdiv"=>"container",
  "morea_id"=>"experience3",
  "morea_type"=>"experience",
- "morea_url"=>"/_morea_dir/experiences/experience3.html",
  "morea_summary"=>"The third experiential learning event.",
  "morea_sort_order"=>3,
  "referencing_modules"=>[],
- "url"=>"/data/experience-3.html",
+ "morea_url"=>"/morea/data/experience-3.html",
+ "url"=>"/morea/data/experience-3.html",
  "content"=>
   "### Experiential Learning 3\n\nAn experiential learning opportunity.",
- "path"=>"data/experience-3.md"}
+ "path"=>"./morea/data/experience-3.md"}
 </pre>
 
-<h2>/data/footer.html</h2>
+<h2>/morea/data/footer.html</h2>
 
 <pre>Hash
 {"title"=>"Footer",
  "morea_id"=>"footer",
  "morea_type"=>"footer",
  "referencing_modules"=>[],
- "url"=>"/data/footer.html",
+ "url"=>"/morea/data/footer.html",
  "content"=>
   "Example Name | Example Department | Example University <br>\nemail@example.com",
- "path"=>"data/footer.md"}
+ "path"=>"./morea/data/footer.md"}
 </pre>
 
-<h2>/data/home.html</h2>
+<h2>/morea/data/home.html</h2>
 
 <pre>Hash
 {"title"=>"Home",
  "morea_id"=>"home",
  "morea_type"=>"home",
  "referencing_modules"=>[],
- "url"=>"/data/home.html",
+ "url"=>"/morea/data/home.html",
  "content"=>
   "## Welcome to the Basic Template\n\nThis is the basic template content. You can find it in the home.md file.",
- "path"=>"data/home.md"}
+ "path"=>"./morea/data/home.md"}
 </pre>
 
-<h2>/data/module-1.html</h2>
+<h2>/morea/data/module-1.html</h2>
 
 <pre>Hash
 {"title"=>"Learn to Foo",
@@ -440,9 +440,10 @@
  "morea_labels"=>["required", "intro"],
  "morea_sort_order"=>0,
  "referencing_modules"=>[],
- "url"=>"/data/module-1.html",
+ "module_page"=>#Jekyll:Page @name="index.html",
+ "url"=>"/morea/data/module-1.html",
  "content"=>"This is the first module in this sample template.",
- "path"=>"data/module-1.md"}
+ "path"=>"./morea/data/module-1.md"}
 </pre>
 
 <h2>/modules/module1/index.html</h2>
@@ -457,7 +458,7 @@
  "path"=>"modules/module1/index.html"}
 </pre>
 
-<h2>/data/module-2.html</h2>
+<h2>/morea/data/module-2.html</h2>
 
 <pre>Hash
 {"title"=>"Learn to Bar",
@@ -472,9 +473,10 @@
  "morea_sort_order"=>0,
  "referencing_modules"=>[],
  "morea_icon_url"=>"/modules/default-icon.png",
- "url"=>"/data/module-2.html",
+ "module_page"=>#Jekyll:Page @name="index.html",
+ "url"=>"/morea/data/module-2.html",
  "content"=>"This is the second module in this sample template.",
- "path"=>"data/module-2.md"}
+ "path"=>"./morea/data/module-2.md"}
 </pre>
 
 <h2>/modules/module2/index.html</h2>
@@ -489,7 +491,7 @@
  "path"=>"modules/module2/index.html"}
 </pre>
 
-<h2>/data/module-3.html</h2>
+<h2>/morea/data/module-3.html</h2>
 
 <pre>Hash
 {"title"=>"Learn to Baz",
@@ -505,9 +507,10 @@
  "morea_labels"=>["optional", "advanced"],
  "referencing_modules"=>[],
  "morea_icon_url"=>"/modules/default-icon.png",
- "url"=>"/data/module-3.html",
+ "module_page"=>#Jekyll:Page @name="index.html",
+ "url"=>"/morea/data/module-3.html",
  "content"=>"This is the third and final module in this sample template.",
- "path"=>"data/module-3.md"}
+ "path"=>"./morea/data/module-3.md"}
 </pre>
 
 <h2>/modules/module3/index.html</h2>
@@ -522,7 +525,7 @@
  "path"=>"modules/module3/index.html"}
 </pre>
 
-<h2>/data/outcome-1.html</h2>
+<h2>/morea/data/outcome-1.html</h2>
 
 <pre>Hash
 {"title"=>"Compare and assess Foos.",
@@ -531,12 +534,12 @@
  "morea_type"=>"outcome",
  "morea_sort_order"=>1,
  "referencing_modules"=>[#Jekyll:Page @name="module-1.md"],
- "url"=>"/data/outcome-1.html",
+ "url"=>"/morea/data/outcome-1.html",
  "content"=>"This is the first learning outcome in this sample template.",
- "path"=>"data/outcome-1.md"}
+ "path"=>"./morea/data/outcome-1.md"}
 </pre>
 
-<h2>/data/outcome-2.html</h2>
+<h2>/morea/data/outcome-2.html</h2>
 
 <pre>Hash
 {"title"=>"Design and create Bars",
@@ -546,12 +549,12 @@
  "morea_sort_order"=>2,
  "referencing_modules"=>
   [#Jekyll:Page @name="module-1.md", #Jekyll:Page @name="module-2.md"],
- "url"=>"/data/outcome-2.html",
+ "url"=>"/morea/data/outcome-2.html",
  "content"=>"This is the second learning outcome in this sample template.",
- "path"=>"data/outcome-2.md"}
+ "path"=>"./morea/data/outcome-2.md"}
 </pre>
 
-<h2>/data/outcome-3.html</h2>
+<h2>/morea/data/outcome-3.html</h2>
 
 <pre>Hash
 {"title"=>"Implement Bazes",
@@ -561,12 +564,12 @@
  "morea_sort_order"=>3,
  "referencing_modules"=>
   [#Jekyll:Page @name="module-2.md", #Jekyll:Page @name="module-3.md"],
- "url"=>"/data/outcome-3.html",
+ "url"=>"/morea/data/outcome-3.html",
  "content"=>"This is the third learning outcome in this sample template.",
- "path"=>"data/outcome-3.md"}
+ "path"=>"./morea/data/outcome-3.md"}
 </pre>
 
-<h2>/data/reading-1.html</h2>
+<h2>/morea/data/reading-1.html</h2>
 
 <pre>Hash
 {"title"=>"An overview of Foos",
@@ -574,19 +577,19 @@
  "layout"=>"morea",
  "topdiv"=>"container",
  "morea_id"=>"reading1",
- "morea_url"=>"/_morea_dir/readings/reading1.html",
  "morea_summary"=>"The first reading.",
  "morea_type"=>"reading",
  "morea_sort_order"=>1,
  "morea_labels"=>["10 pages"],
  "referencing_modules"=>[],
- "url"=>"/data/reading-1.html",
+ "morea_url"=>"/morea/data/reading-1.html",
+ "url"=>"/morea/data/reading-1.html",
  "content"=>
   "# Reading 1\n\nThis is the first reading. It is an internal web page.",
- "path"=>"data/reading-1.md"}
+ "path"=>"./morea/data/reading-1.md"}
 </pre>
 
-<h2>/data/reading-2.html</h2>
+<h2>/morea/data/reading-2.html</h2>
 
 <pre>Hash
 {"title"=>"Bars through the ages",
@@ -599,12 +602,12 @@
  "morea_type"=>"reading",
  "morea_sort_order"=>2,
  "referencing_modules"=>[],
- "url"=>"/data/reading-2.html",
+ "url"=>"/morea/data/reading-2.html",
  "content"=>"",
- "path"=>"data/reading-2.md"}
+ "path"=>"./morea/data/reading-2.md"}
 </pre>
 
-<h2>/data/reading-3.html</h2>
+<h2>/morea/data/reading-3.html</h2>
 
 <pre>Hash
 {"title"=>"To Baz or not to Baz?",
@@ -617,12 +620,12 @@
  "morea_type"=>"reading",
  "morea_sort_order"=>3,
  "referencing_modules"=>[],
- "url"=>"/data/reading-3.html",
+ "url"=>"/morea/data/reading-3.html",
  "content"=>"",
- "path"=>"data/reading-3.md"}
+ "path"=>"./morea/data/reading-3.md"}
 </pre>
 
-<h2>/data/reading-4.html</h2>
+<h2>/morea/data/reading-4.html</h2>
 
 <pre>Hash
 {"title"=>"Reading 4",
@@ -635,9 +638,9 @@
  "morea_type"=>"reading",
  "morea_sort_order"=>4,
  "referencing_modules"=>[],
- "url"=>"/data/reading-4.html",
+ "url"=>"/morea/data/reading-4.html",
  "content"=>"",
- "path"=>"data/reading-4.md"}
+ "path"=>"./morea/data/reading-4.md"}
 </pre>
 
 </div>
