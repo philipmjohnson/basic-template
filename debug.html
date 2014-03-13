@@ -41,6 +41,8 @@
         <li><a href="/basic-template/experiences/">Experiences</a></li>
         <li><a href="/basic-template/assessments/">Assessments</a></li>
         
+        <li><a href="/basic-template/debug.html">Debug</a></li>
+        
       </ul>
     </div>
   </div>
@@ -107,7 +109,7 @@
      "coderay_css"=>"style"}},
  "redcloth"=>{"hard_breaks"=>true},
  "name"=>"Basic Template",
- "morea_debug"=>false,
+ "morea_debug"=>true,
  "morea_module_pages"=>
   [#Jekyll:Page @name="module-1.md",
    #Jekyll:Page @name="module-2.md",
@@ -150,7 +152,7 @@
    "reading2"=>#Jekyll:Page @name="reading-2.md",
    "reading3"=>#Jekyll:Page @name="reading-3.md",
    "reading4"=>#Jekyll:Page @name="reading-4.md"},
- "time"=>2014-03-12 13:21:50 -1000,
+ "time"=>2014-03-13 06:35:35 -1000,
  "posts"=>[#Jekyll:Post @id="/jekyll/update/2014/01/14/welcome-to-jekyll"],
  "pages"=>
   [#Jekyll:Page @name="index.md",
@@ -249,7 +251,7 @@
  "title"=>"Experiences",
  "url"=>"/experiences/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Experiential Learning <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ site.baseurl }}{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_experiences %}\n      {% assign experience = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ site.baseurl }}{{ experience.morea_url }}\">{{ experience.title }}</a></h4>\n             {{ experience.morea_summary | markdownify }}\n             <p>\n             {% for label in experience.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n      {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
+  "<div class=\"container\">\n  <h1>Experiential Learning <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ site.baseurl }}{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_experiences %}\n      {% assign experience = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ experience.morea_url }}\">{{ experience.title }}</a></h4>\n             {{ experience.morea_summary | markdownify }}\n             <p>\n             {% for label in experience.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n      {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
  "path"=>"experiences/index.md"}
 </pre>
 
@@ -294,7 +296,7 @@
  "title"=>"Readings",
  "url"=>"/readings/index.html",
  "content"=>
-  "<div class=\"container\">\n  <h1>Readings and other resources <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ site.baseurl }}{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_readings %}\n      {% assign reading = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ site.baseurl }}{{ reading.morea_url }}\">{{ reading.title }}</a></h4>\n             {{ reading.morea_summary | markdownify }}\n             <p>\n             {% for label in reading.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
+  "<div class=\"container\">\n  <h1>Readings and other resources <small>in module order</small></h1>\n</div>\n\n{% for module in site.morea_module_pages %}\n{% if module.morea_coming_soon != true %}\n<div class=\"{% cycle 'light-gray-background', 'white-background' %}\">\n  <div class=\"container\">\n    <h2><small>Module:</small> <a href=\"{{ site.baseurl }}{{ module.module_page.url }}\">{{ module.title }}</a></h2>\n    <div class=\"row\">\n    {% for page_id in module.morea_readings %}\n      {% assign reading = site.morea_page_table[page_id] %}\n       <div class=\"col-sm-3\">\n         <div class=\"thumbnail\">\n           <h4><a href=\"{{ reading.morea_url }}\">{{ reading.title }}</a></h4>\n             {{ reading.morea_summary | markdownify }}\n             <p>\n             {% for label in reading.morea_labels %}\n               <span class=\"badge\">{{ label }}</span>\n             {% endfor %}\n             </p>\n         </div>\n       </div>\n       {% cycle '', '', '', '</div><div class=\"row\">' %}\n    {% endfor %}\n    </div>\n  </div>\n</div>\n{% endif %}\n{% endfor %}\n",
  "path"=>"readings/index.md"}
 </pre>
 
@@ -345,14 +347,14 @@
 <pre>Hash
 {"title"=>"Experience the Foo",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"experience1",
  "morea_type"=>"experience",
  "morea_summary"=>"The first experiential learning event.",
  "morea_sort_order"=>1,
  "referencing_modules"=>[],
- "morea_url"=>"/morea/data/experience-1.html",
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/basic-template/morea/data/experience-1.html",
  "url"=>"/morea/data/experience-1.html",
  "content"=>
   "### Experiential Learning 1\n\nAn experiential learning opportunity.",
@@ -364,15 +366,15 @@
 <pre>Hash
 {"title"=>"Experience the Bar",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"experience2",
  "morea_type"=>"experience",
  "morea_summary"=>"The second experiential learning event.",
  "morea_sort_order"=>2,
  "morea_labels"=>["25 min"],
  "referencing_modules"=>[],
- "morea_url"=>"/morea/data/experience-2.html",
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/basic-template/morea/data/experience-2.html",
  "url"=>"/morea/data/experience-2.html",
  "content"=>
   "### Experiential Learning 2\n\nAn experiential learning opportunity.",
@@ -384,14 +386,14 @@
 <pre>Hash
 {"title"=>"Experience the Baz",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"experience3",
  "morea_type"=>"experience",
  "morea_summary"=>"The third experiential learning event.",
  "morea_sort_order"=>3,
  "referencing_modules"=>[],
- "morea_url"=>"/morea/data/experience-3.html",
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/basic-template/morea/data/experience-3.html",
  "url"=>"/morea/data/experience-3.html",
  "content"=>
   "### Experiential Learning 3\n\nAn experiential learning opportunity.",
@@ -574,15 +576,15 @@
 <pre>Hash
 {"title"=>"An overview of Foos",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"reading1",
  "morea_summary"=>"The first reading.",
  "morea_type"=>"reading",
  "morea_sort_order"=>1,
  "morea_labels"=>["10 pages"],
  "referencing_modules"=>[],
- "morea_url"=>"/morea/data/reading-1.html",
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/basic-template/morea/data/reading-1.html",
  "url"=>"/morea/data/reading-1.html",
  "content"=>
   "# Reading 1\n\nThis is the first reading. It is an internal web page.",
@@ -594,14 +596,14 @@
 <pre>Hash
 {"title"=>"Bars through the ages",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"reading2",
  "morea_url"=>"http://cnn.com",
  "morea_summary"=>"The second reading (cnn.com)",
  "morea_type"=>"reading",
  "morea_sort_order"=>2,
  "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
  "url"=>"/morea/data/reading-2.html",
  "content"=>"",
  "path"=>"./morea/data/reading-2.md"}
@@ -612,14 +614,14 @@
 <pre>Hash
 {"title"=>"To Baz or not to Baz?",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"reading3",
  "morea_url"=>"http://google.com",
  "morea_summary"=>"The third reading (google.com)",
  "morea_type"=>"reading",
  "morea_sort_order"=>3,
  "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
  "url"=>"/morea/data/reading-3.html",
  "content"=>"",
  "path"=>"./morea/data/reading-3.md"}
@@ -630,14 +632,14 @@
 <pre>Hash
 {"title"=>"Reading 4",
  "published"=>true,
- "layout"=>"morea",
- "topdiv"=>"container",
  "morea_id"=>"reading4",
  "morea_url"=>"http://github.com",
  "morea_summary"=>"The fourth reading (github.com)",
  "morea_type"=>"reading",
  "morea_sort_order"=>4,
  "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
  "url"=>"/morea/data/reading-4.html",
  "content"=>"",
  "path"=>"./morea/data/reading-4.md"}
