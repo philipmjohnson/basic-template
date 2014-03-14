@@ -1,5 +1,5 @@
-This repo contains the most basic template for Morea web site generation.
+This repo contains a sample Morea site built using ICS 311, Spring 2014 materials from Dan Suthers.
 
-For more information on using this template, see http://morea-doc.github.io/.
+
 
  

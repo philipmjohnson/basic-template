@@ -1,8 +1,8 @@
-name: Basic Template
+name: ICS 311 Spring 2014
 markdown: redcarpet
 pygments: true
 safe: false
-baseurl: /basic-template
+baseurl: /ics311s14
 exclude: [morea]
 
-morea_debug: true
+morea_debug: false

@@ -4,5 +4,5 @@ morea_id: footer
 morea_type: footer
 ---
 
-Example Name | Example Department | Example University <br>
-email@example.com
+Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu
