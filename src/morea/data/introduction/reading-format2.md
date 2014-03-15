@@ -34,41 +34,40 @@ The pace is intense: set aside time almost every day for ICS 311. The basic
 pattern is as follows:
 
 **Saturdays:**
-    
 
   * Instructor posts any updates to screencasts and notes for the material of the following week by Saturday night, and possibly earlier.
+
 **Sundays:**
-    
 
   * Projects will be due midnight* on a Sunday night.
+
 **Mondays:**
-    
 
   * Problem sets from the previous week are due midnight* the Monday after they are given.
   * Read or review material to understand Tuesday's topic (your choice of my podcasts, my web notes, the CLRS textbook chapter, other readings offered, and/or the MIT lecture videos).
   * Post any questions you have about the material in the appropriate Laulima discussion forum (instructor will review these after midnight when preparing for Tuesday's class). 
+
 **Tuesdays:**
-    
 
   * The online quiz for Tuesday's chapter is due 30 minutes before class (by 2:30pm).
   * See "Class Routine" below.
+
 **Wednesdays:**
-    
 
   * Read or review material to understand Thursday's topic.
   * Post any questions you have about the material in the appropriate Laulima discussion forum.
+
 **Thursdays:**
-    
 
   * The online quiz for Thursday's chapter is due 30 minutes before class (by 2:30pm).
   * See "Class Routine" below.
   * Problem sets for the weekend are usually posted Thursday evening.
+
 **Fridays through the weekend:**
-    
 
   * Use to do problem sets and/or projects in preparation for Sunday deadlines, and to watch screencasts and read book chapters. 
 
-* "Midnight": The deadline in Laulima will be set to 23:55 (11:55 pm) on the due date, to avoid any ambiguity of which day "00:00" refers to. Upload your solutions before midnight. There will be a 5 minute grace period just in case of network delays. The three projects can be submitted late for 1% off per hour up to 50% off, but the homework assignments cannot be late.
+  * "Midnight": The deadline in Laulima will be set to 23:55 (11:55 pm) on the due date, to avoid any ambiguity of which day "00:00" refers to. Upload your solutions before midnight. There will be a 5 minute grace period just in case of network delays. The three projects can be submitted late for 1% off per hour up to 50% off, but the homework assignments cannot be late.
 
 The Assistant Teaching Assistant will have lab hours on Mondays. This will be
 your last chance for clarifications before assignments are due. Instructor
@@ -89,7 +88,6 @@ Here are typical schedules for 75 minute classes: Adjustments to the class
 routine will likely be made to meet current needs.
 
 **Tuesdays:**
-    
 
   * 5: Welcome and Administrative Comments
   * 5: Icebreaker for new groups (groups rotate weekly)
@@ -98,8 +96,8 @@ routine will likely be made to meet current needs.
   * 5: Introduction to today's problem (including questions submitted in advance) 
   * 45 (or more): Problem solving session, due before end of class.
   * 5: Brief presentation of class problem solutions 
+
 **Thursdays:**
-    
 
   * 5: Welcome and Administrative Comments
   * 5: Discussion of Tuesday's problem (if needed) 

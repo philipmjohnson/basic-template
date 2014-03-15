@@ -28,8 +28,7 @@ or consent.
 
 _Comment:_ On the fall 2013 final exam one student wrote about a problem:
 
-> "This question is too hard! We shouldn't have to know implementations we
-have not used before!"
+> "This question is too hard! We shouldn't have to know implementations we have not used before!"
 
 I wrote back to thank the student for concisely expressing (the negation of)
 exactly what this course _ is_ intended to teach! You may not "know" an
@@ -89,12 +88,11 @@ ICS Undergrad and ICS 311 Survivor
 
 ## Communications
 
-**Questions about Course Content**
-    In general, questions about course content such as concepts, clarifications of assignments, etc. should be posted to the Laulima discussion forum of the week. This is because (1) other students can see our responses there, and thus also benefit; and (2) other students may notice the question and answer before the instructor or TA notices it (though we will check daily). If you email us a question, we will post the reply in Laulima unless personal information is involved. 
-**Personal Topics**
-    For topics that are not of interest to other students or are personal, you may email us, or stop by office hours. (Of course you may also use office hours for course content questions.) If using email, put "ICS 311" in the subject line. 
-**Communication with other students (e.g., group members)**
-     You can send email to other students in the course using the Laulima "Mailtool". You don't need to know their real email address to do this. 
+**Questions about Course Content**:   In general, questions about course content such as concepts, clarifications of assignments, etc. should be posted to the Laulima discussion forum of the week. This is because (1) other students can see our responses there, and thus also benefit; and (2) other students may notice the question and answer before the instructor or TA notices it (though we will check daily). If you email us a question, we will post the reply in Laulima unless personal information is involved.
+
+**Personal Topics**: For topics that are not of interest to other students or are personal, you may email us, or stop by office hours. (Of course you may also use office hours for course content questions.) If using email, put "ICS 311" in the subject line.
+
+**Communication with other students (e.g., group members)**: You can send email to other students in the course using the Laulima "Mailtool". You don't need to know their real email address to do this.
 
 ##  Online Media
 

@@ -107,21 +107,12 @@ author(s) to an `@author` tag at the beginning of the reused module. If you
 modified the source code for more than bug fixes, add your name as an author
 of a derivative from the original source code:
 
->
-
->     /**
-
->      *
-
->      * @author     Original Author     James Brown
-
->      * @author     Derivative Author   Robert Smith
-
->      *
-
->      */
-
->  
+    /**
+     *
+     * @author     Original Author     James Brown
+     * @author     Derivative Author   Robert Smith
+     *
+     */
 
 #### Other Licenses
 
@@ -141,19 +132,26 @@ following. (Think of your audience for this documentation as any potential
 users, including your classmates as well as the TA and instructor.)
 
 **Readme.txt (plaintext file)**
-    Critical information that a user should know about your product first, including: 
+
+Critical information that a user should know about your product first, including:
 
   * step-wise instructions for the user to reconstruct an application from your source code (including the version of JDK used),
   * credits (acknowledgments to authors of open source reused at least in part for this product) including information such as the name of an author, the name of a reused product and a list of source file names of the reused product,
   * revision history (a log of changes on the product), 
   * bug report (description of known bugs), and 
   * a listing of other documentation available (below).
+
 **Operation Manual (plaintext or PDF)**
-    Concise, yet sufficient step-wise explanation about how to start and interact with the program, written for an end user who is concerned with using the program in an application domain (not with the code).
+
+Concise, yet sufficient step-wise explanation about how to start and interact with the program, written for an end user who is concerned with using the program in an application domain (not with the code).
+
 **Reference Manuals (plaintext or PDF, and Javadoc HTML)**
-    Requirements and design specifications; organization of modules; algorithms and data structures used; functionality of each class or method; etc. A reference manual is written for experienced users and/or programmers who perform various maintenance activities for correction, enhancement, adaptation, etc. Javadoc pages may also be included, and should be included if you intend to have others use your code.
+
+Requirements and design specifications; organization of modules; algorithms and data structures used; functionality of each class or method; etc. A reference manual is written for experienced users and/or programmers who perform various maintenance activities for correction, enhancement, adaptation, etc. Javadoc pages may also be included, and should be included if you intend to have others use your code.
+
 **Testing Document (plaintext or PDF)**
-    Test plan describing objective(s) of testing, method(s) used for testing, assumption(s) of testing, and hardware/software environment in testing; test case specification describing classification of test cases; test data and I/O of test runs; and whatever else is useful to convince other people about the correctness and good features of your program. **For ICS 311 assignments the testing document will include your conclusions related to the purpose of the assignment.**
+
+Test plan describing objective(s) of testing, method(s) used for testing, assumption(s) of testing, and hardware/software environment in testing; test case specification describing classification of test cases; test data and I/O of test runs; and whatever else is useful to convince other people about the correctness and good features of your program. **For ICS 311 assignments the testing document will include your conclusions related to the purpose of the assignment.**
 
 ### Submission Requirements
 

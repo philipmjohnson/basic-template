@@ -7,6 +7,8 @@ morea_type: reading
 morea_sort_order: 5
 ---
 
+## Overview
+
 The approach to assignments, exams, and relative weighting is intended to
 assess multiple aspects of your developing expertise in algorithm design,
 analysis and implementation; while providing a little flexibility to recognize
@@ -46,7 +48,8 @@ on this!
 ## Components
 
 **Quizzes (12%, 120 points):**
-    Before the classes that have lecture material, a brief quiz will be due online. These quizzes will test basic understanding of the chapter on which the day's topic is based, such as whether you can simulate the operation of the data structure or algorithms or get the main point of the analyses of their relative merits. Most quizzes will not involve mathematical analysis or proofs: problems requiring deeper thought will be left for the classwork and homework problems. Quizzes will be given in Laulima, and will be automatically graded. Solutions will be given in class immediately after the quizzes are due, so _quizzes cannot be made up_.  
+
+Before the classes that have lecture material, a brief quiz will be due online. These quizzes will test basic understanding of the chapter on which the day's topic is based, such as whether you can simulate the operation of the data structure or algorithms or get the main point of the analyses of their relative merits. Most quizzes will not involve mathematical analysis or proofs: problems requiring deeper thought will be left for the classwork and homework problems. Quizzes will be given in Laulima, and will be automatically graded. Solutions will be given in class immediately after the quizzes are due, so _quizzes cannot be made up_.
   
 I am expecting 24 quizzes worth 5 points each. There are 25 topics. We don't
 include Topic 1 or the two special topics, which leaves 22 topics with
@@ -54,7 +57,8 @@ quizzes, but Topic 2 and Topic 14 have two quizzes.
 
   
 **Problems (30.5%, 305 points):**
-    These will relatively frequent assignments intended to help assess how well you understand the algorithms and analytic concepts being presented. They will require more thought than the problems given on the quizzes. They will come in two parts: an in-class portion done, turned in, and graded in groups, and an after-class portion turned in individually the following Monday. I attempt to choose in-class problems that help expose conceptual issues in the material and prepare you to work on the take-home portion on your own. Thus, by working in a group in class you help each other understand the problem that you will then solve and turn in individually. See also "Peer Evaluation of Participation" under Extra Credit below for how everyone can earn extra credit through participating in the group sessions.   
+
+These will relatively frequent assignments intended to help assess how well you understand the algorithms and analytic concepts being presented. They will require more thought than the problems given on the quizzes. They will come in two parts: an in-class portion done, turned in, and graded in groups, and an after-class portion turned in individually the following Monday. I attempt to choose in-class problems that help expose conceptual issues in the material and prepare you to work on the take-home portion on your own. Thus, by working in a group in class you help each other understand the problem that you will then solve and turn in individually. See also "Peer Evaluation of Participation" under Extra Credit below for how everyone can earn extra credit through participating in the group sessions.
   
 Points are allocated as follows. Most topics are allocated 15 points, of which
 5 are allocated to the group work turned in at the end of class, and 10 to the
@@ -69,13 +73,16 @@ and I will discuss solutions in class after the exercises are due.
 
   
 **Projects (Analysis, Implementation, Testing) (26%, 260 points):**
-    There will be three projects. These typically involve writing Java implementations of abstract data types and associated algorithms, and testing these on sample data. You will also provide instructions on how to compile and run the program, document your design and implementation (including complexith analysis), and present and discuss test results. The assignments will progressively give you more responsibility. For the first project, you will be told what to implement, and it will be weighted 6% (60 points). For the second assignment you will need to make some implementation choices. The second assignment will be weighted 10% (100 points). The third assignment will require some research and decision making on your part to solve the problem. It will be weighted 10% (100 points). The TA will grade the first two projects, and both the TA and the instructor will grade the third.
+
+There will be three projects. These typically involve writing Java implementations of abstract data types and associated algorithms, and testing these on sample data. You will also provide instructions on how to compile and run the program, document your design and implementation (including complexith analysis), and present and discuss test results. The assignments will progressively give you more responsibility. For the first project, you will be told what to implement, and it will be weighted 6% (60 points). For the second assignment you will need to make some implementation choices. The second assignment will be weighted 10% (100 points). The third assignment will require some research and decision making on your part to solve the problem. It will be weighted 10% (100 points). The TA will grade the first two projects, and both the TA and the instructor will grade the third.
   
 **Midterms (24%, 240 points):**
-    There will be three midterm exams taking one class period each. They will include problems similar to those on the quizzes (for the easiest problems), and class and homework problems (for the harder ones), covering both understanding of the algorithms and how to analyze them. They will cover the most recent set of lecture topics, but cumulative "review" questions may also be included. Exams are open-book, open-notes on paper, but no electronic devices allowed. Each midterm is 80 points; there are three for 240 points or 24%. The instructor will grade all midterm exams.
+
+There will be three midterm exams taking one class period each. They will include problems similar to those on the quizzes (for the easiest problems), and class and homework problems (for the harder ones), covering both understanding of the algorithms and how to analyze them. They will cover the most recent set of lecture topics, but cumulative "review" questions may also be included. Exams are open-book, open-notes on paper, but no electronic devices allowed. Each midterm is 80 points; there are three for 240 points or 24%. The instructor will grade all midterm exams.
   
 **Final (10%, 100 points):**
-    The final exam will take place at the time scheduled by the university and will be longer than a midterm exam. It will cover the final set of lecture topics, but also include review of the entire semester. Since the final is longer and is cumulative as well as covering recent material, it is weighted more (100 points). Grading may be shared between TA and instructor.
+
+The final exam will take place at the time scheduled by the university and will be longer than a midterm exam. It will cover the final set of lecture topics, but also include review of the entire semester. Since the final is longer and is cumulative as well as covering recent material, it is weighted more (100 points). Grading may be shared between TA and instructor.
 
 ## Extra Credit (Variable Points)
 
@@ -85,7 +92,8 @@ the end of the semester. Thus they do not appear in the grade estimate
 calculated by Laulima during the semester._
 
 **Peer Evaluation of Participation**
-     Each week in which there is a problem set, each individual in the group may assign points distributed across the other individuals in the group to assess how effectively they collaborated in the group. You should allocate the points according to how well the others worked as team members, including their role in team functioning (e.g., keeping the group focused and organized, or playing another important role), and how much they helped others understand the material (e.g., by explaining what they understood), as well as their contributions to the actual problem solution.  
+
+Each week in which there is a problem set, each individual in the group may assign points distributed across the other individuals in the group to assess how effectively they collaborated in the group. You should allocate the points according to how well the others worked as team members, including their role in team functioning (e.g., keeping the group focused and organized, or playing another important role), and how much they helped others understand the material (e.g., by explaining what they understood), as well as their contributions to the actual problem solution.
   
 To ensure that students in smaller groups are not penalized, we use this
 scheme, which distributes 12 points across each group:  
@@ -114,9 +122,12 @@ by participating in class you get a little boost to your grade.
 
   
 **Classwork, Homework and Project Add-ons**
-    Extra credit problems will be included in some class sessions, homework problem sets, and projects. For example, an extra problem may be provided in class for those groups who finish early; a more difficult problem may be included in a homework set; or a student may program more challenging graph manipulations for extra credit in the programming projects. Points will be specified when they are given.      
+
+Extra credit problems will be included in some class sessions, homework problem sets, and projects. For example, an extra problem may be provided in class for those groups who finish early; a more difficult problem may be included in a homework set; or a student may program more challenging graph manipulations for extra credit in the programming projects. Points will be specified when they are given.
+
 **Software Reuse**
-    In the third assignment, students will have the option of using other student's implementations of ADTs from prior assignments. If your software is chosen by another student, you will be awarded 5 points for each "customer" _in proportion to their grade and use of your software_. For example, if a student uses your Graph ADT from Project 2 in their Project 3 and gets 80%, you will get 4 points. Partial credit is given if only parts of your code are used. The "customer" student must acknowledge your code in their project documentation (Readme and Reference manual).      
+
+In the third assignment, students will have the option of using other student's implementations of ADTs from prior assignments. If your software is chosen by another student, you will be awarded 5 points for each "customer" _in proportion to their grade and use of your software_. For example, if a student uses your Graph ADT from Project 2 in their Project 3 and gets 80%, you will get 4 points. Partial credit is given if only parts of your code are used. The "customer" student must acknowledge your code in their project documentation (Readme and Reference manual).
 
 ## Flexibility
 

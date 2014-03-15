@@ -68,6 +68,8 @@ language control structures, mathematical notation, and natural language
 written to be as unambiguous as possible. Examples will be given in the next
 lecture. In this course, we will use mostly the notation used in the book.
 
+* * *
+
 ###  Why not just test programs?
 
 Why not just run experimental studies on programs? We can implement the
@@ -89,6 +91,8 @@ Formal analysis of algorithms:
 
 So, there is a good reason ICS 311 is THE central course of the ICS
 curriculum! Stick with us.
+
+* * *
 
 
 ## Computational Complexity
@@ -225,7 +229,7 @@ of the minimum complexity of _any_ algorithm that solves the problem, and on
 proofs of equivalences between problems (translating one into another). Here
 is a graphic:
 
-![](Topic-01/Complexity-Hierarchy.jpg)
+![](/morea/data/introduction/Complexity-Hierarchy.jpg)
 
 (Although algorithms can be ranked by this hierarchy, the above figure refers
 to problem classes, not algorithms.)
@@ -296,7 +300,6 @@ Objects:
   
 Operations (categorized into three types):
 
-    
 
 Constructor
 
@@ -339,8 +342,9 @@ Implementation of an ADT requires
 
 Modularity (Encapsulation)
 
-     Abstract operations mean a program using an ADT are isolated from (need not know about or be affected by) the implementation of the ADT.   
-  * Implementation of ADT can be changed without modifying programs using ADT.   
+Abstract operations mean a program using an ADT are isolated from (need not know about or be affected by) the implementation of the ADT.
+
+  * Implementation of ADT can be changed without modifying programs using ADT.
   * Makes a program smaller, simpler, and have less side effects   
   * Helps to construct correct programs 
   
