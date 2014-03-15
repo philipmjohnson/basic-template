@@ -229,7 +229,7 @@ of the minimum complexity of _any_ algorithm that solves the problem, and on
 proofs of equivalences between problems (translating one into another). Here
 is a graphic:
 
-![](/morea/data/introduction/Complexity-Hierarchy.jpg)
+![](/morea/data/1.introduction/Complexity-Hierarchy.jpg)
 
 (Although algorithms can be ranked by this hierarchy, the above figure refers
 to problem classes, not algorithms.)

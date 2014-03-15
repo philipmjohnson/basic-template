@@ -31,7 +31,7 @@ title: Readings
              </p>
          </div>
        </div>
-       {% cycle '', '', '', '</div><div class="row">' %}
+      {% cycle '', '', '', '</div><div class="row">' %}
     {% endfor %}
     </div>
   </div>
