@@ -1,5 +1,5 @@
 ---
-title: "CLRS Chapter 2"
+title: "CLRS 2 - Getting started"
 published: true
 morea_id: reading-cormen-2
 morea_summary: "Getting started with analysis of algorithms"

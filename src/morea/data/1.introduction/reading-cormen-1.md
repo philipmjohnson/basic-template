@@ -1,5 +1,5 @@
 ---
-title: "CLRS Chapter 1"
+title: "CLRS 1 - Role of algorithms"
 published: true
 morea_id: reading-cormen-1
 morea_summary: "The role of algorithms in computing"
