@@ -14,7 +14,7 @@ morea_readings:
   - reading-topic-overview
   - reading-algorithms
 morea_type: module
-morea_icon_url: /morea/data/introduction/introduction.jpg
+morea_icon_url: /morea/data/1.introduction/introduction.jpg
 morea_sort_order: 0
 ---
 
