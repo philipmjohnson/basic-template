@@ -1,5 +1,5 @@
 ---
-title: "Examples of analysis (insertion and merge sort)"
+title: "Analysis examples (insertion and merge sort)"
 published: true
 morea_id: examples-insertion-merge-sort
 morea_outcomes:
@@ -11,12 +11,15 @@ morea_readings:
   - reading-screencast-2d
   - reading-screencast-2e
   - reading-cormen-2
+  - reading-screencast-mit-1
+  - reading-notes-2
+morea_experiences:
+  - experience-1
+  - experience-2
+  - experience-3
 morea_type: module
 morea_icon_url: /morea/data/2.examples/InsertionSort.gif
-morea_sort_order: 0
+morea_sort_order: 2
 ---
 
-An overview of ICS 311 policies and procedures and the material to be covered in this course.
-
-
-
+Start analyzing algorithms with insertion and merge sort.

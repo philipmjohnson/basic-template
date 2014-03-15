@@ -16,7 +16,7 @@ morea_readings:
   - reading-cormen-1
 morea_type: module
 morea_icon_url: /morea/data/1.introduction/introduction.jpg
-morea_sort_order: 0
+morea_sort_order: 1
 ---
 
 An overview of ICS 311 policies and procedures and the material to be covered in this course.

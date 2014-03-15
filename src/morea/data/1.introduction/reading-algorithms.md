@@ -1,10 +1,12 @@
 ---
-title: "Introduction to algorithms"
+title: "Chapter 1 Notes"
 published: true
 morea_id: reading-algorithms
 morea_summary: "Overview of algorithms and why we study them in this course."
 morea_type: reading
 morea_sort_order: 1
+morea_labels:
+ - Notes
 ---
 
 ## Algorithms and Programs
