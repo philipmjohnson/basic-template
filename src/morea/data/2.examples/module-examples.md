@@ -10,6 +10,7 @@ morea_readings:
   - reading-screencast-2c
   - reading-screencast-2d
   - reading-screencast-2e
+  - reading-cormen-2
 morea_type: module
 morea_icon_url: /morea/data/2.examples/InsertionSort.gif
 morea_sort_order: 0

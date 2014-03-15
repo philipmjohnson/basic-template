@@ -13,6 +13,7 @@ morea_readings:
   - reading-policies
   - reading-topic-overview
   - reading-algorithms
+  - reading-cormen-1
 morea_type: module
 morea_icon_url: /morea/data/1.introduction/introduction.jpg
 morea_sort_order: 0
