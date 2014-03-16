@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Asymptotic concepts | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Asymptotic Concepts</h2>
+
+<h4>5 points</h4>
+
+<p><strong>1. (1 pt)</strong> We can extend asymptotic notation to the case of two parameters n and m that can go to infinity independently at different rates. For example, we denote by O(g(n,m)) the set of functions:</p>
+
+<blockquote>
+<p>O(<em>g</em>(<em>n</em>,<em>m</em>)) = {<em>f</em>(<em>n</em>,<em>m</em>) : there exists positive constants <em>c</em>, <em>n</em>0
+and <em>m</em>0 such that 0 ≤ <em>f</em>(<em>n</em>,<em>m</em>) ≤ <em>c</em><em>g</em>(<em>n</em>,<em>m</em>) for all <em>n</em> ≥ _ <em>n0 or
+_m</em> ≥ <em>m</em>0}</p>
+</blockquote>
+
+<p>Give a corresponding definition for Θ(<em>g</em>(<em>n</em>,<em>m</em>)).</p>
+
+<p><strong>2. (4 pts)</strong> Indicate, for each pair of expressions (<em>f</em>(<em>n</em>), <em>g</em>(<em>n</em>)) in the table below, whether <em>f</em>(<em>n</em>) = __<em>(</em>g<em>(</em>n<em>)), where the _</em>_ may be O, o, Ω, ω or Θ. Assume that k ≥ 1, <em>c</em> &gt; 1, and d &gt; 0 are constants and we are analyzing growth rates in terms of the variable <em>n</em>. To respond, write &quot;Yes&quot; or &quot;No&quot; in each box. Grading will be based on these entries first, but if you give your justifications below we can give better feedback and possibly partial credit in case of wrong answers. </p>
+
+<table width="100%" border="1">
+  <caption>
+    Asymptotic Relations
+  </caption>
+  <tbody><tr>
+    <th scope="col">&nbsp;</th>
+    <th scope="col"><i>f</i>(<i>n</i>)</th>
+    <th scope="col"><i>g</i>(<i>n</i>)</th>
+    <th scope="col">O?</th>
+    <th scope="col">o?</th>
+    <th scope="col">&#937;?</th>
+    <th scope="col">&#969;?</th>
+    <th scope="col">&#920;?</th>
+  </tr>
+  <tr>
+    <th scope="row">a.</th>
+    <td>n<sup>lg <i>c</i></sup></td>
+    <td>c<sup>lg <i>n</i></sup></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+  <tr>
+    <th scope="row">b.</th>
+    <td>lg<sup><i>k</i></sup><i>n</i></td>
+    <td>n<sup><i>d</i></sup></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+  <tr>
+    <th scope="row">c.</th>
+    <td>2<sup><i>n</i></sup></td>
+    <td>2<sup><i>n</i>/2</sup></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+  <tr>
+    <th scope="row">d.</th>
+    <td>lg(<i>n</i>!)</td>
+    <td>lg(<i>n</i><sup><i>n</i></sup>)</td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+</tbody></table>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
