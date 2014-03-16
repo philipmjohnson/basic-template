@@ -9,6 +9,9 @@ morea_readings:
   - reading-screencast-4b
   - reading-cormen-10
   - reading-notes-4
+morea_experiences:
+  - experience-asymptotic-basic-data-structures
+  - experience-asymptotic-homework
 morea_type: module
 morea_icon_url: /morea/data/4.adt/adt.png
 morea_sort_order: 4

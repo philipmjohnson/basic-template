@@ -13,6 +13,7 @@ morea_readings:
   - reading-notes-3
   - reading-screencast-mit-2
 morea_experiences:
+  - experience-asymptotic-concepts
 morea_type: module
 morea_icon_url: /morea/data/3.growth/growth.png
 morea_sort_order: 3
