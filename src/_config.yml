@@ -5,4 +5,4 @@ safe: false
 baseurl: /ics311s14
 exclude: [morea]
 
-morea_debug: false
+morea_debug: true
