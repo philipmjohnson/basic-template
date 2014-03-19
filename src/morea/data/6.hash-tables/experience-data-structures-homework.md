@@ -40,7 +40,7 @@ to show the data associated with the keys. The double lines in the graphic are
 meant to remind you that these are doubly linked lists in both the horizontal
 and vertical directions, but you need not draw double lines in your responses.
 
-![](/morea/data/6.hash-tables/starting-skip-list.jpg)
+![](morea/data/6.hash-tables/starting-skip-list.jpg)
 
 **(2)** _Trace the path that `SkipSearch(36)` takes, by circling every node that p is assigned to as the `SkipSearch` algorithm executes, starting with s. _
 
@@ -81,7 +81,7 @@ discussed! _
 
 **(8)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with **chaining** and **_h_(_k_) = _k_ mod 11.**_ _Draw this one with a vertical table indexed from 0 to 10, and linked lists going off to the right, as shown._
 
-![](/morea/data/6.hash-tables/hash-chaining-template.jpg)
+![](morea/data/6.hash-tables/hash-chaining-template.jpg)
 
 ###  Open Addressing with Linear Probing
 
@@ -93,7 +93,7 @@ h(k,i) = (h'(k) + i) mod 11
 _Draw this and the next result as horizontal arrays indexed from 0 to 10 as
 shown below. Show your work to justify your answer to the next question!_
 
-![](/morea/data/6.hash-tables/hash-open-template.jpg)
+![](morea/data/6.hash-tables/hash-open-template.jpg)
 
 **(10)** _How many re-hashes after collision are required for this set of keys?_ _ Show your work here so we can give partial credit or feedback if warranted._
 
@@ -108,7 +108,7 @@ _h_2(_k_) = 1 + (_k_ mod 7)
 _Refer to the code in the book for how i is incremented. Show your work to
 justify your answer to the next question!_
 
-![](/morea/data/6.hash-tables/hash-open-template.jpg)
+![](morea/data/6.hash-tables/hash-open-template.jpg)
 
 **(12)** _How many re-hashes after collision are required for this set of keys?_ _Show your work here so we can give partial credit or feedback if warranted._
 
