@@ -13,6 +13,8 @@ morea_readings:
   - reading-cormen-5
   - reading-goodrich
   - reading-notes-5
+morea_experiences:
+  - experience-indicator-random-variables
 morea_type: module
 morea_icon_url: /morea/data/5.probabilistic-analysis/probabilistic.png
 morea_sort_order: 5
