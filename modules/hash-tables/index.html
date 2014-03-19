@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Hash Tables | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <div class="container">
+  <h1><small>Module: </small> Hash Tables </h1>
+</div>
+
+<div class="light-gray-background">
+  <div class="container">
+    <h2>Learning outcomes</h2>
+
+    
+
+    
+      
+      <h3>Outcome 1: Understand hash tables.</h3>
+      <p>Understand the design and run-time characteristics of hash tables and how they compare to related data structures. </p>
+
+    
+
+  </div>
+</div>
+
+<div class="white-background">
+  <div class="container">
+  <h2>Readings and other resources</h2>
+
+    
+
+    <div class="row">
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=NMm1BKomO_Y">Hash tables: introduction and chaining</a></h4>
+            <p>Introduction to hash tables</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">8 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=ei7T9Y97u0M">Hash tables: analysis of chaining</a></h4>
+            <p>Analysis of chaining</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">20 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=jW4wCfz3DwE">Hash tables: Hash functions</a></h4>
+            <p>Examples of hash functions and universal chaining</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">13 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=SGGP_HJNUts">Hash table: open addressing</a></h4>
+            <p>Using open addressing to avoid the overhead of linked lists.</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">16 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+       </div><div class="row">
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://mitpress.mit.edu/books/introduction-algorithms">CLRS 11 - Hash tables</a></h4>
+            <p>Direct address tables, hash tables, hash functions, and open addressing</p>
+
+            <p>
+              
+              <span class="badge">Textbook</span>
+              
+              <span class="badge">23 pages</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-06.html">Chapter 6 Notes</a></h4>
+            <p>Notes on hash tables</p>
+
+            <p>
+              
+              <span class="badge">Notes</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://videolectures.net/mit6046jf05_leiserson_lec07/">Hash tables I</a></h4>
+            <p>Hash tables and the symbol table problem</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Leiserson</span>
+              
+              <span class="badge">77 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://videolectures.net/mit6046jf05_leiserson_lec08/">Hash tables II</a></h4>
+            <p>Universal hashing</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Leiserson</span>
+              
+              <span class="badge">79 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      </div><div class="row">
+      
+      
+      
+      
+
+    </div>
+  </div>
+</div>
+
+<div class="light-gray-background">
+  <div class="container">
+  <h2>Experiential Learning</h2>
+
+    
+
+    <div class="row">
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="/ics311s14/morea/data/6.hash-tables/experience-deletion.html">Hash tables: understanding deletion</a></h4>
+            <p>Learn about deletion in hash tables.</p>
+
+            <p>
+              
+              <span class="badge">In class</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="/ics311s14/morea/data/6.hash-tables/experience-data-structures-homework.html">Analysis of data structures</a></h4>
+            <p>Consolidate your understanding of data structures</p>
+
+            <p>
+              
+              <span class="badge">Homework</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+
+    </div>
+  </div>
+</div>
+
+<div class="white-background">
+  <div class="container">
+    <h2>Assessment</h2>
+
+    
+    <p>No assessments for this module.</p>
+    
+
+    
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-03-18 14:28:18 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
