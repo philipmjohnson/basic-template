@@ -49,7 +49,7 @@ book's pseudocode (shown).
 
 ### Deletion from Skip Lists
 
-![](morea/data/6.hash-tables/SkipList-Small.jpg)
+![](SkipList-Small.jpg)
 
 `SkipSearch(k)` returns a pointer `p` to the bottom most element of the tower
 you want to delete. Suppose this were passed to a method `SkipDelete(p)` −
