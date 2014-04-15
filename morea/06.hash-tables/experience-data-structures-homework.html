@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Analysis of data structures | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h1>Analysis of data structures</h1>
+
+<p>This week&#39;s problems focus on ensuring you understand the operations of the
+main data structures. They are not conceptually difficult but require
+dilligence in execution. Don&#39;t be careless or just go on intuition: you should
+actually follow the algorithms and hash functions precisely, or you will go
+wrong.</p>
+
+<h2>Peer Credit Assignment</h2>
+
+<p><strong>(1)</strong> Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.</p>
+
+<ul>
+<li>If three members besides yourself were present at some time, you have a total of 3 points to allocate across all members (<em>NOT</em> 3 points per member!).</li>
+<li>If two members besides yourself were present, you have a total of 4 points to allocate across all members.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate across all members.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+</ul>
+
+<h2>Skip Lists</h2>
+
+<h4>11 points</h4>
+
+<p>Please read carefully; this has multiple parts. Answer the lettered parts in
+boldface.</p>
+
+<p>Here is a skip list, including instance variables <strong>s</strong> (the starting
+position), <strong>h</strong> (the height: we assume that <code>h</code> starts counting from 0), and
+<strong>n</strong> (the number of keys currently stored in the skip list). We won&#39;t bother
+to show the data associated with the keys. The double lines in the graphic are
+meant to remind you that these are doubly linked lists in both the horizontal
+and vertical directions, but you need not draw double lines in your responses.</p>
+
+<p><img src="starting-skip-list.jpg" alt=""></p>
+
+<p><strong>(2)</strong> _Trace the path that <code>SkipSearch(36)</code> takes, by circling every node that p is assigned to as the <code>SkipSearch</code> algorithm executes, starting with s. _</p>
+
+<p>In the remaining questions, you will how what the skip list shown above looks
+like after the cumulative operations indicated below, using the pseudocode for
+<code>SkipInsert</code> and <code>SkipSearch</code> in the lecture notes, and your understanding of
+how <code>SkipDelete</code> works from the class activity.</p>
+
+<p>Since this is a random algorithm and we want everyone to have the same answer
+to facilitate grading, I also give you sequences of random numbers (not all of
+which will be used, as I am testing your understanding of when and how the
+random numbers are used). Note that the insertion code says <code>while
+random(0,1) ≤ 1/2 do</code>...</p>
+
+<p>The operations are <strong>cumulative:</strong> each step builds on the result of the
+previous one. Redraw the entire data structure after each operation, and also
+update instance variables <strong>s</strong>, <strong>h</strong> and <strong>n</strong> as needed.</p>
+
+<p><strong>(3)</strong> <em>Redraw after <code>SkipInsert(19,data)</code></em> where <code>random(0,1)</code> returns .70, .94, .14, .11, .89, ... </p>
+
+<p><strong>(4)</strong> <em>Redraw after <code>SkipInsert(53,data)</code></em> where <code>random(0,1)</code> returns .14, .51, .22, .68, .45, ... </p>
+
+<p><strong>(5)</strong> <em>Redraw after <code>SkipInsert(32,data)</code></em> where <code>random(0,1)</code> returns .25, .39, .18, .97, .02, ... </p>
+
+<p><strong>(6)</strong> _ Redraw after <code>SkipDelete(SkipSearch(15))</code>. _</p>
+
+<p>_Something to think about (but not graded): What should the list look like if
+we now deleted 32? There is a choice to be made here that we have not
+discussed! _</p>
+
+<p><strong>(7)</strong> <em>Now draw what an _empty</em> skip list would look like, including s, h and n._</p>
+
+<h2>Hashing</h2>
+
+<h4>9 points</h4>
+
+<h3>Hashing with Chaining</h3>
+
+<p><strong>(8)</strong> <em>Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with <strong>chaining</strong> and **</em>h<em>(</em>k<em>) = _k</em> mod 11.**_ <em>Draw this one with a vertical table indexed from 0 to 10, and linked lists going off to the right, as shown.</em></p>
+
+<p><img src="hash-chaining-template.jpg" alt=""></p>
+
+<h3>Open Addressing with Linear Probing</h3>
+
+<p><strong>(9)</strong> <em>Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with <strong>linear probing</strong></em> and</p>
+
+<blockquote>
+<p>h&#39;(k) = k mod 11<br>
+h(k,i) = (h&#39;(k) + i) mod 11</p>
+</blockquote>
+
+<p><em>Draw this and the next result as horizontal arrays indexed from 0 to 10 as
+shown below. Show your work to justify your answer to the next question!</em></p>
+
+<p><img src="hash-open-template.jpg" alt=""></p>
+
+<p><strong>(10)</strong> <em>How many re-hashes after collision are required for this set of keys?</em> _ Show your work here so we can give partial credit or feedback if warranted._</p>
+
+<h3>Open Addressing with Double Hashing</h3>
+
+<p><strong>(11)</strong> <em>Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size _m</em> = 11 with <strong>double hashing</strong>_ and</p>
+
+<blockquote>
+<p><em>h</em>(<em>k</em>,<em>i</em>) = (<em>h</em>1(<em>k</em>) + <em>i</em><em>h</em>2(<em>k</em>)) mod 11<br>
+<em>h</em>1(<em>k</em>) = <em>k</em> mod 11<br>
+<em>h</em>2(<em>k</em>) = 1 + (<em>k</em> mod 7)</p>
+</blockquote>
+
+<p><em>Refer to the code in the book for how i is incremented. Show your work to
+justify your answer to the next question!</em></p>
+
+<p><img src="hash-open-template.jpg" alt=""></p>
+
+<p><strong>(12)</strong> <em>How many re-hashes after collision are required for this set of keys?</em> <em>Show your work here so we can give partial credit or feedback if warranted.</em></p>
+
+<p><strong>(13)</strong> Open addressing insertion is like an unsuccessful search, as you need to find an empty cell, i.e., to <em>not</em> find the key you are looking for! If the open addressing hash functions above were uniform hashing, _ what is the expected number of probes at the time that the last key (40) was inserted?_ <em>Hints: At that point, 7 keys are in the table. Use the theorem for unsuccessful search in open addressing.</em> <em>Answer with a specific number, not O or Theta.</em></p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-15 10:07:51 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
