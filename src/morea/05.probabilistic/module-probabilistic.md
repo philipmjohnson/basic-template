@@ -16,7 +16,7 @@ morea_readings:
 morea_experiences:
   - experience-indicator-random-variables
 morea_type: module
-morea_icon_url: /morea/data/5.probabilistic-analysis/probabilistic.png
+morea_icon_url: /morea/05.probabilistic/module-probabilistic.png
 morea_sort_order: 5
 ---
 

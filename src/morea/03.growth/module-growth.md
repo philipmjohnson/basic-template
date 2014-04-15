@@ -15,7 +15,7 @@ morea_readings:
 morea_experiences:
   - experience-asymptotic-concepts
 morea_type: module
-morea_icon_url: /morea/data/3.growth/growth.png
+morea_icon_url: /morea/03.growth/module-growth.png
 morea_sort_order: 3
 ---
 

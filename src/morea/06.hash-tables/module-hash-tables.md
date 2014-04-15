@@ -17,7 +17,7 @@ morea_experiences:
   - experience-deletion
   - experience-data-structures-homework
 morea_type: module
-morea_icon_url: /morea/data/6.hash-tables/hash-table.png
+morea_icon_url: /morea/06.hash-tables/module-hash-tables.png
 morea_sort_order: 6
 ---
 
