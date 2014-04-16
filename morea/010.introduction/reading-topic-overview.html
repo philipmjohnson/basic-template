@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Topics | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2><em>Part I: Introduction to Analysis</em></h2>
+
+<p>This section introduces algorithms as abstractions of programs, and motivates
+why we need to do analysis of algorithms rather than just run empirical tests
+of programs. It then introduces some mathematical and conceptual tools for
+doing analysis. Two useful sorting algorithms are used for illustration; we&#39;ll
+return to sorting later.</p>
+
+<ul>
+<li><strong>#1</strong> - Chapter 1: Introduction to Course Format and to Algorithms </li>
+<li><strong>#2</strong> - Chapter 2: Examples of Analysis with Insertion and Merge Sort</li>
+<li><strong>#3</strong> - Chapter 3: Growth of Functions and Asymptotic Concepts </li>
+</ul>
+
+<h2><em>Part II: Data Structures for Dictionaries &amp; Sets</em></h2>
+
+<p>In this section we introduce problem solving and analysis methods (chapters
+3-5), some of which have been covered in ICS 241, and also review review basic
+data structures and algorithms (chapters 10-12) that were introduced in ICS
+211. The chapters from the text are interleaved and paired up in a manner that
+uses the basic dictionary and set data structures and algorithms to illustrate
+the problem solving and analysis methods. Hopefully this is mostly review of
+the two prerequisite courses with some added depth.</p>
+
+<ul>
+<li><strong>#4</strong> - Chapter 10: Stacks, Queues, Lists and Trees (Review)</li>
+<li><strong>#5</strong> - Chapter 5 and Goodrich &amp; Tamassia section: Probabilistic Analysis and Randomized Algorithms; Skip list example</li>
+<li><strong>#6</strong> - Chapter 11: Hash Tables</li>
+<li><strong>#7</strong> - Chapter 4: Divide &amp; Conquer and Associated Analysis Methods</li>
+<li><strong>#8</strong> - Chapter 12: Binary Search Trees</li>
+</ul>
+
+<h2><em>Part III: Sorting and Balanced Trees</em></h2>
+
+<p>We continue into more advanced applications of trees (chapters 6 and 13), also
+providing the basis for another efficient sorting algorithm. We compare
+additional sorting algorithms to those from Chapter 2. Sorting is one of the
+most fundamental and common applications of computers, so efficiency is very
+important. We consider the broader question of how fast <em>any</em> sort algorithm
+can be. This is an example of a powerful method of computer science: reasoning
+about sets of possible algorithms rather than specific algorithms.</p>
+
+<ul>
+<li><strong>#9</strong> - Chapter 6: Heapsort and Priority Queues</li>
+<li><strong>#10</strong> - Chapters 7 &amp; 8.1: Quicksort, Theoretical Limits, and O(n) sorts </li>
+<li><strong>#11</strong> - Chapter 13 &amp; Sedgewick Chapter 15: Balanced Trees </li>
+</ul>
+
+<h2><em>Part IV: Problem Solving and Analysis Methods</em></h2>
+
+<p>This part introduces two further problem solving methods, <em>dynamic
+programming</em> and <em>greedy algorithms</em>, with example applications. We then cover
+another important analytic method, _amortization _, with examples in the
+analysis of the union-find representation of sets. (Chronologically, #14
+graphs will be introduced in this sequence to help you get started on a
+programming assignment, but conceptually they belong in the next section.)</p>
+
+<ul>
+<li><strong>#12</strong> - Chapter 15: Dynamic Programming</li>
+<li><strong>#13</strong> - Chapter 16: Greedy Algorithms &amp; Huffman Codes</li>
+<li><strong>#15</strong> - Chapter 17 - Amortization</li>
+<li><strong>#16</strong> - Chapter 21 - Sets and Union-Find</li>
+</ul>
+
+<h2><em>Part V: Graphs</em></h2>
+
+<p>Graphs are a very flexible data structure for which many applications exist.
+Equipped with various problem solving and analytic tools, we examine the most
+important algorithms on graphs -- including some of the most classic work in
+computer science -- and their applications.</p>
+
+<ul>
+<li><strong>#14</strong> - Chapter 22: Graph Representations and Basic Algorithms <em>(covered earlier)</em></li>
+<li><strong>#17</strong> - Chapter 23: Minimum Spanning Trees </li>
+<li><strong>#18</strong> - Chapter 24: Single-Source Shortest Paths </li>
+<li><strong>#19</strong> - Chapter 25: All Pairs Shortest Paths </li>
+<li><strong>#20</strong> - Chapter 26: Maximum Flow</li>
+</ul>
+
+<h2><em>Part VI: Selected Topics</em></h2>
+
+<p>There are a number of other important or common application areas that have
+their own specialized algorithms of interest: multithreading (parallel
+algorithms), matrix operations, linear programming, operations on polynomials,
+number-theory, string matching, and computational geometry. These are covered
+in the text, but we can&#39;t fit them all in. Linear Programming will be examined
+because it fills out an area not covered well above (numeric algorithms), and
+also has interesting connections to previous material (e.g., you can solve
+flow problems with a linear program). Two other topics will be covered more
+lightly in class (no homework).</p>
+
+<ul>
+<li><strong>#21</strong> - Sedgewick Chapters 5 and 38; Chapter 29: Linear Programming </li>
+<li><strong>#22</strong> - Chapter 27: Multithreading </li>
+<li><strong>#23</strong> - Chapter 32: String Matching </li>
+</ul>
+
+<h2><em>Part VII: Complexity Theory and NP-Completeness</em></h2>
+
+<p>Finally, abstracting further from algorithms to problems, we deal with the
+important question of whether an efficient algorithm is known (or even
+possible) for a given problem, and what to do if none are known. We encounter
+the most important open problem in theoretical computer science (indeed in all
+of mathematics), which is of <em>practical</em> interest because awareness of
+&quot;intractable&quot; problems and approximation algorithms could save you
+considerable trouble if you encounter one of these very common problems on the
+job! The seminal book on this topic is the most cited reference in computer
+science.</p>
+
+<ul>
+<li><strong>#24</strong> - Chapter 34 - Complexity Theory &amp; NP-Completeness</li>
+<li><strong>#25</strong> - Chapter 35 - Approximation Algorithms </li>
+</ul>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-16 10:45:40 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

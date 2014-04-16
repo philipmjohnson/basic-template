@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Chapter 2 Notes | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Outline</h2>
+
+<ol>
+<li>The Sorting Problem</li>
+<li>Insertion Sort: An Incremental Strategy</li>
+<li>Loop Invariants and Correctness of Insertion Sort</li>
+<li>RAM Model; What do we count?</li>
+<li>Analysis of Insertion Sort: Best and Worst Cases</li>
+<li>Worst Case Rate of Growth and Θ (Theta)</li>
+<li>Merge Sort: A Divide &amp; Conquer Strategy</li>
+<li>Brief Comment on Merge Sort Correctness</li>
+<li>Analysis of Merge Sort: Recurrence Relations and Recursion Tree</li>
+</ol>
+
+<h2>Modeling a Problem: The Sorting Problem</h2>
+
+<h3>Problem Formulation</h3>
+
+<p>Clear and unambiguous definition of what to be solved in terms of:</p>
+
+<ul>
+<li>Input of the problem</li>
+<li>Output of the problem</li>
+<li>Assumptions in the problem</li>
+</ul>
+
+<p>Descriptions in a problem formulation must be declarative (not procedural).
+All assumptions concerning input and output must be explicit. The problem
+formulation provides the requirements for an algorithm.</p>
+
+<h3>Problem Formulation for Sorting</h3>
+
+<p>Input:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">A sequence σ of n real numbers xi (1 ≤ i ≤ n)
+</code></pre></div>
+<p>Assumptions:</p>
+
+<ol>
+<li>n is a positive integer.</li>
+<li><p>The real numbers xi (1 ≤ i ≤ n) are not necessarily distinct.
+Output:</p>
+
+<p>A permutation π = x&#39;1 x&#39;2  x&#39;n of the given sequence σ such that x&#39;j ≤ x&#39;j+1 for every j (1 ≤ j &lt; n)</p></li>
+</ol>
+
+<p>The numbers are referred to as <strong>keys</strong>.</p>
+
+<p>Additional information known as <strong>satellite data</strong> may be associated with each
+key.</p>
+
+<p>Sorting is hugely important in most applications of computers. We will cover
+several ways to solve this problem in this course.</p>
+
+<hr>
+
+<h2>Insertion Sort: An Incremental Strategy</h2>
+
+<p><img src="fig/sorting-cards.jpg" alt=""></p>
+
+<p>Insertion sort takes an <strong>incremental strategy</strong> of problem solving: pick off
+one element of the problem at a time and deal with it. Our first example of
+the text&#39;s pseudocode:</p>
+
+<p><img src="fig/code-insertion-sort.jpg" alt=""></p>
+
+<p>Here&#39;s a step by step example:</p>
+
+<p><img src="fig/fig-2-2-insertion-sort-example.jpg" alt=""></p>
+
+<p><em>Is the strategy clear? For fun, see the visualization at
+<a href="http://youtu.be/ROalU379l3U">http://youtu.be/ROalU379l3U</a></em></p>
+
+<hr>
+
+<h2>Loop Invariants and Correctness of Insertion Sort</h2>
+
+<h3>Loop Invariants</h3>
+
+<p>A loop invariant is a formal property that is (claimed to be) true at the
+start of each iteration. We can use loop invariants to prove the correctness
+of iteration in programs, by showing three things about the loop invariant:</p>
+
+<p><strong>Initialization:</strong>
+    It is true prior to the first iteration.
+<strong>Maintenance:</strong>
+    If it is true prior to a given iteration, then it remains true before the next iteration.
+<strong>Termination:</strong>
+    When the loop terminates, the invariant (and the conditions of termination) gives us a useful property that helps to show that the algorithm is correct.</p>
+
+<p>Notice the similarity to mathematical induction, but here we have a
+termination condition.</p>
+
+<h3>Correctness of Insertion Sort</h3>
+
+<p><img src="fig/code-insertion-sort.jpg" alt=""></p>
+
+<p><strong>Loop Invariant:</strong>
+    At the start of each iteration of the outer <code>for</code> loop at line 1, the subarray A[1 .. <em>j</em>-1] consists of the elements originally in A[1 .. <em>j</em>-1] but in sorted order. 
+<strong>Initialization:</strong>
+    We start with <em>j</em>=2. The subarray A[1 .. <em>j</em>-1] is the single element A[1], which is the element originally in A[1] and is trivially sorted.
+<strong>Maintenance:</strong>
+    A precise analysis would state and prove another loop invariant for the <code>while</code> loop. For simplicity, we&#39;ll note informally that at each iteration the elements A[<em>j</em>-1], A[<em>j</em>-2], A[<em>j</em>-3], etc. are shifted to the right (so they remain in the sequence in proper order) until the proper place for <em>key</em> (the former occupant of A[<em>j</em>]) is found. Thus at the next iteration, the subarray A[1 .. <em>j</em>] has the same elements but in sorted order.
+<strong>Termination:</strong>
+    The outer <code>for</code> loop ends when <em>j</em>=<em>n</em>+1. Therefore <em>j</em>-1=<em>n</em>. Plugging <em>n</em> into the loop invariant, the subarray A<a href="which%20is%20the%20entire%20array">1 .. <em>n</em></a> consists of the elements originally in A[1 .. <em>n</em>] but in sorted order.</p>
+
+<p><em>Convinced? Questions? Could you do it with another problem?</em></p>
+
+<hr>
+
+<h2>RAM Model: What do we count?</h2>
+
+<p>If we are going to tally up time (and space) requirements, we need to know
+what counts as a unit of time (and space). Since computers differ from each
+other in details, it is helpful to have a common abstract model.</p>
+
+<h3>Random Access Machine (RAM) Model</h3>
+
+<p>The RAM model is based on the design of typical von Neumann architecture
+computers that are most widely in use. For example:</p>
+
+<ul>
+<li>Instructions are executed one after the other (no concurrent operations).</li>
+<li>Instructions operate on a small number (one or two) of data &quot;words&quot; at a time.</li>
+<li>Data words are of a limited, constant size (cannot get arbitrarily large computation done in one operation by putting the data in an arbitrarily large word).</li>
+</ul>
+
+<h3>Categories of Primitive Operations</h3>
+
+<p>We identify the primitive operations that count as &quot;one step&quot; of computation.
+They may differ in actual time taken, but all can be bounded by the same
+constant, so we can simplify things greatly by counting them as equal.</p>
+
+<h4>Data Manipulation</h4>
+
+<ul>
+<li>Arithmetic operation: +, -, *, /, remainder, floor, ceiling, left/right shift</li>
+<li>Comparison: &lt;, =, &gt;, ≤, ≥</li>
+<li>Logical operation: ∧, ∨, ¬</li>
+</ul>
+
+<blockquote>
+<p><em>These assume bounded size data objects being manipulated, such as integers
+that can be represented in a constant number of bits (e.g, a 64-bit word),
+bounded precision floating numbers, or boolean strings that are bounded in
+size. Arbitrarily large integers, arbitrarily large floating point precision,
+and arbitrarily long strings can lead to nonconstant growth in computation
+time.</em></p>
+</blockquote>
+
+<h4>Flow Control</h4>
+
+<ul>
+<li>Branch: case, if, etc.</li>
+<li>Loop; while, for   __   &lt;-   ___   to   ___ </li>
+</ul>
+
+<blockquote>
+<p><em>Here we are stating that the time to execute the machinery of the
+conditional loop controllers are constant time. However, if the language
+allows one to call arbitrary methods as part of the boolean expressions
+involved, the overall execution may not be constant time.</em></p>
+</blockquote>
+
+<h4>Miscellaneous</h4>
+
+<ul>
+<li>Assignment: &lt;-</li>
+<li>Subscription: [ ]</li>
+<li>Reference</li>
+<li>Setting up a procedure or function call (see below)</li>
+<li>Setting up an I/O operation (see below) </li>
+</ul>
+
+<blockquote>
+<p><em>The time to set up a procedure call is constant, but the time to execute
+the procedure may not be. Count that separately. Similarly, the time to set up
+an I/O operation is constant, but the time to actually read or write the data
+may be a function of the size of the data. Treat I/O as constant only if you
+know that the data size is bounded by a constant, e.g., reading one line from
+a file with fixed data formats.</em></p>
+</blockquote>
+
+<h3>Input Size</h3>
+
+<p>Time taken is a function of input size. How do we measure input size?</p>
+
+<ul>
+<li>It is often most convenient to use the number of items in the input, such as the number of numbers being sorted. </li>
+<li>For some algorithms we need to measure the size of data, such as the number of bits in two integers being multiplied. </li>
+<li>For other algorithms we need more than one number, such as the number of vertices <em>and</em> edges in a graph.</li>
+</ul>
+
+<hr>
+
+<h2>Analysis of Insertion Sort: Best and Worst Cases</h2>
+
+<p>We now undertake an exhaustive quantitative analysis of insertion sort. We do
+this analysis in greater detail than would normally be done, to illustrate why
+this level of detail is not necessary!!!</p>
+
+<p>For each line, what does it cost, and how many times is it executed?</p>
+
+<p>We don&#39;t know the actual cost (e.g., in milliseconds) as this varies across
+software and hardware implementations. A useful strategy when you do not know
+a quantity is to just give it a name ...</p>
+
+<p><img src="fig/analysis-insertion-sort.jpg" alt=""></p>
+
+<p>The <em>ci</em> are the unknown but constant costs for each step. The <em>tj</em> are the
+numbers of times that line 5 is executed for a given <em>j</em>. These quantities
+depend on the data, so again we just give them names.</p>
+
+<p>Let T(<em>n</em>) be the running time of insertion sort. We can compute T(<em>n</em>) by
+multiplying each cost by the number of times it is incurred (on each line) and
+summing across all of the lines of code:</p>
+
+<p><img src="fig/equation-insertion-total-time.jpg" alt=""></p>
+
+<h3>Best Case</h3>
+
+<p><img src="fig/analysis-insertion-sort-while-loop.jpg" alt=""></p>
+
+<p>When the array is already sorted, we always find that A[<em>i</em>] ≤ <em>key</em> the first
+time the <code>while</code> loop is run; so all <em>tj</em> are 1 and <em>tj-1</em> are 0. Substituting
+these values into the above:</p>
+
+<p><img src="fig/equation-insertion-best.jpg" alt=""></p>
+
+<p>As shown in the second line, this is the same as <em>a</em><em>n</em> + <em>b</em> for suitable
+constants <em>a</em> and <em>b</em>. Thus the running time is a <strong>linear function of n.</strong></p>
+
+<h3>Worst Case</h3>
+
+<p><img src="fig/analysis-insertion-sort-while-loop.jpg" alt=""></p>
+
+<p>When the array is in reverse sorted order, we always find that A[<em>i</em>] &gt; <em>key</em>
+in the while loop, and will need to compare <em>key</em> to all of the (growing) list
+of elements to the left of <em>j</em>. There are <em>j</em>-1 elements to compare to, and
+one additional test for loop exit. Thus, <em>tj=j</em>.</p>
+
+<p><img src="fig/equation-insertion-worst-1.jpg" alt=""> <img src="fig%0A/equation-insertion-worst-2.jpg" alt=""></p>
+
+<p>Plugging those values into our equation:</p>
+
+<p><img src="fig/equation-insertion-total-time.jpg" alt=""></p>
+
+<p>We get the worst case running time, which we simplify to gather constants:</p>
+
+<p><img src="fig/equation-insertion-worst-3.jpg" alt=""></p>
+
+<p><em>T(n)</em> can be expressed as <em>an2 + bn + c</em> for some <em>a, b, c</em>: <em>T(n)</em> is a
+<strong>quadratic function of n</strong>.</p>
+
+<p>So we can draw these conclusions purely from mathematical analysis, with _ no
+implementation or testing needed_: Insertion sort is very quick (linear) on
+already sorted data, so it works well when incrementally adding items to an
+existing list. But the worst case is slow for reverse sorted data.</p>
+
+<hr>
+
+<h2>Worst Case Rate of Growth and Θ (Theta)</h2>
+
+<p>From the above example we introduce two key ideas and a notation that will be
+elaborated on later.</p>
+
+<h3>Worst Case Analysis</h3>
+
+<p>Above, both best and worst case scenarios were analyzed. We usually
+concentrate on the worst-case running times for algorithms, because:</p>
+
+<ul>
+<li>This gives us a guaranteed upper bound.</li>
+<li>For some algorithms, the worst case occurs often (such as failing to find an item in a search). </li>
+<li>The average is often almost as bad as the worst case.</li>
+</ul>
+
+<p><em>How long does it take on average to successfully find an item in an unsorted
+list of n items?<br>
+How long does it take in the worst case, when the item is not in the list?<br>
+What is the difference between the two?</em></p>
+
+<h3>Rate of Growth</h3>
+
+<p>In the above example, we kept track of unknown but named constant values for
+the time required to execute each line once. In the end, we argued that these
+constants don&#39;t matter!</p>
+
+<ul>
+<li>Their specific values don&#39;t matter because they all add up to summary constants in the equations (e.g., <em>a</em> and <em>b</em>).</li>
+<li>Even their presence does not matter, because it is the growth of the function of <em>n</em> that dominates the time taken to run the algorithm.</li>
+</ul>
+
+<p>This is good news, because it means that all of that excruciating detail is
+not needed!</p>
+
+<p>Furthermore, only the fastest growing term matters. In <em>an2 + bn + c</em>, the
+growth of <em>n2</em> dominates all the other terms (including <em>bn</em>) in its growth.</p>
+
+<h3>Theta: Θ</h3>
+
+<p>We will use Θ notation to concentrate on the fastest growing term and ignore
+constants.</p>
+
+<p>If we conclude that an algorithm requires <em>an2 + bn + c</em> steps to run, we
+will dispense with the constants and lower order terms and say that its growth
+rate (the growth of how long it takes as <em>n</em> grows) is Θ(<em>n</em>2).</p>
+
+<p>If we see <em>bn + c</em> we will write Θ(<em>n</em>).</p>
+
+<p>A simple constant <em>c</em> will be Θ(1), since it grows the same as the constant 1.</p>
+
+<p>When we combine Θ terms, we similarly attend only to the dominant term. For
+example, suppose an analysis shows that the first part of an algorithm
+requires Θ(<em>n</em>2) timeand the second part requires Θ(<em>n</em>) time. Since the
+former term dominates, we need not write Θ(<em>n</em>2 + <em>n</em>): the overall algorithm
+is Θ(<em>n</em>2).</p>
+
+<p>Formal definitions next week!</p>
+
+<hr>
+
+<h2>Merge Sort: A Divide &amp; Conquer Strategy</h2>
+
+<p>Another strategy is to <strong>Divide and Conquer</strong>:</p>
+
+<p><strong>Divide</strong>
+    the problem into subproblems that are smaller instances of the same problem. 
+<strong>Conquer</strong>
+    the subproblems by solving them recursively. If the subproblems are small enough, solve them trivially or by &quot;brute force.&quot;
+<strong>Combine</strong>
+    the subproblem solutions to give a solution to the original problem.</p>
+
+<p>Merge Sort takes this strategy:</p>
+
+<p><strong>Divide:</strong>
+    Given A[<em>p .. r</em>], split the given array into two subarrays A[<em>p .. q</em>] and A[<em>q+1 .. r</em>] where <em>q</em> is the halfway point of A[<em>p .. r</em>].
+<strong>Conquer:</strong>
+    Recursively sort the two subarrays. If they are singletons, we have the base case. 
+<strong>Combine:</strong>
+    Merge the two sorted subarrays with a (linear) procedure <code>Merge</code> that iterates over the subarrays from the smallest element up to copy the next smallest element into a result array.<br>
+(This is like taking two decks of sorted cards and picking the next smallest
+one off to place face-down in a new pile to make one sorted deck.)</p>
+
+<p>The strategy can be written simply and elegantly in recursive code ...</p>
+
+<p><img src="fig/code-merge-sort.jpg" alt=""></p>
+
+<p>Here are examples when the input is a power of two, and another example when
+it is not a power of two:</p>
+
+<p><img src="fig/example-merge-sort-1.jpg" alt=""> <img src="fig/example-merge-sort-2.jpg" alt=""></p>
+
+<p>Now let&#39;s look in detail at the merge procedure, implemented using ∞ as
+<strong>sentinels</strong> <em>(what do lines 1-2 do? lines 3-9 ? lines 10-17?)</em>:</p>
+
+<p><img src="fig/code-merge-procedure.jpg" alt=""></p>
+
+<p>Here&#39;s an example of how the final pass of <code>MERGE(9, 12, 16)</code> happens in an
+array, starting at line 12. Entries with slashes have had their values copied
+to either L or R and have not had a value copied back in yet. Entries in L and
+R with slashes have been copied back into A.</p>
+
+<p><img src="fig/example-merge-sort-3.jpg" alt=""></p>
+
+<p>We can also dance this one: <a href="http://youtu.be/XaqR3G_NVoo">http://youtu.be/XaqR3G_NVoo</a></p>
+
+<hr>
+
+<h2>Merge Sort Correctness</h2>
+
+<p>A loop invariant is used in the book to establish correctness of the Merge
+procedure. Since the loop is rather straightforward, we will leave it to the
+above example. Once correctness of Merge is established, induction can be used
+to show that Merge-Sort is correct for any N.</p>
+
+<hr>
+
+<h2>Analysis of Merge Sort: Recurrence Relations and Recursion Tree</h2>
+
+<p><img src="fig/code-merge-procedure-small.jpg" alt=""></p>
+
+<p>Merge Sort provides us with our first example of using recurrence relations
+and recursion trees for analysis. We will go into more detail on these methods
+when we cover Chapter 4.</p>
+
+<h3>Analysis of Merge</h3>
+
+<p>Analysis of the Merge procedure is straightforward. The first two <code>for</code> loops
+(lines 4 and 6) take Θ(<em>n1+n2</em>) = Θ(<em>n</em>) time, where <em>n</em>1+<em>n</em>2 = <em>n</em>. The last
+<code>for</code> loop (line 12) makes <em>n</em> iterations, each taking constant time, for
+Θ(<em>n</em>) time. Thus total time is Θ(<em>n</em>).</p>
+
+<h3>Analyzing Divide-and-Conquer Algorithms</h3>
+
+<p><strong>Recurrence equations</strong> are used to describe the run time of Divide &amp; Conquer algorithms. Let <em>T(n)</em> be the running time on a problem of size <em>n</em>. </p>
+
+<ul>
+<li>If <em>n</em> is below some constant (or often, <em>n=1</em>), we can solve the problem directly with brute force or trivially in Θ(1) time.</li>
+<li>Otherwise we divide the problem into <em>a</em> subproblems, each <em>1/b</em> size of the original. Often, as in Merge Sort, <em>a = b = 2</em>.</li>
+<li>We pay cost <strong><em>D(n)</em></strong> to divide the problems and <strong><em>C(n)</em></strong> to combine the solutions. </li>
+<li>We also pay cost <strong><em>aT(n/b)</em></strong> solving subproblems. </li>
+</ul>
+
+<p>Then the total time to solve a problem of size <em>n</em> by dividing into <em>a</em>
+problems of size <em>n</em>/<em>b</em>can be expressed as:</p>
+
+<p><img src="fig/recurrence-generic.jpg" alt=""></p>
+
+<h3>Recurrence Analysis of Merge Sort</h3>
+
+<p><img src="fig/code-merge-sort.jpg" alt=""></p>
+
+<p>Merge-Sort is called with <em>p=1</em> and <em>r=n</em>. For simplicity, assume that <em>n</em> is
+a power of 2. (We can always raise a given <em>n</em> to the next power of 2, which
+gives us an upper bound on a tighter Θ analysis.) When <em>n≥2</em>, the time
+required is:</p>
+
+<ul>
+<li><strong>Divide</strong> (line 2): Θ(1) is required to compute <em>q</em> as the average of <em>p</em> and <em>r</em>.</li>
+<li><strong>Conquer</strong> (lines 3 and 4): 2<em>T</em>(<em>n</em>/2) is required to recursively solve two subproblems, each of size <em>n/2</em>.</li>
+<li><strong>Combine</strong> (line 5): Merging an n-element subarray takes Θ(<em>n</em>) (this term absorbs the Θ(1) term for Divide). 
+<img src="fig/recurrence-mergesort-theta.jpg" alt=""></li>
+</ul>
+
+<p>In Chapter 4 we&#39;ll learn some methods for solving this, such as the Master
+Theorem, by which we can show that it has the solution T(<em>n</em>) = Θ(<em>n</em>
+lg(<em>n</em>)). Thus, Merge Sort is faster than Insertion Sort in proportion to the
+difference in growth of lg(<em>n</em>) versus <em>n</em>.</p>
+
+<h3>Recursion Tree Analysis</h3>
+
+<p>Recursion trees provide an intuitive understanding of the above result. In
+general, recursion trees can be used to plan out a formal analysis, or even
+constitute a formal analysis if applied carefully.</p>
+
+<p>Let&#39;s choose a constant <em>c</em> that is the largest of all the constant costs in
+the algorithm (the base case and the divide steps). Then the recurrence can be
+written:</p>
+
+<p><img src="fig/recurrence-mergesort-c.jpg" alt=""></p>
+
+<p>It costs <em>cn</em> to divide the original problem in half and then to merge the
+results. We then have to pay cost <em>T</em>(<em>n</em>/2) twice to solve the subproblems:</p>
+
+<p><img src="fig/recurrence-tree-mergesort-1.jpg" alt=""></p>
+
+<p>For each of the two subproblems, <em>n</em>/2 is playing the role of <em>n</em> in the
+recurrence. So, it costs <em>cn</em>/2 to divide and then merge the <em>n</em>/2 elements,
+and <em>T</em>(<em>n</em>/4) to solve the subproblems:</p>
+
+<p><img src="fig/recurrence-tree-mergesort-2.jpg" alt=""></p>
+
+<p>If we continue in this manner we eventually bottom out at problems of size 1:</p>
+
+<p><img src="fig/recurrence-tree-mergesort-3.jpg" alt=""></p>
+
+<p>Notice that if we sum across the rows each level has cost <em>cn</em>. So, all we
+have to do is multiply this by the number of levels. Cool, huh?</p>
+
+<p><em>But how many levels are there?</em> A little thought (or a more formal inductive
+proof you&#39;ll find in the book) shows that there are about (allowing for the
+fact that n may not be a power of 2) lg(<em>n</em>)+1 levels of the tree. This is
+because you can only divide a power of two in half as many times as that power
+before you reach 1, and <em>n</em> = 2lg(<em>n</em>). The 1 counts the root note before we
+start dividing: there is always at least one level.</p>
+
+<p><em>Questions? Does it make sense, or is it totally mysterious?</em></p>
+
+<h3>One more Animation</h3>
+
+<p>Recapitulating our conclusions, we have seen that Insertion sort is quick on
+already sorted data, so it works well when incrementally adding items to an
+existing list. Due to its simplicity it is a good choice when the sequence to
+sort will always be small. But for large inputs Merge Sort will be faster than
+Insertion Sort, as <em>n</em>2 grows much faster than <em>n</em>lg(<em>n</em>). Each sort algorithm
+has different strengths and weaknesses, and performance depends on the data.
+Some of these points are made in the following visualizations (also watch for
+patterns that help you understand the strategies):</p>
+
+<blockquote>
+<p><a href="http://www.sorting-algorithms.com/">http://www.sorting-algorithms.com/</a> (set to 50 elements)</p>
+</blockquote>
+
+<hr>
+
+<h2>Next</h2>
+
+<p>Next week we cover Chapter 3: Growth of Functions and Asymptotic Concepts.
+Problems will be posted for my students in Laulima.</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Tue Apr 15 16:09:15 HST 2014</p>
+
+<p>Images are from the instructor&#39;s manual for Cormen et al.</p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-16 10:45:40 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
