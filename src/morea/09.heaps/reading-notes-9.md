@@ -1,10 +1,10 @@
 ---
-title: "Chapter 8 Notes"
+title: "Chapter 9 Notes"
 published: true
-morea_id: reading-notes-8
-morea_summary: "Notes on binary search trees"
+morea_id: reading-notes-9
+morea_summary: "Notes on heaps and heapsort."
 morea_type: reading
-morea_sort_order: 8
+morea_sort_order: 9
 morea_labels:
  - Notes
 ---
