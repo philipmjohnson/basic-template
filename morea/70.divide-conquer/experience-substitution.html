@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Understanding substitution and induction | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Solving <em>T</em>(<em>n</em>) = <em>T</em>(<em>n</em> − 1) + <em>n</em> with Substitution</h2>
+
+<h3>5 points</h3>
+
+<p>Using substitution and induction, show that the solution of <em>T</em>(<em>n</em>) = <em>T</em>(<em>n</em>
+− 1) + <em>n</em> is O(<em>n</em>2). In the terminology of CLRS, this is our &quot;guess&quot; at the
+solution to the recurrence relation.</p>
+
+<p><strong>a.</strong>   Convert the &quot;guess&quot; to an equivalent algebraic inequality according to the definition of Big-O (removing the Big-O and adding the implied constant <em>c</em>): </p>
+
+<blockquote>
+<p><em>T</em>(<em>n</em>) =</p>
+</blockquote>
+
+<p>Make the inductive assumption that what you wrote in (a) holds for all <em>m</em> &lt;
+<em>n</em>.</p>
+
+<p>Now you need to use induction and substitution to show that the definition
+<em>T</em>(<em>n</em>) = <em>T</em>(<em>n</em> − 1) + <em>n</em> implies the inequality that you wrote in (a). In
+the process you will determine the constraints on <em>c</em>. We&#39;ll do the base case
+last for your chosen <em>c</em>.</p>
+
+<p><strong>b.</strong>   Write out the definition of T(<em>n</em>), and operating _ only_ on the right hand side, substitute in the inductive assumption where appropriate and simplify to isolate the expression (from a) to be proven from the lower order terms:</p>
+
+<blockquote>
+<p><em>T</em>(<em>n</em>) =</p>
+</blockquote>
+
+<p><strong>c.</strong> Use ≤ to get rid of the lower order terms (effectively claiming that what you had above is ≤ <em>c</em><em>n</em>2), and determine the values of <em>c</em> and <em>n</em> for which the inequality is true:  </p>
+
+<blockquote>
+<p>The above is true for all <em>c</em> ≥ ____ and <em>n</em> ≥ ____ because ...</p>
+</blockquote>
+
+<p><strong>d.</strong> For the base case, assuming that <em>T</em>(0) = 0, show that <em>T</em>(1) = <em>c</em><em>n</em>2 for your choice of <em>c</em>:  </p>
+
+<blockquote>
+<p><em>T</em>(1) =</p>
+</blockquote>
+
+<h3>If you finish early:</h3>
+
+<p>Try T(<em>n</em>) = 4T(<em>n</em>/3) + <em>n</em></p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-16 10:42:39 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
