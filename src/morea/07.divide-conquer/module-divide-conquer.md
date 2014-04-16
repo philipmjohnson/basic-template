@@ -13,6 +13,9 @@ morea_readings:
   - reading-cormen-4
   - reading-notes-7
   - reading-screencast-mit-divide-conquer
+morea_experiences:
+  - experience-substitution
+  - experience-master-method
 morea_type: module
 morea_icon_url: /morea/07.divide-conquer/module-divide-conquer.gif
 morea_sort_order: 7
