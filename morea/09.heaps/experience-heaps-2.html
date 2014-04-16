@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Understanding master method and substitution | ICS 311 Spring 2014 </title>
+  <title> Applying your understanding of heaps (again) | ICS 311 Spring 2014 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
@@ -49,9 +49,11 @@
 
 
 <div class="container">
-  <h3>Peer Credit Assignment</h3>
+  <h4>1. Peer Credit Assignment</h4>
 
-<p><strong>1.</strong> Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.</p>
+<p>Please list the names of the other members of your peer group for this week
+and the number of extra credit points you think they deserve for their
+participation in group work on Tuesday and Thursday combined.</p>
 
 <ul>
 <li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
@@ -60,41 +62,64 @@
 <li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
 </ul>
 
-<h3>Master Method Practice</h3>
+<hr>
 
-<p>*<em>2. *</em> (6 pts) Use the Master Method to give tight Θ bounds for the following recurrence relations. Show <em>a</em>, <em>b</em>, and <em>f</em>(<em>n</em>). Then explain why it fits one of the cases, if any. If it fits a case, write and _ simplify _ the final Θ result </p>
+<h3>Heaps</h3>
 
-<p><strong>a.</strong>   <em>T</em>(<em>n</em>) = 2<em>T</em>(<em>n</em>/4) + √<em>n</em>  </p>
+<h4>8 points</h4>
 
-<p><strong>b.</strong>   <em>T</em>(<em>n</em>) = 2<em>T</em>(<em>n</em>/4) + <em>n</em>  </p>
+<p>*<em>2. *</em> Illustrate <code>Build-Max-Heap</code> on this data in a 1-based indexing array:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text"> A = [1, 6, 2, 8, 3, 9, 4, 7, 5],
+</code></pre></div>
+<p>Rewrite the array as it exists after each execution of line 3 (the call to
+<code>Max-Heapify</code>). A template is provided below. Please use a plain text editor
+with fixed width font and replace each underscore character &quot;_&quot; with the
+correct value.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">  index        1  2  3  4  5  6  7  8  9
+  Start:  A = [1, 6, 2, 8, 3, 9, 4, 7, 5]
 
-<p><strong>c.</strong>   <em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></p>
+  i = 4:  A = [_, _, _, _, _, _, _, _, _]
 
-<h3>Substitution Method</h3>
+  i = 3:  A = [_, _, _, _, _, _, _, _, _]
 
-<p><strong>3.</strong> (7 pts) Use substitution <em>as directed below</em> to solve </p>
+  i = 2:  A = [_, _, _, _, _, _, _, _, _]
 
-<blockquote>
-<p><em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></p>
-</blockquote>
+  i = 1:  A = [_, _, _, _, _, _, _, _, _]
+</code></pre></div>
+<p>You may want to draw the heap in tree form and do the operations on the tree.
+You are encouraged to include these trees in your response to help Robert
+&quot;debug&quot; any problems, but grading will initially be done on the above
+template.</p>
 
-<p>It is strongly recommended that you read page 85-86 &quot;Subtleties&quot; before trying
-this!</p>
+<p>*<em>3. *</em> Illustrate <code>Heap-Extract-Max</code> on the heap you constructed above. Show the array representation:</p>
 
-<p><strong>a.</strong>   First, use the result from the Master Method in 2c as your &quot;guess&quot; and inductive assumption. We will do this without Θ and <em>c</em>: just use the algebraic portion. Take the proof up to where it fails and say where and why it fails. (See steps below.) </p>
+<p><strong>(a)</strong> After line 5 has finished executing</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">  A = [_, _, _, _, _, _, _, _, _]
+</code></pre></div>
+<p><strong>(b)</strong> After line 6 has finished executing</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">  A = [_, _, _, _, _, _, _, _, _]
+</code></pre></div>
+<p>*<em>4. *</em> Consider now min-heaps rather than max-heaps. Write pseudocode for <code>Min-Heapify</code> and <code>Heap-Decrease-Key</code>, by copying the textbook&#39;s code for the max versions and changing only what you need to change. To make grading easier, please highlight, boldface or circle your changes.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">  MAX-HEAPIFY (A, i) // Change to **MIN**-HEAPIFY 
+  1   l = LEFT(i)
+  2   r = RIGHT(i)
+  3   if l &lt;= A.heap-size and A[l] &gt; A[i]
+  4       largest = l
+  5   else largest = i
+  6   if r &lt;= A.heap-size and A[r] &gt; A[largest]
+  7       largest = r
+  8   if largest != i
+  9       exchange A[i] with A[largest]
+  10      MAX-HEAPIFY (A, largest)
 
-<p><strong>b.</strong>   Redo the proof, but subtracting <em>d</em><em>n</em> from the guess to construct a new guess. This time it should succeed. </p>
-
-<p>As a reminder, to do a proof by substitution you:</p>
-
-<ol>
-<li>Write the definition <em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></li>
-<li>Replace the <em>T</em>(<em>n</em>/3) with your &quot;guess&quot; instantiated for <em>n</em>/3 (you can do that by the inductive hypothesis because it&#39;s smaller than <em>n</em>). </li>
-<li>Operating <em>only</em> on the right hand side of the equation, transform that side into the <em>exact</em> form of your &quot;guess&quot;.</li>
-<li>Determine any constraints on the constants involved. </li>
-<li>Show the base case holds. </li>
-</ol>
-
+  HEAP-INCREASE-KEY (A, i, key) // Change to HEAP-**DECREASE**-KEY
+  1  if key &lt; A[i]
+  2      error &quot;new key is smaller than current key&quot;
+  3  A[i] = key
+  4  while i &gt; 1 and A[PARENT(i)] &lt; A[i]
+  5      exchange A[i] with A[PARENT(i)]
+  6      i = PARENT(i)
+</code></pre></div>
 </div>
 
 

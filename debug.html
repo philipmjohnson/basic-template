@@ -204,14 +204,18 @@
  "morea_experience_pages"=>
   [#Jekyll:Page @name="experience-1.md",
    #Jekyll:Page @name="experience-2.md",
-   #Jekyll:Page @name="experience-binary-search-trees.md",
+   #Jekyll:Page @name="experience-quicksort.md",
    #Jekyll:Page @name="experience-asymptotic-concepts.md",
-   #Jekyll:Page @name="experience-substitution.md",
+   #Jekyll:Page @name="experience-heaps.md",
    #Jekyll:Page @name="experience-basic-data-structures.md",
-   #Jekyll:Page @name="experience-deletion.md",
-   #Jekyll:Page @name="experience-master-method.md",
    #Jekyll:Page @name="experience-indicator-random-variables.md",
+   #Jekyll:Page @name="experience-heaps-2.md",
+   #Jekyll:Page @name="experience-binary-search-trees.md",
+   #Jekyll:Page @name="experience-master-method.md",
+   #Jekyll:Page @name="experience-substitution.md",
+   #Jekyll:Page @name="experience-deletion.md",
    #Jekyll:Page @name="experience-binary-search-trees-2.md",
+   #Jekyll:Page @name="experience-quicksort-2.md",
    #Jekyll:Page @name="experience-asymptotic-homework.md",
    #Jekyll:Page @name="experience-data-structures-homework.md",
    #Jekyll:Page @name="experience-3.md"],
@@ -323,6 +327,8 @@
    "reading-screencast-8b"=>#Jekyll:Page @name="reading-screencast-8b.md",
    "reading-screencast-8c"=>#Jekyll:Page @name="reading-screencast-8c.md",
    "reading-screencast-8d"=>#Jekyll:Page @name="reading-screencast-8d.md",
+   "experience-heaps-2"=>#Jekyll:Page @name="experience-heaps-2.md",
+   "experience-heaps"=>#Jekyll:Page @name="experience-heaps.md",
    "heaps"=>#Jekyll:Page @name="module-heaps.md",
    "outcome-heaps"=>#Jekyll:Page @name="outcome-heaps.md",
    "reading-cormen-6"=>#Jekyll:Page @name="reading-cormen-6.md",
@@ -331,6 +337,8 @@
    "reading-screencast-9b"=>#Jekyll:Page @name="reading-screencast-9b.md",
    "reading-screencast-9c"=>#Jekyll:Page @name="reading-screencast-9c.md",
    "reading-screencast-9d"=>#Jekyll:Page @name="reading-screencast-9d.md",
+   "experience-quicksort-2"=>#Jekyll:Page @name="experience-quicksort-2.md",
+   "experience-quicksort"=>#Jekyll:Page @name="experience-quicksort.md",
    "quicksort"=>#Jekyll:Page @name="module-quicksort.md",
    "outcome-quicksort"=>#Jekyll:Page @name="outcome-quicksort.md",
    "reading-cormen-7"=>#Jekyll:Page @name="reading-cormen-7.md",
@@ -342,7 +350,7 @@
    "footer"=>#Jekyll:Page @name="footer.md",
    "home"=>#Jekyll:Page @name="home.md"},
  "morea_fatal_errors"=>false,
- "time"=>2014-04-15 16:58:30 -1000,
+ "time"=>2014-04-15 17:25:58 -1000,
  "posts"=>[#Jekyll:Post @id="/jekyll/update/2014/01/14/welcome-to-jekyll"],
  "pages"=>
   [#Jekyll:Page @name="index.md",
@@ -448,6 +456,8 @@
    #Jekyll:Page @name="reading-screencast-8b.md",
    #Jekyll:Page @name="reading-screencast-8c.md",
    #Jekyll:Page @name="reading-screencast-8d.md",
+   #Jekyll:Page @name="experience-heaps-2.md",
+   #Jekyll:Page @name="experience-heaps.md",
    #Jekyll:Page @name="module-heaps.md",
    #Jekyll:Page @name="index.html",
    #Jekyll:Page @name="outcome-heaps.md",
@@ -457,6 +467,8 @@
    #Jekyll:Page @name="reading-screencast-9b.md",
    #Jekyll:Page @name="reading-screencast-9c.md",
    #Jekyll:Page @name="reading-screencast-9d.md",
+   #Jekyll:Page @name="experience-quicksort-2.md",
+   #Jekyll:Page @name="experience-quicksort.md",
    #Jekyll:Page @name="module-quicksort.md",
    #Jekyll:Page @name="index.html",
    #Jekyll:Page @name="outcome-quicksort.md",
@@ -572,6 +584,8 @@
    #Jekyll:Page @name="reading-screencast-8b.md",
    #Jekyll:Page @name="reading-screencast-8c.md",
    #Jekyll:Page @name="reading-screencast-8d.md",
+   #Jekyll:Page @name="experience-heaps-2.md",
+   #Jekyll:Page @name="experience-heaps.md",
    #Jekyll:Page @name="module-heaps.md",
    #Jekyll:Page @name="index.html",
    #Jekyll:Page @name="outcome-heaps.md",
@@ -581,6 +595,8 @@
    #Jekyll:Page @name="reading-screencast-9b.md",
    #Jekyll:Page @name="reading-screencast-9c.md",
    #Jekyll:Page @name="reading-screencast-9d.md",
+   #Jekyll:Page @name="experience-quicksort-2.md",
+   #Jekyll:Page @name="experience-quicksort.md",
    #Jekyll:Page @name="module-quicksort.md",
    #Jekyll:Page @name="index.html",
    #Jekyll:Page @name="outcome-quicksort.md",
@@ -1822,7 +1838,7 @@
   "/ics311s14/morea/06.hash-tables/experience-data-structures-homework.html",
  "url"=>"/morea/06.hash-tables/experience-data-structures-homework.html",
  "content"=>
-  "# Analysis of data structures\n\nThis week's problems focus on ensuring you understand the operations of the\nmain data structures. They are not conceptually difficult but require\ndilligence in execution. Don't be careless or just go on intuition: you should\nactually follow the algorithms and hash functions precisely, or you will go\nwrong.\n\n## Peer Credit Assignment\n\n**(1)** Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.\n\n  * If three members besides yourself were present at some time, you have a total of 3 points to allocate across all members (_NOT_ 3 points per member!).\n  * If two members besides yourself were present, you have a total of 4 points to allocate across all members.\n  * If only one other member was present, you have a total of 6 points to allocate across all members.\n  * You need not allocate all the points available to you. Points allocated to yourself will not be recorded.\n\n## Skip Lists\n\n#### 11 points\n\nPlease read carefully; this has multiple parts. Answer the lettered parts in\nboldface.\n\nHere is a skip list, including instance variables **s** (the starting\nposition), **h** (the height: we assume that `h` starts counting from 0), and\n**n** (the number of keys currently stored in the skip list). We won't bother\nto show the data associated with the keys. The double lines in the graphic are\nmeant to remind you that these are doubly linked lists in both the horizontal\nand vertical directions, but you need not draw double lines in your responses.\n\n![](starting-skip-list.jpg)\n\n**(2)** _Trace the path that `SkipSearch(36)` takes, by circling every node that p is assigned to as the `SkipSearch` algorithm executes, starting with s. _\n\nIn the remaining questions, you will how what the skip list shown above looks\nlike after the cumulative operations indicated below, using the pseudocode for\n`SkipInsert` and `SkipSearch` in the lecture notes, and your understanding of\nhow `SkipDelete` works from the class activity.\n\nSince this is a random algorithm and we want everyone to have the same answer\nto facilitate grading, I also give you sequences of random numbers (not all of\nwhich will be used, as I am testing your understanding of when and how the\nrandom numbers are used). Note that the insertion code says ` while\nrandom(0,1) ≤ 1/2 do`...\n\nThe operations are **cumulative:** each step builds on the result of the\nprevious one. Redraw the entire data structure after each operation, and also\nupdate instance variables **s**, **h** and **n** as needed.\n\n**(3)** _Redraw after `SkipInsert(19,data)`_ where `random(0,1)` returns .70, .94, .14, .11, .89, ... \n\n**(4)** _Redraw after `SkipInsert(53,data)`_ where `random(0,1)` returns .14, .51, .22, .68, .45, ... \n\n**(5)** _Redraw after `SkipInsert(32,data)`_ where `random(0,1)` returns .25, .39, .18, .97, .02, ... \n\n**(6)** _ Redraw after `SkipDelete(SkipSearch(15))`. _\n\n_Something to think about (but not graded): What should the list look like if\nwe now deleted 32? There is a choice to be made here that we have not\ndiscussed! _\n\n**(7)** _Now draw what an _empty_ skip list would look like, including s, h and n._\n\n## Hashing\n\n#### 9 points\n\n###  Hashing with Chaining\n\n**(8)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with **chaining** and **_h_(_k_) = _k_ mod 11.**_ _Draw this one with a vertical table indexed from 0 to 10, and linked lists going off to the right, as shown._\n\n![](hash-chaining-template.jpg)\n\n###  Open Addressing with Linear Probing\n\n**(9)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with **linear probing**_ and\n\n> h'(k) = k mod 11  \nh(k,i) = (h'(k) + i) mod 11\n\n_Draw this and the next result as horizontal arrays indexed from 0 to 10 as\nshown below. Show your work to justify your answer to the next question!_\n\n![](hash-open-template.jpg)\n\n**(10)** _How many re-hashes after collision are required for this set of keys?_ _ Show your work here so we can give partial credit or feedback if warranted._\n\n### Open Addressing with Double Hashing\n\n**(11)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size _m_ = 11 with **double hashing**_ and\n\n> _h_(_k_,_i_) = (_h_1(_k_) + _i__h_2(_k_)) mod 11  \n_h_1(_k_) = _k_ mod 11  \n_h_2(_k_) = 1 + (_k_ mod 7)\n\n_Refer to the code in the book for how i is incremented. Show your work to\njustify your answer to the next question!_\n\n![](hash-open-template.jpg)\n\n**(12)** _How many re-hashes after collision are required for this set of keys?_ _Show your work here so we can give partial credit or feedback if warranted._\n\n**(13)** Open addressing insertion is like an unsuccessful search, as you need to find an empty cell, i.e., to _not_ find the key you are looking for! If the open addressing hash functions above were uniform hashing, _ what is the expected number of probes at the time that the last key (40) was inserted?_ _Hints: At that point, 7 keys are in the table. Use the theorem for unsuccessful search in open addressing._ _Answer with a specific number, not O or Theta._\n\n    \n",
+  "# Analysis of data structures\n\nThis week's problems focus on ensuring you understand the operations of the\nmain data structures. They are not conceptually difficult but require\ndilligence in execution. Don't be careless or just go on intuition: you should\nactually follow the algorithms and hash functions precisely, or you will go\nwrong.\n\n## Peer Credit Assignment\n\n**(1)** Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.\n\n  * If three members besides yourself were present at some time, you have a total of 3 points to allocate across all members (_NOT_ 3 points per member!).\n  * If two members besides yourself were present, you have a total of 4 points to allocate across all members.\n  * If only one other member was present, you have a total of 6 points to allocate across all members.\n  * You need not allocate all the points available to you. Points allocated to yourself will not be recorded.\n\n## Skip Lists\n\n#### 11 points\n\nPlease read carefully; this has multiple parts. Answer the lettered parts in\nboldface.\n\nHere is a skip list, including instance variables **s** (the starting\nposition), **h** (the height: we assume that `h` starts counting from 0), and\n**n** (the number of keys currently stored in the skip list). We won't bother\nto show the data associated with the keys. The double lines in the graphic are\nmeant to remind you that these are doubly linked lists in both the horizontal\nand vertical directions, but you need not draw double lines in your responses.\n\n![](fig/starting-skip-list.jpg)\n\n**(2)** _Trace the path that `SkipSearch(36)` takes, by circling every node that p is assigned to as the `SkipSearch` algorithm executes, starting with s. _\n\nIn the remaining questions, you will how what the skip list shown above looks\nlike after the cumulative operations indicated below, using the pseudocode for\n`SkipInsert` and `SkipSearch` in the lecture notes, and your understanding of\nhow `SkipDelete` works from the class activity.\n\nSince this is a random algorithm and we want everyone to have the same answer\nto facilitate grading, I also give you sequences of random numbers (not all of\nwhich will be used, as I am testing your understanding of when and how the\nrandom numbers are used). Note that the insertion code says ` while\nrandom(0,1) ≤ 1/2 do`...\n\nThe operations are **cumulative:** each step builds on the result of the\nprevious one. Redraw the entire data structure after each operation, and also\nupdate instance variables **s**, **h** and **n** as needed.\n\n**(3)** _Redraw after `SkipInsert(19,data)`_ where `random(0,1)` returns .70, .94, .14, .11, .89, ... \n\n**(4)** _Redraw after `SkipInsert(53,data)`_ where `random(0,1)` returns .14, .51, .22, .68, .45, ... \n\n**(5)** _Redraw after `SkipInsert(32,data)`_ where `random(0,1)` returns .25, .39, .18, .97, .02, ... \n\n**(6)** _ Redraw after `SkipDelete(SkipSearch(15))`. _\n\n_Something to think about (but not graded): What should the list look like if\nwe now deleted 32? There is a choice to be made here that we have not\ndiscussed! _\n\n**(7)** _Now draw what an _empty_ skip list would look like, including s, h and n._\n\n## Hashing\n\n#### 9 points\n\n###  Hashing with Chaining\n\n**(8)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with **chaining** and **_h_(_k_) = _k_ mod 11.**_ _Draw this one with a vertical table indexed from 0 to 10, and linked lists going off to the right, as shown._\n\n![](fig/hash-chaining-template.jpg)\n\n###  Open Addressing with Linear Probing\n\n**(9)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size 11 with **linear probing**_ and\n\n> h'(k) = k mod 11  \nh(k,i) = (h'(k) + i) mod 11\n\n_Draw this and the next result as horizontal arrays indexed from 0 to 10 as\nshown below. Show your work to justify your answer to the next question!_\n\n![](fig/hash-open-template.jpg)\n\n**(10)** _How many re-hashes after collision are required for this set of keys?_ _ Show your work here so we can give partial credit or feedback if warranted._\n\n### Open Addressing with Double Hashing\n\n**(11)** _Show the table that results when 20, 51, 10, 19, 32, 1, 66, 40 are cumulatively inserted into an initially empty hash table of size _m_ = 11 with **double hashing**_ and\n\n> _h_(_k_,_i_) = (_h_1(_k_) + _i__h_2(_k_)) mod 11  \n_h_1(_k_) = _k_ mod 11  \n_h_2(_k_) = 1 + (_k_ mod 7)\n\n_Refer to the code in the book for how i is incremented. Show your work to\njustify your answer to the next question!_\n\n![](fig/hash-open-template.jpg)\n\n**(12)** _How many re-hashes after collision are required for this set of keys?_ _Show your work here so we can give partial credit or feedback if warranted._\n\n**(13)** Open addressing insertion is like an unsuccessful search, as you need to find an empty cell, i.e., to _not_ find the key you are looking for! If the open addressing hash functions above were uniform hashing, _ what is the expected number of probes at the time that the last key (40) was inserted?_ _Hints: At that point, 7 keys are in the table. Use the theorem for unsuccessful search in open addressing._ _Answer with a specific number, not O or Theta._\n\n    \n",
  "path"=>"morea//06.hash-tables/experience-data-structures-homework.md"}
 </pre>
 
@@ -1842,7 +1858,7 @@
  "morea_url"=>"/ics311s14/morea/06.hash-tables/experience-deletion.html",
  "url"=>"/morea/06.hash-tables/experience-deletion.html",
  "content"=>
-  "# Deletion under Open Addressing\n\nFollowing the directions below, write pseudocode for `HASH-DELETE` to delete\nby writing a special `DELETED` value, and modify `HASH-INSERT` to handle the\n`DELETED` value. You will write your response in the exact same form as the\nbook's pseudocode (shown).\n\n**1.** Write `HASH-DELETE` by renaming `HASH-SEARCH` and adding or changing ONE line in the body.\n    \n    \n    Hash-Search (T,k)  // rename to Hash-Delete and remove this line \n       i = 0\n       repeat\n           j = h(k,i)\n           if T[j] == k\n               return j\n           i = i + 1\n       until T[j] == NIL or i == m\n      return NIL\n    \n\n**2.** Write the new `HASH-INSERT` by changing only ONE line in the following. \n    \n    \n    Hash-Insert (T,k)\n       i = 0\n       repeat\n           j = h(k,i)\n           if T[j] == NIL\n               T[j] = k\n               return j\n           else i = i + 1\n       until i == m\n       error \"hash table overflow\" \n    \n\n**3.** What is the Θ runtime complexity of the worst case for the modified `HASH-INSERT` and `HASH-DELETE` in terms of _n_ (number of elements stored) and _m_ (table size)? (_ Describe the worst possible situation. Express its runtime with Θ. _) \n\n### Deletion from Skip Lists\n\n![](SkipList-Small.jpg)\n\n`SkipSearch(k)` returns a pointer `p` to the bottom most element of the tower\nyou want to delete. Suppose this were passed to a method `SkipDelete(p)` −\nnotice it takes `p` as argument, not `k`. In this problem you analyze the\ncomplexity of `SkipDelete`. Before you start the analysis, you should discuss\nhow it works! Then, if you have time, you can write pseudocode for it for\nextra credit.\n\n  * Assume that a skip list node has fields `p.next`, `p.prev`, `p.above` and `p.below`.\n  * Assume that `SkipInsert(k,d)` has built the skip list using `random(0,1)` with cutoff of 0.5. \n  * The delete procedure climbs the tower of linked lists above `p`, doing repeated deletion from each doubly linked list that the element occurs in. \n\n**4.** Assuming a uniform distribution of keys stored in random order, what is the Θ expected case performance of `SkipDelete` in terms of _n_, the number of keys stored in the skiplist?\n\n**5.** What is the probability that a given call to `SkipDelete` would have to _delete at least _k_ nodes_? (_Hint: Think of the probability that SkipInsert builds a \"tower\" of _k_ nodes for a given key._) \n\n#### Extra Credit\n\n**6.** If you finish early, write the recursive pseudocode for `SkipDelete(p)`. \n\nHint:\n    \n    SkipDelete(p)\n    if p ≠ null {\n    // splice out of this doubly linked list\n    // recurse to splice out of list above\n    }\n    \n",
+  "# Deletion under Open Addressing\n\nFollowing the directions below, write pseudocode for `HASH-DELETE` to delete\nby writing a special `DELETED` value, and modify `HASH-INSERT` to handle the\n`DELETED` value. You will write your response in the exact same form as the\nbook's pseudocode (shown).\n\n**1.** Write `HASH-DELETE` by renaming `HASH-SEARCH` and adding or changing ONE line in the body.\n    \n    \n    Hash-Search (T,k)  // rename to Hash-Delete and remove this line \n       i = 0\n       repeat\n           j = h(k,i)\n           if T[j] == k\n               return j\n           i = i + 1\n       until T[j] == NIL or i == m\n      return NIL\n    \n\n**2.** Write the new `HASH-INSERT` by changing only ONE line in the following. \n    \n    \n    Hash-Insert (T,k)\n       i = 0\n       repeat\n           j = h(k,i)\n           if T[j] == NIL\n               T[j] = k\n               return j\n           else i = i + 1\n       until i == m\n       error \"hash table overflow\" \n    \n\n**3.** What is the Θ runtime complexity of the worst case for the modified `HASH-INSERT` and `HASH-DELETE` in terms of _n_ (number of elements stored) and _m_ (table size)? (_ Describe the worst possible situation. Express its runtime with Θ. _) \n\n### Deletion from Skip Lists\n\n![](fig/SgkipList-Small.jpg)\n\n`SkipSearch(k)` returns a pointer `p` to the bottom most element of the tower\nyou want to delete. Suppose this were passed to a method `SkipDelete(p)` −\nnotice it takes `p` as argument, not `k`. In this problem you analyze the\ncomplexity of `SkipDelete`. Before you start the analysis, you should discuss\nhow it works! Then, if you have time, you can write pseudocode for it for\nextra credit.\n\n  * Assume that a skip list node has fields `p.next`, `p.prev`, `p.above` and `p.below`.\n  * Assume that `SkipInsert(k,d)` has built the skip list using `random(0,1)` with cutoff of 0.5. \n  * The delete procedure climbs the tower of linked lists above `p`, doing repeated deletion from each doubly linked list that the element occurs in. \n\n**4.** Assuming a uniform distribution of keys stored in random order, what is the Θ expected case performance of `SkipDelete` in terms of _n_, the number of keys stored in the skiplist?\n\n**5.** What is the probability that a given call to `SkipDelete` would have to _delete at least _k_ nodes_? (_Hint: Think of the probability that SkipInsert builds a \"tower\" of _k_ nodes for a given key._) \n\n#### Extra Credit\n\n**6.** If you finish early, write the recursive pseudocode for `SkipDelete(p)`. \n\nHint:\n    \n    SkipDelete(p)\n    if p ≠ null {\n    // splice out of this doubly linked list\n    // recurse to splice out of list above\n    }\n    \n",
  "path"=>"morea//06.hash-tables/experience-deletion.md"}
 </pre>
 
@@ -2524,6 +2540,46 @@
  "path"=>"morea//08.binary-search-trees/reading-screencast-8d.md"}
 </pre>
 
+<h2>/morea/09.heaps/experience-heaps-2.html</h2>
+
+<pre>Hash
+{"title"=>"Applying your understanding of heaps (again)",
+ "published"=>true,
+ "morea_id"=>"experience-heaps-2",
+ "morea_type"=>"experience",
+ "morea_summary"=>"Learn about heaps (at home).",
+ "morea_sort_order"=>1,
+ "morea_labels"=>["Homework"],
+ "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/ics311s14/morea/09.heaps/experience-heaps-2.html",
+ "url"=>"/morea/09.heaps/experience-heaps-2.html",
+ "content"=>
+  "#### 1\\. Peer Credit Assignment\n\nPlease list the names of the other members of your peer group for this week\nand the number of extra credit points you think they deserve for their\nparticipation in group work on Tuesday and Thursday combined.\n\n  * If all three members besides yourself were present at some time, you have a total of 3 points to allocate.\n  * If only two members besides yourself were present, you have a total of 4 points to allocate.\n  * If only one other member was present, you have a total of 6 points to allocate.\n  * You need not allocate all the points available to you. Points allocated to yourself will not be recorded.\n\n* * *\n\n### Heaps\n\n#### 8 points\n\n**2\\. ** Illustrate `Build-Max-Heap` on this data in a 1-based indexing array:\n    \n    \n     A = [1, 6, 2, 8, 3, 9, 4, 7, 5],\n    \n\nRewrite the array as it exists after each execution of line 3 (the call to\n`Max-Heapify`). A template is provided below. Please use a plain text editor\nwith fixed width font and replace each underscore character \"_\" with the\ncorrect value.\n\n    \n    \n      index        1  2  3  4  5  6  7  8  9\n      Start:  A = [1, 6, 2, 8, 3, 9, 4, 7, 5]\n    \n      i = 4:  A = [_, _, _, _, _, _, _, _, _]\n    \n      i = 3:  A = [_, _, _, _, _, _, _, _, _]\n    \n      i = 2:  A = [_, _, _, _, _, _, _, _, _]\n    \n      i = 1:  A = [_, _, _, _, _, _, _, _, _]\n    \n\nYou may want to draw the heap in tree form and do the operations on the tree.\nYou are encouraged to include these trees in your response to help Robert\n\"debug\" any problems, but grading will initially be done on the above\ntemplate.\n\n**3\\. ** Illustrate `Heap-Extract-Max` on the heap you constructed above. Show the array representation:\n\n**(a)** After line 5 has finished executing\n    \n    \n      A = [_, _, _, _, _, _, _, _, _]\n    \n\n**(b)** After line 6 has finished executing\n    \n    \n      A = [_, _, _, _, _, _, _, _, _]\n    \n\n**4\\. ** Consider now min-heaps rather than max-heaps. Write pseudocode for `Min-Heapify` and `Heap-Decrease-Key`, by copying the textbook's code for the max versions and changing only what you need to change. To make grading easier, please highlight, boldface or circle your changes.\n    \n    \n      MAX-HEAPIFY (A, i) // Change to **MIN**-HEAPIFY \n      1   l = LEFT(i)\n      2   r = RIGHT(i)\n      3   if l <= A.heap-size and A[l] > A[i]\n      4       largest = l\n      5   else largest = i\n      6   if r <= A.heap-size and A[r] > A[largest]\n      7       largest = r\n      8   if largest != i\n      9       exchange A[i] with A[largest]\n      10      MAX-HEAPIFY (A, largest)\n    \n      HEAP-INCREASE-KEY (A, i, key) // Change to HEAP-**DECREASE**-KEY\n      1  if key < A[i]\n      2      error \"new key is smaller than current key\"\n      3  A[i] = key\n      4  while i > 1 and A[PARENT(i)] < A[i]\n      5      exchange A[i] with A[PARENT(i)]\n      6      i = PARENT(i)\n    \n\n\n",
+ "path"=>"morea//09.heaps/experience-heaps-2.md"}
+</pre>
+
+<h2>/morea/09.heaps/experience-heaps.html</h2>
+
+<pre>Hash
+{"title"=>"Applying your understanding of heaps",
+ "published"=>true,
+ "morea_id"=>"experience-heaps",
+ "morea_type"=>"experience",
+ "morea_summary"=>"Learn about heaps.",
+ "morea_sort_order"=>1,
+ "morea_labels"=>["In class"],
+ "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/ics311s14/morea/09.heaps/experience-heaps.html",
+ "url"=>"/morea/09.heaps/experience-heaps.html",
+ "content"=>
+  "### 1\\. Heap-Delete(A, i)\n\n#### 2 points\n\nProcedure `Heap-Delete(_A_, _i_)` deletes the node at index _i_ in heap _A_\n(represented as an array). Give an implementation of `Heap-Delete` that runs\nin O(lg _n_) time for a heap of size _n_ = `A.heapSize`. You may use instance\nvariable `A.heapSize` and any of the other procedures already defined in the\ntext.\n\n_This is very similar to an existing procedure._\n\n>\n\n>     Heap-Delete(A,i)\n\n>  \n\n### 2\\. Heapsort on Sorted Data\n\n#### 3 points\n\n**(a)** What is the asymptotic running time of `Heapsort` on an array _A_ of _n_ elements that is _already sorted in **_increasing_** order_?\n\n**(b)** What is the asymptotic running time of `Heapsort` on an array _A_ of _n_ elements that is _already sorted in **_decreasing_** order_?\n\n**(c)** For which of these cases would `Heapsort` make _more swaps of elements in the array_, or are they the same?\n\n_Give your reasoning to help grading feedback. You might start working an\nexample for each case, but don't get bogged down in details: return to high\nlevel asymptotic reasoning as soon as you see what is going on. _Refer to line\nnumbers in code _ when discussing your analyses. _\n\n\n",
+ "path"=>"morea//09.heaps/experience-heaps.md"}
+</pre>
+
 <h2>/morea/09.heaps/module-heaps.html</h2>
 
 <pre>Hash
@@ -2538,7 +2594,7 @@
    "reading-screencast-9d",
    "reading-cormen-6",
    "reading-notes-9"],
- "morea_experiences"=>[],
+ "morea_experiences"=>["experience-heaps", "experience-heaps-2"],
  "morea_type"=>"module",
  "morea_icon_url"=>"/morea/09.heaps/module-heaps.jpg",
  "morea_sort_order"=>9,
@@ -2693,6 +2749,46 @@
  "path"=>"morea//09.heaps/reading-screencast-9d.md"}
 </pre>
 
+<h2>/morea/10.quicksort/experience-quicksort-2.html</h2>
+
+<pre>Hash
+{"title"=>"Applying your understanding of quicksort (again)",
+ "published"=>true,
+ "morea_id"=>"experience-quicksort-2",
+ "morea_type"=>"experience",
+ "morea_summary"=>"Learn about quicksort (at home).",
+ "morea_sort_order"=>2,
+ "morea_labels"=>["Homework"],
+ "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/ics311s14/morea/10.quicksort/experience-quicksort-2.html",
+ "url"=>"/morea/10.quicksort/experience-quicksort-2.html",
+ "content"=>
+  "### Quicksort\n\n#### 12 points\n\nShow the operation of Partition (not randomized) on this 1-based array:\n\n    \n    \n     A = [1, 6, 2, 8, 3, 9, 4, 7, 5], p=1, q=9 \n    \n\nand the two sub-partitions that result as directed below. In other words, you\nwill trace the three calls to Partition that are highest in the recursion\ntree. (They are _not_ the first three calls: #1 is the first call and #2 is\nthe second call, but the call marked as #3 below takes place after all the\nrecursive calls breaking down #2.)\n\nIn order to make the desired response format clear and to make it easy for the\nTA to grade, I am providing a template for your response. You are to fill in\nwherever the underscore character \"_\" appears. Use a plain text editor with\n_fixed-width font_. Be sure to fill in all fields marked with underscore: use\nsearch to make sure you get them all. I start you off with the first few\nlines: continue in the same pattern.\n\n    \n    \n     \n    **(#1) Call to Partition (A, 1, 9) made in Line 2 of the initial call to Quicksort:**\n    \n      Initially: \n      A = [1, 6, 2, 8, 3, 9, 4, 7, 5], i=0, j=1, pivot = A[r] = A[9] = 5 \n    \n      Trace at the conclusion of each pass through the loop lines 3-6\n      A = [1, 6, 2, 8, 3, 9, 4, 7, 5], i=1, j=1, exchanged A[1] with A[1]\n      A = [1, 6, 2, 8, 3, 9, 4, 7, 5], i=1, j=2, no exchange \n    \n      ... you fill in the rest until the loop exits ... \n    \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=3, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=4, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=5, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=6, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=7, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=8, ___________\n    \n      After the swap in line 7: \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, exchanged A[_] with A[_] \n    \n    What does Partition(A, 1, 9) return? __\n    \n    Continuing execution of the top level call to Quicksort, identify the two\n    partitions that will be handled by the recursive calls to Quicksort at\n    this level: \n    (#2) On what subarray will Quicksort in line 3 be called? A[_, _]\n    (#3) On what subarray will Quicksort in line 4 be called? A[_, _]\n    \n    Now trace these two calls in a manner similar to above. \n    \n    **(#2) Call to Partition(A, _, _) handled in the first call to Quicksort line 3: **\n    \n      Initially: \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, pivot = A[r] = A[_] = _\n    \n      Trace at the conclusion of each pass through the loop lines 3-6\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n    \n      After the swap in line 7: \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, exchanged A[_] with A[_] \n    \n    What does this second call to Partition return? __\n    \n    **(#3) Call to Partition(A, _, _) handled in the first call to Quicksort line 4:**\n    \n      Initially: \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, pivot = A[r] = A[_] = _\n    \n      Trace at the conclusion of each pass through the loop lines 3-6\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, ___________\n    \n      After the swap in line 7: \n      A = [_, _, _, _, _, _, _, _, _], i=_, j=_, exchanged A[_] with A[_] \n    \n    What does this third call to Partition return? __\n    \n\nNot graded, but you might think about:\n\n  * What pattern do you see in the second call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? \n  * What pattern do you see in the third call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? \n  * What do these observations tell us about the runtime of Quicksort on data organized as in these partitions? \n\n* * *\n\nDan Suthers Last modified: Wed Mar 19 23:22:39 HST 2014\n\n",
+ "path"=>"morea//10.quicksort/experience-quicksort-2.md"}
+</pre>
+
+<h2>/morea/10.quicksort/experience-quicksort.html</h2>
+
+<pre>Hash
+{"title"=>"Applying your understanding of quicksort",
+ "published"=>true,
+ "morea_id"=>"experience-quicksort",
+ "morea_type"=>"experience",
+ "morea_summary"=>"Learn about quicksort.",
+ "morea_sort_order"=>1,
+ "morea_labels"=>["In class"],
+ "referencing_modules"=>[],
+ "layout"=>"morea",
+ "topdiv"=>"container",
+ "morea_url"=>"/ics311s14/morea/10.quicksort/experience-quicksort.html",
+ "url"=>"/morea/10.quicksort/experience-quicksort.html",
+ "content"=>
+  "### 1\\. Finding _i_th largest element with Partition\n\n#### 1-2 points TBD\n\nHow would you _use Quicksort's `Partition` procedure_ to write an algorithm\nfor _finding the _i_th smallest element of an unsorted array_? _Hint: what\ndoes the returned value of Partition tell you about the rank ordering of the\npivot?_\n\n  * Describe the strategy in English\n  * Then if you have time after finishing the next question, write pseudocode for an algorithm.\n\n### 2\\. Calls to Partition in Worst and Best Case\n\n#### 3-4 points TBD\n\nWhen we measure runtime efficiency in terms of _number of comparisons_ to be\nmade, Quicksort is Θ(_n_2) in the worst case (when the pivot is always chosen\nto be the smallest or largest element), and Θ(_n_ lg _n_) in the best case\n(when the pivot is always the median key). But we might also try to _measure\nefficiency in terms of number of calls to `Partition`_, since all the work is\ndone in there.\n\n**(a)**   Asymptotically, _how many calls to `Partition` are made in the **worst case runtime**_ as defined above (when the pivot is always chosen to be the smallest or largest element)? Answer with Θ(_f_(_n_)), where your job is to identify _f_.\n\n**(b)**   Asymptotically, _how many calls to `Partition` are made in the **best case runtime**_ as defined above (when the pivot is always the median key)? Answer with Θ(_f_(_n_)), where your job is to identify _f_.\n\nArgue for your conclusions!! _(One approach is to write and solve recurrence\nrelations. Another approach is to notice that the Quicksort recursion trees\nare binary, and use quantitative facts about binary trees. For a big-O rather\nthan Θ reply, a simple counting argument based on the pseudocode is possible,\nbut not as rigorous.)_\n\n![](fig/pseudocode-quicksort.jpg) ![](fig/pseudocode-quicksort-partition.jpg)\n\n\n",
+ "path"=>"morea//10.quicksort/experience-quicksort.md"}
+</pre>
+
 <h2>/morea/10.quicksort/module-quicksort.html</h2>
 
 <pre>Hash
@@ -2707,7 +2803,7 @@
    "reading-cormen-7",
    "reading-cormen-8",
    "reading-notes-10"],
- "morea_experiences"=>[],
+ "morea_experiences"=>["experience-quicksort", "experience-quicksort-2"],
  "morea_type"=>"module",
  "morea_icon_url"=>"/morea/10.quicksort/module-quicksort.png",
  "morea_sort_order"=>9,
@@ -2903,7 +2999,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-15 16:58:30 -1000</span></p>
+       Last update on: <span>2014-04-15 17:25:58 -1000</span></p>
   </div>
 </footer>
 </div>
