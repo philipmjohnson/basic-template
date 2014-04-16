@@ -17,7 +17,7 @@ morea_experiences:
   - experience-substitution
   - experience-master-method
 morea_type: module
-morea_icon_url: /morea/70.divide-conquer/module-divide-conquer.gif
+morea_icon_url: /morea/070.divide-conquer/module-divide-conquer.gif
 morea_sort_order: 70
 ---
 

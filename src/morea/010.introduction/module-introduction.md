@@ -15,7 +15,7 @@ morea_readings:
   - reading-algorithms
   - reading-cormen-1
 morea_type: module
-morea_icon_url: /morea/10.introduction/module-introduction.jpg
+morea_icon_url: /morea/010.introduction/module-introduction.jpg
 morea_sort_order: 10
 ---
 

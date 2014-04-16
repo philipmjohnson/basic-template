@@ -15,7 +15,7 @@ morea_experiences:
   - experience-heaps
   - experience-heaps-2
 morea_type: module
-morea_icon_url: /morea/90.heaps/module-heaps.jpg
+morea_icon_url: /morea/090.heaps/module-heaps.jpg
 morea_sort_order: 90
 ---
 

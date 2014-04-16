@@ -15,7 +15,7 @@ morea_experiences:
   - experience-binary-search-trees
   - experience-binary-search-trees-2
 morea_type: module
-morea_icon_url: /morea/80.binary-search-trees/module-binary-search-trees.svg
+morea_icon_url: /morea/080.binary-search-trees/module-binary-search-trees.svg
 morea_sort_order: 80
 ---
 
