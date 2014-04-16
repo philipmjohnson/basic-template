@@ -1,5 +1,5 @@
 ---
-title: "Growth of functions and asymptotic concepts"
+title: "Growth of functions"
 published: true
 morea_id: growth
 morea_outcomes:

@@ -1,5 +1,5 @@
 ---
-title: "Probabilistic Analysis and Randomized Algorithms"
+title: "Probabilistic Analysis"
 published: true
 morea_id: probabilistic
 morea_outcomes:
@@ -20,5 +20,4 @@ morea_icon_url: /morea/05.probabilistic/module-probabilistic.png
 morea_sort_order: 5
 ---
 
-Instead of limiting analysis to best case or worst case, in this module we learn
-to analyze all cases based on a distribution of the probability of each case.
+Learn to analyze all cases based on a distribution of the probability of each case.

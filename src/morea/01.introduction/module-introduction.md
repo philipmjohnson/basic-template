@@ -1,5 +1,5 @@
 ---
-title: "Introduction to ICS 311"
+title: "Introduction"
 published: true
 morea_id: intro
 morea_outcomes:

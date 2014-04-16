@@ -1,5 +1,5 @@
 ---
-title: "Analysis examples (insertion and merge sort)"
+title: "Analysis examples"
 published: true
 morea_id: examples-insertion-merge-sort
 morea_outcomes:

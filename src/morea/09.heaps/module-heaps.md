@@ -1,5 +1,5 @@
 ---
-title: "Heaps, Heapsort, and Priority Queues"
+title: "Heapsort"
 published: true
 morea_id: heaps
 morea_outcomes:
