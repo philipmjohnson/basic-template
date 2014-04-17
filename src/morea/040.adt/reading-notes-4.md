@@ -35,31 +35,32 @@ track of neighbor vertices yet to be visited when searching a graph).
 We start by specifying the desired behavior of stacks before looking at
 implementations. Here's the Stack ADT written as a simple Java interface:
 
-    
-    
-      public interface **Stack** {
+{% highlight java %}    
       // ADT that stores and retrieves Objects in a LIFO manner
+      public interface Stack {
     
-         public **Stack**( ); 
+         public Stack( ); 
          // Create an instance of ADT Stack and initialize it to the empty stack.
     
-         public void **push**(Object o); 
+         public void push(Object o); 
          // Insert object o at the top of the stack.
     
-         public Object **pop**( ); 
+         public Object pop( ); 
          // Remove and return the top (most recently pushed) object on the stack.
          // Error occurs if the stack is empty. 
      
-         public int **size**( ); 
+         public int size( ); 
          // Return the number of objects in the stack.
     
-         public boolean **isEmpty**( ); 
+         public boolean isEmpty( ); 
          // Return a boolean indicating whether the stack is empty.
     
-         public Object **top**( ); 
+         public Object top( ); 
          // Return the top (most recently pushed) object on the stack, without 
          // removing it. Error occurs if the stack is empty.
       }
+
+{% endhighlight %}
     
 
 **Properties**, given `s` a stack instance:

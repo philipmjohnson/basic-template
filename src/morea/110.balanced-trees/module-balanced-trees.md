@@ -15,6 +15,7 @@ morea_readings:
 morea_experiences:
   - experience-balanced-trees
   - experience-balanced-trees-2
+  - experience-project-1
 morea_type: module
 morea_icon_url: /morea/110.balanced-trees/module-balanced-trees.png
 morea_sort_order: 110

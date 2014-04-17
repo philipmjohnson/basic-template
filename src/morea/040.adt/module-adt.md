@@ -12,6 +12,7 @@ morea_readings:
 morea_experiences:
   - experience-asymptotic-basic-data-structures
   - experience-asymptotic-homework
+  - experience-project-1
 morea_type: module
 morea_icon_url: /morea/040.adt/module-adt.png
 morea_sort_order: 40
