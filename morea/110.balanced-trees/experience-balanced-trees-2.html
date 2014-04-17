@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Applying your understanding of red-black trees | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h4>1. Peer Credit Assignment</h4>
+
+<p>Please list the names of the other members of your peer group for this week
+and the number of extra credit points you think they deserve for their
+participation in group work on Tuesday and Thursday combined.</p>
+
+<ul>
+<li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+</ul>
+
+<h3>RBT and (2,4) Deletion</h3>
+
+<p><strong>2. (6 pts)</strong> Delete the keys <strong>8, 6, 5, 3, 2, 1</strong> in that order from the red/black tree shown below with its (2,4) representation. Following the format we used in class (see above), for each key:</p>
+
+<p>(a) Show the RBT after the BST-style deletion but before RB-Delete-Fixup<br>
+(b) Identify (in writing) whether there is a <strong>double black (identifying the node)</strong>, corresponding to underflow. 
+(c) Identify (in writing) the situation (the color of the sibling and its
+children) and its remedy (adjustment, recolor, and/or or restructure?), using
+the cases in the web notes.<br>
+(d) Show the RBT after RB-Delete-Fixup<br>
+(e) Show the (2,4) tree representation that results.</p>
+
+<p>The solution to Thursday&#39;s sequence of insertions is shown below, to be sure
+you start with a correct tree. You may use a drawing program or just do it on
+paper in dark ink (or soft dark pencil that reproduces well) and scan or
+photograph your work.</p>
+
+<p><img src="fig/Problem-Set-6-Class-2014-Final.jpg" alt=""></p>
+
+<h3>Cormen et al. RBT Code</h3>
+
+<p>The lecture notes were based on Goodrich &amp; Tamassia&#39;s textbook, because they
+show the correspondence of RBTs to 2-4 trees, which makes the former easier to
+understand as balanced trees.</p>
+
+<p>The CLRS version differs somewhat. Because of CLRS&#39;s reputation, I would tend
+to trust their version for an actual implementation, even if their
+presentation is more difficult to understand. Below are a few questions to
+help you understand the CLRS version.</p>
+
+<p>The cases for insertion are similar between G&amp;T and CLRS, but the terminology
+differs (e.g., what the letters w, x, y, and z refer to). The cases for
+deletion differ: G&amp;T have 3 while CLRS have 4! Be careful because there are
+mirror images of every situation (e.g., is the double black node a left child
+or a right child?): G&amp;T and CLRS may be describing the same situation with
+mirror image graphs.</p>
+
+<p>The top level methods in CLRS for RB-INSERT (p. 315) and RB-DELETE (p. 324)
+essentially do legal binary search three (BST) insertion and deletion, and
+then call &quot;FIXUP&quot; methods to fix the red-black properties. Thus they are very
+similar to the BST methods TREE-INSERT (p. 294) and TREE-DELETE (p. 298). The
+real work specific to RBTs is in these fixup methods, so we will focus on them
+in these questions, but you should also study the top level methods to
+understand them as BST methods.</p>
+
+<h4>In RB-INSERT-FIXUP (p. 316):</h4>
+
+<p><strong>3. (1 pt)</strong> Which lines of the code handle incorrect representation of the 2-4 node (G&amp;T case 1 in the web notes)? </p>
+
+<p><strong>4. (1 pt)</strong> Which lines of the code handle overflow of the 2-4 node (G&amp;T case 2 in the web notes)? </p>
+
+<h4>In RB-DELETE-FIXUP (p. 326):</h4>
+
+<p><strong>5. (1 pt)</strong> <em>During the while loop of RB-DELETE-FIXUP, which line(s) of code remove double-black from node x?</em> Note: do NOT answer &quot;line 23&quot; as this is outside the while loop: I am asking how double black moves up the tree inside the while loop. You will need to read the text: the code doesn&#39;t make it obvious. But once you have understood this, the cases in figure 13.7 will be easier to understand for the next question. </p>
+
+<p><strong>6. (1 pt)</strong> G&amp;T deletion has three cases (see web notes) while CLRS deletion has four (see figure 13.7 and explanation in the text). Two of the G&amp;T cases correspond to the CLRS cases. Which G&amp;T deletion cases map directly to which CLRS deletion cases? (Give two pairs). Explain why. </p>
+
+<p>The correspondence between the other cases is harder to understand in a simple
+way. If you see it, you are welcome to try to explain it.</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Sat Mar 1 03:35:53 HST 2014</p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-16 14:49:14 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
