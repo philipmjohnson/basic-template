@@ -13,6 +13,8 @@ morea_readings:
   - reading-sedgewick-15
   - reading-notes-11
 morea_experiences:
+  - experience-balanced-trees
+  - experience-balanced-trees-2
 morea_type: module
 morea_icon_url: /morea/110.balanced-trees/module-balanced-trees.png
 morea_sort_order: 110
