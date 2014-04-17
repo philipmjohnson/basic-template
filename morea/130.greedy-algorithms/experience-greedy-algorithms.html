@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Greedy algorithms sample problem: activity scheduling | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h3>Activity Scheduling</h3>
+
+<p>The activity scheduling problem is to <em>*<em>find the largest possible set *</em></em>
+(maximum <em>number</em>, not duration) <em><strong>of activities that do not overlap with
+each other</strong></em>, given their start and finish times.</p>
+
+<p>CLRS show that this problem has the <em><strong>greedy choice property</strong></em>: a globally
+optimal solution can be assembled from locally optimal choices. They show it
+by example with this <em>greedy strategy</em>: Always select the remaining compatible
+activity that ends first, and then solve the subproblem of scheduling the
+activities that start after this activity. The local optimization is to select
+the activity that finishes first, and the global optimization is scheduling
+the maximum number of activities possible.</p>
+
+<p>There are other greedy strategies, but some work and some don&#39;t.</p>
+
+<h4>Alternative Greedy Strategies</h4>
+
+<p>In the following three problems you determine whether alternative locally
+greedy strategies lead to globally optimal solutions. For each strategy below,</p>
+
+<ul>
+<li><p>either show that the strategy leads to an optimal solution by outlining the algorithm or approach,</p></li>
+<li><p>or give a counterexample: write down a set of activities (defined by their start and finish times) that the strategy fails on, and show what goes wrong.</p></li>
+</ul>
+
+<p><strong>1.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that has the <strong>least duration</strong>. <em>Rationale:</em> Leave the most time remaining for other activities. </p>
+
+<p><strong>2.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that has the <strong>latest start time</strong>. <em>Rationale:</em> Leave the most time remaining at the beginning for other activities.</p>
+
+<p><strong>3.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that <strong>overlaps with the fewest number of remaining activities</strong>. <em>Rationale:</em> Eliminate the fewest number of remaining activities from consideration.</p>
+
+<h4>Value Optimization</h4>
+
+<p><strong>4.</strong> Suppose now that different activities earn different amounts of revenue. In addition to their start and finish times <em>s</em><em>i</em> and <em>f</em><em>i</em>, each activity <em>a</em><em>i</em> has <em>revenue</em> <em>r</em><em>i</em>, and our objective is now to maximize the total revenue Σ<em>a</em><em>i</em>∈<em>A</em> <em>r</em><em>i</em>. </p>
+
+<ul>
+<li>Does this problem exhibit the greedy choice property?</li>
+<li>If so, do any of the above strategies apply, or another greedy strategy you can think of?</li>
+<li>If not, why not, and what alternative problem solving strategy would work on this problem? </li>
+</ul>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-17 13:14:01 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

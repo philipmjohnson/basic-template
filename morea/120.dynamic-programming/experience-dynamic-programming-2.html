@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Dynamic programming sample problem: activity scheduling | ICS 311 Spring 2014 </title>
+  <title> Dynamic programming sample problem: matrix chain multiplication | ICS 311 Spring 2014 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
 
   <!--  Load site-specific customizations after bootstrap. -->
   <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
   <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
 
@@ -49,47 +50,197 @@
 
 
 <div class="container">
-  <h3>Activity Scheduling</h3>
+  <h4>1. Peer Credit Assignment</h4>
 
-<p>The activity scheduling problem is to <em>*<em>find the largest possible set *</em></em>
-(maximum <em>number</em>, not duration) <em><strong>of activities that do not overlap with
-each other</strong></em>, given their start and finish times.</p>
-
-<p>CLRS show that this problem has the <em><strong>greedy choice property</strong></em>: a globally
-optimal solution can be assembled from locally optimal choices. They show it
-by example with this <em>greedy strategy</em>: Always select the remaining compatible
-activity that ends first, and then solve the subproblem of scheduling the
-activities that start after this activity. The local optimization is to select
-the activity that finishes first, and the global optimization is scheduling
-the maximum number of activities possible.</p>
-
-<p>There are other greedy strategies, but some work and some don&#39;t.</p>
-
-<h4>Alternative Greedy Strategies</h4>
-
-<p>In the following three problems you determine whether alternative locally
-greedy strategies lead to globally optimal solutions. For each strategy below,</p>
+<p>Please list the names of the other members of your peer group for this week
+and the number of extra credit points you think they deserve for their
+participation in group work on Tuesday and Thursday combined.</p>
 
 <ul>
-<li><p>either show that the strategy leads to an optimal solution by outlining the algorithm or approach,</p></li>
-<li><p>or give a counterexample: write down a set of activities (defined by their start and finish times) that the strategy fails on, and show what goes wrong.</p></li>
+<li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
 </ul>
 
-<p><strong>1.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that has the <strong>least duration</strong>. <em>Rationale:</em> Leave the most time remaining for other activities. </p>
+<hr>
 
-<p><strong>2.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that has the <strong>latest start time</strong>. <em>Rationale:</em> Leave the most time remaining at the beginning for other activities.</p>
+<h3>Dynamic Programming</h3>
 
-<p><strong>3.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that <strong>overlaps with the fewest number of remaining activities</strong>. <em>Rationale:</em> Eliminate the fewest number of remaining activities from consideration.</p>
+<h4>2. (8 pts) Matrix Chain</h4>
 
-<h4>Value Optimization</h4>
+<p>The Matrix Chain multiplication problem is the classic dynamic programming
+problem: every algorithms textbook I have seen uses it as an example. Thus you
+should at least be familiar with it, and this gives us a chance to get a feel
+for what a Dynamic Programming computation is like.</p>
 
-<p><strong>4.</strong> Suppose now that different activities earn different amounts of revenue. In addition to their start and finish times <em>s</em><em>i</em> and <em>f</em><em>i</em>, each activity <em>a</em><em>i</em> has <em>revenue</em> <em>r</em><em>i</em>, and our objective is now to maximize the total revenue Σ<em>a</em><em>i</em>∈<em>A</em> <em>r</em><em>i</em>. </p>
+<p>Read the Matrix Chain section of the book first (it&#39;s not in my lectures) so
+you understand the optimal substructure (page 373-374, summarized in formula
+15.7) and how the matrices <strong><em>m</em></strong> and <strong><em>s</em></strong> function in the code.</p>
+
+<p><img src="fig/equation-matrix-decomposition.jpg" alt=""></p>
+
+<p><em>Briefly:</em> Given we have an optimal solution that includes the optimal choice
+of where to put the parentheses at the top level, the solutions to the
+subproblems of how to recursively parenthesize within each half must also be
+optimal, because otherwise we could substitute in a subproblem solution with
+fewer multiplications: the top level number of multiplications would not
+change, so there would be fewer multiplications overall, contradicting the
+assumption that the solution was optimal. But we don&#39;t know what the optimal
+top level choice is until we have solved all the subproblems: this is the min
+in the bottom half of formula 15.7. So we will compute the cost of multiplying
+each pair of matrices together, then optimize multiplying 3 matrices together,
+then optimize 4, on up to 5, building a table of the costs as we go.</p>
+
+<p><img src="fig/code-matrix-chain-order.jpg" alt=""></p>
+
+<p>The code is shown to the right. A table <strong><em>p</em></strong> of dimensions is given. The
+algorithm iterates for chains of length <strong><em>l</em></strong>, starting with 2. Variables
+<strong><em>i</em></strong> and <strong><em>j</em></strong> control the left and right boundaries of the chain, and
+<strong><em>k</em></strong> is the current split being considered. The algorithm records the
+minimal number of <em>m</em>ultiplications needed for each chain in matrix <strong><em>m</em></strong>,
+and where we <em>s</em>plit the chain into two with the parentheses in matrix
+<strong><em>s</em></strong>.</p>
+
+<p>You will solve it for this chain:</p>
+
+<blockquote>
+<p>A1(5x15), A2(15x2), A3(2x10), A4(10x5), A5(5x100)</p>
+</blockquote>
+
+<p>The chain is represented by this table <strong><em>p</em></strong>:</p>
+
+<p><img src="fig/Problem-Set-07-Matrix-Chain-HW-p-table.jpg" alt=""></p>
+
+<p>I provide the solution and the full computations for <strong><em>l</em>=2</strong> below, and give
+you the template for the computations for <strong><em>l</em>=3</strong>. You will:</p>
+
+<p><strong>(a)</strong> Fill out the computations for <strong><em>l</em>=3</strong>, put the results in the table, and continue for <strong><em>l</em>=4</strong> and <strong><em>l</em>=5</strong> to complete the table.</p>
+
+<p><strong>(b)</strong> Write down the output of <code>Print-Optimal-Parens(_s_,1,5)</code> assuming the table you produced in (a) is <code>_s_</code>. </p>
+
+<p><img src="fig/Problem-Set-07-Matrix-Chain-HW-Start.jpg" alt=""></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">n = 5 
+
+---
+l=2 // compute the optimal way to multiply each pair
+    // I demonstrate this for you 
+
+  i=1, j=2, k=1:
+    q = m[1,1] + m[2,2] + p0*p1*p2
+      = 0 + 0 + 150 
+      = 150 
+  i=2, j=3, k=2:
+    q = m[2,2] + m[3,3] + p1*p2*p3 
+      =  0 + 0 + 300
+      = 300 
+  i=3, j=4, k=3:
+    q = m[3,3] + m[4,4] + p2*p3*p4 
+      = 0 + 0 + 100
+      = 100
+  i=4, j=5, k=4:
+    q = m[4,4] + m[5,5] + p3*p4*p5 
+      = 0 + 0 + 5000
+      = 5000
+
+
+---
+l=3 // compute the optimal way to multiply each triplet
+    // there will be more than one value of k: choose the minimum result
+    // this will indicate the top level parenthesization of the chain
+  i=1, j=3 
+    k=1: 
+      q = m[1,1] + m[2,3] + p0*p1*p3 
+        = 
+    k=2: 
+      q = m[1,2] + m[3,3] + p0*p2*p3 
+        = 
+  i=2, j=4 
+    k=2: 
+      q = m[2,2] + m[3,4] + p1*p2*p4 
+        = 
+    k=3: 
+      q = m[2,3] + m[4,4] + p1*p3*p4 
+        = 
+  i=3, j=5 
+    k=3: 
+      q = m[3,3] + m[4,5] + p2*p3*p5 
+        = 
+    k=4: 
+      q = m[3,4] + m[5,5] + p2*p4*p5 
+        = 
+
+---
+l=4 // compute the optimal way to multiply each set of 4 matrices 
+
+What&#39;s the pattern? fill out as above, but now you go over 3 values of k. 
+
+---
+l=5 // compute the optimal way to multiply all 5 matrices
+    // then you are ready to give the answer in part (b) 
+</code></pre></div>
+<hr>
+
+<h3>Meet Mr. Fibonacci</h3>
+
+<p>He has some numbers he is proud of (they <a href="http://jwilson.coe.uga.edu/emat6680/parveen/fib_nature.htm">seem to show up in nature a
+lot</a>), but needs
+your help in generating and storing them. His first and second numbers are 1,
+and then each successive number is generated by adding up the previous two
+numbers. He has written a recursive procedure that generates these numbers:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Fibonacci (n)
+    if n &lt; 2
+        return 1
+    else
+        return Fibonacci (n-1) + Fibonacci(n-2) 
+</code></pre></div>
+<p>But it is very slow!</p>
+
+<h4>3. (4 pts) Analysis of Recursive Fibonacci</h4>
+
+<p>Explain to him the asymptotic complexity of his algorithm, as follows.
+(Formula A.5 will come in handy.)</p>
+
+<p><strong>(a)</strong> Draw the recursion tree.</p>
+
+<p><strong>(b)</strong> Identify these quantities: </p>
 
 <ul>
-<li>Does this problem exhibit the greedy choice property?</li>
-<li>If so, do any of the above strategies apply, or another greedy strategy you can think of?</li>
-<li>If not, why not, and what alternative problem solving strategy would work on this problem? </li>
+<li>How many edges go down the left hand side, following the recursive calls for <em>n</em>−1? This is an upper bound on tree height.</li>
+<li>How many edges go down the right hand side, following the recursive calls for <em>n</em>−2? This is a lower bound on tree height.</li>
+<li>How many vertices are at level <em>i</em> (where root is level 0)? </li>
 </ul>
+
+<p><strong>(c)</strong> Then, assuming Θ(1) work at each vertex, how much work is in the tree, as determined by the upper and lower bounds on tree height and work per level that you just computed?</p>
+
+<h4>4. (4 pts) Dynamic Programming Solution</h4>
+
+<p><strong>(a)</strong> <em>Rewrite his algorithm to use dynamic programming,</em> saving and re-using previous values rather than re-computing them: it&#39;s a simple iterative solution. (Did I mention that the solution is <em>simple</em>? If you are doing anything complicated you&#39;re over-thinking it.) </p>
+
+<p><strong>(b)</strong> <em>What&#39;s the asymptotic complexity of your re-written algorithm?</em> Justify your conclusion.</p>
+
+<h4>5. (4 pts) Huffman Coding of Fibonacci Numbers</h4>
+
+<p>Now that we can efficiently generate his numbers, he has observed that certain
+configurations in the flowers in his garden occur with frequencies following
+his number. He has given each configuration letters. Configuration &quot;A&quot; and &quot;B&quot;
+occur only once. Configuration &quot;C&quot; occurs twice, &quot;D&quot; 3 times, &quot;E&quot; 5 times, &quot;F&quot;
+8 times, &quot;G&quot; 13 times and &quot;H&quot; 21 times. Show him how he can encode his
+configurations with less space using Huffman coding.</p>
+
+<p><strong>(a)</strong> <em>Draw the Huffman Tree for these first 8 letters using the observed frequencies.</em><br>
+<em>Note:</em> Assume a heap implementation of a min-priority queue where <em>keys of
+the same value come out in FIFO order</em>. For example, when letters A and B are
+merged to form a node of weight 2, the node for C of weight 2 will be dequeued
+before that for A and B. This means that singletons will always be the left
+child and subtrees the right child. Then you will get a prettier tree and the
+pattern will be clear.</p>
+
+<p><strong>(b)</strong> If we extended this to <em>n</em> letters, <em>describe the pattern for what the code will look like for any _i</em>th Fibonacci number<em>, _i</em> ≤ <em>n</em>.</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Wed Apr 16 14:38:28 HST 2014</p>
 
 </div>
 
@@ -104,7 +255,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-16 14:49:14 -1000</span></p>
+       Last update on: <span>2014-04-17 13:14:01 -1000</span></p>
   </div>
 </footer>
 </div>

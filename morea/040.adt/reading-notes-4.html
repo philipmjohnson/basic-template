@@ -8,6 +8,7 @@
 
   <!--  Load site-specific customizations after bootstrap. -->
   <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
   <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
 
@@ -76,30 +77,33 @@ track of neighbor vertices yet to be visited when searching a graph).</p>
 
 <p>We start by specifying the desired behavior of stacks before looking at
 implementations. Here&#39;s the Stack ADT written as a simple Java interface:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  public interface **Stack** {
-  // ADT that stores and retrieves Objects in a LIFO manner
 
-     public **Stack**( ); 
-     // Create an instance of ADT Stack and initialize it to the empty stack.
-
-     public void **push**(Object o); 
-     // Insert object o at the top of the stack.
-
-     public Object **pop**( ); 
-     // Remove and return the top (most recently pushed) object on the stack.
-     // Error occurs if the stack is empty. 
-
-     public int **size**( ); 
-     // Return the number of objects in the stack.
-
-     public boolean **isEmpty**( ); 
-     // Return a boolean indicating whether the stack is empty.
-
-     public Object **top**( ); 
-     // Return the top (most recently pushed) object on the stack, without 
-     // removing it. Error occurs if the stack is empty.
-  }
+<div class="highlight"><pre><code class="java">    
+      <span class="c1">// ADT that stores and retrieves Objects in a LIFO manner</span>
+      <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Stack</span> <span class="o">{</span>
+    
+         <span class="kd">public</span> <span class="nf">Stack</span><span class="o">(</span> <span class="o">);</span> 
+         <span class="c1">// Create an instance of ADT Stack and initialize it to the empty stack.</span>
+    
+         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">);</span> 
+         <span class="c1">// Insert object o at the top of the stack.</span>
+    
+         <span class="kd">public</span> <span class="n">Object</span> <span class="nf">pop</span><span class="o">(</span> <span class="o">);</span> 
+         <span class="c1">// Remove and return the top (most recently pushed) object on the stack.</span>
+         <span class="c1">// Error occurs if the stack is empty. </span>
+     
+         <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">(</span> <span class="o">);</span> 
+         <span class="c1">// Return the number of objects in the stack.</span>
+    
+         <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">(</span> <span class="o">);</span> 
+         <span class="c1">// Return a boolean indicating whether the stack is empty.</span>
+    
+         <span class="kd">public</span> <span class="n">Object</span> <span class="nf">top</span><span class="o">(</span> <span class="o">);</span> 
+         <span class="c1">// Return the top (most recently pushed) object on the stack, without </span>
+         <span class="c1">// removing it. Error occurs if the stack is empty.</span>
+      <span class="o">}</span>
 </code></pre></div>
+
 <p><strong>Properties</strong>, given <code>s</code> a stack instance:</p>
 
 <ol>
@@ -619,7 +623,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-16 14:49:14 -1000</span></p>
+       Last update on: <span>2014-04-17 13:14:01 -1000</span></p>
   </div>
 </footer>
 </div>
