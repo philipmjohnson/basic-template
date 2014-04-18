@@ -19,7 +19,7 @@ morea_readings:
 morea_experiences:
 morea_type: module
 morea_icon_url: /morea/140.graphs/module-graphs.png
-morea_sort_order: 120
+morea_sort_order: 140
 ---
 
 Introducing graphs, breadth first and depth first search, topological sort, and strongly connected components.
