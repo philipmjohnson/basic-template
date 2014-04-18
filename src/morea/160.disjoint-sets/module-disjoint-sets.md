@@ -9,6 +9,7 @@ morea_readings:
   - reading-cormen-21
   - reading-notes-16
 morea_experiences:
+  - experience-disjoint-sets
 morea_type: module
 morea_icon_url: /morea/160.disjoint-sets/module-disjoint-sets.jpg
 morea_sort_order: 160

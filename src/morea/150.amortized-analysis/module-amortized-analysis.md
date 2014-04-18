@@ -10,6 +10,7 @@ morea_readings:
   - reading-cormen-17
   - reading-notes-15
 morea_experiences:
+  - experience-amortized-analysis
 morea_type: module
 morea_icon_url: /morea/150.amortized-analysis/module-amortized-analysis.gif
 morea_sort_order: 150
