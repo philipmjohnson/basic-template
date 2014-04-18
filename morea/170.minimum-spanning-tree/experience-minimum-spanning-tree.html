@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Home | ICS 311 Spring 2014 </title>
+  <title> Minimum spanning trees | ICS 311 Spring 2014 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
@@ -50,21 +50,48 @@
 
 
 <div class="container">
-  <p><h2>Welcome to ICS 311, Spring 2014</h2></p>
+  <h2>Basics of minimum spanning trees</h2>
 
-<p><strong>If you are an ICS 311, Spring 2014 student, do not use this site.</strong>  Instead, refer to the <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/index.html">real site</a>.</p>
+<p>Below is pseudocode for three different algorithms. Each one takes a connected
+graph <em>G</em> = (<em>V</em>,<em>E</em>) and a weight function <em>w</em> as input and returns a set of
+edges <em>T</em>.</p>
 
-<p>This is a subset of the course material for ICS 311 Algorithms, Spring 2014, created to illustrate the use of the 
-Morea Framework.</p>
+<h4>Is it an MST algorithm?</h4>
 
-<p>Generally the course is run within
-<a href="https://laulima.hawaii.edu/portal/site/MAN.82792.201430">Laulima</a>. Notes
-and other material are posted on this site.  However, course
-participants will need to log into Laulima regularly to watch
-screencasts, take quizzes, submit assignments, and to use other
-facilities such as discussions and the mail tool as needed. </p>
+<p>For each algorithm, either prove that the set of edges <em>T</em> produced by the
+algorithm is always a minimum spanning tree, or find a counter-example where
+<em>T</em> is not a minimum spanning tree</p>
 
-<p>Classes are in <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/map.jpg">Webster 101</a>.</p>
+<p><strong>1. <code>Maybe-MST-A</code></strong></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-A (G, w)
+1  sort the edges into nonincreasing order of edge weights w
+2  T = E
+3  for each edge e, taken in sorted order
+4      if T − {e} is a connected graph
+5          T = T − {e}
+6  return T
+</code></pre></div>
+<p><strong>2. <code>Maybe-MST-B</code></strong></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-B (G, w)
+1  T = {} // empty set
+2  for each edge e ∈ E, taken in arbitrary order
+3      if T ∪ {e} has no cycles
+4          T = T ∪ {e}
+5  return T
+</code></pre></div>
+<p><strong>3. <code>Maybe-MST-C</code></strong></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-C (G, w)
+1  T = {}
+2  for each edge e ∈ E, taken in arbitrary order
+3      T = T ∪ {e}
+4      if T has a cycle _c_
+5          let e&#39; be a maximum weight edge on c
+6          T = T − {e&#39;}
+7  return T
+</code></pre></div>
+<h4>Efficient Implementation</h4>
+
+<p><strong>4.</strong> Once you are done, pick on of the above algorithms that you think computes a MST. Then describe an efficient implementation of that algorithm. Each algorithm above uses utility methods such as sorting, testing connectivity, detecting cycles, and finding the maximum weight edge on a cycle. Your response should focus on efficient implementations of these utility methods. </p>
 
 </div>
 

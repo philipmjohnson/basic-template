@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> More minimum spanning trees | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Minimum Spanning Graph</h2>
+
+<h4>1. Peer Credit Assignment</h4>
+
+<p>Please list the names of the other members of your peer group for this week
+and the number of extra credit points you think they deserve for their
+participation in group work on Tuesday and Thursday combined.</p>
+
+<ul>
+<li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+</ul>
+
+<h4>2. (4 pts) Positive and Negative Weights: Minimum Spanning Graph?</h4>
+
+<p>Given a graph <em>G</em> = (<em>V</em>, <em>E</em>), must any subset of edges <em>T</em> ⊆ <em>E</em> that
+connects all vertices in V and have minimal total weight be a tree, or can it
+be some other subgraph? Answer this question separately for two cases:</p>
+
+<blockquote>
+<p><strong>a.</strong> All of the edges have positive weight.  </p>
+</blockquote>
+
+<p><strong>b.</strong> Some edges may have negative weights. </p>
+
+<p>If you think &quot;yes it must be a tree&quot; then argue why this is the case (hint:
+suppose it&#39;s not a tree: find a contradiction to connectedness or minimality).
+If you think &quot;no, it need not be a tree&quot; then give an example where a
+connected graph that is not a tree has lower weight.</p>
+
+<h4>3. (1 pt) Kruskal Alternative Spanning Tree</h4>
+
+<p>The graph of Figure 23.4 has several edges of equal weight. Sometimes both are
+used; sometimes one can&#39;t be used because it forms a cycle; and sometimes the
+choice is arbitrary: either edge could have been used. In this third case, the
+choice of which one was used depends on the order in which edges are sorted in
+line 4 (nondecreasing order by weight).</p>
+
+<p><img src="fig/Fig-23-4-Kruskal-Example-n.jpg" alt=""></p>
+
+<p>The actual ordering used in the book&#39;s example is:</p>
+
+<blockquote>
+<p><code>(g, h), (c, i), (f, g), (a, b), (c, f), (g, i), (c, d),  
+(h, i), (a, h), (b, c), (d, e), (e, f), (b, h), (d, f)</code></p>
+</blockquote>
+
+<p>Give an ordering that would result in a different minimum spanning tree than
+the one shown in figure 23.4 by rewriting the above list swapping just one
+pair of edges.</p>
+
+<h4>4. (5 pts) Building Low Cost Bridges</h4>
+
+<p>Suppose we are in Canada&#39;s Thousand Islands National Park, and in one
+particular lake there are eight small islands that park officials want to
+connect with floating bridges so that people can experience going between
+islands without a canoe. The cost of constructing a bridge is proportional to
+its length, and the table below shows the distances between pairs of islands
+in meters (Canada is trying to free itself of the archaic British system of
+measurement based on the sizes of a dead king&#39;s body parts.)</p>
+
+<p>Which bridges should they build to connect the eight islands at minimal cost?
+Say in a sentence or two how you found the solution, and give the solution as
+a list of pairs of islands, for example, (A, B) ....</p>
+
+<table width="50%" border="1">
+  <tr>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">A</th>
+    <th scope="col">B</th>
+    <th scope="col">C</th>
+    <th scope="col">D</th>
+    <th scope="col">E</th>
+    <th scope="col">F</th>
+    <th scope="col">G</th>
+    <th scope="col">H</th>
+  </tr>
+  <tr>
+    <th scope="row">A</th>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">240</div></td>
+    <td><div align="center">210</div></td>
+    <td><div align="center">340</div></td>
+    <td><div align="center">280</div></td>
+    <td><div align="center">200</div></td>
+    <td><div align="center">345</div></td>
+    <td><div align="center">120</div></td>
+  </tr>
+  <tr>
+    <th scope="row">B</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">265</div></td>
+    <td><div align="center">175</div></td>
+    <td><div align="center">215</div></td>
+    <td><div align="center">180</div></td>
+    <td><div align="center">185</div></td>
+    <td><div align="center">155</div></td>
+  </tr>
+  <tr>
+    <th scope="row">C</th>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">260</div></td>
+    <td><div align="center">115</div></td>
+    <td><div align="center">350</div></td>
+    <td><div align="center">435</div></td>
+    <td><div align="center">195</div></td>
+  </tr>
+  <tr>
+    <th scope="row">D</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">160</div></td>
+    <td><div align="center">330</div></td>
+    <td><div align="center">295</div></td>
+    <td><div align="center">230</div></td>
+  </tr>
+  <tr>
+    <th scope="row">E</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">360</div></td>
+    <td><div align="center">400</div></td>
+    <td><div align="center">170</div></td>
+  </tr>
+  <tr>
+    <th scope="row">F</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">175</div></td>
+    <td><div align="center">205</div></td>
+  </tr>
+  <tr>
+    <th scope="row">G</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">305</div></td>
+  </tr>
+  <tr>
+    <th scope="row">H</th>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">&minus;</div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+    <td><div align="center">
+      <div align="center">&minus;</div>
+    </div></td>
+  </tr>
+</table>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-18 13:56:37 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
