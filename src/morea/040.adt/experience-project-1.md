@@ -44,10 +44,10 @@ You may either use open source implementations of the following data
 structures (see the [Assignments Page](/morea/010.introduction/reading-assignments.html) Section "Including Open Source Software"
 for requirements), or implement them yourself:
 
-  * **Sorted Doubly Linked Lists** (Chapter 10 or [Notes/Topic-04](http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-04.html#lists)) 
-  * **Skip Lists** ([Notes/Topic-05](http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-05.html#skiplists) or ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf) 
-  * **Binary Search Trees** (Chapter 12 or [ Notes/Topic-08](http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-08.html)) 
-  * **Red-Black trees** (Chapter 13 or [Notes/Topic-11](http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-11.html)): for this, use Java TreeMap. 
+  * **Sorted Doubly Linked Lists** (Chapter 10 or [Notes/Topic-04](morea/040.adt/reading-notes-4.html)) 
+  * **Skip Lists** ([Notes/Topic-05](morea/050.probabilistic/reading-notes-5.html) or ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf) 
+  * **Binary Search Trees** (Chapter 12 or [ Notes/Topic-08](morea/080.binary-search-trees/reading-notes-8.html)) 
+  * **Red-Black trees** (Chapter 13 or [Notes/Topic-11]morea/110.balanced-trees/reading-notes-11.html)): for this, use Java TreeMap. 
 
 There are several advantages to implementing at least some of these
 yourself:

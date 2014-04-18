@@ -12,6 +12,8 @@ morea_readings:
   - reading-sedgewick-31
   - reading-notes-17
 morea_experiences:
+  - experience-minimum-spanning-tree
+  - experience-minimum-spanning-tree-2
 morea_type: module
 morea_icon_url: /morea/170.minimum-spanning-tree/module-minimum-spanning-tree.png
 morea_sort_order: 170
