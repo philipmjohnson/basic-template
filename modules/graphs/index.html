@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Graphs | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <div class="container">
+  <h1><small>Module: </small> Graphs </h1>
+  <p><p>Introducing graphs, breadth first and depth first search, topological sort, and strongly connected components.</p>
+</p>
+</div>
+
+<div class="light-gray-background">
+  <div class="container">
+    <h2>Learning outcomes</h2>
+
+    
+
+    
+      
+      <h3>Outcome 1: Understand graphs</h3>
+      <p>Be able to assess when to use different graph algorithms and why they might be preferred for a given problem context. </p>
+
+    
+
+  </div>
+</div>
+
+<div class="white-background">
+  <div class="container">
+  <h2>Readings and other resources</h2>
+
+    
+
+    <div class="row">
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=IdStgDmUlXM">Graph definitions</a></h4>
+            <p>Graph definitions</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">13 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=pyDxf58rK_0">Graph ADT and representations</a></h4>
+            <p>Methods in the graph ADT</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">23 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=A8SKOFseOyU">Breadth first search</a></h4>
+            <p>Breadth first search and applications to finding the shortest path</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">16 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=emiWSGizJlc">Depth first search</a></h4>
+            <p>Depth first search and its asymptotic complexithy</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">10 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+       </div><div class="row">
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=HMPaUoGfsPo">Depth first search: example and properties</a></h4>
+            <p>Depth first search trace.</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">17 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://www.youtube.com/watch?v=TZDQHplPrNo">Topological sort</a></h4>
+            <p>Topological sort and strongly connected components</p>
+
+            <p>
+              
+              <span class="badge">Screencast</span>
+              
+              <span class="badge">Suthers</span>
+              
+              <span class="badge">26 min</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://mitpress.mit.edu/books/introduction-algorithms">CLRS 22 - Elementary graph algorithms</a></h4>
+            <p>Representations of graphs, breadth-first search, depth-first search, topological sort, strongly connected components</p>
+
+            <p>
+              
+              <span class="badge">Textbook</span>
+              
+              <span class="badge">24 pages</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://sciencelib.net/1496/algorithms-r-sedgewick-1983-ww.html">Sedgewick 32 - Directed graphs</a></h4>
+            <p>Depth first search, transitive closure, topological sorting, strongly connected components</p>
+
+            <p>
+              
+              <span class="badge">Textbook</span>
+              
+              <span class="badge">12 pages</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      </div><div class="row">
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://algs4.cs.princeton.edu/40graphs/">Sedgewick and Wayne 4 - Graphs</a></h4>
+            <p>Undirected graphs, directed graphs, minimum spanning trees, shortest paths</p>
+
+            <p>
+              
+              <span class="badge">Textbook</span>
+              
+              <span class="badge">12 pages</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="http://ww0.java4.datastructures.net/">Goodrich and Tommassia 13 - Graphs</a></h4>
+            <p>The graph ADT, data structures for graphs, graph traversals, directed graphs, weighted graphs, shortest paths, minimum spanning trees</p>
+
+            <p>
+              
+              <span class="badge">Textbook</span>
+              
+              <span class="badge">70 pages</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+        
+        <div class="col-sm-3">
+          <div class="thumbnail">
+            <h4><a href="/ics311s14/morea/140.graphs/reading-notes-14.html">Notes on graphs</a></h4>
+            <p>Graph definitions, examples, the ADT, representations, breadth first seach, depth first search, topological sort, strongly connected components</p>
+
+            <p>
+              
+              <span class="badge">Notes</span>
+              
+            </p>
+          </div>
+        </div>
+      
+      
+      
+      
+      
+
+    </div>
+  </div>
+</div>
+
+<div class="light-gray-background">
+  <div class="container">
+  <h2>Experiential Learning</h2>
+
+    
+    <p>No experiences for this module.</p>
+    
+
+    <div class="row">
+      
+
+    </div>
+  </div>
+</div>
+
+<div class="white-background">
+  <div class="container">
+    <h2>Assessment</h2>
+
+    
+    <p>No assessments for this module.</p>
+    
+
+    
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-17 15:20:49 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
