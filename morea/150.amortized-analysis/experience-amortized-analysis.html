@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> The accounting method | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Amortized Analysis: Accounting Method</h2>
+
+<p><em>(This is similar to the problem that was solved using aggregate analysis in
+my lecture notes, but the numbers are slightly different: in the lecture, the
+table grows at sizes 2i-1; here at 2i; and here you use the accounting method.
+Don&#39;t do it with aggregate analysis: that won&#39;t count! I provide guidance on
+approaching the accounting analysis. The problem is relevant to Java hash
+tables.)</em></p>
+
+<p>Suppose we perform a sequence of <em>n</em> operations on a data structure in which
+the <em>i</em>th operation costs <em>i</em> if <em>i</em> is an exact power of 2, and 1 otherwise.
+<em>Use the <strong>accounting method</strong> to determine the amortized cost per operation.</em></p>
+
+<p><strong>(a)</strong> Choose the (fixed) cost per operation ĉ that you will charge. </p>
+
+<p><strong>(b)</strong> Make a table showing </p>
+
+<ul>
+<li>operation number (<em>i</em> = 1, 2, 3, ... up to about 20 to see the pattern), </li>
+<li>actual cost of the <em>i</em>th operation</li>
+<li>credit available at the conclusion of the <em>i</em>th operation (credit<em>i</em> = credit<em>i</em>−1 + ĉ − actual cost). </li>
+</ul>
+
+<p><strong>(c)</strong> Write an expression for credit at each power of two, 2<em>i</em>. Does this credit increase, decrease, or stay the same? </p>
+
+<p><strong>(d)</strong> Does credit increase, decrease or stay the same <em>between</em> each power of 2? </p>
+
+<p><strong>(e)</strong> Say why this shows that the amortized cost ĉ that you chose in step (a) is an upper bound on the actual cost. </p>
+
+<p><strong>(f)</strong> Conclude by giving the big-O upper bound on amortized per-operation cost that (a) and (e) imply. </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-18 09:09:17 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

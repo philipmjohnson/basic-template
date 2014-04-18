@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Computing Transpose | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h3>Computing Transpose Under Different Representations</h3>
+
+<p>The <strong>transpose</strong> of a directed graph <em>G</em> = (<em>V</em>, <em>E</em>) is the graph <em>G</em><em>T</em> =
+(<em>V</em>, <em>E</em><em>T</em>), where <em>E</em><em>T</em> = {(<em>v</em>, <em>u</em>) such that (<em>u</em>, <em>v</em>) ∈ <em>E</em>}. In
+other words, <em>G</em><em>T</em> is the graph <em>G</em> with all of its edges reversed.</p>
+
+<p>Algorithms for computing transpose by copying to a new graph are trivial to
+write under matrix and adjacency list representations. However, we will be
+working with very large graphs and want to avoid copies. Can we transpose a
+graph &quot;in place&quot; without making a copy, and minimizing the amount of extra
+space needed? What is the time and space cost to do so?</p>
+
+<p>(In the following, you are writing algorithms that work &quot;inside&quot; the ADT: you
+are allowed to access the matrix and list representations directly.)</p>
+
+<p><strong>1.</strong> Describe an efficient algorithm for computing <em>G</em><em>T</em> from <em>G</em>, <em>in place</em> (don&#39;t make a copy), for the <em>adjacency-matrix</em> representation of <em>G</em>. Do this by actually <em>modifying the matrix</em>. Analyze the space and time requirements of your algorithm. </p>
+
+<p><strong>2.</strong> Now describe a way to compute <em>G</em><em>T</em> from <em>G</em> under the <em>adjacency-matrix</em> representation <em>without modifying the matrix</em>, and by <em>using only one bit</em> of extra storage! Analyze space and time requirements. (<em>Hint:</em> You need only make it <em>appear</em> to the client to be transposed.)</p>
+
+<p><strong>3.</strong> Describe an efficient algorithm for computing <em>G</em><em>T</em> from <em>G</em> using the <em>adjacency-list</em> representation of <em>G</em>, using <em>as little space as possible</em>. Can you do it &quot;in place&quot;? Analyze the space and time requirements of your algorithm. </p>
+
+<p><strong>4.</strong> Now suppose you have an <em>edge-list</em> representation of <em>G</em>. What algorithm would efficiently compute <em>G</em><em>T</em> with the edge-list, and with what space and time requirements? </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-18 09:09:17 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Breadth first search and depth first search | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Breadth first search and depth first search</h2>
+
+<h3>Peer Credit Assignment</h3>
+
+<p><strong>1.</strong> Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.</p>
+
+<ul>
+<li>If three members besides yourself were present at some time, you have a total of 3 points to allocate across all members (<em>NOT</em> 3 points per member!).</li>
+<li>If two members besides yourself were present, you have a total of 4 points to allocate across all members.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate across all members.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+</ul>
+
+<h3>Breadth first search</h3>
+
+<h4>2 points</h4>
+
+<p><img src="fig/pseudocode-BFS-Smaller.jpg" alt=""></p>
+
+<p>The text (p. 597) analyzes Breadth-First-Search (BFS), using an <em>aggregate
+analysis</em> (what you are reading about for Tuesday&#39;s upcoming class) to show
+that because the procedure scans the adjacency list of each vertex only when
+the vertex is dequeued, and this happens only once, the total time spent
+scanning adjacency lists is O(E). Along with O(V) initialization this gives
+O(V+E) for the total running time.</p>
+
+<p><strong>2.</strong> What would be the running time of BFS if we replace the adjacency list with an adjacency matrix and modify it at line 12 to handle this form of input? Justify your answer. </p>
+
+<p>(<em>Note:</em> Change of representation is a common situation and I will also ask
+you about the implications of change of representation on the next exam.)</p>
+
+<h3>Depth first search and Cycles</h3>
+
+<h4>8 points; 2 each</h4>
+
+<p><img src="fig/pseudocode-DFS-DFS-Visit.jpg" alt=""></p>
+
+<p>DFS classifies edges as tree edges, back edges, forward edges, and cross edges
+(see p. 609).</p>
+
+<p><strong>3.</strong> How can you modify DFS to detect back-edges? Say what code you would modify or insert, referencing CLRS line numbers.</p>
+
+<p><strong>4.</strong> How can you modify DFS to determine whether a graph has a cycle? Again, say what code you would modify or insert, referencing CLRS line numbers. </p>
+
+<p><strong>5.</strong> What is the run time of this modified cycle-detecting algorithm on <em>Directed</em> graphs? Assume that it exits the DFS as soon as a cycle is found. Justify your answer.</p>
+
+<p><strong>6.</strong> What is the run time of this modified cycle-detecting algorithm on <em><strong>Un</strong>directed</em> graphs? Assume that it exits the DFS as soon as a cycle is found. Justify your answer. </p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Sat Mar 29 21:44:46 EDT 2014</p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-18 09:09:17 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
