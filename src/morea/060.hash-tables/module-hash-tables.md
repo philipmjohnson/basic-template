@@ -21,4 +21,4 @@ morea_icon_url: /morea/060.hash-tables/module-hash-tables.png
 morea_sort_order: 60
 ---
 
-Analysis of chaining, universal chaining, open addressing, direct address tables, hsah functions.
+Analysis of chaining, universal chaining, open addressing, direct address tables, hash functions.
