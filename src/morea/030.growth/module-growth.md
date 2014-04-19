@@ -19,4 +19,4 @@ morea_icon_url: /morea/030.growth/module-growth.png
 morea_sort_order: 30
 ---
 
-How do we characterize functions with respect to their limiting, or asymptotic, behavior. 
+Asymptotic notations, omega, theta, recurrences, substitution, master method.

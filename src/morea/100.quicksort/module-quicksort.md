@@ -19,4 +19,4 @@ morea_icon_url: /morea/100.quicksort/module-quicksort.png
 morea_sort_order: 100
 ---
 
-Quicksort, like Mergesort, takes a divide and conquer approach, but on a different basis.
+Randomizing, lower bounds on comparison sorts, counting sort, radix sort, bucket sort.

@@ -18,4 +18,4 @@ morea_icon_url: /morea/040.adt/module-adt.png
 morea_sort_order: 40
 ---
 
-Stacks, queues, lists, and trees.
+Stacks, queues, lists, trees, dynamic sets, pointers and objects, rooted trees, asymptotic analysis.

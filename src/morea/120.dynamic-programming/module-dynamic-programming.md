@@ -20,4 +20,4 @@ morea_icon_url: /morea/120.dynamic-programming/module-dynamic-programming.gif
 morea_sort_order: 120
 ---
 
-Dynamic programming is a method for finding the "best" approach among a set of alternatives.
+Cut rod problem, longest common subsequence, matrix-chain multiplication, knapsack problem, optimal substructure.

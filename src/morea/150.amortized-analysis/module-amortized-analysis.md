@@ -16,4 +16,4 @@ morea_icon_url: /morea/150.amortized-analysis/module-amortized-analysis.gif
 morea_sort_order: 150
 ---
 
-How to average the cost of expensive operations across the entire mix of operations to create a more accurate analysis.
+Aggregate method, accounting method, potential method, dynamic tables, multipop example.

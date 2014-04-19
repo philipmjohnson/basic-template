@@ -19,7 +19,7 @@ morea_icon_url: /morea/010.introduction/module-introduction.jpg
 morea_sort_order: 10
 ---
 
-An overview of ICS 311 policies and procedures and the material to be covered in this course.
+Information, assessment, format, assignments, policies, topics, and the role of algorithms in computing.
 
 
 

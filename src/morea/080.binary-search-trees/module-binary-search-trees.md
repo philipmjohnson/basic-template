@@ -20,4 +20,4 @@ morea_icon_url: /morea/080.binary-search-trees/module-binary-search-trees.svg
 morea_sort_order: 80
 ---
 
-Trees in which each vertex is either a leaf or has up to two non-empty descendents.
+Queries, insertion, deletion, modification, height, performance. 

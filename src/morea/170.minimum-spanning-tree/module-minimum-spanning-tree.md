@@ -19,4 +19,4 @@ morea_icon_url: /morea/170.minimum-spanning-tree/module-minimum-spanning-tree.pn
 morea_sort_order: 170
 ---
 
-Minimum spanning trees provide a way to find the lowest cost way to connect a set of objects or locations.
+Generic algorithm, safe edge algorithm, Kruskal's algorithm, Prim's algorithm, shortest path, dense paths.

@@ -17,4 +17,4 @@ morea_icon_url: /morea/130.greedy-algorithms/module-greedy-algorithms.png
 morea_sort_order: 130
 ---
 
-Introducing greedy algorithms, the activity selection problem, and Huffman codes. 
+Dynamic programming, activity scheduling, the greedy strategy, Huffman codes.

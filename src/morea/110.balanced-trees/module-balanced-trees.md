@@ -21,4 +21,4 @@ morea_icon_url: /morea/110.balanced-trees/module-balanced-trees.png
 morea_sort_order: 110
 ---
 
-An introduction to Balanced (2,4 and Red-Black) Trees 
+(2,4) trees, red-black trees, insertion, deletion, rotations, comparison of dictionary implementations.

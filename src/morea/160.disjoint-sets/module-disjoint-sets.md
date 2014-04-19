@@ -15,4 +15,4 @@ morea_icon_url: /morea/160.disjoint-sets/module-disjoint-sets.jpg
 morea_sort_order: 160
 ---
 
-Disjoint set data structures are also known as Union-Find data structures, after the two operations in addition to creation. 
+Union-find, linked list representation, forest representation, finding connected components.

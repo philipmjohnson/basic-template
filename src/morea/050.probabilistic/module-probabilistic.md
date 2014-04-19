@@ -21,4 +21,4 @@ morea_icon_url: /morea/050.probabilistic/module-probabilistic.png
 morea_sort_order: 50
 ---
 
-Learn to analyze all cases based on a distribution of the probability of each case.
+Indicator random variables, inversions, randomized algorithms, skip lists, the hiring problem.

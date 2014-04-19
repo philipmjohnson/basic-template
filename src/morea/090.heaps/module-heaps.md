@@ -19,4 +19,4 @@ morea_icon_url: /morea/090.heaps/module-heaps.jpg
 morea_sort_order: 90
 ---
 
-Heaps are a useful data structure with applications to sorting and priority queues.
+Heaps, correctness, run-time analysis, priority queues, application to sorting.

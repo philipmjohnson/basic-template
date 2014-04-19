@@ -25,4 +25,4 @@ morea_icon_url: /morea/140.graphs/module-graphs.png
 morea_sort_order: 140
 ---
 
-Introducing graphs, breadth first and depth first search, topological sort, and strongly connected components.
+Definitions, methods, breadth first search, depth first search, shortest path, asymptotic complexity, topological sort, strongly connected components. 

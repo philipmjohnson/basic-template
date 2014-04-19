@@ -21,4 +21,4 @@ morea_icon_url: /morea/060.hash-tables/module-hash-tables.png
 morea_sort_order: 60
 ---
 
-We consider the design and performance characteristics of what might be the best data structure ever invented.
+Analysis of chaining, universal chaining, open addressing, direct address tables, hsah functions.

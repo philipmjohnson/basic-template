@@ -22,4 +22,4 @@ morea_icon_url: /morea/020.examples/module-examples.gif
 morea_sort_order: 20
 ---
 
-Start analyzing algorithms with insertion and merge sort.
+Insertion sort, merge sort, asymptotic analysis, recurrences, loop invariants, linear search, binary search.

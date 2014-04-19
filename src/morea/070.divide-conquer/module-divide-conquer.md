@@ -21,4 +21,4 @@ morea_icon_url: /morea/070.divide-conquer/module-divide-conquer.gif
 morea_sort_order: 70
 ---
 
-Divide the problem into subproblems, conquer by solving them recursively.
+Substitution, master method, recurrence relations, induction, maximum subarray problem, Strassen's algorithm. 
