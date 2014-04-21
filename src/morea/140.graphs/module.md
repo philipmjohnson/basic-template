@@ -21,7 +21,7 @@ morea_experiences:
   - experience-graph-scc
   - experience-graph-bfs-dfs
 morea_type: module
-morea_icon_url: /morea/140.graphs/module-graphs.png
+morea_icon_url: /morea/140.graphs/logo.png
 morea_sort_order: 140
 ---
 

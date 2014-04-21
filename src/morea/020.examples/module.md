@@ -18,7 +18,7 @@ morea_experiences:
   - experience-2
   - experience-3
 morea_type: module
-morea_icon_url: /morea/020.examples/module-examples.gif
+morea_icon_url: /morea/020.examples/logo.gif
 morea_sort_order: 20
 ---
 

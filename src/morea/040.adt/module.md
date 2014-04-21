@@ -14,7 +14,7 @@ morea_experiences:
   - experience-asymptotic-homework
   - experience-project-1
 morea_type: module
-morea_icon_url: /morea/040.adt/module-adt.png
+morea_icon_url: /morea/040.adt/logo.png
 morea_sort_order: 40
 ---
 

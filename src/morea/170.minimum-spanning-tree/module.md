@@ -15,7 +15,7 @@ morea_experiences:
   - experience-minimum-spanning-tree
   - experience-minimum-spanning-tree-2
 morea_type: module
-morea_icon_url: /morea/170.minimum-spanning-tree/module-minimum-spanning-tree.png
+morea_icon_url: /morea/170.minimum-spanning-tree/logo.png
 morea_sort_order: 170
 ---
 

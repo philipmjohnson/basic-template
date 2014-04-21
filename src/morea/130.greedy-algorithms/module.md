@@ -13,7 +13,7 @@ morea_readings:
 morea_experiences:
   - experience-greedy-algorithms
 morea_type: module
-morea_icon_url: /morea/130.greedy-algorithms/module-greedy-algorithms.png
+morea_icon_url: /morea/130.greedy-algorithms/logo.png
 morea_sort_order: 130
 ---
 

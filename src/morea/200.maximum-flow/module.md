@@ -14,7 +14,7 @@ morea_experiences:
   - experience-maximum-flow
   - experience-maximum-flow-2
 morea_type: module
-morea_icon_url: /morea/200.maximum-flow/module-maximum-flow.png
+morea_icon_url: /morea/200.maximum-flow/logo.png
 morea_sort_order: 200
 ---
 

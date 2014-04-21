@@ -12,7 +12,7 @@ morea_readings:
 morea_experiences:
   - experience-amortized-analysis
 morea_type: module
-morea_icon_url: /morea/150.amortized-analysis/module-amortized-analysis.gif
+morea_icon_url: /morea/150.amortized-analysis/logo.gif
 morea_sort_order: 150
 ---
 

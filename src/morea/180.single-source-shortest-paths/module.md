@@ -15,7 +15,7 @@ morea_experiences:
   - experience-single-source-shortest-paths
   - experience-single-source-shortest-paths-2
 morea_type: module
-morea_icon_url: /morea/180.single-source-shortest-paths/module-single-source-shortest-paths.gif
+morea_icon_url: /morea/180.single-source-shortest-paths/logo.gif
 morea_sort_order: 180
 ---
 

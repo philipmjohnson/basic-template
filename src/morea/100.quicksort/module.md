@@ -15,7 +15,7 @@ morea_experiences:
   - experience-quicksort
   - experience-quicksort-2
 morea_type: module
-morea_icon_url: /morea/100.quicksort/module-quicksort.png
+morea_icon_url: /morea/100.quicksort/logo.png
 morea_sort_order: 100
 ---
 

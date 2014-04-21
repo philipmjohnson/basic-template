@@ -16,7 +16,7 @@ morea_experiences:
   - experience-dynamic-programming
   - experience-dynamic-programming-2
 morea_type: module
-morea_icon_url: /morea/120.dynamic-programming/module-dynamic-programming.gif
+morea_icon_url: /morea/120.dynamic-programming/logo.gif
 morea_sort_order: 120
 ---
 

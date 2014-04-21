@@ -11,7 +11,7 @@ morea_readings:
 morea_experiences:
   - experience-disjoint-sets
 morea_type: module
-morea_icon_url: /morea/160.disjoint-sets/module-disjoint-sets.jpg
+morea_icon_url: /morea/160.disjoint-sets/logo.jpg
 morea_sort_order: 160
 ---
 
