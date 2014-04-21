@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Experience maximum flow | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Flow</h2>
+
+<p><strong>1.</strong> (2 pts) Suppose that <em>f</em>1 and <em>f</em>2 are flows in a network <em>G</em> (NOT in the residual graph). Assume that <em>f</em>1 and <em>f</em>2 individually satisfy the conservation property and capacity constraints, and we computed the augmented flow <em>f</em>1↑<em>f</em>2. </p>
+
+<p><strong>(a)</strong> Does this augmented flow <em>f</em>1↑<em>f</em>2 necessarily satisfy the conservation property? Show why (proof) or why not (counter-example).</p>
+
+<p><strong>(b)</strong> Does <em>f</em>1↑<em>f</em>2 necessarily satisfy the capacity constraint? Show why (proof) or why not (counter-example).</p>
+
+<p><strong>(c)</strong> How does finding augmented flows in the residual graph <em>G</em><em>f</em> prevent the problem you identified in one of the above questions?</p>
+
+<p><strong>2.</strong> (3 pts) Professor Addams&#39; children, Pugsley and Wednesday, dislike each other intensely. When walking to school (they go to the same school), they refuse to walk down any block that the other child has walked down, though strangely they have no problem crossing the same corner. Professor Addams wants to figure out how to get his children to school. Fortunately both their house and the school are on corners. The professor has a map of his town. Show how to formulate the problem of determining whether both of his children can go to the same school as a maximum flow problem. </p>
+
+<p><em>Note: If you answer with either &quot;yes they can go to school&quot; or &quot;no they
+cannot go to school&quot; you will get 0 points for this question, as you cannot
+solve the problem without the map. You are showing the Professor how to model
+the problem as a flow problem so that he can solve it using his map.</em></p>
+
+<h4>If you have more time, discuss this problem:</h4>
+
+<p><strong>3.</strong> Suppose that, in addition to edge capacities, a flow network has <strong>vertex capacities</strong>. We will extend the capacity function <em>c</em> to work on vertices as well as edges: <em>c</em>(<em>v</em>) gives the amount of flow that can pass through <em>v</em>. How would you transform a flow network <em>G</em>=(<em>V</em>,<em>E</em>) with vertex capacities into an equivalent flow network <em>G</em><em>=(_V</em><em>,</em>E<em>_) and a _c</em>_ that is defined only on edges (without vertex capacities) such that a maximum flow in <em>G*</em> has the same value as a maximum flow in <em>G</em>.   </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-20 14:36:52 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
