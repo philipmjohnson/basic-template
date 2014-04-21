@@ -12,7 +12,7 @@ morea_readings:
 morea_experiences:
   - experience-linear-programming
 morea_type: module
-morea_icon_url: /morea/210.linear-programming/module-linear-programming.jpg
+morea_icon_url: /morea/210.linear-programming/logo.jpg
 morea_sort_order: 210
 ---
 

@@ -13,7 +13,7 @@ morea_readings:
 morea_experiences:
   - experience-all-pairs-shortest-paths
 morea_type: module
-morea_icon_url: /morea/190.all-pairs-shortest-paths/module-all-pairs-shortest-paths.jpg
+morea_icon_url: /morea/190.all-pairs-shortest-paths/logo.jpg
 morea_sort_order: 190
 ---
 
