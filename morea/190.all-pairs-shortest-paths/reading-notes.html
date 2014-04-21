@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Notes on all pairs shortest paths | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Outline</h2>
+
+<ol>
+<li>All-Pairs Shortest Paths Introduction</li>
+<li>Using Single-Source Algorithms</li>
+<li>Johnson&#39;s Bright Idea</li>
+<li>Floyd-Warshall: Dynamic Programming for Dense Graphs</li>
+<li>Transitive Closure (Briefly Noted)</li>
+</ol>
+
+<h2>All-Pairs Shortest Paths</h2>
+
+<p>The problem is an extension of Single-Source Shortest Paths to all sources. We
+start by repeating the definition.</p>
+
+<h4>Path Weights and Shortest Paths</h4>
+
+<p>Input is a directed graph G = (<em>V</em>, <em>E</em>) and a <strong><em>weight function</em></strong> <em>w</em>: <em>E</em>
+-&gt; ℜ. Define the <strong><em>path weight</em> <em>w</em>(<em>p</em>)</strong> for <em>p</em> = ⟨<em>v</em>0, <em>v</em>1, ... <em>vk</em>⟩
+to be the sum of edge weights on the path:</p>
+
+<p><img src="fig/sum-of-weights.jpg" alt=""> <img src="fig/Fig-25-1-Directed-Weighted-Graph.jpg" alt=""></p>
+
+<p>The <strong><em>shortest path weight</em></strong> from <em>u</em> to <em>v</em> is:</p>
+
+<p><img src="fig/shortest-path-definition.jpg" alt=""></p>
+
+<p>A <strong><em>shortest path</em></strong> from <em>u</em> to <em>v</em> is any path such that <em>w</em>(<em>p</em>) = δ(<em>u</em>,
+<em>v</em>).</p>
+
+<h4>All-Pairs Shortest Paths</h4>
+
+<p>Then the <strong>all-pairs shortest paths problem</strong> is to find a shortest path and
+the shortest path weight for every pair <em>u</em>, <em>v</em> ∈ <em>V</em>.</p>
+
+<p><em>(Consider what this means in terms of the graph shown above right. How many
+shortest path weights would there be? How many paths?)</em></p>
+
+<h4>Applications</h4>
+
+<p>An obvious real world application is computing <strong>mileage charts</strong>.</p>
+
+<p>Unweighted shortest paths are also used in social network analysis to compute
+the <strong>betweeness centrality</strong> of actors. (Weights are usually tie strength
+rather than cost in SNA.) The more shortest paths between other actors that an
+actor appears on, the higher the betweeness centrality. This is usually
+normalized by number of paths possible. This measure is one estimate of an
+actor&#39;s potential control of or influence over ties or communication between
+other actors.</p>
+
+<hr>
+
+<h2>All-Pairs Shortest Paths Using Single-Source Algorithms</h2>
+
+<p>Since we already know how to compute shortest paths from <em>s</em> to every <em>v</em> ∈
+<em>V</em> (the Single Source version from the <a href="http://www2.hawaii.edu/%0A%7Esuthers/courses/ics311s14/Notes/Topic-18.html">last lecture</a>), why not just iterate one of
+these algorithms for each vertex <em>v</em> ∈ <em>V</em> as the source?</p>
+
+<p>That will work, but let&#39;s look at the complexity and constraints.</p>
+
+<h3>Iterated Bellman-Ford</h3>
+
+<p>Bellman-Ford is O(<em>V E</em>), and it would have to be run |<em>V</em>| times, so the cost
+would be <strong>O(<em>V</em>2<em>E</em>)</strong> for any graph.</p>
+
+<ul>
+<li>On <em>dense graphs</em>, |<em>E</em>| = O(<em>V</em>2), so this would be O(<em>V</em>4). Ouch! </li>
+<li>But it will work on graphs with negative weight edges.</li>
+</ul>
+
+<p><img src="fig/Dijkstra-Iterated.jpg" alt=""></p>
+
+<h3>Iterated Dijkstra</h3>
+
+<p>On sparser graphs, Dijkstra has better asymptotic performance. Dijkstra&#39;s is
+O(<em>E</em> lg <em>V</em>) with the binary min-heap (faster with Fibonacci heaps).</p>
+
+<ul>
+<li>|<em>V</em>| iterations gives <strong>O(<em>V</em> <em>E</em> lg <em>V</em>)</strong>, which is O(<em>V</em>3 lg <em>V</em>) in dense graphs (already better), and will be lower in very sparse graphs. (This can be done in O(<em>V</em>2 lg <em>V</em> + <em>VE</em>) with Fibonacci heaps.) </li>
+<li>But it will <strong><em>not</em></strong> work on graphs with negative weight edges.</li>
+</ul>
+
+<p>What a pity. But why can&#39;t we just get rid of those pesky negative weights?</p>
+
+<p><img src="fig/Fig-25-1-Directed-Weighted-Graph.jpg" alt=""></p>
+
+<h3>Eliminating Negative Weights</h3>
+
+<p>*<em><em>Proposal:</em> *</em> How about adding a constant value to every edge? </p>
+
+<ul>
+<li>Find the smallest (most negative) weight, and negate it to get a positive number <em>c</em>.</li>
+<li>Add <em>c</em> to every edge weight. (If we are using a matrix representation in which a sentinel value such as ∞ is used to represent the absence of an edge, this value is not changed.) </li>
+<li>Every weight will be 0 or more, i.e., non-negative. </li>
+</ul>
+
+<p>Since we have added the same constant value to everything, we are just scaling
+up the costs linearly and should obtain the same solutions, right?</p>
+
+<p>For example, in this graph the shortest path from s to z is <strong><code>s--x--y--z</code></strong>,
+but <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/N%0Aotes/Topic-18.html#Dijkstra">Dijkstra&#39;s algorithm</a> can&#39;t find it because there is a negative weight
+(<em>why? what goes wrong?</em>):</p>
+
+<p><img src="fig/addweight-counterexample-1.jpg" alt=""></p>
+
+<p>So, let&#39;s add 10 to every edge:</p>
+
+<p><img src="fig/addweight-counterexample-2.jpg" alt=""></p>
+
+<p>and the shortest path is .... Oops! <strong><code>s--z</code></strong>!</p>
+
+<p>The strategy suggested above does not work because it does not add a constant
+amount to each <em>path</em>; rather it adds a constant to each <em>edge</em> and hence
+longer paths are penalized disproportionately.</p>
+
+<p>Perhaps because of this, the first algorithm for all-pairs shortest paths (in
+the 1960&#39;s) by Floyd based on Warshall&#39;s work took a dynamic programming
+approach. (We&#39;ll get to that later.) But then Johnson had a bright idea in
+1977 that salvaged the greedy approach.</p>
+
+<hr>
+
+<h2>Johnson&#39;s Bright Idea</h2>
+
+<p>Donald Johnson figured out how to make a graph that has all edge weights ≥ 0,
+and is also equivalent for purposes of finding shortest paths.</p>
+
+<h3>Definitions</h3>
+
+<p>We have been using a weight function <em>w</em> : <em>V</em>⊗<em>V</em> -&gt; ℜ that gives the weight
+for each edge (<em>i</em>, <em>j</em>) ∈ <em>E</em>, or has value ∞ otherwise. (When working with
+adjacency list representations, it may be more convenient to write <em>w</em> : <em>E</em>
+-&gt; ℜ and ignore (<em>i</em>, <em>j</em>) ∉ <em>E</em>.)</p>
+
+<p>We want to find a <strong>modified weight function <em>ŵ</em></strong> that has these properties:</p>
+
+<ol>
+<li><p><strong>For all <em>u</em>, <em>v</em> ∈ <em>V</em>, <em>p</em> is a shortest path from <em>u</em> to <em>v</em> using <em>w</em> <em>iff</em> <em>p</em> is a shortest path from <em>u</em> to <em>v</em> using <em>ŵ</em></strong>.<br>
+<em>(A shortest path under each weight function is a shortest path under the
+other weight function.)</em></p></li>
+<li><p><strong>For all (<em>u</em>, <em>v</em>) ∈ <em>E</em>, <em>ŵ</em>(<em>u</em>, <em>v</em>) ≥ 0.</strong><br>
+<em>(All weights are non-negative, so Dijkstra&#39;s efficient algorithm can be
+used.)</em></p></li>
+</ol>
+
+<p>If property 1 is met, it suffices to find shortest paths with <em>ŵ</em>. If property
+2 is met, we can do so by running Dijkstra&#39;s algorithm from each vertex. But
+how do we come up with <em>ŵ</em>? That&#39;s where Johnson can help ...</p>
+
+<p>Johnson figured out that if you add a weight associated with the source and
+subtract one associated with the target, you preserve shortest paths.</p>
+
+<p><img src="fig/lemming.jpg" alt=""></p>
+
+<h3>Reweighting Lemma</h3>
+
+<p>Given a directed, weighted graph <em>G</em> = (<em>V</em>, <em>E</em>), <em>w</em> : <em>E</em> -&gt; ℜ, let <em>h</em> be
+<em>any</em> function (bad-ass lemming don&#39;t care) such that <em>h</em> : <em>V</em> -&gt; ℜ.</p>
+
+<p>For all (<em>u</em>, <em>v</em>) ∈ <em>E</em> define</p>
+
+<blockquote>
+<p>*<em><em>ŵ</em>(<em>u</em>, <em>v</em>)   =   <em>w</em>(<em>u</em>, <em>v</em>)   +   <em>h</em>(<em>u</em>)   −   <em>h</em>(<em>v</em>). *</em></p>
+</blockquote>
+
+<p>Let <em>p</em> = ⟨<em>v</em>0, <em>v</em>1, ..., <em>v</em><em>k</em>⟩ be any path from <em>v</em>0 to <em>v</em><em>k</em>.</p>
+
+<p>Then <em>p</em> is a shortest path from <em>v</em>0 to <em>v</em><em>k</em> under <em>w</em> <strong><em>iff</em></strong> <em>p</em> is a
+shortest path from <em>v</em>0 to <em>v</em><em>k</em> under <em>ŵ</em>.</p>
+
+<p>Furthermore, <em>G</em> has a negative-weight cycle under <em>w</em> <strong><em>iff</em></strong> <em>G</em> has a
+negative-weight cycle under <em>ŵ</em>.</p>
+
+<p><em><strong>Proof:</strong></em> First we&#39;ll show that <em>ŵ</em>(<em>p</em>) = <em>w</em>(<em>p</em>) + <em>h</em>(<em>v</em>0) −
+<em>h</em>(<em>v</em><em>k</em>); that is, that the defined relationship transfers to paths.</p>
+
+<p><img src="fig/reweighting-lemma-sums.jpg" alt=""></p>
+
+<p>Therefore, any path from <em>v</em>0 to <em>v</em><em>k</em> has <em>ŵ</em>(<em>p</em>) = <em>w</em>(<em>p</em>) + <em>h</em>(<em>v</em>0) −
+<em>h</em>(<em>v</em><em>k</em>).</p>
+
+<p>Since <em>h</em>(<em>v</em>0) and <em>h</em>(<em>v</em><em>k</em>) don&#39;t depend on the path from <em>v</em>0 to <em>v</em><em>k</em>,
+if one path from <em>v</em>0 to <em>v</em><em>k</em> is shorter than another with <em>w</em>, it will also
+be shorter with <em>ŵ</em>.</p>
+
+<p>Now we need to show that ∃ negative-weight cycle with <em>w</em> <strong><em>iff</em></strong> ∃
+negative-weight cycle with <em>ŵ</em>.</p>
+
+<p>Let cycle <em>c</em> = ⟨<em>v</em>0, <em>v</em>1, ..., <em>v</em><em>k</em>⟩ where <em>v</em>0 = <em>v</em><em>k</em>. Then:</p>
+
+<p><img src="fig/reweighting-lemma-cycles.jpg" alt=""></p>
+
+<p>Therefore, <em>c</em> has a negative-weight cycle with <em>w</em> <strong><em>iff</em></strong> it has a
+negative-weight cycle with <em>ŵ</em>.</p>
+
+<p><strong><em>Implications:</em></strong> It&#39;s remarkable that under this definition of <em>ŵ</em>, <em>h</em> can assign <em>any</em> weight to the vertices and shortest paths and negative weight cycles will be preserved. This gets us Property 1. How can we choose <em>h</em> to get Property 2?</p>
+
+<h3>Johnson&#39;s <em>h</em>(<em>v</em>)</h3>
+
+<p>Property 2 states that ∀ (<em>u</em>, <em>v</em>) ∈ <em>E</em>, <em>ŵ</em>(<em>u</em>, <em>v</em>) ≥ 0.</p>
+
+<p>Since we have defined <em>ŵ</em>(<em>u</em>, <em>v</em>) = <em>w</em>(<em>u</em>, <em>v</em>) + <em>h</em>(<em>u</em>) − <em>h</em>(<em>v</em>), to
+get property 2 we need an <em>h</em> : <em>V</em> -&gt; ℜ for which we can show that <em>w</em>(<em>u</em>,
+<em>v</em>) + <em>h</em>(<em>u</em>) − <em>h</em>(<em>v</em>) ≥ 0.</p>
+
+<p>The motivation for how this is done derives from a section on difference
+constraints in Chapter 24 that we did not cover, so we&#39;ll just have to take
+this as an insight out of the blue ....</p>
+
+<p><img src="fig/Fig-25-6-Johnsons-Example-preview.jpg" alt=""></p>
+
+<p>Define <em>G&#39;</em> = (<em>V&#39;</em>, <em>E&#39;</em>)</p>
+
+<ul>
+<li><em>V&#39;</em> = <em>V</em> ∪ {<em>s</em>}, where <em>s</em> is a new vertex.</li>
+<li><em>E&#39;</em> = <em>E</em> ∪ {(<em>s</em>, <em>v</em>) : <em>v</em> ∈ <em>V</em>}.</li>
+<li><em>w</em>(<em>s</em>, <em>v</em>) = 0 for all <em>v</em> ∈ <em>V</em>.</li>
+</ul>
+
+<p>Since no edges enter <em>s</em>, <em>G&#39;</em> has the same cycles as <em>G</em>, including negative
+weight cycles if they exist.</p>
+
+<p>*<em>Define <em>h</em>(<em>v</em>) = δ(<em>s</em>, <em>v</em>) for all <em>v</em> ∈ <em>V</em>. *</em></p>
+
+<p><em>(We put a 0-weighted link from _s</em> to every other vertex <em>v</em>, so isn&#39;t δ(<em>s</em>,
+<em>v</em>) always 0? When is it not? What does this tell us?)_</p>
+
+<h4>Correctness (proof that we have property 2)</h4>
+
+<p><em><strong>Claim:</strong></em> <em>ŵ</em>(<em>u</em>, <em>v</em>)   =   <em>w</em>(<em>u</em>, <em>v</em>)   +   <em>h</em>(<em>u</em>)   −   <em>h</em>(<em>v</em>)
+≥   0.</p>
+
+<p><em><strong>Proof:</strong></em> By the triangle inequality,</p>
+
+<blockquote>
+<p>δ(<em>s</em>, <em>v</em>)   ≤   δ(<em>s</em>, <em>u</em>)   +   <em>w</em>(<em>u</em>, <em>v</em>),</p>
+</blockquote>
+
+<p>Substituting <em>h</em>(<em>v</em>) = δ(<em>s</em>, <em>v</em>) (as defined above) and similarly for <em>u</em>,</p>
+
+<blockquote>
+<p><em>h</em>(<em>v</em>)   ≤   <em>h</em>(<em>u</em>)   +   <em>w</em>(<em>u</em>, <em>v</em>).</p>
+</blockquote>
+
+<p>Subtracting <em>h</em>(<em>v</em>) from both sides,</p>
+
+<blockquote>
+<p><em>w</em>(<em>u</em>, <em>v</em>)   +  <em>h</em>(<em>u</em>)   −   <em>h</em>(<em>v</em>)   ≥   0.</p>
+</blockquote>
+
+<p><img src="fig/algorithm-Johnson.jpg" alt=""></p>
+
+<h3>The Algorithm</h3>
+
+<p>The algorithm constructs the augmented graph <em>G</em>&#39; (line 1), uses Bellman-Ford
+from <em>s</em> to check whether there are negative weight cycles (lines 2-3), and if
+there are none this provides the δ(<em>s</em>, <em>v</em>) values needed to compute <em>h</em>(<em>v</em>)
+(lines 4-5).</p>
+
+<p>Then it does the weight adjustment with <em>h</em> (lines 6-7), and runs Dijkstra&#39;s
+algorithm from each start vertex (lines 9-10), reversing the weight adjustment
+to obtain the final distances put in a results matrix D (lines 11-12).</p>
+
+<h3>Example</h3>
+
+<p>Let&#39;s start with this graph:</p>
+
+<p><img src="fig/Fig-25-1-Directed-Weighted-Graph.jpg" alt="">
+<img src="fig/Fig-25-6-Johnsons-Example-a.jpg" alt=""></p>
+
+<p>First we construct <em>G</em>&#39; by adding <em>s</em> (the black node) and edges of weight
+from <em>s</em> 0 to all other vertices. The original weights are still used. This
+new graph G&#39; is shown to the right. Vertex numbers have been moved outside of
+the nodes.</p>
+
+<p>Then we run Bellman-Ford on this graph with <em>s</em> (the black node) as the start
+vertex. The resulting path distances δ(<em>s</em>, <em>v</em>) are shown inside the nodes to
+the right. Remember that <em>h</em>(<em>v</em>) = δ(<em>s</em>, <em>v</em>), so that these are also the
+values we use in adjusting edge weights (next step).</p>
+
+<p><img src="fig/Fig-25-6-Johnsons-Example-b-no-s.jpg" alt=""></p>
+
+<p>In the next graph to the left, the edge weights have been adjusted to <em>ŵ</em>(<em>u</em>,
+<em>v</em>) = <em>w</em>(<em>u</em>, <em>v</em>) + <em>h</em>(<em>u</em>) − <em>h</em>(<em>v</em>). For example, the edge (1, 5),
+previously weighted -4, has been updated to -4 + 0 − (-4) = 0.</p>
+
+<p>All weights are positive, so we can now run Dijkstra&#39;s algorithm from each
+vertex <em>u</em> as source (shown in black in the next step) using <em>ŵ</em>.</p>
+
+<p><img src="fig/Fig-25-6-Johnsons-Example-d.jpg" alt=""></p>
+
+<p>To the right is an example of one pass, starting with vertex 2.</p>
+
+<p>Within each vertex <em>v</em> the values δ̂(2, <em>v</em>) and δ(2, <em>v</em>) = δ̂(2, <em>v</em>) +
+<em>h</em>(2) − <em>h</em>(<em>u</em>) are separated by a slash.</p>
+
+<p>The values for δ̂(<em>2</em>, <em>v</em>) were computed by running Dijkstra&#39;s algorithm with
+start vertex 2, using the modified weights <em>ŵ</em>. But to get the correct path
+lengths in the original graph we have to map this back to <em>w</em>.</p>
+
+<p>Of course, node 2 is labeled &quot;0/0&quot; for δ̂(<em>2</em>, <em>2</em>) and δ(<em>2</em>, <em>2</em>),
+respectively, because it costs 0 to get from a vertex to itself in any graph
+that does not have negative weight cycles.</p>
+
+<p>The cost to get to vertex 4 is 0 in the modified graph. To get the cost in the
+original graph, we reverse the adjustment that was done in computing <em>w</em>&#39;: we
+now <em>subtract</em> the source vertex weight <em>h</em>(2) = -1 (from figure above) and
+<em>add</em> the target vertex weight <em>h</em>(4) = 0, so 0 − (-1) + 0 = 1. That is where
+the &quot;1&quot; on node 4 came from.</p>
+
+<p>But that example was for a path of length 1: let&#39;s look at a longer one. Node
+5 has &quot;2/-1&quot;. Dijkstra&#39;s algorithm found the lowest cost path ((2, 4), (4, 1),
+(1, 5)) to vertex 5, at a cost of 2 using the edge weights <em>w</em>&#39;. To convert
+this into the path cost under edge weights <em>w</em>, we do <em>not</em> have to subtract
+the source vertex weight <em>h</em>(<em>u</em>) and add the target vertex weight <em>h</em>(<em>v</em>)
+for every edge on the path, because it is a telescoping sum. We only have to
+subtract the source vertex weight <em>h</em>(2) = -1 for the start of the <em>path</em> and
+add the target vertex weight <em>h</em>(5) = -4 for the end of the path.</p>
+
+<p>Thus δ(5) = δ̂(5) − <em>h</em>(2) + <em>h</em>(5) = 2 − (-1) + (-4) = -1.</p>
+
+<p>Similarly, the numbers after the &quot;/&quot; on each node are δ(<em>v</em>) in the original
+graph: these are the &quot;answers&quot; for the start vertex used in the given
+Dijkstra&#39;s run. We collect all these answers in matrix <em>D</em> across all
+vertices.</p>
+
+<p><img src="fig/algorithm-Johnson.jpg" alt=""></p>
+
+<h3>Time</h3>
+
+<p>Θ(<em>V</em>) to compute <em>G&#39;</em>; O(<em>V E</em>) to run Bellman-Ford; Θ(<em>E</em>) to compute <em>ŵ</em>;
+and Θ(<em>V</em>2) to compute <em>D</em>; but these are all dominated by <strong>O(<em>V E</em> lg <em>V</em>)</strong>
+to run Dijkstra |<em>V</em>| times with a binary min-heap implementation.</p>
+
+<p>Not surprisingly, this is the same as iterated Dijkstra&#39;s, but it will handle
+negative weights.</p>
+
+<p>Asymptotic performance can be improved to O(<em>V</em>2 lg <em>V</em> + <em>V E</em>) using
+Fibonacci heaps.</p>
+
+<hr>
+
+<h2>Dynamic Programming Approaches and Matrix Multiplication</h2>
+
+<p>We should also be aware of dynamic programming approaches to solving all-pairs
+shortest paths. We already saw in <a href="http://www2.hawaii.edu/%7Esuthers/c%0Aourses/ics311s14/Notes/Topic-18.html#optimal">Topic 18</a> that any subpath of a shortest
+path is a shortest path; thus there is optimal substructure. There are also
+overlapping subproblems since we can extend the solution to shorter paths into
+longer ones. Two approaches differ in how they chararacterize the recursive
+substructure.</p>
+
+<p>CLRS first develop a dynamic programming solution that is similar to matrix
+multiplication. Matrices are a natural representation for all-pairs shortest
+paths as we need O(<em>V</em>2) memory elements just to represent the final results,
+so it isn&#39;t terribly wasteful to use a non-sparse graph representation
+(although for very large graphs once can use a sparse matrix representation).</p>
+
+<h3>Optimal Substructure</h3>
+
+<p>A shortest path <em>p</em> between distinct vertices <em>i</em> and <em>j</em> can be decomposed
+into a shortest path from <em>i</em> to some vertex <em>k</em>, plus the final edge from <em>k</em>
+to <em>j</em>. In case that <em>i</em> is directly connected to <em>j</em>, then <em>k</em>=<em>j</em> and we
+define the length of a shortest path from a vertex to itself to be 0.</p>
+
+<h3>Extending Shortest Paths</h3>
+
+<p>This dynamic programming approach builds up shortest paths that contain at
+most <em>m</em> edges. For <em>m</em> = 0, all the shortest paths from vertices to
+themselves are of length 0; and others are infinite. For <em>m</em> = 1, the
+adjacency matrix gives the shortest paths between an pair of vertices <em>i</em> and
+<em>j</em> (namely, the weight on the edge between them). For <em>m</em> &gt; 1, an algorithm
+is developed that takes the minimum of paths of length <em>m</em>−1 and those that
+can be obtained by extending these paths one more step via an intermediate
+vertex <em>k</em>.</p>
+
+<p>We will leave the details to the text, but it turns out that this algorithm
+for extending paths one step has structure almost identical to that for
+multiplying square matrices. The operations are different (min instead of
+addition, addition instead of multiplication), but the structure is the same.
+Both algorithms have three nested loops, so are O(<em>V</em>3).</p>
+
+<p>After |<em>V</em>|−1 extensions, the paths will not get any shorter (assuming no
+negative weight edges), so one can iterate the path extending algorithm
+|<em>V</em>|−1 times, for an O(<em>V</em>4) algorithm overall: not very efficient.</p>
+
+<p>However, the path extension algorithm, like matrix mutliplication, is
+associative, and we can use this fact along with the fact that results won&#39;t
+change after |<em>V</em>|−1 extensions to speed up the algorithm. We modify it to be
+like <strong><em>repeated squaring</em></strong>, essentially multiplying the resulting matrix by
+itself repeatedly. Then one needs only lg(<em>V</em>) &quot;multiplications&quot; (doubling of
+path length) to have paths longer than |<em>V</em>|, so the runtime overall is O(<em>V</em>3
+lg <em>V</em>).</p>
+
+<p>But we can do better with a different way of characterizing optimal
+substructure; one that does not just extend paths at their end, but rather
+allows two paths of length greater than 1 to be combined.</p>
+
+<hr>
+
+<h2>Floyd-Warshall: Dynamic Programming for Dense Graphs</h2>
+
+<p>The textbook first develops a more complex version of this algorithm that
+makes multiple copies of matrices, and then notes in exercise 25.2-4 that we
+can reduce space requirements by re-using matrices. Here I go directly to that
+simpler version.</p>
+
+<h3>Dynamic Programming Analysis</h3>
+
+<p>Assume that <em>G</em> is represented as an adjacency matrix of weights <em>W</em> =
+(<em>wij</em>), with vertices numbered from 1 to <em>n</em>.</p>
+
+<p><img src="fig/W-matrix-definition.jpg" alt=""></p>
+
+<p>We have <em><strong>optimal substructure</strong></em> because subpaths of shortest paths are
+shortest paths (<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics%0A311s14/Notes/Topic-18.html#optimal">previous lecture</a>), and we have <em><strong>overlapping
+subproblems</strong></em> because a shortest path to one vertex may be extended to reach
+a further vertex. We need the recursive structure that exploits this.</p>
+
+<p>The subproblems are defined by computing, for 1 ≤ <em>k</em> ≤ |<em>V</em>|, the shortest
+path from each vertex to each other vertex that uses <em>only</em> vertices from {1,
+2, ..., <em>k</em>}. That is:</p>
+
+<ul>
+<li>first find the shortest paths from each <em>i</em> to each <em>j</em> that go through no vertices (i.e., the direct edges);</li>
+<li>then find the shortest paths from each <em>i</em> to each <em>j</em> that go either direct or only via vertex 1;</li>
+<li>then find the shortest paths from each <em>i</em> to each <em>j</em> that go either direct or only via vertices 1 and 2; ...</li>
+<li>... and so on until we are considering solutions via all vertices.</li>
+</ul>
+
+<p>Importantly, each step we can use what we just computed in the previous step,
+considering whether the <em>k</em>th vertex improves on paths found using vertices {1
+... <em>k</em>-1}. This is what enables us to leverage dynamic programming&#39;s ability
+to save and re-use solutions to subproblems.</p>
+
+<p>The basic insight is that the shortest path from vertex <em>i</em> to vertex <em>j</em>
+using only vertices from {1, 2, ..., <em>k</em>} is either:</p>
+
+<ul>
+<li>the shortest path <em>p</em> from vertex <strong><em>i</em></strong> to vertex <strong><em>j</em></strong> using only vertices from {1, 2, ..., <em>k</em>−1}, or </li>
+<li>a path <em>p</em> composed of the shortest path <em>p1</em> from vertex <strong><em>i</em></strong> to vertex <strong><em>k</em></strong> using only vertices from {1, 2, ..., <em>k</em>−1} and the shortest path <em>p2</em> from vertex <strong><em>k</em></strong> to vertex <strong><em>j</em></strong> using only vertices from {1, 2, ..., <em>k</em>−1}</li>
+</ul>
+
+<p><img src="fig/Fig-25-3-Structure-Shortest-Paths.jpg" alt=""></p>
+
+<p>This way of characterizing optimal substructure allows the Floyd-Warshall
+algorithm to consider more ways of combining shortest subpaths than the
+matrix-multiplication-like algorithm did.</p>
+
+<h3>Algorithm</h3>
+
+<p>This leads immediately to the classic Floyd-Warshall algorithm (as presented
+in excercise 25.2-4 and its public solution, as well as many other texts):</p>
+
+<p><img src="fig/algorithm-Floyd-Warshall-Prime.jpg" alt=""></p>
+
+<h3>Run Time Analysis</h3>
+
+<p><em>It&#39;s trivial; you tell me.</em></p>
+
+<h3>Constructing the Shortest Paths</h3>
+
+<p>Although one can infer the shortest paths from the final weight matrix <em>D</em>, it
+is perhaps more straightforward to maintain a matrix of predecessor pointers
+just like we maintain predecessor pointers on individual vertices in the
+single-source version of shortest paths.</p>
+
+<p>We update a matrix Π that is the same dimensions as <em>D</em>, and each entry π<em>i,j</em>
+contains the predecessor of vertex <em>j</em> on a shortest path from <em>i</em> (the
+predecessor on shortest paths from other vertices may differ).</p>
+
+<p>The CLRS textbooks presentation shows us making a series of matrices Π(0) ...
+Π(<em>n</em>), but as with the weight matrix <em>D</em> we can actually do this in one
+matrix Π, and we can understand the superscripts (0) ... (<em>n</em>) as merely
+representing states of this matrix.</p>
+
+<h3>Example</h3>
+
+<p>Examples of Floyd-Warshall, like of other dynamic programming problems, are
+tedious to work through. I invite you to trace though the example in the text,
+following the algorithm literally, and be prepared to do another example on
+homework. I won&#39;t talk through it here.</p>
+
+<p><img src="fig/Fig-25-4-Floyd-Warshall-Example-0.jpg" alt=""><br>
+<img src="fig/Fig-25-4-Floyd-Warshall-Example-1.jpg" alt=""><br>
+<img src="fig/Fig-25-4-Floyd-Warshall-Example-2.jpg" alt=""><br>
+<img src="fig/Fig-25-4-Floyd-Warshall-Example-3.jpg" alt=""><br>
+<img src="fig/Fig-25-4-Floyd-Warshall-Example-4.jpg" alt=""><br>
+<img src="fig/Fig-25-4-Floyd-Warshall-Example-5.jpg" alt="">  </p>
+
+<hr>
+
+<h2>Transitive Closure</h2>
+
+<p>Suppose we have a graph <em>G</em> and we want to compute the <strong>transitive closure</strong></p>
+
+<blockquote>
+<p><em>G*</em> = (<em>V</em>, <em>E*</em>) of <em>G</em>, where   (<em>u</em>, <em>v</em>) ∈ <em>E*</em>   <em><strong>iff</strong></em>   ∃ path
+from <em>u</em> to <em>v</em> in <em>G</em>.</p>
+</blockquote>
+
+<p>We can do this by assigning a weight of 1 to each edge, running the above
+algorithm, and then concluding there is a path for any (<em>i</em>, <em>j</em>) that have
+non-infinite path cost.</p>
+
+<p>If all we care about is transitivity rather than path length, we can reduce
+space requirements and possibly speed up the algorithm by representing all
+edges as boolean values (1 for connected; 0 for not connected), and then
+modify Floyd-Warshall to use boolean OR rather than min and AND rather than
+addition. This reduces the space requirements from one numeric word to one bit
+per edge weight, and may be faster on machines for which boolean operations
+are faster than addition. See text for discussion.</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Fri Apr 11 02:23:25 HST 2014<br>
+Images are from the instructor&#39;s material for Cormen et al. Introduction to
+Algorithms, Third Edition.  </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 11:50:30 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
