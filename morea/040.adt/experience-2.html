@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Asymptotic analysis of basic data structures | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Basic Data Structures</h2>
+
+<h4>5 points</h4>
+
+<p><strong>1. (4 pts)</strong> For each of the four types of lists in the following table, what is the <em>asymptotic worst-case running time</em> for each dynamic set operation listed, given a list of length <em>n</em>? </p>
+
+<ul>
+<li>Assume that _<em>k</em> is the key<em>, _d</em> the data associated with the key, and _<em>p</em> a position_ in the data structure.</li>
+<li>As explained in class, positions abstract and provide encapsulated access to elements of a data structure. We don&#39;t have to search for the item if we have a position p for it.</li>
+<li>Sorted lists are sorted in <em>ascending order</em>.</li>
+<li>Predecessor, successor, minimum, and maximum are <em>with respect to ordering of keys in the set under &quot;&lt;&quot;</em>, not necessarily ordering of the list data structure.</li>
+<li>The cells filled in are from the quiz.</li>
+</ul>
+
+<table width="100%" border="1">
+  <caption>
+    Worst Case Linked List Operations
+  </caption>
+  <tbody><tr>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">Unsorted, Singly Linked (no tail pointer)</th>
+    <th scope="col">Sorted, Singly Linked (no tail ponter)</th>
+    <th scope="col">Unsorted, Doubly Linked with Sentinel and Tail pointer</th>
+    <th scope="col">Sorted, Doubly Linked with Sentinel and Tail pointer</th>
+  </tr>
+  <tr>
+    <th scope="row">insert(k, d)</th>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#920;(1)</td>
+    <td>&#920;(n)</td>
+  </tr>
+  <tr>
+    <th scope="row">search(k)</th>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#920;(n)</td>
+    <td>&#920;(n)</td>
+  </tr>
+  <tr>
+    <th scope="row">delete(p)</th>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+  <tr>
+    <th scope="row">successor(p)</th>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+  <tr>
+    <th scope="row">minimum()</th>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+    <td><strong>&nbsp;</strong></td>
+  </tr>
+</tbody></table>
+  
+
+<p><strong>2. (1 pt)</strong> Write a Θ(<em>n</em>)-time recursive procedure that, <em>given an _n</em>-node binary tree, prints out the key of each node of the tree_ in any order you wish. Assume that trees consist of vertices of class <code>TreeNode</code> with instance variables <code>parent</code>, <code>left</code>, <code>right</code>, and <code>key</code>. Your recursive procedure takes a <code>TreeNode</code> as its argument (the root of the tree or subtree being considered by the recursive call).</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">**
+printTreeNodes(TreeNode root)
+    if (root != null) {
+
+
+**
+</code></pre></div>
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

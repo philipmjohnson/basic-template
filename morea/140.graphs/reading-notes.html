@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Notes on graphs | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Outline</h2>
+
+<p>Tuesday</p>
+
+<ol>
+<li>Graph Definitions &amp; examples</li>
+<li>Graph ADT</li>
+<li>Representations (Implementations) of Graph ADT</li>
+<li>Breadth-first Search </li>
+</ol>
+
+<p>Thursday</p>
+
+<ol>
+<li>Depth-first Search </li>
+<li>Topological Sort </li>
+<li>Strongly Connected Components </li>
+<li>Related Concepts </li>
+</ol>
+
+<p>The video lectures and notes below provide material not found in the textbook:
+defining graphs, an ADT, and implementations. This material is important for
+Project 2.</p>
+
+<h2>Graphs</h2>
+
+<h3>Definitions</h3>
+
+<p>A graph <em>G</em> is a pair</p>
+
+<blockquote>
+<p><em>G</em> = (<em>V</em>, <em>E</em>)</p>
+</blockquote>
+
+<p>where</p>
+
+<blockquote>
+<p><em>V</em> = {<em>v</em>1, <em>v</em>2, ... <em>v</em>n}, a set of <strong>vertices</strong></p>
+
+<p><em>E</em> = {<em>e</em>1, <em>e</em>2, ... <em>e</em>m} ⊆ <em>V</em> ⊗ <em>V</em>, a set of <strong>edges</strong>.</p>
+</blockquote>
+
+<h4>Undirected Graphs</h4>
+
+<p>In an <strong>undirected graph</strong> the edge set E consists of <em>unordered pairs</em> of
+vertices. That is, they are sets <em>e</em> = {<em>u</em>, <em>v</em>}. Edges can be written with
+this notation when clarity is desired, but we will often use parentheses (<em>u</em>,
+<em>v</em>).</p>
+
+<p>No self loops are allowed in undirected graphs. That is, we cannot have (<em>v</em>,
+<em>v</em>), which would not make as much sense in the set notation {<em>v</em>, <em>v</em>}.</p>
+
+<p>We say that <em>e</em> = {<em>u</em>, <em>v</em>} is <strong>incident on</strong> <em>u</em> and <em>v</em>, and that the
+latter vertices are <strong>adjacent</strong>. The <strong>degree</strong> of a vertex is the number of
+edges incident on it.</p>
+
+<p>The <strong>handshaking lemma</strong> is often useful in proofs:</p>
+
+<blockquote>
+<p>Σ<em>v</em>∈<em>V</em>degree(<em>v</em>) = 2|<em>E</em>|</p>
+</blockquote>
+
+<p>(Each edge contributes two to the sum of degrees.)</p>
+
+<h4>Directed Graphs</h4>
+
+<p>In a <strong>directed graph</strong> or <strong>digraph</strong> the edges are ordered pairs (<em>u</em>, <em>v</em>).</p>
+
+<p>We say that <em>e</em> = (<em>u</em>, <em>v</em>) is <strong>incident from</strong> or <strong>leaves</strong> <em>u</em> and is
+<strong>incident to</strong> or <strong>enters</strong> <em>v</em>. The <strong>in-degree</strong> of a vertex is the number
+of edges incident to it, and the <strong>out-degree</strong> of a vertex is the number of
+edges incident from it.</p>
+
+<p><strong>Self loops</strong> (<em>v</em>, <em>v</em>) are allowed in directed graphs.</p>
+
+<h4>Paths</h4>
+
+<p>A <strong>path</strong> of length <em>k</em> is a sequence of vertices ⟨<em>v</em>0, <em>v</em>1, <em>v</em>2, ...
+<em>v</em>k⟩ where (<em>v</em><em>i</em>-1, <em>v</em><em>i</em>) ∈ <em>E</em>, for <em>i</em> = 1, 2, ... <em>k</em>. (Some authors
+call this a &quot;walk&quot;.) The path is said to <strong>contain</strong> the vertices and edges
+just defined.</p>
+
+<p>A <strong>simple path</strong> is a path in which all vertices are distinct. (The &quot;walk&quot;
+authors call this a &quot;path&quot;).</p>
+
+<p>If a path exists from <em>u</em> to <em>v</em> we say that <em>v</em> is <strong>reachable</strong> from <em>u</em>.</p>
+
+<p>In an undirected graph, a path ⟨<em>v</em>0, <em>v</em>1, <em>v</em>2, ... <em>v</em>k⟩ forms a <strong>cycle</strong>
+if <em>v</em>0 = <em>v</em>k and <em>k</em> ≥ 3 (as no self-loops are allowed).</p>
+
+<p>In a directed graph, a path forms a <strong>cycle</strong> if <em>v</em>0 = <em>v</em>k and the path
+contains at least one edge. (This is clearer than saying that the path
+contains at least two vertices, as self-loops are possible in directed
+graphs.) The cycle is <strong>simple</strong> if <em>v</em>1, <em>v</em>2, ... <em>v</em>k are distinct (i.e.,
+all but the designated start and end <em>v</em>0 = <em>v</em>k are distinct). A directed
+graph with no self-loops is also <strong>simple</strong>.</p>
+
+<p>A graph of either type with no cycles is <strong>acyclic</strong>. A directed acyclic graph
+is often called a <strong>dag</strong>.</p>
+
+<h4>Connectivity</h4>
+
+<p>A graph <em>G&#39;</em> = (<em>V&#39;</em>, <em>E&#39;</em>) is a <strong>subgraph</strong> of <em>G</em> = (<em>V</em>, <em>E</em>) if <em>V&#39;</em> ⊆
+<em>V</em> and <em>E&#39;</em> ⊆ <em>E</em>.</p>
+
+<p>An undirected graph is <strong>connected</strong> if every vertex is reachable from all
+other vertices. In any connected undirected graph, |<em>E</em>| ≥ |<em>V</em>| - 1 (see also
+<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311%0As14/Notes/Topic-08.html">discussion of tree properties</a>). The <strong>connected components</strong> of <em>G</em> are the maximal
+subgraphs <em>G</em>1 ... <em>G</em><em>k</em> where every vertex in a given subgraph is reachable
+from every other vertex in that subgraph, but not reachable from any vertex in
+a different subgraph.</p>
+
+<p>A directed graph is <strong>strongly connected</strong> if every two vertices are reachable
+from each other. The <strong>strongly connected components</strong> are the subgraphs
+defined as above. A directed graph is thus strongly connected if it has only
+one strongly connected component. A directed graph is <strong>weakly connected</strong> if
+the underlying undirected graph (converting all tuples (<em>u</em>, <em>v</em>) ∈ <em>E</em> into
+sets {<em>u</em>, <em>v</em>} and removing self-loops) is connected.</p>
+
+<h4>Variations</h4>
+
+<p>A <strong>bipartite</strong> graph is one in which <em>V</em> can be partitioned into two sets
+<em>V</em>1 and <em>V</em>2 such that every edge connects a vertex in <em>V</em>1 to one in <em>V</em>2.
+Equivalently, there are no odd-length cycles.</p>
+
+<p>A <strong>complete</strong> graph is an undirected graph in which every pair of vertices is
+adjacent.</p>
+
+<p>A <strong>weighted</strong> graph has numerical weights associated with the edges. (The
+allowable values depend on the application. Weights are often used to
+represent distance, cost or capacity in networks.)</p>
+
+<h3>Graph Size in Analysis</h3>
+
+<p>Asymptotic analysis is often in terms of both |<em>V</em>| and |<em>E</em>|. Within
+asymptotic notation we leave out the &quot;|&quot; for simplicity, for example, writing
+O(<em>V</em> + <em>E</em>), O(<em>V</em>2 lg <em>E</em>), etc.</p>
+
+<h3>Many Applications ...</h3>
+
+<p><img src="fig/GT-Map-Graph-Example.jpg" alt=""> <img src="fig/GT-Circuit-Graph-Example.jpg" alt=""> <img src="fig/social-network.jpg" alt="">
+<img src="fig/240px-Internet_map_1024.jpg" alt=""></p>
+
+<hr>
+
+<h2>Graph ADT</h2>
+
+<p>These are detailed slightly more in <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Projects/Project-2.html">Project
+2</a>,
+and in the Goodrich &amp; Tamassia excerpt uploaded to Laulima.</p>
+
+<h4>Graph Accessors</h4>
+
+<p><strong>numVertices()</strong><br>
+    Returns the number of vertices |<em>V</em>|</p>
+
+<p><strong>numEdges()</strong><br>
+    Returns the number of edges |<em>E</em>|</p>
+
+<p><strong>vertices()</strong><br>
+    Returns an iterator over the vertices <em>V</em></p>
+
+<p><strong>edges()</strong><br>
+    Returns an iterator over the edges <em>E</em></p>
+
+<h4>Accessing Undirected Graphs</h4>
+
+<p><strong>degree(<em>v</em>)</strong><br>
+    Returns the number of edges (directed and undirected) incident on <em>v</em>.</p>
+
+<p><strong>adjacentVertices(<em>v</em>)</strong><br>
+    Returns an iterator of the vertices adjacent to <em>v</em>.</p>
+
+<p><strong>incidentEdges(<em>v</em>)</strong><br>
+    Returns an iterator of the edges incident on <em>v</em>. </p>
+
+<p><strong>endVertices(<em>e</em>)</strong><br>
+    Returns an array of the two end vertices of <em>e</em>.</p>
+
+<p><strong>opposite(<em>v</em>,<em>e</em>)</strong><br>
+    Given <em>v</em> is an endpoint of <em>e</em>.<br>
+    Returns the end vertex of <em>e</em> different from <em>v</em>.<br>
+    Throws InvalidEdgeException when <em>v</em> is not an endpoint of <em>e</em>.</p>
+
+<p><strong>areAdjacent(<em>v</em>1,<em>v</em>2)</strong><br>
+    Returns true iff <em>v</em>1 and <em>v</em>2 are adjacent by a single edge. </p>
+
+<h4>Accessing Directed Graphs</h4>
+
+<p><strong>directedEdges()</strong><br>
+    Returns an iterator over the directed edges of <em>G</em>. </p>
+
+<p><strong>undirectedEdges()</strong><br>
+    Returns an iterator over the undirected edges of <em>G</em>. </p>
+
+<p><strong>inDegree(<em>v</em>)</strong><br>
+    Returns the number of directed edges (arcs) incoming to <em>v</em>. </p>
+
+<p><strong>outDegree(<em>v</em>)</strong><br>
+    Returns the number of directed edges (arcs) outgoing from <em>v</em>.</p>
+
+<p><strong>inAdjacentVertices(<em>v</em>)</strong><br>
+    Returns an iterator over the vertices adjacent to <em>v</em> by incoming edges. </p>
+
+<p><strong>outAdjacentVertices(<em>v</em>)</strong><br>
+    Returns an iterator over the vertices adjacent to <em>v</em> by outgoing edges. </p>
+
+<p><strong>inIncidentEdges(<em>v</em>)</strong><br>
+    Returns an iterator over the incoming edges of <em>v</em>. </p>
+
+<p><strong>outIncidentEdges(<em>v</em>)</strong><br>
+    Returns an iterator over the outgoing edges of <em>v</em>. </p>
+
+<p><strong>destination(<em>e</em>)</strong><br>
+    Returns the destination vertex of <em>e</em>, if <em>e</em> is directed.<br>
+    Throws InvalidEdgeException when <em>e</em> is undirected.</p>
+
+<p><strong>origin(<em>e</em>)</strong><br>
+    Returns the origin vertex of <em>e</em>, if <em>e</em> is directed.<br>
+    Throws InvalidEdgeException when <em>e</em> is undirected. </p>
+
+<p><strong>isDirected(<em>e</em>)</strong><br>
+    Returns true if <em>e</em> is directed, false otherwise</p>
+
+<h4>Mutators (Undirected and Directed)</h4>
+
+<p><strong>insertEdge(<em>u</em>,<em>v</em>)</strong><br>
+<strong>insertEdge(<em>u</em>,<em>v</em>,<em>o</em>)</strong><br>
+    Inserts a new undirected edge between two existing vertices, optionally containing object <em>o</em>.<br>
+    Returns the new edge. </p>
+
+<p><strong>insertVertex()</strong><br>
+<strong>insertVertex(<em>o</em>)</strong><br>
+    Inserts a new isolated vertex optionally containing an object <em>o</em> (e.g., the label associated with the vertex).<br>
+    Returns the new vertex. </p>
+
+<p><strong>insertDirectedEdge(<em>u</em>,<em>v</em>)</strong><br>
+<strong>insertDirectedEdge(<em>u</em>,<em>v</em>,<em>o</em>)</strong><br>
+    Inserts a new directed edge from an existing vertex to another.<br>
+    Returns the new edge. </p>
+
+<p><strong>removeVertex(<em>v</em>)</strong><br>
+    Deletes a vertex and all its incident edges.<br>
+    Returns object formerly stored at <em>v</em>.</p>
+
+<p><strong>removeEdge(<em>e</em>)</strong><br>
+    Removes an edge.<br>
+    Returns the object formerly stored at <em>e</em>.</p>
+
+<h4>Annotators (for vertices and all types of edges)</h4>
+
+<p>Methods for annotating vertices and edges with arbitrary data.</p>
+
+<p><strong>setAnnotation(Object <em>k</em>, <em>o</em>)</strong><br>
+    Annotates a vertex or edge with object <em>o</em> indexed by key <em>k</em>.</p>
+
+<p><strong>getAnnotation(Object <em>k</em>)</strong><br>
+    Returns the object indexed by <em>k</em> annotating a vertex or edge.</p>
+
+<p><strong>removeAnnotation(Object <em>k</em>)</strong><br>
+    Removes the annotation on a vertex or edge indexed by <em>k</em> and returns it.</p>
+
+<h4>Changing Directions</h4>
+
+<p>There are various methods for changing the direction of edges. I think the
+only one we will need is:</p>
+
+<p><strong>reverseDirection(<em>e</em>)</strong><br>
+    Reverse the direction of an edge.<br>
+    Throws InvalidEdgeException if the edge is undirected</p>
+
+<hr>
+
+<h2>Graph Representations</h2>
+
+<p>There are two classic representations: the adjacency list and the adjacency
+matrix.</p>
+
+<p>In the <strong>adjacency list</strong>, vertices adjacent to vertex <em>v</em> are listed
+explicitly on linked list <em>G</em>.Adj<a href="assuming%20an%20array%20representation%20of%0Alist%20headers"><em>v</em></a>.</p>
+
+<p>In the <strong>adjacency matrix</strong>, vertices adjacent to vertex <em>v</em> are indicated by
+nonzero entries in the row of the matrix indexed by v, in the columns for the
+adjacent vertices.</p>
+
+<p>Adjacency List and Matrix representations of an undirected graph:</p>
+
+<p><img src="fig/Fig-22-1-representations-undirected.jpg" alt=""></p>
+
+<p>Adjacency List and Matrix representations of a directed graph:</p>
+
+<p><img src="fig/Fig-22-2-representations-directed.jpg" alt=""></p>
+
+<p>_Consider this before reading on: What are the asymptotic complexities of
+these methods in each representation? _</p>
+
+<ul>
+<li>List vertices/edges </li>
+<li>areAdjacent </li>
+<li>access (out)AdjacentVertices or (out)IncidentEdges (outdegree) </li>
+<li>access (in)AdjacentVertices or (in)IncidentEdges (indegree) </li>
+</ul>
+
+<p><em>Are edges first class objects in the above representations? Where do you
+store edge information in the undirected graph representations?</em></p>
+
+<h3>Complexity Analysis</h3>
+
+<h4>Adjacency List</h4>
+
+<p>Space required: Θ(<em>V</em> + <em>E</em>).</p>
+
+<p>Time to list all vertices adjacent to u: Θ(degree(<em>u</em>)).</p>
+
+<p>Time to determine whether (<em>u</em>, <em>v</em>) ∈ <em>E</em>: O(degree(<em>u</em>)).</p>
+
+<h4>Adjacency Matrix</h4>
+
+<p>Space required: Θ(<em>V</em>2).</p>
+
+<p>Time to list all vertices adjacent to <em>u</em>: Θ(<em>V</em>).</p>
+
+<p>Time to determine whether (<em>u</em>, <em>v</em>) ∈ <em>E</em>: Θ(1).</p>
+
+<p>So the matrix takes more space and more time to list adjacent matrices, but is
+faster to test adjacency of a pair of matrices.</p>
+
+<h3>&quot;Modern&quot; Adjacency Representation</h3>
+
+<p>Goodrich &amp; Tamassia (reading in Laulima) propose a representation that
+combines an edge list, a vertex list, and an adjacency list for each vertex:</p>
+
+<p><img src="fig/GT-adjacency-list-structure.jpg" alt=""></p>
+
+<p>The sets <em>V</em> and <em>E</em> can be represented using a dictionary ADT (from
+Implementation Project #1). In many applications, it is especially important
+for <em>V</em> to enable fast access by key, and may be important to access in order.
+Each vertex object has an adjacency list <em>I</em> (I for incident), and the edges
+reference both the vertices they connect and the entries in this adjacency
+list. There&#39;s a lot of pointers to maintain, but this enables fast access in
+any direction you need, and for large sparse graphs the memory allocation is
+still less than for a matrix representation.</p>
+
+<p>See also Newman (2010) chapter 9, posted in Laulima, for discussion of graph
+representations.</p>
+
+<hr>
+
+<h2>BFS and DFS Overview</h2>
+
+<p>Before starting with Cormen et al.&#39;s more complex presentation, let&#39;s discuss
+how BFS and DFS can be implemented with nearly the same algorithm, but using a
+queue for BFS and a stack for DFS. You should be comfortable with this
+relationship between BFS/queues and DFS/stacks.</p>
+
+<p>Sketch of both algorithms:</p>
+
+<ol>
+<li>Pick a starting vertex and put it on the queue (BFS) or stack (DFS) </li>
+<li>Repeat until the queue/stack is empty:
+
+<ol>
+<li>Dequeue (BFS) or pop (DFS) the next vertex <em>v</em> from the appropriate data structure</li>
+<li>If <em>v</em> is unvisited, 
+
+<ul>
+<li>Mark <em>v</em> as visited (and process it as needed for the specific application). </li>
+<li>Find the unvisted neighbors of <em>v</em> and queue (BFS) or push (DFS) them on the appropriate data structure. </li>
+</ul></li>
+</ol></li>
+</ol>
+
+<p>Try starting with vertex q and run this using both a stack and a queue:</p>
+
+<p><img src="fig/small-example-digraph.jpg" alt="">
+<img src="fig/small-example-digraph.jpg" alt=""></p>
+
+<p>BFS&#39;s FIFO queue explores nodes at each distance before going to the next
+distance. DFS&#39;s LIFO stack explores the more distant neighbors of a node
+before continuing with nodes at the same distance (&quot;goes deep&quot;).</p>
+
+<p>Search in a directed graph that is weakly but not strongly connected may not
+reach all vertices.</p>
+
+<hr>
+
+<h2>Breadth-first Search</h2>
+
+<p>Given a graph <em>G</em> = (<em>V</em>,<em>E</em>) and a source vertex <em>s</em> ∈ <em>V</em>, output <em>v.d</em>, the
+shortest distance (# edges) from <em>s</em> to <em>v</em>, for all <em>v</em> ∈ <em>V</em>. Also record
+<em>v.π</em> = <em>u</em> such that (<em>u</em>,<em>v</em>) is the last edge on a shortest path from <em>s</em>
+to <em>v</em>. (We can then trace the path back.)</p>
+
+<p><em>Analogy</em> Send a &quot;tsunami&quot; out from <em>s</em> that first reaches all vertices 1 edge
+from <em>s</em>, then from them all vertices 2 edges from <em>s</em>, etc. Like a tsunami,
+equidistant destinations are reached at the &quot;same time&quot;.</p>
+
+<p>Use a FIFO queue <em>Q</em> to maintain the wavefront, such that <em>v</em> ∈ <em>Q</em> iff the
+tsunami has hit <em>v</em> but has not come out of it yet.</p>
+
+<p><img src="fig/bfs-nature-of-computation.jpg" alt=""> <img src="fig/pseudocode-BFS.jpg" alt=""></p>
+
+<p>At any given time <em>Q</em> has vertices with <em>d</em> values <em>i, i, ... i, i+1, i+1, ...
+i+1</em>. That is, there are at most two distances on the queue, and values
+increase monotonically.</p>
+
+<h3>Examples</h3>
+
+<h4>Book&#39;s Example: Undirected Graph</h4>
+
+<p><img src="fig/Fig-22-3-operation-BFS.jpg" alt=""></p>
+
+<h4>A directed example:</h4>
+
+<p>Let&#39;s do another (number the nodes by their depth, then click to compare your
+answer):</p>
+
+<p><img src="fig/BFS-directed-graph-example-1.jpg" alt=""></p>
+
+<h3>Time Analysis</h3>
+
+<p>(This is an aggregate analysis.) Every vertex is enqueued at most once. We
+examine edge (<em>u</em>, <em>v</em>) only when <em>u</em> is dequeued, so every edge is examined
+at most once if directed and twice if undirected. Therefore, O(<em>V</em> + <em>E</em>).</p>
+
+<h3>Shortest Paths</h3>
+
+<p><strong>Shortest distance</strong> δ(<em>s</em>, <em>v</em>) from <em>s</em> to <em>v</em> is the minimum number of edges across all paths from <em>s</em> to <em>v</em>, or ∞ if no such path exists.</p>
+
+<p>A <strong>shortest path</strong> from <em>s</em> to <em>v</em> is a path of length δ(<em>s</em>, <em>v</em>).</p>
+
+<p>It can be shown that BFS is guaranteed to find the shortest paths to all
+vertices from a start vertex <em>s</em>: <em>v</em>.<em>d</em> = δ(<em>s</em>, <em>v</em>), ∀ <em>v</em> at the
+conclusion of the algorithm. See book for tedious proof.</p>
+
+<p>Informally, we can see that all vertices at distance 1 from <em>s</em> are enqueued
+first, then via them all nodes of distance 2 are reached and enqueued, etc.,
+so inductively it would be a contradiction if BFS reached a vertex <em>c</em> by a
+longer path than the shortest path because the last vertex <em>u</em> on the shortest
+path to the given vertex <em>v</em> would have been enqueued first and then dequeued
+to reach <em>v</em>.</p>
+
+<h3>Breadth-First Trees</h3>
+
+<p>The <strong>predecessor subgraph</strong> of G is</p>
+
+<blockquote>
+<p>Gπ = (Vπ, Eπ) where<br>
+Vπ= {<em>v</em> ∈ V : <em>v</em>.π ≠ NIL} ∪ {<em>s</em>} and<br>
+Eπ = {(<em>v</em>.π, <em>v</em>) : <em>v</em> ∈ Vπ - {<em>s</em>}}</p>
+</blockquote>
+
+<p>A predecessor subgraph Gπ is a <strong>breadth-first tree</strong> if Vπ consists of
+exactly all vertices reachable from <em>s</em> and for all <em>v</em> in Vπ the subgraph Gπ
+contains unique simple and _ shortest_ paths from <em>s</em> to <em>v</em>.</p>
+
+<p>BFS constructs π such that Gπ is a breadth-first tree.</p>
+
+<hr>
+
+<h2>Depth-first Search</h2>
+
+<p>Given <em>G</em> = (<em>V</em>, <em>E</em>), directed or undirected, DFS explores the graph from
+every vertex (no source is vertex given), constructing a <em>forest</em> of trees and
+recording two time stamps on each vertex:</p>
+
+<ul>
+<li><em>v.d</em> = discovery time</li>
+<li><em>v.f</em> = finishing time</li>
+</ul>
+
+<p>Time starts at 0 before the first vertex is visited, and is incremented by 1
+for every discovery and finishing event (as explained below). These attributes
+will be used in other algorithms later on.</p>
+
+<p>Since each vertex is discovered once and finished once, discovery and
+finishing times are unique integers from 1 to 2|<em>V</em>|, and for all <em>v</em>, <em>v.d</em> &lt;
+<em>v.f</em>.</p>
+
+<p><em>(Some presentations of DFS pose it as a way to visit nodes, enabling a given
+method to be applied to the nodes with no output specified. Others present it
+as a way to construct a tree. The CLRS presentation is more complex but
+supports a variety of applications.)</em></p>
+
+<p>DFS explores <em>every</em> edge and starts over from different vertices if necessary
+to reach them (unlike BFS, which may fail to reach subgraphs not connected to
+<em>s</em>).</p>
+
+<p>As it progresses, every vertex has a color:</p>
+
+<blockquote>
+<p>WHITE = undiscovered</p>
+
+<p>GRAY = discovered, but not finished (still exploring vertices reachable from
+it)</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">_v_._d_ records the moment at which _v_ is _discovered_ and colored
+</code></pre></div>
+<p>gray.</p>
+
+<p>BLACK = finished (have found everything reachable from it)</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">_v_._f_ records the moment at which _v_ is _finished_ and colored black.
+</code></pre></div></blockquote>
+
+<p><img src="fig/dfs-nature-of-computation.jpg" alt=""></p>
+
+<h3>Pseudocode</h3>
+
+<p><img src="fig/pseudocode-DFS.jpg" alt=""> <img src="fig/pseudocode-DFS-Visit.jpg" alt=""></p>
+
+<p>While BFS uses a queue, DFS operates in a stack-like manner (using the
+implicit recursion stack in the algorithm above).</p>
+
+<ul>
+<li>BFS&#39;s FIFO queue explores nodes at each distance before going to the next distance</li>
+<li>DFS&#39;s implicit LIFO stack explores the more distant neighbors of a node before continuing with nodes at the same distance (&quot;goes deep&quot;).</li>
+</ul>
+
+<p>Another major difference in the algorithms as presented here is that DFS will
+search from every vertex until all edges are explored, while BFS only searches
+from a designated start vertex.</p>
+
+<ul>
+<li>This is not an essential difference: both could be either restricted to a start vertex or run from all vertices; </li>
+<li>This reflects how the algorithms are used in practice (BFS for finding shortest paths; DFS for exposing structure of the graph, as will be explained shortly). </li>
+</ul>
+
+<h3>Example:</h3>
+
+<p>One could start DFS with any arbitrary vertex, and continue at any remaining
+vertex after the first tree is constructed. Regularities in the book&#39;s
+examples (e.g., processing vertices in alphabetical order, or always starting
+at the top of the diagram) do not reflect a requirement of the algorithm.</p>
+
+<p><img src="fig/Fig-22-4-operation-DFS-a.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-b.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-c.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-d.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-e.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-f.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-g.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-h.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-i.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-j.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-k.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-l.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-m.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-n.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-o.jpg" alt="">
+<img src="fig/Fig-22-4-operation-DFS-p.jpg" alt=""></p>
+
+<p>Let&#39;s do this example (start with the upper left node, label the nodes with
+their d and f, then click to compare your answer):</p>
+
+<p><img src="fig/DFS-directed-graph-example-0.jpg" alt=""></p>
+
+<h4>Time Analysis</h4>
+
+<p><img src="fig/pseudocode-DFS-DFS-Visit.jpg" alt=""></p>
+
+<p>The analysis uses aggregate analysis, and is similar to the BFS analysis,
+except that DFS is guaranteed to visit every vertex and edge, so it is Θ not
+O:</p>
+
+<blockquote>
+<p>Θ(<em>V</em>) to visit all vertices in lines 1 and 5 of <code>DFS</code>;  </p>
+</blockquote>
+
+<p>Σ<em>v</em>∈<em>V</em> |Adj(<em>v</em>)| = Θ(<em>E</em>) to process the adjacency lists in line 4 of <code>DFS-
+Visit</code>.  </p>
+
+<p>(<em>Aggregate analysis:</em> we are not attempting to count how many times the loop
+of line 4 executes each time it is encountered, as we don&#39;t know |Adj(<em>v</em>)|.
+Instead, we sum the number of passes through the loop in total: all edges will
+be processed.)  </p>
+
+<p>The rest is constant time.</p>
+
+<p>Therefore, Θ(<em>V</em> + <em>E</em>).</p>
+
+<h3>Classification of Edges</h3>
+
+<p>This classification will be useful in forthcoming proofs and algorithms.</p>
+
+<ul>
+<li><strong>Tree Edge</strong>: in the <strong>depth-first forest</strong> constructed by DFS: found by exploring (<em>u</em>,<em>v</em>). </li>
+<li><strong>Back Edge</strong>: (<em>v</em>,<em>u</em>), where <em>v</em> is a descendant of <em>u</em>.</li>
+<li><strong>Forward Edge</strong>: (<em>u</em>,<em>v</em>), where <em>v</em> is a descendant of <em>u</em> but not a tree edge.</li>
+<li><strong>Cross Edge</strong>: any other edge. They can go between vertices in the same depth-first tree or in different depth-first trees.</li>
+</ul>
+
+<p>Here&#39;s a graph with edges classified, and redrawn to better see the structural
+roles of the different kinds of edges:</p>
+
+<p><img src="fig/Fig-22-5-DFS-properties-a.jpg" alt="">
+<img src="fig/Fig-22-5-DFS-properties-c.jpg" alt=""></p>
+
+<h3>DFS Properties</h3>
+
+<p>These theorems show important properties of DFS that will be used later to
+show how DFS exposes properties of the graph.</p>
+
+<h4>Parentheses Theorem</h4>
+
+<p>After any DFS of a graph <em>G</em>, for any two vertices <em>u</em> and <em>v</em> in <em>G</em>, exactly
+one of the following conditions holds:</p>
+
+<ul>
+<li>The intervals [<em>u</em>.<em>d</em>, <em>u</em>.<em>f</em>] and [<em>v</em>.<em>d</em>, <em>v</em>.<em>f</em>] are entirely disjoint, and neither <em>u</em> nor <em>v</em> is a descendant of the other in the DFS forest.</li>
+<li>The interval [<em>u</em>.<em>d</em>, <em>u</em>.<em>f</em>] is contained entirely within the interval [<em>v</em>.<em>d</em>, <em>v</em>.<em>f</em>], and <em>u</em> is a descendant of <em>v</em> in a DFS tree. </li>
+<li>The interval [<em>v</em>.<em>d</em>, <em>v</em>.<em>f</em>] is contained entirely within the interval [<em>u</em>.<em>d</em>, <em>u</em>.<em>f</em>], and <em>v</em> is a descendant of <em>u</em> in a DFS tree. </li>
+</ul>
+
+<p>Essentially states that the <em>d</em> and <em>f</em> visit times are well nested. See text
+for proof. For the above graph:</p>
+
+<p><img src="fig/Fig-22-5-DFS-properties-b.jpg" alt="">
+<img src="fig/Fig-22-5-DFS-properties-a.jpg" alt=""></p>
+
+<h4>Corollary: Nesting of Descendant&#39;s Intervals</h4>
+
+<p>Vertex <em>v</em> is a <strong><em>proper descendent</em></strong> of vertex <em>u</em> in the DFS forest of a
+graph iff <em>u</em>.<em>d</em> &lt; <em>v</em>.<em>d</em> &lt; <em>v</em>.<em>f</em> &lt; <em>u</em>.<em>f</em>. (Follows immediately from
+parentheses theorem.)</p>
+
+<p>Also, (<em>u</em>, <em>v</em>) is a <strong><em>back edge</em></strong> iff <em>v</em>.<em>d</em> ≤ <em>u</em>.<em>d</em> &lt; <em>u</em>.<em>f</em> ≤
+<em>v</em>.<em>f</em>; and a <strong><em>cross edge</em></strong> iff <em>v</em>.<em>d</em> &lt; <em>v</em>.<em>f</em> &lt; <em>u</em>.<em>d</em> &lt; <em>u</em>.<em>f</em>.</p>
+
+<h4>White Path Theorem</h4>
+
+<p>Vertex <em>v</em> is a descendant of <em>u</em> iff at time <em>u.d</em> there is a path from <em>u</em>
+to <em>v</em> consisting of only white vertices (except for <em>u</em>, which was <em>just</em>
+colored gray).</p>
+
+<p>(Proof in textbook uses <em>v</em>.<em>d</em> and <em>v</em>.<em>f</em>. Metaphorically and due to its
+depth-first nature, if a search encounters an unexplored location, all the
+unexplored territory reachable from this location will be reached before
+another search gets there.)</p>
+
+<h4>DFS Theorem</h4>
+
+<p>DFS of an undirected graph produces only tree and back edges: never forward or
+cross edges.</p>
+
+<p>(Proof in textbook uses <em>v</em>.<em>d</em> and <em>v</em>.<em>f</em>. Informally, this is because the
+edges being bidirectional, we would have traversed the supposed forward or
+cross edge earlier as a tree or back edge.)</p>
+
+<hr>
+
+<h2>Topological Sort</h2>
+
+<p>A <strong>directed acyclic graph</strong> (DAG) is a good model for processes and
+structures that have partial orders: You may know that <em>a</em> &gt; <em>c</em> and <em>b</em> &gt; <em>c</em>
+but may not have information on how <em>a</em> and <em>b</em> compare to each other.</p>
+
+<p>One can always make a <strong>total order</strong> out of a partial order. This is what
+topological sort does. A <strong>topological sort</strong> of a DAG is a linear ordering of
+vertices such that if (<em>u</em>, <em>v</em>) ∈ <em>E</em> then <em>u</em> appears somewhere before <em>v</em>
+in the ordering.</p>
+
+<h3>Outline of Algorithm:</h3>
+
+<p><code>Topological-Sort(G)</code> is actually a modification of <code>DFS(G)</code> in which each
+vertex <em>v</em> is inserted onto the front of a linked list as soon as finishing
+time <em>v</em>.<em>f</em> is known.</p>
+
+<h3>Examples</h3>
+
+<p>Some real world examples include</p>
+
+<ul>
+<li>Scheduling 100,000 independent tasks on a high performance computing system (research by Dr. Henri Casanova) 
+Producing 5,000,000 documents that reference each other such that each
+document is produced before the ones that reference it.</li>
+</ul>
+
+<p>Here is the book&#39;s example ... a hypothetical professor (not me!) getting
+dressed <em>(what node did they start the search at? Could it have been done
+differently?)</em>:</p>
+
+<p><img src="fig/Fig-22-7-topological-sort.jpg" alt=""></p>
+
+<p>We can make it a bit more complex, with catcher&#39;s outfit (click to compare
+your answer):</p>
+
+<p><img src="fig/DAG-topological-sort-example-1.jpg" alt=""></p>
+
+<p><em>The answer given starts with the batting glove and works left across the
+unvisted nodes. What if we had started the search with socks and worked right
+across the top nodes? If you put your clothes on differently, how could you
+get the desired result? Hint: add an edge.</em></p>
+
+<p>As noted previously, one could start with any vertex, and once the first tree
+was constructed continue with any artibrary remaining vertex. It is not
+necessary to start at the vertices at the top of the diagram. <em>Do you see
+why?</em></p>
+
+<p><img src="fig/pseudocode-topological-sort.jpg" alt=""></p>
+
+<h3>Time Analysis</h3>
+
+<p>Time analysis is based on simple use of DFS: Θ(<em>V</em> + <em>E</em>).</p>
+
+<h3>Correctness</h3>
+
+<p><strong><em>Lemma</em></strong>: A directed graph <em>G</em> is acyclic iff a DFS of <em>G</em> yields no back edges. </p>
+
+<p>See text for proof, but it&#39;s quite intuitive:</p>
+
+<blockquote>
+<p>⇒ A back edge by definition is returning to where one started, which means
+it completes a cycle.<br>
+⇐ When exploring a cycle the last edge explored will be a return to the vertex
+by which the cycle was entered, and hence classified a back edge.</p>
+</blockquote>
+
+<p><strong><em>Theorem:</em></strong> If <code>G</code> is a DAG then <code>Topological-Sort(G)</code> correctly produces a topological sort of <code>G</code>. </p>
+
+<p>It sufficies to show that</p>
+
+<blockquote>
+<p>if (<em>u</em>, <em>v</em>) ∈ <em>E</em> then <em>v.f</em> &lt; <em>u.f</em></p>
+</blockquote>
+
+<p>because then the linked list ordering by <em>f</em> will respect the graph topology).</p>
+
+<p>When we explore (<em>u</em>, <em>v</em>), what are the colors of <em>u</em> and <em>v</em>?</p>
+
+<ul>
+<li><em>u</em> is gray, because it is being explored when (<em>u</em>, <em>v</em>) is found. </li>
+<li>Can <em>v</em> be gray too? No, because then <em>v</em> would be an ancestor of <em>u</em>, meaning (<em>u</em>, <em>v</em>) is a back edge, contradicting the DAG property by the lemma above.</li>
+<li>Is <em>v</em> white? Then it becomes a descendant of <em>u</em>. By the parentheses theorem, <em>u.d</em> &lt; <em>v.d</em> &lt;<strong><em>v.f</em> &lt; <em>u.f</em></strong>. </li>
+<li>Is <em>v</em> black? Then <em>v</em> is finished. Since we are exploring (<em>u</em>, <em>v</em>) we have not finished <em>u</em>. Therefore <strong><em>v.f</em> &lt; <em>u.f</em></strong>.</li>
+</ul>
+
+<hr>
+
+<h2>Strongly Connected Components</h2>
+
+<p>Given a directed graph <em>G</em> = (<em>V</em>, <em>E</em>), a <strong>strongly connected component
+(SCC)</strong> of <em>G</em> is a maximal set of vertices <em>C</em> ⊆ <em>V</em> such that for all <em>u</em>,
+<em>v</em> ∈ <em>C</em>, there is a path both from <em>u</em> to <em>v</em> and from <em>v</em> to <em>u</em>.</p>
+
+<h4>Example:</h4>
+
+<p>What are the Strongly Connected Components? (Click to see.)</p>
+
+<p><img src="fig/SCC-example-0.jpg" alt=""></p>
+
+<h3>Algorithm</h3>
+
+<p>The algorithm uses <em>GT</em>= (<em>V</em>, <em>ET</em>), the <strong>transpose</strong> of <em>G</em> = (<em>V</em>, <em>E</em>).
+<em>GT</em> is <em>G</em> with all the edges reversed.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Strongly-Connected-Components (G)
+1.  Call DFS(G) to compute finishing times _u_._f_ for each vertex _u_ ∈ _E_. 
+2.  Compute _GT_
+3.  Call modified DFS(_GT_) that considers vertices
+    in order of decreasing _u_._f_ from line 1.
+4.  Output the vertices of each tree in the depth-first forest
+    formed in line 3 as a separate strongly connected component. 
+</code></pre></div>
+<h3>Example 1</h3>
+
+<h4>First Pass of DFS:</h4>
+
+<p><img src="fig/Fig-22-9-SCC-by-DFS-a.jpg" alt=""></p>
+
+<h4>Second Pass of DFS:</h4>
+
+<p><img src="fig/Fig-22-9-SCC-by-DFS-b.jpg" alt=""></p>
+
+<h3>Why it Works</h3>
+
+<h4>Informal Explanation</h4>
+
+<p><em>(This is from my own attempt to understand the algorithm. It differs from the
+book&#39;s formal proof.)</em></p>
+
+<p><em>G</em> and <em>GT</em> have the same SCC.     <em>Proof:</em></p>
+
+<ul>
+<li>If <em>u</em> and <em>v</em> are in the same SCC in <em>G</em>, then there is a path <em>p</em>1 from <em>u</em> to <em>v</em> and a path <em>p</em>2 from <em>v</em> to <em>u</em>.</li>
+<li>Reversing the edges, path <em>p</em>1 becomes a path from <em>v</em> to <em>u</em> and <em>p</em>2 becomes a path from <em>u</em> to <em>v</em>.</li>
+</ul>
+
+<p>A DFS from any vertex <em>v</em> in a SCC <em>C</em> will reach <em>all</em> vertices in <em>C</em> (by
+definition of SCC).</p>
+
+<ul>
+<li>Then why can&#39;t we call DFS on unvisited vertices to find the SCCs in the first pass, line 1? </li>
+<li>Because this first unconstrained DFS could also get vertices <em>not</em> in <em>C</em>, as there may be a path from <em>v</em> in <em>C</em> to <em>v&#39;</em> where there is no path from <em>v&#39;</em> to <em>v</em> (so <em>v&#39;</em> is not in <em>C</em>)!</li>
+</ul>
+
+<p>So how does the second search on <em>GT</em> help avoid inadvertent inclusion of <em>v&#39;</em>
+in <em>C</em>?</p>
+
+<ul>
+<li><em>v&#39;</em> will have an earlier finishing time than some of the other vertices in <em>C</em>, because at least some of those vertices (in particular, <em>v</em> from which <em>v&#39;</em> was reached) are still active (gray) when <em>v&#39;</em> is finished (Parentheses Theorem). </li>
+<li>In the second search, the component <em>C</em> to which <em>v</em> belongs is processed before <em>v&#39;</em> and its component, because <em>v</em> has a later finishing time, so the entire component will be explored before other components (in particular, that containing <em>v&#39;</em>). </li>
+<li>Since <em>GT</em> has the same SCC as <em>G</em>, the component found from <em>v</em> in the second search is the same component as in the previous search. </li>
+<li>But in this second search, <em>v&#39;</em> will <em>not</em> be reached. Why? Because we are using reversed edges in <em>GT</em>. If <em>v&#39;</em> could be reached from <em>C</em> in <em>GT</em>, then <em>v</em> would be reachable from <em>v&#39;</em> in <em>G</em>, and so <em>v&#39;</em> would be a member of <em>C</em>, a contradiction.</li>
+<li>So, due to the topological sort, the trees constructed in the second search cannot contain vertices <em>v&#39;</em> that do not belong to the SCC of the other vertices in the tree. This along with the fact that any DFS from a vertex <em>v</em> in a SCC <em>C</em> will find <em>all</em> vertices in <em>C</em> means that the trees constructed by the second DFSs find exactly the vertices in the SCCs.</li>
+</ul>
+
+<p>In the example above, notice how node <em>c</em> corresponds to <em>v</em> and <em>g</em> to <em>v&#39;</em>
+in the argument above. But we need to also say why nodes like <em>b</em> will never
+be reached from <em>c</em> in the second search. It is because <em>b</em> finished later in
+the first search, so was processed earlier and already &quot;consumed&quot; by the
+correct SCC in the second search, before the search from <em>c</em> could reach it.
+The following fact is useful in understanding why this would be the case.</p>
+
+<h4>Component Graph</h4>
+
+<ul>
+<li>Define <em>GSCC</em> to be a graph of the SCCs of G obtained by collapsing all the vertices in each SCC into one vertex for the component but retaining the edges between SCCs.</li>
+<li>Then this <strong>component graph <em>GSCC</em> is a Directed Acyclic Graph</strong>. (If there were any cycles, vertices in each component would be reachable from all others, so they would be one component.) </li>
+</ul>
+
+<p>Here is <em>GSCC</em> for the above example:</p>
+
+<p><img src="fig/Fig-22-9-SCC-by-DFS-c.jpg" alt=""></p>
+
+<p>The first pass of the SCC algorithm essentially does a topological sort of the
+graph <em>GSCC</em> (by doing a topological sort of constituent vertices). The second
+pass visits the components of <em>GTSCC</em> in topologically sorted order such that
+<strong><em>each component is searched before any component that can reach that
+component</em></strong>.</p>
+
+<p>Thus, for example, the component <em>abe</em> is processed first in the second
+search, and since this second search is of <em>GT</em> (reverse the arrows above) one
+can&#39;t get to <em>cd</em> from <em>abe</em>. When <em>cd</em> is subsequently searched, one can get
+to <em>abe</em> but it&#39;s vertices have <em>already been visited</em> so can&#39;t be incorrectly
+included in <em>cd</em>.</p>
+
+<h3>Example 2</h3>
+
+<p>Start at the node indicated by the arrow; conduct a DFS; then click to compare
+your answer:</p>
+
+<p><img src="fig/SCC-example-0-start.jpg" alt=""></p>
+
+<h3>Analysis</h3>
+
+<p>We have provided an informal justification of correctness: please see the CLRS
+book for a formal proof of correctness for the SCC algorithm.</p>
+
+<p><img src="fig/pseudocode-SCC.jpg" alt=""></p>
+
+<p>The CLRS text says we can create <em>GT</em> in Θ(<em>V</em> + <em>E</em>) time using adjacency
+lists.</p>
+
+<ul>
+<li>The easy approach is to simply copy the graph, but given the size of some graphs we work with, it would be much better to reverse the edges in place (and reverse them back when done). </li>
+<li>_ Problem for class: How can this be done? (A naive implementation could end up undoing some of its own work, as it confuses already-reversed edges with those to be reversed.)_</li>
+</ul>
+
+<p>The SCC algorithm also has two calls to DFS, and these are Θ(V + E) each.</p>
+
+<p>All other work is constant, so the overall time complexity is Θ(V + E).</p>
+
+<hr>
+
+<h2>Related Graph Concepts</h2>
+
+<p><img src="fig/Fig-22-10-articulations-bridges-biconnected.jpg" alt=""></p>
+
+<p>An <strong>articulation point</strong> or <strong>cut vertex</strong> is a vertex that when removed
+causes a (strongly) connected component to break into two components.</p>
+
+<p>A <strong>bridge</strong> is an edge that when removed causes a (strongly) connected
+component to break into two components.</p>
+
+<p>A <strong>biconnected component</strong> is a maximal set of edges such that any two edges
+in the set lie on a common simple cycle. This means that there is no bridge
+(at least two edges must be removed to disconnect it). This concept is of
+interest for network robustness.</p>
+
+<hr>
+
+<h2>Up Next</h2>
+
+<p>We take a brief diversion from graphs to introduce amortized analysis and
+efficient processing of union and find operations on sets, both of which will
+be used in subsequent work on graphs. Then we return to graphs with concepts
+of minimum spanning trees, shortest paths, and flows in networks.</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Sat Mar 8 00:37:35 HST 2014<br>
+Some images are from the instructor&#39;s material for Cormen et al. Introduction
+to Algorithms, Third Edition.  </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

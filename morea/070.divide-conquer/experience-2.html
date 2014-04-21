@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Understanding master method and substitution | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h3>Peer Credit Assignment</h3>
+
+<p><strong>1.</strong> Please list the names of the other members of your peer group for this week and the number of extra credit points you think they deserve for their participation in group work on Tuesday and Thursday combined.</p>
+
+<ul>
+<li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+<li>If only one other member was present, you have a total of 6 points to allocate.</li>
+<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+</ul>
+
+<h3>Master Method Practice</h3>
+
+<p>*<em>2. *</em> (6 pts) Use the Master Method to give tight Θ bounds for the following recurrence relations. Show <em>a</em>, <em>b</em>, and <em>f</em>(<em>n</em>). Then explain why it fits one of the cases, if any. If it fits a case, write and _ simplify _ the final Θ result </p>
+
+<p><strong>a.</strong>   <em>T</em>(<em>n</em>) = 2<em>T</em>(<em>n</em>/4) + √<em>n</em>  </p>
+
+<p><strong>b.</strong>   <em>T</em>(<em>n</em>) = 2<em>T</em>(<em>n</em>/4) + <em>n</em>  </p>
+
+<p><strong>c.</strong>   <em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></p>
+
+<h3>Substitution Method</h3>
+
+<p><strong>3.</strong> (7 pts) Use substitution <em>as directed below</em> to solve </p>
+
+<blockquote>
+<p><em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></p>
+</blockquote>
+
+<p>It is strongly recommended that you read page 85-86 &quot;Subtleties&quot; before trying
+this!</p>
+
+<p><strong>a.</strong>   First, use the result from the Master Method in 2c as your &quot;guess&quot; and inductive assumption. We will do this without Θ and <em>c</em>: just use the algebraic portion. Take the proof up to where it fails and say where and why it fails. (See steps below.) </p>
+
+<p><strong>b.</strong>   Redo the proof, but subtracting <em>d</em><em>n</em> from the guess to construct a new guess. This time it should succeed. </p>
+
+<p>As a reminder, to do a proof by substitution you:</p>
+
+<ol>
+<li>Write the definition <em>T</em>(<em>n</em>) = 4<em>T</em>(<em>n</em>/3) + <em>n</em></li>
+<li>Replace the <em>T</em>(<em>n</em>/3) with your &quot;guess&quot; instantiated for <em>n</em>/3 (you can do that by the inductive hypothesis because it&#39;s smaller than <em>n</em>). </li>
+<li>Operating <em>only</em> on the right hand side of the equation, transform that side into the <em>exact</em> form of your &quot;guess&quot;.</li>
+<li>Determine any constraints on the constants involved. </li>
+<li>Show the base case holds. </li>
+</ol>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

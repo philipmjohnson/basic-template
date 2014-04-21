@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Notes on greedy algorithms | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Outline</h2>
+
+<ol>
+<li>Prelude: Greedy Algorithms and Dynamic Programming</li>
+<li>Example: Activity Selection Problem </li>
+<li>Greedy Strategy </li>
+<li>Huffman Codes </li>
+</ol>
+
+<h2>Readings and Screencasts</h2>
+
+<ul>
+<li>Read the first three sections of CLRS Chapter 16, although you need not read the details of the proofs. We are not covering Matroids (the 4th section).</li>
+</ul>
+
+<p>This presentation follows the CLRS reading fairly closely, selecting out the
+most relevant parts and explaining a few things in more detail. (The
+associated videos change the ordering somewhat: 13A provides a conceptual
+introduction, leaving the activity selection example for 13B.)</p>
+
+<hr>
+
+<h2>Prelude: Greedy Algorithms and Dynamic Programming</h2>
+
+<p>Both Dynamic Programming and Greedy Algorithms are ways of solving
+<em><strong>optimization problems</strong></em>: a solution is sought that optimizes (minimizes or
+maximizes) an <em><strong>objective function</strong></em>.</p>
+
+<p><strong>Dynamic Programming:</strong></p>
+
+<ul>
+<li>Finds solutions bottom-up (solves subproblems before solving their super-problem) </li>
+<li>Exploits overlapping subproblems for efficiency (by reusing solutions)</li>
+<li>Can handle subproblem interdependence </li>
+</ul>
+
+<p><strong>Greedy Algorithms</strong> &quot;greedily&quot; take the choice with the most immediate gain. </p>
+
+<ul>
+<li>Find solutions top-down (commit to a choice, then solve sub-problems) </li>
+<li>Assume that if the objective function is optimized locally it will be optimized globally</li>
+<li>Cannot handle interdependent subproblems </li>
+</ul>
+
+<p>For some problems, but not all, local optimization actually results in global
+optimization.</p>
+
+<p>We&#39;ll use an example to simultaneously review dynamic programming and motivate
+greedy algorithms, as the two approaches are related (but distinct).</p>
+
+<hr>
+
+<h2>Activity Selection Problem</h2>
+
+<p>Suppose that <em>activities</em> require exclusive use of a common resource, and you
+want to schedule as many as possible.</p>
+
+<p>Let <em>S</em> = {<em>a</em>1, ..., <em>a</em><em>n</em>} be a set of <em>n</em> activities.</p>
+
+<p>Each activity <em>ai</em> needs the resource during a time period starting at <em>si</em>
+and finishing before <em>fi</em>, i.e., during [<em>si</em>, <em>fi</em>).</p>
+
+<p>(<em>Why not</em> [<em>si</em>, <em>fi</em>]?)</p>
+
+<p>The optimization problem is to select the largest set of non-overlapping
+(mutually compatible) activities from <em>S</em>.</p>
+
+<p>We assume that activities are sorted by finish time <em>f</em>1 ≤ <em>f</em>2 ≤ ... <em>f</em><em>n</em>-1
+≤ <em>f</em><em>n</em> (this can be done in Θ(<em>n</em> lg <em>n</em>)).</p>
+
+<h3>Example</h3>
+
+<p>Consider these activities:</p>
+
+<p><img src="fig/activities.jpg" alt=""></p>
+
+<p>Here is a graphic representation:</p>
+
+<p><img src="fig/activity-timeline.jpg" alt=""></p>
+
+<p>Suppose we chose one of the activities that <em>start first</em>, and then look for
+the next activity that starts after it is done. This could result in {<em>a</em>4,
+<em>a</em>7, <em>a</em>8}, but this solution is not optimal.</p>
+
+<p>An optimal solution is {<em>a</em>1, <em>a</em>3 <em>a</em>6, <em>a</em>8}. (It maximizes the objective
+function of number of activities scheduled.)</p>
+
+<p>Another one is {<em>a</em>2, <em>a</em>5, <em>a</em>7, <em>a</em>9}. (Optimal solutions are not
+necessarily unique.)</p>
+
+<p>How do we find (one of) these optimal solutions? Let&#39;s consider it as a
+dynamic programming problem ...</p>
+
+<h3>Optimal Substructure Analysis</h3>
+
+<p>A dynamic programming analysis begins by identifying the choices to be made,
+and assuming that you can make an optimal choice (without yet specifying what
+that choice is) that will be part of an optimal solution.</p>
+
+<p>It then specifies the possible subproblems that result in the most general way
+(to ensure that possible components of optimal solutions are not excluded),
+and shows that an an optimal solution must recursively include optimal
+solutions to the subproblems. (This is done by reasoning about the value of
+the solutions according to the objective function.)</p>
+
+<p>We&#39;ll approach Activity Selection similarly. I&#39;ll try to clarify the reasoning
+in the text ...</p>
+
+<p>For generality, we define the problem in a way that applies both to the
+original problem and subproblems.</p>
+
+<p>Suppose that due to prior choices we are working on a time interval from <em>i</em>
+to <em>j</em>. This could be after some already-scheduled activity <em>ai</em> and before
+some already-scheduled event <em>aj</em>, or for the original problem we can define
+<em>i</em> and <em>j</em> to bound the full set of activities to be considered.</p>
+
+<p>Then the candidate activities to consider are those that start after <em>ai</em> and
+end before <em>aj</em>:</p>
+
+<p><img src="fig/compatible-activities.jpg" alt=""><br>
+<img src="fig/compatible-activities-timeline.jpg" alt=""></p>
+
+<p>Now let&#39;s define <em>Aij</em> to be an optimal solution, i.e., a maximal set of
+mutualy compatible activities in <em>Sij</em>. What is the structure of this
+solution?</p>
+
+<p>At some point we will need to make a choice to include some activity <em>ak</em> with
+start time <em>sk</em> and finishing by <em>fk</em> in this solution. This choice will leave
+two sets of compatible candidates after <em>ak</em> is taken out:</p>
+
+<ul>
+<li><em>Sik</em> : activities that start after <em>ai</em> finishes, and finish before <em>ak</em> starts </li>
+<li><em>Skj</em> : activities that start after <em>ak</em> finishes, and finish before <em>aj</em> starts </li>
+</ul>
+
+<p>(Note that <em>Sij</em> may be a proper superset of <em>Sik</em> ∪ {<em>ak</em>} ∪ <em>Skj</em>, as
+activities incompatible with <em>ak</em> are excluded.)</p>
+
+<p>Using the same notation as above, define the optimal solutions to these
+subproblems to be:</p>
+
+<ul>
+<li><em>Aik</em> = <em>Aij</em>∩ <em>Sik</em>: the optimal solution to <em>Sik</em></li>
+<li><em>Akj</em> = <em>Aij</em> ∩ <em>Skj</em>: the optimal solution to <em>Skj</em></li>
+</ul>
+
+<p>So the structure of an optimal solution <em>Aij</em> is:</p>
+
+<blockquote>
+<p><em>Aij</em> = <em>Aik</em> ∪ {<em>ak</em>} ∪ <em>Akj</em></p>
+</blockquote>
+
+<p>and the number of activities is:</p>
+
+<blockquote>
+<p>|<em>Aij</em>| = |<em>Aik</em>| + 1 + |<em>Akj</em>|</p>
+</blockquote>
+
+<p>By the &quot;cut and paste argument&quot;, an optimal solution <em>Aij</em> for <em>Sij</em> must
+include the optimal solutions <em>Aik</em> for <em>Sik</em> and <em>Akj</em> for <em>Skj</em>, because if
+some suboptimal solution <em>A&#39;ik</em> were used for <em>Sik</em> (or similarly <em>A&#39;kj</em> for
+<em>Skj</em>), where |<em>A&#39;ik</em>| &lt; |<em>Aik</em>|, we could substitute <em>Aik</em> to increase the
+number of activities (a contradiction to optimality).</p>
+
+<p>Therefore the Activity Scheduling problem exhibits optimal substructure.</p>
+
+<h3>Recursive Solution</h3>
+
+<p>Since the optimal solution <em>A</em><em>ij</em> must include optimal solutions to the
+subproblems for <em>S</em><em>ik</em> and <em>S</em><em>kj</em>, we could solve by dynamic programming.</p>
+
+<p>Let <em>c</em>[<em>i</em>, <em>j</em>] = size of optimal solution for <em>S</em><em>ij</em> (<em>c</em>[<em>i</em>, <em>j</em>] has
+the same value as |<em>Aij</em>|, but apparently we are switching notation to
+indicate that this is for any optimal solution). Then</p>
+
+<blockquote>
+<p><em>c</em>[<em>i</em>, <em>j</em>] = <em>c</em>[<em>i</em>, <em>k</em>] + <em>c</em>[<em>k</em>, <em>j</em>] + 1   (the 1 is to count
+<em>ak</em>).</p>
+</blockquote>
+
+<p>We don&#39;t know which activity <em>ak</em> to choose for an optimal solution, so we
+could try them all:</p>
+
+<p><img src="fig/activity-scheduling-recurrence-16-2.jpg" alt=""></p>
+
+<p>This suggests a recursive algorithm that can be memoized, or we could develop
+an equivalent bottom-up approach, filling in tables in either case.</p>
+
+<p>But it turns out we can solve this without considering multiple subproblems.</p>
+
+<h3>Being Greedy</h3>
+
+<p>We are trying to optimize the number of activities. Let&#39;s be greedy!</p>
+
+<ul>
+<li>The more time that is left after running an activity, the more subsequent activities we can fit in. </li>
+<li>If we <strong>choose the first activity to <em>finish,</em></strong> the most time will be left.</li>
+<li>Since activities are sorted by finish time, we will always start with <em>a</em>1. </li>
+<li>Then we can solve the single subproblem of activity scheduling in this remaining time.</li>
+</ul>
+
+<p>Since there is only a single subproblem, the <em>Sij</em> notation, bounding the set
+at both ends, is more complex than we need. We&#39;ll simplify the notation to
+indicate the activities that start after <em>ak</em> finishes:</p>
+
+<blockquote>
+<p><em>S</em>k = {<em>ai</em> ∈ <em>S</em> : <em>si</em> ≥ <em>fk</em>}</p>
+</blockquote>
+
+<p>So, after choosing <em>a</em>1 we just have <em>S</em>1 to solve (and so on after choices in
+recursive subproblems).</p>
+
+<p>By optimal substructure, <em>if</em> <em>a</em>1 is part of an optimal solution, then an
+optimal solution to the original problem consists of <em>a</em>1 plus all activities
+in an optimal solution to <em>S</em>1.</p>
+
+<p>But we need to prove that <em>a</em>1 is always part of some optimal solution (i.e.,
+to prove our original intuition).</p>
+
+<p><em><strong>Theorem:</strong></em> If <em>S</em>k is nonempty and <em>am</em> has the earliest finish time in
+<em>S</em>k, then <em>am</em> is included in some optimal solution.</p>
+
+<p><em>Proof:</em> Let <em>Ak</em> be an optimal solution to <em>S</em>k, and let <em>aj</em> ∈ <em>Ak</em> have the
+earliest finish time in <em>Ak</em>. If <em>aj</em> = <em>am</em> we are done. Otherwise, let
+<em>A&#39;</em><em>k</em> = (<em>Ak</em> - {<em>aj</em>}) ∪ {<em>am</em>} (substitute <em>am</em> for <em>aj</em>).</p>
+
+<blockquote>
+<p><em>Claim:</em> Activities in <em>A&#39;k</em> are disjoint.</p>
+
+<p><em>Proof of Claim:</em> Activities in <em>Ak</em> are disjoint because it was a solution.<br>
+Since <em>aj</em> is the first activity in <em>Ak</em> to finish, and fm ≤ fj (<em>am</em> is the
+earliest in <em>Sk</em>), <em>am</em> cannot overlap with any other activities in <em>A&#39;k</em>.<br>
+No other changes were made to <em>Ak</em>, so <em>A&#39;k</em> must consist of disjoint
+activities.</p>
+</blockquote>
+
+<p>Since |<em>A&#39;k</em>| = |<em>Ak</em>| we can conclude that <em>A&#39;k</em> is also an optimal solution
+to <em>S</em>k, and it includes <em>am</em>.</p>
+
+<p>Therefore we don&#39;t need the full power of dynamic programming: we can just
+repeatedly choose the activity that finishes first, remove any activities that
+are incompatible with it, and repeat on the remaining activities until no
+activities remain.</p>
+
+<h3>Greedy Algorithm Solution</h3>
+
+<p>Let the start and finish times be represented by arrays <em>s</em> and <em>f</em>, where <em>f</em>
+is assumed to be sorted in monotonically increasing order.</p>
+
+<p>Add a fictitious activity <em>a</em>0 with <em>f</em>0 = 0, so <em>S</em>0 = <em>S</em> (i.e., the entire
+input sequence).</p>
+
+<p>Our initial call will be RECURSIVE-ACTIVITY-SELECTOR(<em>s</em>, <em>f</em>, 0, <em>n</em>).</p>
+
+<p><img src="fig/pseudocode-recursive-activity.jpg" alt=""></p>
+
+<p>The algorithm is Θ(<em>n</em>) because each activity is examined exactly once across
+all calls: each recursive call starts at <em>m</em>, where the previous call left
+off. (Another example of aggregate analysis.)</p>
+
+<p>If the activities need to be sorted, the overall problem can be solved in
+Θ(<em>n</em> lg <em>n</em>)).</p>
+
+<p>This algorithm is nearly tail recursive, and can easily be converted to an
+iterative version:</p>
+
+<p><img src="fig/pseudocode-greedy-activity.jpg" alt=""></p>
+
+<p>Let&#39;s trace the algorithm on this:</p>
+
+<p><img src="fig/activity-timeline.jpg" alt=""></p>
+
+<hr>
+
+<h2>A Closer Look at the Greedy Strategy</h2>
+
+<p>Instead of starting with the more elaborate dynamic programming analysis, we
+could have gone directly to the greedy approach.</p>
+
+<p>Typical steps for designing a solution with the greedy strategy (and two
+properties that are key to determining whether it might apply to a problem):</p>
+
+<ol>
+<li>Consider how we can make a greedy choice (local optimization of the objective function), leaving one subproblem to solve.</li>
+<li><strong>Greedy Choice Property:</strong> Prove that the greedy choice is always part of some optimal solution.</li>
+<li><strong>Optimal Substructure:</strong> Demonstrate that an optimal solution to the problem contains within it optimal solutions to the subproblems.</li>
+</ol>
+
+<p>Then we can construct an algorithm that combines the greedy choice with an
+optimal solution to the remaining problem.</p>
+
+<h3>Dynamic Programming compared to Greedy Strategy:</h3>
+
+<p>Both require optimal substructure, but ...</p>
+
+<p><strong>Dynamic Programming</strong></p>
+
+<ul>
+<li>Each choice depends on knowing the optimal solutions to subproblems.</li>
+<li>Bottom-up: Solve subproblems first</li>
+</ul>
+
+<p><strong>Greedy Strategy</strong></p>
+
+<ul>
+<li>Each choice depends only on local optimization </li>
+<li>Top-down: Make choice before solving subproblems </li>
+</ul>
+
+<h3>Example: Knapsack Problems</h3>
+
+<p>These two problems demonstrate that the two strategies do not solve the same
+problems. Suppose a thief has a knapsack of fixed carrying capacity, and wants
+to optimize the value of what he takes.</p>
+
+<p><img src="fig/Fig-16-2-0-1-a-knapsack-example.jpg" alt=""></p>
+
+<h4>0-1 knapsack problem:</h4>
+
+<p>There are <em>n</em> items. Item <em>i</em> is worth $<em>vi</em> and weighs <em>wi</em> pounds. The thief
+wants to take the most valuable subset of items with weight not exceeding <em>W</em>
+pounds. It is called 0-1 because the thief must either not take or take each
+item (they are discrete objects, like gold ingots).</p>
+
+<p>In the example, item 1 is worth $6/pound, item 2 $5/pound and item 3 $4/pound.</p>
+
+<p>The greedy strategy of optimizing value per unit of weight would take item 1
+first.</p>
+
+<h4>Fractional knapsack problem:</h4>
+
+<p>The same as the 0-1 knapsack problem except that the thief <em>can take a
+fraction of each item</em> (they are divisible substances, like gold powder).</p>
+
+<p>Both have optimal substructure <em>(why?).</em></p>
+
+<p>Only the fractional knapsack problem has the greedy choice property:</p>
+
+<p><em>Fractional:</em> One can fill up as much of the most valuable substance by weight
+as one can hold, then as much of the next most valuable substance, etc., until
+<em>W</em> is reached:</p>
+
+<p><img src="fig/Fig-16-2-0-1-c-knapsack-example.jpg" alt=""></p>
+
+<p><em>0-1:</em> A greedy strategy could result in empty space, reducing the overall
+dollar density of the knapsack. After choosing item 1, the optimal solution
+(shown third) cannot be achieved:</p>
+
+<p><img src="fig/Fig-16-2-0-1-b-knapsack-example-reordered.jpg" alt=""></p>
+
+<hr>
+
+<h2>Huffman Codes</h2>
+
+<p>We are going to see several greedy algorithms throughout the semester. The
+activity scheduler was good for illustration, but is not important in
+practice. We should look at one important greedy algorithm today ...</p>
+
+<p>Huffman codes provide an efficient way to compress text, and are constructed
+using a greedy algorithm. We only have time to review how this important
+algorithm works; see the text for analysis.</p>
+
+<h3>Binary Codes</h3>
+
+<p><strong>Fixed-length binary codes</strong> (e.g., ASCII) represent each character with a fixed number of bits (a binary string of fixed length called a <strong>codeword</strong>).</p>
+
+<p><strong>Variable-length binary codes</strong> can vary the number of bits allocated to each character. This opens the possibility of space efficiency by using fewer bits for frequent characters.</p>
+
+<p>Example: Suppose we want to encode documents with these characters:</p>
+
+<p><img src="fig/Fig-16-3-character-coding-problem.jpg" alt=""></p>
+
+<p>With a 3 bit code it would take 300,000 bits to code a file of 100,000
+characters, but the variable-length code shown requires only 224,000 bits.</p>
+
+<p><strong>Prefix codes</strong> (better named <strong>prefix-free codes</strong>) are codes in which no codeword is a prefix of another.</p>
+
+<p>For any data, it is always possible to construct a prefix code that is optimal
+(though not all prefix codes are optimal, as we will see below).</p>
+
+<p>Prefix codes also have the advantage that each character in an input file can
+be &quot;consumed&quot; unambiguously, as the prefix cannot be confused with another
+code.</p>
+
+<h3>Binary Tree Representation of Prefix Codes</h3>
+
+<p>We can think of the 0 and 1 in a prefix code as directions for traversing a
+binary tree: 0 for left and 1 for right. The leaves store the coded character.
+For example, here is the fixed-length prefix code from the table above
+represented as a binary tree:</p>
+
+<p><img src="fig/Fig-16-3-character-coding-problem.jpg" alt="">
+<img src="fig/Fig-16-4-a-coding-tree.jpg" alt=""></p>
+
+<p>Consuming bits from an input file, we traverse the tree until the character is
+identified, and then start over at the top of the tree for the next character.</p>
+
+<p><em>Exercise: Decode 101100100011</em></p>
+
+<p>But the above tree uses three bits per character: it is not optimal. It can be
+shown that an optimal code is always represented by a full binary tree (every
+non-leaf node has two children).</p>
+
+<p>For example, an optimal prefix code (from the table reproduced again here) is
+represented by this tree:</p>
+
+<p><img src="fig/Fig-16-4-b-coding-tree.jpg" alt=""> 
+<img src="fig/Fig-16-3-character-coding-problem.jpg" alt=""></p>
+
+<p><em>Exercise: Decode 10111010111</em></p>
+
+<h3>Huffman&#39;s Algorithm</h3>
+
+<p>Huffman&#39;s greedy algorithm constructs optimal prefix codes called <strong>Huffman
+Codes</strong>.</p>
+
+<p>It is given a set <em>C</em> of <em>n</em> characters, where each character has frequency
+<em>c.freq</em> in the &quot;text&quot; to be encoded.</p>
+
+<p>The optimality of a code is relative to a &quot;text&quot;, which can be what we
+normally think of as texts, or can be other data encoded as sequences of bits,
+such as images.</p>
+
+<ul>
+<li>We can construct a generic Huffman code for a universe of texts, such as all texts in English, by estimating the frequency of characters in this universe of texts.</li>
+<li>More commonly, we contruct Huffman codes optimized for particular documents. Then the document-specific code needs to be passed on along with the compressed document.</li>
+</ul>
+
+<p>The algorithm creates a binary tree leaf node for each character, annotated
+with its frequency, and the tree nodes are then put on a min-priority queue
+(this is only implied in line 2 below).</p>
+
+<p>Then the first two subtrees on the queue (those with minimum frequency) are
+dequeued with <code>Extract-Min</code>, merged into a single tree, annotated with the sum
+of their frequencies, and this single node is re-queued.</p>
+
+<p>This process is repeated until only one tree node remains on the queue (the
+root). Since a tree is being constructed and |<em>E</em>| = |<em>V</em>|−1 we can just run
+the loop until <em>n</em>−1 and know that there will be one node left at this point.</p>
+
+<p>Here is the algorithm:</p>
+
+<p><img src="fig/pseudocode-huffman.jpg" alt=""></p>
+
+<h4>Informal Correctness</h4>
+
+<p>The &quot;greedy&quot; aspect is the choice to merge min-frequency nodes first, and
+assume that this local minimization will result in an optimal global solution.</p>
+
+<p>Intuitively, this approach will result in an optimal solution because the
+lowest frequency items will be &quot;pushed down&quot; deeper in the tree, and hence
+have longer codes; while higher frequency items will end up nearer the root,
+and hence have the shortest codes.</p>
+
+<p>Cormen et al. prove correctness with two Lemmas for the two properties:</p>
+
+<ul>
+<li>Greedy choice property: there exists an optimal prefix code where two characters having the lowest frequency in <em>C</em> are encoded with equal length strings that differ only in the last bit, as they are leaf nodes. </li>
+<li>Optimal-substructure property: if the tree constructed by merging two nodes is optimal it must have been constructed from an optimal tree for the subproblem.</li>
+</ul>
+
+<h4>Complexity</h4>
+
+<p>The initial BUILD-MIN-HEAP implied by line 2 requires O(<em>n</em>) time.<br>
+The loop executes <em>n</em> times, with O(lg <em>n</em>) required for each heap operation.<br>
+Thus, HUFFMAN is O(<em>n</em> lg <em>n</em>).</p>
+
+<h3>An Example of Huffman Coding</h3>
+
+<p>The characters are in a min priority queue by frequency:</p>
+
+<p><img src="fig/Fig-16-5-a-huffman-trace.jpg" alt=""></p>
+
+<p>Take out the two lowest frequency items and make a subtree that is put back on
+the queue as if it is a combined character:</p>
+
+<p><img src="fig/Fig-16-5-b-huffman-trace.jpg" alt=""> 
+<img src="fig/pseudocode-huffman.jpg" alt=""></p>
+
+<p>Combine the next lowest frequency characters:</p>
+
+<p><img src="fig/Fig-16-5-c-huffman-trace.jpg" alt=""></p>
+
+<p>Continuing, tree fragments themselves become subtrees:</p>
+
+<p><img src="fig/Fig-16-5-d-huffman-trace.jpg" alt=""></p>
+
+<p>Two subtrees are merged next:</p>
+
+<p><img src="fig/Fig-16-5-e-huffman-trace.jpg" alt=""></p>
+
+<p>The highest frequency character gets added to the tree last, so it will have a
+code of length 1:</p>
+
+<p><img src="fig/Fig-16-3-character-coding-problem.jpg" alt="">
+<img src="fig/Fig-16-5-f-huffman-trace.jpg" alt=""></p>
+
+<p>One might wonder why the second most frequent character does not have a code
+of length 2. This would force the other characters to be deeper in the tree,
+giving them excessively long codes.</p>
+
+<hr>
+
+<h2>Wrapup</h2>
+
+<p>We will encounter several examples of greedy algorithms later in the course,
+including classic algorithms for finding minimum spanning trees (Topic
+<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-17.html">17</a>)
+and shortest paths in graphs (Topics
+<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-18.html">18</a>
+and
+<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-19.html">19</a>).</p>
+
+<hr>
+
+<p>Dan Suthers Last modified: Sat Mar 1 17:53:22 HST 2014<br>
+Images are from the instructor&#39;s material for Cormen et al. Introduction to
+Algorithms, Third Edition.  </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

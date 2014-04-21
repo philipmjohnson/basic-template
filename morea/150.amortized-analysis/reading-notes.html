@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Notes on amortized analysis | ICS 311 Spring 2014 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/cerulean/bootstrap.min.css">
+
+  <!--  Load site-specific customizations after bootstrap. -->
+  <link rel="stylesheet" href="/ics311s14/css/style.css">
+  <link rel="stylesheet" href="/ics311s14/css/syntax.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:normal,italic,bold">
+  <link rel="shortcut icon" href="/ics311s14/favicon.ico" type="image/x-icon" />
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+  <![endif]-->
+
+  <!-- Load Bootstrap JavaScript components -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- Responsive navbar -->
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!--  Display three horizontal lines when navbar collapsed. -->
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> ICS 311 Spring 2014 </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/ics311s14/index.html">Home</a></li>
+        <li><a href="/ics311s14/modules/">Modules</a></li>
+        <li><a href="/ics311s14/outcomes/">Outcomes</a></li>
+        <li><a href="/ics311s14/readings/">Readings</a></li>
+        <li><a href="/ics311s14/experiences/">Experiences</a></li>
+        <li><a href="/ics311s14/assessments/">Assessments</a></li>
+        <li><a href="/ics311s14/schedule/">Schedule</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Outline</h2>
+
+<ol>
+<li>Amortized Analysis: The General Idea </li>
+<li>Multipop Example </li>
+<li>Aggregate Analysis </li>
+<li>Accounting Method</li>
+<li>Potential Method</li>
+<li>Dynamic Table Example (first look)</li>
+<li>Other Examples</li>
+</ol>
+
+<h2>Amortized Analysis: The General Idea</h2>
+
+<p>We have already used <em>aggregate</em> analysis several times in this course. For
+example, when analyzing the BFS and DFS procedures, instead of trying to
+figure out how many times their inner loops</p>
+
+<blockquote>
+<p><code>for each _v_ ∈ G.Adj[_u_]</code></p>
+</blockquote>
+
+<p>execute (which depends on the degree of the vertex being processed), we
+realized that no matter how the edges are distributed, there are at most |<em>E</em>|
+edges, so in aggregate across all calls the loops will execute |<em>E</em>| times.</p>
+
+<p>But that analysis concerned itself only with the complexity of a single
+operation. In practice a given data structure will have associated with it
+several operations, and they may be applied many times with varying frequency.</p>
+
+<p>Sometimes a given operation is designed to pay a larger cost than would
+otherwise be necessary to enable other operations to be lower cost.</p>
+
+<p><em>Example:</em> Red-black tree insertion. We pay a greater cost for balancing so
+that future searches will remain O(lg <em>n</em>).</p>
+
+<p><em>Another example:</em> Java Hashtable.</p>
+
+<ul>
+<li>These grow dynamically when a specified load factor is exceeded.</li>
+<li>Copying into a new table is expensive, but copying is infrequent and table growth makes access operations faster.</li>
+</ul>
+
+<p>It is &quot;fairer&quot; to average the cost of the more expensive operations across the
+entire mix of operations, as all operations benefit from this cost.</p>
+
+<p>Here, &quot;average&quot; means average cost in the worst case (thankfully, no
+probability is involved, which greatly simplifies the analysis).</p>
+
+<p>We will look at three methods. The notes below use Stacks with Multipop to
+illustrate the methods. See the text for binary counter examples.</p>
+
+<p>(We have already seen examples of aggregate analysis throughout the semseter.
+We will see examples of amortized analysis later in the semester.)</p>
+
+<hr>
+
+<h2>Multipop Example</h2>
+
+<p>We already have the stack operations:</p>
+
+<ul>
+<li><code>Push(_S, x_)</code>: O(1) each call, so O(<em>n</em>) for any sequence of <em>n</em> operations.</li>
+<li><code>Pop(_S_)</code>: O(1) each call, so O(<em>n</em>) for any sequence of <em>n</em> operations.</li>
+</ul>
+
+<p>Suppose we add a <code>Multipop</code> (this is a generalization of <code>ClearStack</code>, which
+empties the stack):</p>
+
+<p><img src="fig/Fig-17-1-multipop.jpg" alt=""> <img src="fig/pseudocode-multipop.jpg" alt=""></p>
+
+<p>The example shows a <code>Multipop(S,4)</code> followed by another where <em>k</em> ≥ 2.</p>
+
+<p>Running time of <code>Multipop</code>:</p>
+
+<ul>
+<li>Linear in number of <code>Pop</code> operations (one per loop iteration)</li>
+<li>Number of iterations of <code>while</code> loop is min(<em>s</em>, <em>k</em>), where <em>s</em> = number of items on the stack</li>
+<li>Therefore, total cost = min(<em>s</em>, <em>k</em>). </li>
+</ul>
+
+<p>What is the worst case of a sequence of <em>n</em> <code>Push</code>, <code>Pop</code> and <code>Multipop</code>
+operations?</p>
+
+<p>Using our existing methods of analysis we can identify a <em>loose bound:</em>:</p>
+
+<ul>
+<li>The most expensive operation is <code>Multipop</code>, potentially O(<em>n</em>).</li>
+<li>Therefore, potentially O(<em>n2</em>) over <em>n</em> operations.</li>
+</ul>
+
+<hr>
+
+<h2>Aggregate Analysis</h2>
+
+<p>We can tighten this loose bound by aggregating the analysis over all <em>n</em>
+operations:</p>
+
+<ul>
+<li>Each object can only be popped once per time that it is pushed.</li>
+<li>There are at most <em>n</em> <code>Push</code>es, so at most n <code>Pop</code>s, including those in <code>Multipop</code></li>
+<li>Therefore, total cost = O(<em>n</em>)</li>
+<li>Averaging over the <em>n</em> operations we get O(1) per operation.</li>
+</ul>
+
+<p>This analysis shows O(1) per operation on average in a sequence of <em>n</em>
+operations without using any probabilities of operations.</p>
+
+<p>See text for example of aggregate analysis of binary counting. An example of
+aggregate analysis of dynamic tables is at the end of these notes.</p>
+
+<p>Some of our previous analyses with indicator random variables have been a form
+of aggregate analysis, e.g., our analysis of the expected number of inversions
+in sorting, <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-05.html">Topic 5
+Notes</a>.</p>
+
+<p>Aggregate analysis treats all operations equally. The next two methods let us
+give different operations different costs, so are more flexible.</p>
+
+<hr>
+
+<h2>Accounting Method</h2>
+
+<h4>Metaphor:</h4>
+
+<ul>
+<li>View the computer as a coin operated appliance that requires one <em>cyber-dollar</em> (CY$) per basic operation.</li>
+<li>The banks are wary of making loans these days, so when an operation is to be performed we must have enough cyber-dollars available to pay for it. </li>
+<li>We are permitted to charge some operations more than they actually cost so we can save enough to pay for the more expensive operations.</li>
+</ul>
+
+<p><strong>Amortized cost</strong> = amount we charge each operation.</p>
+
+<p>This differs from aggregate analysis:</p>
+
+<ul>
+<li>In aggregate analysis, all operations have the same cost.</li>
+<li>In the accounting method, different operations can have different costs.</li>
+</ul>
+
+<p>When an operation is overcharged (amortized cost &gt; actual cost), the
+difference is associated with <em>specific objects</em> in the data structure as
+<em>credit</em>.</p>
+
+<p>We use this credit to pay for operations whose actual cost &gt; amortized cost.</p>
+
+<p>The credit must never be negative. Otherwise the amortized cost may not be an
+upper bound on actual cost for some sequences.</p>
+
+<p>Let</p>
+
+<ul>
+<li><em>ci</em> = actual cost of <em>i</em>th operation. </li>
+<li><em>ĉi</em> = amortized cost of <em>i</em>th operation <em>(notice the &#39;hat&#39;)</em>. </li>
+</ul>
+
+<p>Require ∑<em>i</em>=1,<em>n</em><em>ĉi</em>   ≥   ∑<em>i</em>=1,<em>n</em><em>ci</em> for all sequences of <em>n</em>
+operations. That is, the difference between these sums always ≥ 0: we never
+owe anyone anything.</p>
+
+<h3>Stack Example</h3>
+
+<p>Whenever we <code>Push</code> an object (at actual cost of 1 cyberdollar), we potentially
+have to pay CY$1 in the future to <code>Pop</code> it, whether directly or in <code>Multipop</code>.</p>
+
+<p>To make sure we have enough money to pay for the <code>Pops</code>, we charge <code>Push</code>
+CY$2.</p>
+
+<ul>
+<li>CY$1 pays for the push</li>
+<li>CY$1 is prepayment for the object being popped (metaphorically, this CY$1 is stored &quot;on&quot; the object).</li>
+</ul>
+
+<p>Since each object has CY$1 credit, the credit can never go negative.</p>
+
+<p><img src="fig/stack-amortized-cost-table.jpg" alt=""></p>
+
+<p>The total amortized cost <em>ĉ</em> = ∑<em>i</em>=1,<em>n</em><em>ĉi</em> for <em>any</em> sequence of <em>n</em>
+operations is an upper bound on the total actual cost <em>c</em> = ∑<em>i</em>=1,<em>n</em><em>ci</em> for
+that sequence.</p>
+
+<p>Since <em>ĉ</em> = O(<em>n</em>), also <em>c</em> = O(<em>n</em>).</p>
+
+<p>Note: we don&#39;t actually store cyberdollars in any data structures. This is
+just a metaphor to enable us to compute an amortized upper bound on costs.</p>
+
+<hr>
+
+<h2>Potential Method</h2>
+
+<p>Instead of credit associated with objects in the data structure, this method
+uses the metaphor of <em>potential</em> associated with the <em>entire data structure.</em></p>
+
+<p>(I like to think of this as potential <em>energy,</em> but the text continues to use
+the monetary metaphor.)</p>
+
+<p>This is the most flexible of the amortized analysis methods, as it does not
+require maintaining an object-to-credit correspondence.</p>
+
+<p>Let</p>
+
+<ul>
+<li>D0 = initial data structure </li>
+<li>D<em>i</em> = data structure after <em>i</em>th operation</li>
+<li><em>ci</em> = actual cost of <em>i</em>th operation. </li>
+<li><em>ĉi</em> = amortized cost of <em>i</em>th operation. </li>
+</ul>
+
+<p>Potential Function <strong>Φ</strong>: D<em>i</em> -&gt; ℜ, and we say that Φ(D<em>i</em>) is the
+<strong>potential</strong> associated with data structure D<em>i</em>.</p>
+
+<p>We define the amortized cost <em>ĉi</em> to be the actual cost <em>ci</em> plus the change
+in potential due to the <em>i</em>th operation:</p>
+
+<blockquote>
+<p><em>ĉi</em> = <em>ci</em> + Φ(D<em>i</em>) − Φ(D<em>i-1</em>)</p>
+</blockquote>
+
+<ul>
+<li>If at the <em>i</em>th operation, Φ(D<em>i</em>) − Φ(D<em>i-1</em>) is positive, then the amortized cost <em>c</em>&#39;<em>i</em> is an <em>overcharge</em> and the potential of the data structure increases.</li>
+<li>On the other hand, if Φ(D<em>i</em>) &amp;minus: Φ(D<em>i-1</em>) is negative then <em>c</em>&#39;<em>i</em> is an undercharge, and the decrease of the potential of the data structure pays for the difference (as long as it does not go negative). </li>
+</ul>
+
+<p>The total amortized cost across <em>n</em> operations is:</p>
+
+<blockquote>
+<p>∑<em>i</em>=1,<em>n</em><em>ĉi</em>   =   ∑<em>i</em>=1,<em>n</em>(<em>ci</em> + Φ(D<em>i</em>) - Φ(D<em>i-1</em>))   =
+(∑<em>i</em>=1,<em>n</em><em>ci</em>) + (Φ(D<em>n</em>) - Φ(D0))</p>
+</blockquote>
+
+<p>(The last step is taken because the middle expression involves a telescoping
+sum: every term other than D<em>n</em> and D0 is added once and subtracted once.)</p>
+
+<p>If we require that Φ(D<em>i</em>) ≥ Φ(D0) for all <em>i</em> then the amortized cost will
+always be an upper bound on the actual cost no matter which <em>i</em>th step we are
+on.</p>
+
+<p>This is usually accomplished by defining Φ(D0) = 0 and then showing that
+Φ(D<em>i</em>) ≥ 0 for all <em>i</em>. (Note that this is a constraint on Φ, not on <em>ĉ</em>. <em>ĉ</em>
+can go negative as long as Φ(D<em>i</em>) never does.)</p>
+
+<h3>Stack Example</h3>
+
+<p>Define Φ(D<em>i</em>) = number of objects in the stack.</p>
+
+<p>Then Φ(D0) = 0 and Φ(D<em>i</em>) ≥ 0 for all <em>i</em>, since there are never less than 0
+objects on the stack.</p>
+
+<p>Charge as follows (recalling that <em>ĉi</em> = <em>ci</em> + Φ(D<em>i</em>) - Φ(D<em>i-1</em>)):</p>
+
+<p><img src="fig/stack-potential-table.jpg" alt=""></p>
+
+<p>Since we charge 2 for each <code>Push</code> and there are O(n) Pushes in the worst case,
+the amortized cost of a sequence of <em>n</em> operations is O(<em>n</em>).</p>
+
+<p>Does it seem strange that we charge <code>Pop</code> and <code>Multipop</code> 0 when we know they
+cost something?</p>
+
+<ul>
+<li>Remember that this is just a way of counting the total cost over a sequence of operations more precisely.</li>
+<li>It is not a claim about the actual cost of a specific procedural call.</li>
+<li>Like with the accounting method, we are guaranteeing that we have just enough credit on hand to pay for the operations when they happen.</li>
+<li>The methods give a tight bound on amortized cost, but with much easier counting than if we had to reason about probability distributions, etc.</li>
+</ul>
+
+<hr>
+
+<h2>Application: Dynamic Tables</h2>
+
+<p>There is often a tradeoff between time and space, for example, with hash
+tables. Bigger tables give faster access but take more space.</p>
+
+<p>Dynamic tables, like the Java Hashtable, grow dynamically as needed to keep
+the load factor reasonable.</p>
+
+<p>Reallocation of a table and copying of all elements from the old to the new
+table is expensive!</p>
+
+<p>But this cost is amortized over all the table access costs in a manner
+analogous to the stack example: We arrange matters such that table-filling
+operations build up sufficient credit before we pay the large cost of copying
+the table; so the latter cost is averaged over many operations.</p>
+
+<h3>A Familiar Definition</h3>
+
+<p><strong>Load factor α</strong> = <em>num</em>/<em>size</em>, where <em>num</em> = # items stored and <em>size</em> = the allocated size of the table.</p>
+
+<p>For the boundary condition of <em>size</em> = <em>num</em> = 0, we will define α = 1.</p>
+
+<p>We never allow α &gt; 1 (no chaining).</p>
+
+<h3>Insertion Algorithm</h3>
+
+<p>We&#39;ll assume the following about our tables. (See Exercises 17.4-1 and 17.4-3
+concerning different assumptions.):</p>
+
+<p>When the table becomes full, we double its size and reinsert all existing
+items. This guarantees that α ≥ 1/2, so we are not wasting a lot of space.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Table-Insert (T,x)
+1   if T.size == 0
+2       allocate T.table with 1 slot 
+3       T.size = 1
+4   if T.num == T.size
+5       allocate newTable with 2*T.size slots
+6       insert all items in T.table into newTable
+7       free T.table
+8       T.table = newTable 
+9       T.size = 2*T.size 
+10  insert x into T.table 
+11  T.num = T.num + 1
+</code></pre></div>
+<p>Each <em>elementary insertion</em> has unit actual cost. Initially <em>T.num</em> = <em>T.size</em>= 0.</p>
+
+<h3>Aggregate Analysis of Dynamic Table Expansion</h3>
+
+<p>Charge 1 per elementary insertion. Count only elementary insertions, since all
+other costs are constant per call.</p>
+
+<p><strong><em>ci</em></strong> = actual cost of <em>i</em>th operation.</p>
+
+<p><img src="fig/pseudocode-table-insert.jpg" alt=""></p>
+
+<ul>
+<li>If the table is not full, <em>ci</em> = 1 (for lines 1, 4, 10, 11). </li>
+<li>If full, there are <em>i</em> - 1 items in the table at the start of the <em>i</em>th operation. Must copy all of them (line 6), and then insert the <em>i</em>th item. Therefore <em>ci</em> = <em>i</em> - 1 + 1 = <em>i</em>. </li>
+</ul>
+
+<p>A sloppy analysis: In a sequence of <em>n</em> operations where any operation can be
+O(<em>n</em>), the sequence of <em>n</em> operations is O(<em>n</em>2).</p>
+
+<p>This is &quot;correct&quot;, but inprecise: we rarely expand the table! A more precise
+account of <em>ci</em>:</p>
+
+<p><img src="fig/c_i-definition.jpg" alt=""></p>
+
+<p>Then we can sum the total cost of all <em>ci</em> for a sequence of <em>n</em> operations:</p>
+
+<p><img src="fig/analysis-table-expansion.jpg" alt="">
+<img src="fig/formula-A-5.jpg" alt=""></p>
+
+<p><em>Explain:</em> Why the <em>n</em>? What is the summation counting? Why does the summation
+start at <em>j</em> = 0? Why does it end at <em>j</em> = lg <em>n</em>?</p>
+
+<p>Therefore, the amortized cost per operation = 3: we are only paying a small
+constant price for the expanding table.</p>
+
+<p>The text also gives accounting and potential analyses of table expansion.</p>
+
+<p>This analysis assumed that the table never shrinks. See section 17.4 (and your
+homework) for an analysis using the potential method that covers shrinking
+tables.</p>
+
+<hr>
+
+<h2>Other Examples</h2>
+
+<p>Here are some other algorithms for which amortized analysis is useful:</p>
+
+<h3>Red-Black Trees</h3>
+
+<p>An amortized analysis of Red-Black Tree restructuring (Problem 17-4 of CLRS)
+improves upon our analysis earlier in the semester:</p>
+
+<ul>
+<li>Any sequence of <em>m</em> <code>RB-Insert</code> and <code>RB-Delete</code> operations performs O(<em>m</em>) structural modifications (rotations), </li>
+<li>This each operation does <strong>O(1) structural modifications on average</strong>, regardless of the size of the tree!</li>
+<li>An operation still may need to do O(lg <em>n</em>) recolorings, but these are very simple operations.</li>
+</ul>
+
+<h3>Self-Organizing Lists</h3>
+
+<ul>
+<li>Self-organizing lists use a <strong><em>move-to-front heuristic</em></strong>: Immediately after searching for an element, it is moved to the front of the list.</li>
+<li>This makes frequently accessed items more readily available near the front of the list.</li>
+<li>An amortized analysis (Problem 17-5) shows that the heuristic is no more than 4 times worse than optimal.</li>
+</ul>
+
+<h3>Splay Trees</h3>
+
+<ul>
+<li>Splay trees are ordinary binary search trees (no colors, no height labels, etc.)</li>
+<li>After every access (every insertion, deletion, or search), the element operated on (or its parent in the case of deletion) is moved towards the top of the tree.</li>
+<li>This movement uses three <strong><em>splaying</em></strong> operations called &quot;zig&quot;, &quot;zig-zig&quot; and &quot;zig-zag&quot;.</li>
+<li>Although in the worst case a splay tree can degenerate into an O(<em>n</em>) linked list, amortized analysis shows that the expected case is O(lg <em>n</em>)</li>
+<li>Randomization can be used to make the worst case very unlikely.</li>
+<li>If a single element is accessed at least <em>m</em>/4 times where <em>m</em> is the number of operations, then the amortized running time of each of these accesses is O(1).</li>
+<li>Thus, splay-trees self-organize to provide fast access to frequently accessed items.</li>
+<li>This makes them good for locality of reference in memory, but multithreaded access must be implemented carefully.</li>
+</ul>
+
+<h3>To Be Continued</h3>
+
+<p>Amortized analysis will be used in analyses of</p>
+
+<ul>
+<li>Graph search (Topic 14, Ch. 22) </li>
+<li>Disjoint set operations (Topic 16, Ch. 21) </li>
+<li>Dijkstra&#39;s Algorithm for Shortest Paths (Topic 18, Ch. 24) </li>
+</ul>
+
+<hr>
+
+<p>Dan Suthers Last modified: Sun Mar 16 02:03:09 HST 2014<br>
+Images are from the instructor&#39;s material for Cormen et al. Introduction to
+Algorithms, Third Edition.  </p>
+
+</div>
+
+
+
+<div class="dark-blue-background">
+<footer>
+  <div class="container page-footer">
+    
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+suthers@hawaii.edu</p>
+
+    
+    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
+       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
