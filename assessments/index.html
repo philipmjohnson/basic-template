@@ -82,12 +82,44 @@
     <h2><small>Module:</small> <a href="/ics311s14/modules/growth/index.html">Growth of functions</a></h2>
 
     
-    <p>No assessments for this module.</p>
-    
 
     
-  </div>
+      
+      <h3>Assessment 1: Remember asymptotic concepts</h3>
+      <p>
+        
+          <span class="badge">Bloom: Remember</span>
+        
+      </p>
+      <p>Assessed ability to remember asymptotic concepts through an in-class multiple choice exam:</p>
+
+<p><link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script></p>
+
+<div class="well">
+  <div id="assessment" style="height: 250px;"></div>
 </div>
+
+<script>
+Morris.Bar({
+  element: 'assessment',
+  hideHover: false,
+  data: [
+        { y: 'Very satisfactory', num: 15 },
+        { y: 'Satisfactory', num: 37 },
+        { y: 'Unsatisfactory', num: 8 },
+        { y: 'Absent', num: 3 },
+        ],
+  xkey: 'y',
+  ykeys: ['num'],
+  resize: true,
+  labels: ['Students']
+});
+</script>
+
+<p></div>
+</div></p>
 
 <div class="white-background">
   <div class="container">
@@ -365,7 +397,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-21 12:33:48 -1000</span></p>
+       Last update on: <span>2014-04-21 15:14:10 -1000</span></p>
   </div>
 </footer>
 </div>
