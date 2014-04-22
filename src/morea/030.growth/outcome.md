@@ -1,9 +1,11 @@
 ---
-title: "Understand analysis of asymptotic growth."
+title: "Remember concepts of asymptotic growth."
 published: true
 morea_id: outcome-growth
 morea_type: outcome
 morea_sort_order: 30
+morea_labels:
+  - "Bloom: Remember"
 ---
 
-Understand how to characterize the behavior of functions in terms of their limiting, or asymptotic behavior. 
+Learn the concepts and definitions of asymptotic growth and recognize them in context.
