@@ -1,5 +1,5 @@
 ---
-title: "Remember asymptotic concepts"
+title: "Ability to recall asymptotic concepts"
 published: true
 morea_id: assessment-asymptotic-concepts
 morea_type: assessment
@@ -23,10 +23,10 @@ Morris.Bar({
   element: 'assessment',
   hideHover: false,
   data: [
-        { y: 'Very satisfactory', num: 15 },
-        { y: 'Satisfactory', num: 37 },
-        { y: 'Unsatisfactory', num: 8 },
-        { y: 'Absent', num: 3 },
+        { y: 'Very satisfactory (%)', num: 15 },
+        { y: 'Satisfactory (%)', num: 55 },
+        { y: 'Unsatisfactory (%)', num: 25 },
+        { y: 'Absent (%)', num: 5 },
         ],
   xkey: 'y',
   ykeys: ['num'],
