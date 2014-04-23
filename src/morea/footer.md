@@ -4,6 +4,5 @@ morea_id: footer
 morea_type: footer
 ---
 
-Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
-suthers@hawaii.edu
-
+Example Name | Example Department | Example University <br>
+email@example.com<br>
