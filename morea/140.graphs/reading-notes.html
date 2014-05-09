@@ -545,12 +545,12 @@ to reach them (unlike BFS, which may fail to reach subgraphs not connected to
 
 <p>GRAY = discovered, but not finished (still exploring vertices reachable from
 it)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">_v_._d_ records the moment at which _v_ is _discovered_ and colored
+<div class="highlight"><pre><code class="language-text" data-lang="text">_v_._d_ records the moment at which _v_ is _discovered_ and colored
 </code></pre></div>
 <p>gray.</p>
 
 <p>BLACK = finished (have found everything reachable from it)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">_v_._f_ records the moment at which _v_ is _finished_ and colored black.
+<div class="highlight"><pre><code class="language-text" data-lang="text">_v_._f_ records the moment at which _v_ is _finished_ and colored black.
 </code></pre></div></blockquote>
 
 <p><img src="fig/dfs-nature-of-computation.jpg" alt=""></p>
@@ -803,7 +803,7 @@ by which the cycle was entered, and hence classified a back edge.</p>
 
 <p>The algorithm uses <em>GT</em>= (<em>V</em>, <em>ET</em>), the <strong>transpose</strong> of <em>G</em> = (<em>V</em>, <em>E</em>).
 <em>GT</em> is <em>G</em> with all the edges reversed.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Strongly-Connected-Components (G)
+<div class="highlight"><pre><code class="language-text" data-lang="text">Strongly-Connected-Components (G)
 1.  Call DFS(G) to compute finishing times _u_._f_ for each vertex _u_ ∈ _E_. 
 2.  Compute _GT_
 3.  Call modified DFS(_GT_) that considers vertices
@@ -955,7 +955,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-23 15:59:05 -1000</span></p>
+       Last update on: <span>2014-05-09 10:59:02 -1000</span></p>
   </div>
 </footer>
 </div>

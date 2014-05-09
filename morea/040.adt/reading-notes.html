@@ -78,8 +78,7 @@ track of neighbor vertices yet to be visited when searching a graph).</p>
 <p>We start by specifying the desired behavior of stacks before looking at
 implementations. Here&#39;s the Stack ADT written as a simple Java interface:</p>
 
-<div class="highlight"><pre><code class="java">    
-      <span class="c1">// ADT that stores and retrieves Objects in a LIFO manner</span>
+<div class="highlight"><pre><code class="java"><span class="c1">// ADT that stores and retrieves Objects in a LIFO manner</span>
       <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Stack</span> <span class="o">{</span>
     
          <span class="kd">public</span> <span class="nf">Stack</span><span class="o">(</span> <span class="o">);</span> 
@@ -101,8 +100,7 @@ implementations. Here&#39;s the Stack ADT written as a simple Java interface:</p
          <span class="kd">public</span> <span class="n">Object</span> <span class="nf">top</span><span class="o">(</span> <span class="o">);</span> 
          <span class="c1">// Return the top (most recently pushed) object on the stack, without </span>
          <span class="c1">// removing it. Error occurs if the stack is empty.</span>
-      <span class="o">}</span>
-</code></pre></div>
+      <span class="o">}</span></code></pre></div>
 
 <p><strong>Properties</strong>, given <code>s</code> a stack instance:</p>
 
@@ -130,7 +128,7 @@ three essential operations follow. (I am modifying the book&#39;s pseudocode
 slightly.)</p>
 
 <p><img src="fig/Fig-10-1-a-Stack.jpg" alt=""></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  boolean **isEmpty** ( ) 
+<div class="highlight"><pre><code class="language-text" data-lang="text">  boolean **isEmpty** ( ) 
   1     if top == 0 
   2       return TRUE
   3     else
@@ -170,7 +168,7 @@ scope of the <em>logical</em> definition of the stack ADT. How might it be handl
 problem?</em></p>
 
 <h4>An Improvement</h4>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  Object **pop**( )  // version that dereferences objects for garbage collection
+<div class="highlight"><pre><code class="language-text" data-lang="text">  Object **pop**( )  // version that dereferences objects for garbage collection
   1     if isEmpty()
   2       error &quot;stack underflow&quot; 
   3     else
@@ -190,7 +188,7 @@ prioritization of tasks in computing.</p>
 <h3>Queue ADT</h3>
 
 <p>Again, expressed as a simple Java interface:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  public interface **Queue**{
+<div class="highlight"><pre><code class="language-text" data-lang="text">  public interface **Queue**{
   // ADT that stores and retrieves Objects in a FIFO manner
 
     public **Queue**( ); 
@@ -231,7 +229,7 @@ indexing the next element to dequeue; and <code>int tail</code> indexing the nex
 new element may be placed.</p>
 
 <p><img src="fig/Fig-10-2-a-Queue.jpg" alt=""></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  boolean **isEmpty** ( ) 
+<div class="highlight"><pre><code class="language-text" data-lang="text">  boolean **isEmpty** ( ) 
   1     if head == tail
   2       return TRUE
   3     else
@@ -277,7 +275,7 @@ definition of the ADT).</p>
 <p>This version handles dereferencing but does not check for overflow or
 underflow. It assumes that the array index starts with 0, but can be changed
 for 1-based indexing.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  void **enqueue**(Object o) 
+<div class="highlight"><pre><code class="language-text" data-lang="text">  void **enqueue**(Object o) 
   1     Q[tail] = o
   2     tail = (tail + 1) mod length // mod is % in Java 
 
@@ -328,7 +326,7 @@ under Dynamic Sets later.)</p>
 <h3>Searching</h3>
 
 <p>The procedure for seaching is the same for singly and doubly linked lists:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  ListElement **listSearch**(Key k)
+<div class="highlight"><pre><code class="language-text" data-lang="text">  ListElement **listSearch**(Key k)
   1     e = head
   2     while e ≠ null and e.key ≠ k
   3       e = e.next 
@@ -347,7 +345,7 @@ studies, we&#39;ll go direct to doubly linked lists, but recall that with singly
 linked lists you had to be careful to keep track of the tail end of the list
 that you had &quot;snipped off&quot; during an insertion or deletion. The same applies
 here, but we also have to manage prev pointers.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  void **listInsert**(ListElement e) // inserts at beginning of list
+<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listInsert**(ListElement e) // inserts at beginning of list
   1     e.next = head
   2     if head ≠ null
   3       head.prev = e 
@@ -356,7 +354,7 @@ here, but we also have to manage prev pointers.</p>
 </code></pre></div>
 <p>Inserting 25:<br>
 <img src="fig/Fig-10-3-b-DLL.jpg" alt=""></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  void **listDelete**(ListElement e) // removes from list, wherever it is 
+<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listDelete**(ListElement e) // removes from list, wherever it is 
   1     if e.prev ≠ null
   2       e.prev.next = e.next
   3     else 
@@ -388,7 +386,7 @@ the list.</p>
 references the sentinel.)</p>
 
 <p><img src="fig/Fig-10-4-b-DLL-Sentinel.jpg" alt=""></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  void **listInsert**(ListElement e) // Sentinel version 
+<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listInsert**(ListElement e) // Sentinel version 
   1     e.next = nil.next           
   2     nil.next.prev = e 
   3     nil.next = e 
@@ -510,25 +508,25 @@ can be seen as specializations of the Dynamic Set ADT.</p>
 specification:</p>
 
 <p>SEARCH(S; k)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A query that, given a set S and a key value k, returns a pointer x to an element in S such that x.key = k, or NIL if no such element belongs to S.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given a set S and a key value k, returns a pointer x to an element in S such that x.key = k, or NIL if no such element belongs to S.
 </code></pre></div>
 <p>INSERT(S; x)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A modifying operation that augments the set S with the element pointed to by x. We usually assume that any attributes in element x needed by the set implementation have already been initialized.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A modifying operation that augments the set S with the element pointed to by x. We usually assume that any attributes in element x needed by the set implementation have already been initialized.
 </code></pre></div>
 <p>DELETE(S; x)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A modifying operation that, given a pointer x to an element in the set S, removes x from S. (Note that this operation takes a pointer to an element x, not a key value.)
+<div class="highlight"><pre><code class="language-text" data-lang="text">A modifying operation that, given a pointer x to an element in the set S, removes x from S. (Note that this operation takes a pointer to an element x, not a key value.)
 </code></pre></div>
 <p>MINIMUM(S)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the smallest key.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the smallest key.
 </code></pre></div>
 <p>MAXIMUM(S)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the largest key.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the largest key.
 </code></pre></div>
 <p>SUCCESSOR(S; x)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next larger element in S, or NIL if x is the maximum element.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next larger element in S, or NIL if x is the maximum element.
 </code></pre></div>
 <p>PREDECESSOR(S; x)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next smaller element in S, or NIL if x is the minimum element.
+<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next smaller element in S, or NIL if x is the minimum element.
 </code></pre></div>
 <p>There are some issues with this specification, particularly in the use of x.</p>
 
@@ -547,7 +545,7 @@ but it can be resolved.</p>
 <p>An encapsulated version of the ADT is given as a Java interface below. It
 communicates with clients primarily through keys and associated elements that
 only the client need understand.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">  public interface **DynamicSet** {
+<div class="highlight"><pre><code class="language-text" data-lang="text">  public interface **DynamicSet** {
   // ADT that stores and retrieves Objects according to keys of type KeyType
 
      public **DynamicSet**( ); 
@@ -623,7 +621,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-23 15:59:05 -1000</span></p>
+       Last update on: <span>2014-05-09 10:59:02 -1000</span></p>
   </div>
 </footer>
 </div>

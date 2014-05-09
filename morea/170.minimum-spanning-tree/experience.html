@@ -63,7 +63,7 @@ algorithm is always a minimum spanning tree, or find a counter-example where
 <em>T</em> is not a minimum spanning tree</p>
 
 <p><strong>1. <code>Maybe-MST-A</code></strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-A (G, w)
+<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-A (G, w)
 1  sort the edges into nonincreasing order of edge weights w
 2  T = E
 3  for each edge e, taken in sorted order
@@ -72,7 +72,7 @@ algorithm is always a minimum spanning tree, or find a counter-example where
 6  return T
 </code></pre></div>
 <p><strong>2. <code>Maybe-MST-B</code></strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-B (G, w)
+<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-B (G, w)
 1  T = {} // empty set
 2  for each edge e ∈ E, taken in arbitrary order
 3      if T ∪ {e} has no cycles
@@ -80,7 +80,7 @@ algorithm is always a minimum spanning tree, or find a counter-example where
 5  return T
 </code></pre></div>
 <p><strong>3. <code>Maybe-MST-C</code></strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Maybe-MST-C (G, w)
+<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-C (G, w)
 1  T = {}
 2  for each edge e ∈ E, taken in arbitrary order
 3      T = T ∪ {e}
@@ -106,7 +106,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-23 15:59:05 -1000</span></p>
+       Last update on: <span>2014-05-09 10:59:02 -1000</span></p>
   </div>
 </footer>
 </div>

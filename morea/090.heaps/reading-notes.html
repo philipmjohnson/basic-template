@@ -137,13 +137,13 @@ tree. (A proof by contradiction is possible.)</p>
 binary tree must also satisfy a heap property:</p>
 
 <p><strong>Max Heap Property:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">For all nodes _i_, excluding the root, key(parent(_i_)) ≥ key(_i_).  
+<div class="highlight"><pre><code class="language-text" data-lang="text">For all nodes _i_, excluding the root, key(parent(_i_)) ≥ key(_i_).  
 </code></pre></div>
 <p>By induction and transitivity of ≥, the max heap property guarantees that the
 maximum element of a max-heap is at the root.</p>
 
 <p><strong>Min Heap Property:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">For all nodes _i_, excluding the root, key(parent(_i_)) ≤ key(_i_).  
+<div class="highlight"><pre><code class="language-text" data-lang="text">For all nodes _i_, excluding the root, key(parent(_i_)) ≤ key(_i_).  
 </code></pre></div>
 <p>By induction and transitivity of ≤, the min heap property guarantees that the
 minimum element of a min heap is at the root.</p>
@@ -282,16 +282,16 @@ shows the resulting max heap.</p>
 <p><img src="fig/code-build-max-heap.jpg" alt=""></p>
 
 <p><em><strong>Loop Invariant:</strong></em></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">At the start of every iteration of the `for` loop, each node _i_+1, _i_+2, ..., _n_ is a root of a max heap.
+<div class="highlight"><pre><code class="language-text" data-lang="text">At the start of every iteration of the `for` loop, each node _i_+1, _i_+2, ..., _n_ is a root of a max heap.
 </code></pre></div>
 <p><em><strong>Initialization:</strong></em></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">By Exercise 6.1-7, each node ⌊n/2⌋ \+ 1, ⌊n/2⌋ \+ 2, ..., _n_ is a leaf, which is the root of a trivial max-heap. Since _i_ = ⌊n/2⌋ before the first iteration of the `for` loop, the invariant is initially true. 
+<div class="highlight"><pre><code class="language-text" data-lang="text">By Exercise 6.1-7, each node ⌊n/2⌋ \+ 1, ⌊n/2⌋ \+ 2, ..., _n_ is a leaf, which is the root of a trivial max-heap. Since _i_ = ⌊n/2⌋ before the first iteration of the `for` loop, the invariant is initially true. 
 </code></pre></div>
 <p><em><strong>Maintenance:</strong></em></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Children of node _i_ are indexed higher than _i_, so by the loop invariant, they are both roots of max-heaps. Thus the assumption of MAX-HEAPIFY is met, enabling it to make node _i_ a max-heap root. Decrementing _i_ reestablishes the loop invariant at each iteration.
+<div class="highlight"><pre><code class="language-text" data-lang="text">Children of node _i_ are indexed higher than _i_, so by the loop invariant, they are both roots of max-heaps. Thus the assumption of MAX-HEAPIFY is met, enabling it to make node _i_ a max-heap root. Decrementing _i_ reestablishes the loop invariant at each iteration.
 </code></pre></div>
 <p><em><strong>Termination:</strong></em></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">The loop terminates when _i_ = 0. By the loop invariant, each node including the root indexed by 1 is the root of a max-heap.
+<div class="highlight"><pre><code class="language-text" data-lang="text">The loop terminates when _i_ = 0. By the loop invariant, each node including the root indexed by 1 is the root of a max-heap.
 </code></pre></div>
 <h4>Analysis</h4>
 
@@ -407,16 +407,16 @@ are <em>min</em> and <em>max</em> versions.</p>
 <p>A <strong>max-priority queue</strong> is an ADT with the following operations:</p>
 
 <p>INSERT(S,<em>x</em>)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">S &lt;- S ∪ {_x_}
+<div class="highlight"><pre><code class="language-text" data-lang="text">S &lt;- S ∪ {_x_}
 </code></pre></div>
 <p>MAXIMUM(S)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Returns the element of S with the largest key.
+<div class="highlight"><pre><code class="language-text" data-lang="text">Returns the element of S with the largest key.
 </code></pre></div>
 <p>EXTRACT-MAX(S)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Removes and returns the element of S with the largest key.
+<div class="highlight"><pre><code class="language-text" data-lang="text">Removes and returns the element of S with the largest key.
 </code></pre></div>
 <p>INCREASE-KEY(S,<em>x</em>,<em>k</em>)</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Increases the value of _x_&#39;s key to the new value _k_ ≥ current key(_x_).
+<div class="highlight"><pre><code class="language-text" data-lang="text">Increases the value of _x_&#39;s key to the new value _k_ ≥ current key(_x_).
 </code></pre></div>
 <p>A <strong>min-priority queue</strong> has corresponding operations MINIMUM, EXTRACT-MIN,
 and DECREASE-KEY.</p>
@@ -513,7 +513,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-23 15:59:05 -1000</span></p>
+       Last update on: <span>2014-05-09 10:59:02 -1000</span></p>
   </div>
 </footer>
 </div>

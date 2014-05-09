@@ -98,7 +98,7 @@ finish. (The start time of s is time 0.)</p>
 <p><img src="fig/PS-11-DAG-Template.jpg" alt=""></p>
 
 <h4>Start and End Times for Jobs:</h4>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">job    start   end 
+<div class="highlight"><pre><code class="language-text" data-lang="text">job    start   end 
 -----  -----  -----
 j1
 j2
@@ -122,7 +122,7 @@ distance estimate <em>v</em>.<em>d</em> it had at the time it is put into <em>S<
 TA debug, you may wish to show the entire graph each iteration.) Then identify
 the final distance estimates and explain what distance estimate is in error
 and why.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Step  v put in S  v.d
+<div class="highlight"><pre><code class="language-text" data-lang="text">Step  v put in S  v.d
 ----  ----------  ---
 1.
 2.
@@ -149,8 +149,8 @@ and why.</p>
 
 <p><img src="fig/PS-11-Graph-Prime.jpg" alt=""></p>
 
-<p><strong>(b)</strong> Complete running the **<code>Bellman-Ford</code>** algorithm on the graph you just constructed, using vertex <code>s</code> as the start vertex. For Pass #0 (first line), copy the values of <em>v</em>.d from the graph above and nil for <em>v</em>.π. Then show updated values of <em>d</em> and π for each vertex after each pass of loop at line 2 (at the end, <em>v</em>.d = δ(<em>s</em>,<em>v</em>), which will be used in problem 5). To make it easier for the TA to grade, let&#39;s all relax the edges in the same order, namely lexical order of pairs: <code>(a,b), (a,c), (a,d), (b,c), (b,e), (c,d), (d,e), (e,d), (s,a), (s,b), (s,c), (s,d), (s,e).</code></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Pass#    a._d_  a.π    b._d_  b.π    c._d_  c.π    d._d_  d.π    e._d_  e.π
+<p><strong>(b)</strong> Complete running the <strong><code>Bellman-Ford</code></strong> algorithm on the graph you just constructed, using vertex <code>s</code> as the start vertex. For Pass #0 (first line), copy the values of <em>v</em>.d from the graph above and nil for <em>v</em>.π. Then show updated values of <em>d</em> and π for each vertex after each pass of loop at line 2 (at the end, <em>v</em>.d = δ(<em>s</em>,<em>v</em>), which will be used in problem 5). To make it easier for the TA to grade, let&#39;s all relax the edges in the same order, namely lexical order of pairs: <code>(a,b), (a,c), (a,d), (b,c), (b,e), (c,d), (d,e), (e,d), (s,a), (s,b), (s,c), (s,d), (s,e).</code></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Pass#    a._d_  a.π    b._d_  b.π    c._d_  c.π    d._d_  d.π    e._d_  e.π
 -----    ---  ---    ---  ---    ---  ---    ---  ---    ---  ---
 0.
 1.
@@ -178,7 +178,7 @@ and why.</p>
 <p><img src="fig/PS-11-Graph-NoWeights.jpg" alt=""></p>
 
 <p><strong>(b)</strong> Run Dijkstra&#39;s algorithm on the resulting graph, again using vertex <code>a</code> as the start vertex. Show the resulting δ̂(<em>a</em>,<em>v</em>) as labels inside the vertices.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">Step  v put in S   v.d
+<div class="highlight"><pre><code class="language-text" data-lang="text">Step  v put in S   v.d
 ----  ----------  -----
 1.
 2.
@@ -255,7 +255,7 @@ suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a><br>
-       Last update on: <span>2014-04-23 15:59:05 -1000</span></p>
+       Last update on: <span>2014-05-09 10:59:02 -1000</span></p>
   </div>
 </footer>
 </div>
