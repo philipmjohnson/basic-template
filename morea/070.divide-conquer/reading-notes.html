@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,63 +48,64 @@
 
 
 <div class="container">
-  <h1>Outline</h1>
+  <h1 id="outline">Outline</h1>
 
 <ol>
-<li>Divide &amp; Conquer and Recurrences</li>
-<li>Substitution Method</li>
-<li>Recursion Trees</li>
-<li>Master Theorem &amp; Method</li>
+  <li>Divide &amp; Conquer and Recurrences</li>
+  <li>Substitution Method</li>
+  <li>Recursion Trees</li>
+  <li>Master Theorem &amp; Method</li>
 </ol>
 
-<h2>Divide &amp; Conquer Strategy</h2>
+<h2 id="divide--conquer-strategy">Divide &amp; Conquer Strategy</h2>
 
 <p><strong>Divide</strong>
     the problem into subproblems that are smaller instances of the same problem. 
 <strong>Conquer</strong>
-    the subproblems by solving them recursively. If the subproblems are small enough, solve them trivially or by &quot;brute force.&quot;
+    the subproblems by solving them recursively. If the subproblems are small enough, solve them trivially or by “brute force.”
 <strong>Combine</strong>
     the subproblem solutions to give a solution to the original problem.</p>
 
-<h2>Recurrences</h2>
+<h2 id="recurrences">Recurrences</h2>
 
 <p>The recursive nature of D&amp;C leads to <em>recurrences</em>, or functions defined in
 terms of:</p>
 
 <ul>
-<li>one or more base cases, and </li>
-<li>itself, with smaller arguments.</li>
+  <li>one or more base cases, and </li>
+  <li>itself, with smaller arguments.</li>
 </ul>
 
-<p>Reviewing from <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/No%0Ates/Topic-02.html#mergesort">Topic #2</a>, a common (but not the only) form of recurrence
+<p>Reviewing from <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/No
+tes/Topic-02.html#mergesort">Topic #2</a>, a common (but not the only) form of recurrence
 is as follows. Let <em>T</em>(<em>n</em>) be the running time on a problem of size <em>n</em>.</p>
 
 <ul>
-<li>If <em>n</em> is below some constant (often, <em>n</em>=1), we can solve the problem directly with brute force or trivially in Θ(1) time.</li>
-<li>Otherwise we divide the problem into <em>a</em> subproblems, each 1/<em>b</em> size of the original. </li>
-<li>We pay cost <em>D</em>(<em>n</em>) to divide the problems and <em>C</em>(<em>n</em>) to combine the solutions. </li>
-<li>We also pay cost <em>aT</em>(<em>n</em>/<em>b</em>) solving subproblems. </li>
+  <li>If <em>n</em> is below some constant (often, <em>n</em>=1), we can solve the problem directly with brute force or trivially in Θ(1) time.</li>
+  <li>Otherwise we divide the problem into <em>a</em> subproblems, each 1/<em>b</em> size of the original. </li>
+  <li>We pay cost <em>D</em>(<em>n</em>) to divide the problems and <em>C</em>(<em>n</em>) to combine the solutions. </li>
+  <li>We also pay cost <em>aT</em>(<em>n</em>/<em>b</em>) solving subproblems. </li>
 </ul>
 
 <p>Then the total time to solve a problem of size <em>n</em> can be expressed as:</p>
 
-<p><img src="fig/recurrence-generic.jpg" alt=""></p>
+<p><img src="fig/recurrence-generic.jpg" alt="" /></p>
 
 <p>Some technical points should be made:</p>
 
 <ul>
-<li>Subproblems are not constrained to being a constant fraction of the original problem size, for example, you can have T(<em>n</em>) = T(<em>n-1</em>) + Θ(1).   <em>(What&#39;s an example algorithm that this describes?)</em></li>
-<li>There can be other forms, such as multiple ways of dividing the problem. The book gives an example page 91 that divides the problem into 1/3 and 2/3 parts, requiring terms for T(<em>n/3</em>) and T(<em>2n/3</em>)</li>
-<li>Floors and ceilings can easily be removed and don&#39;t affect the solution to the recurrence.</li>
-<li>Boundary conditions (the smaller order terms that result from base cases) are usually Θ(1) and are omitted from asymptotic analyses, though they do matter for exact solutions.</li>
-<li>Recurrences can be inequalities. We use Big-O or Ω as appropriate. </li>
+  <li>Subproblems are not constrained to being a constant fraction of the original problem size, for example, you can have T(<em>n</em>) = T(<em>n-1</em>) + Θ(1).   <em>(What’s an example algorithm that this describes?)</em></li>
+  <li>There can be other forms, such as multiple ways of dividing the problem. The book gives an example page 91 that divides the problem into 1/3 and 2/3 parts, requiring terms for T(<em>n/3</em>) and T(<em>2n/3</em>)</li>
+  <li>Floors and ceilings can easily be removed and don’t affect the solution to the recurrence.</li>
+  <li>Boundary conditions (the smaller order terms that result from base cases) are usually Θ(1) and are omitted from asymptotic analyses, though they do matter for exact solutions.</li>
+  <li>Recurrences can be inequalities. We use Big-O or Ω as appropriate. </li>
 </ul>
 
 <p>Today we cover three approaches to solving such relations: substitution,
 recursion tree, and the master method. But first, we look at two examples, one
-of which we have already seen ...</p>
+of which we have already seen …</p>
 
-<h3>Merge Sort</h3>
+<h3 id="merge-sort">Merge Sort</h3>
 
 <p>Sort an array A[<em>p</em> .. <em>r</em>] of comparable elements recursivly by divide and
 conquer:</p>
@@ -115,21 +115,22 @@ conquer:</p>
 <strong>Conquer:</strong>
     Recursively sort the two subarrays. If they are singletons, we have the base case. 
 <strong>Combine:</strong>
-    Merge the two sorted subarrays with a (linear) procedure Merge ... 
-<img src="fig/code-merge-sort.jpg" alt=""></p>
+    Merge the two sorted subarrays with a (linear) procedure Merge … 
+<img src="fig/code-merge-sort.jpg" alt="" /></p>
 
-<p>We have seen in <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/No%0Ates/Topic-02.html#mergesort">Topic 2</a> that this has the following recurrence (please
-review Topic 2 if you don&#39;t see why):</p>
+<p>We have seen in <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/No
+tes/Topic-02.html#mergesort">Topic 2</a> that this has the following recurrence (please
+review Topic 2 if you don’t see why):</p>
 
-<p><img src="fig/recurrence-merge-subarray.jpg" alt=""></p>
+<p><img src="fig/recurrence-merge-subarray.jpg" alt="" /></p>
 
-<h3>Recursive Solution to Maximum Subarray</h3>
+<h3 id="recursive-solution-to-maximum-subarray">Recursive Solution to Maximum Subarray</h3>
 
 <p>Suppose you have an array of numbers and need to find the subarray with the
 maximum sum of elements in the subarray. (The problem is trival unless there
 are negative numbers involved.)</p>
 
-<p><img src="fig/Fig-4-3-Maximum-Subarray.jpg" alt=""></p>
+<p><img src="fig/Fig-4-3-Maximum-Subarray.jpg" alt="" /></p>
 
 <p>The book provides a not very convincing application: there are applications to
 graphics (2D version: finding the brightest spot in an image).</p>
@@ -148,29 +149,29 @@ A[<em>low</em> .. <em>high</em>], is:</p>
 <p>The strategy works because any subarray must lie in one of these three
 positions:</p>
 
-<p><img src="fig/Fig-4-4-a-Subarrays.jpg" alt=""></p>
+<p><img src="fig/Fig-4-4-a-Subarrays.jpg" alt="" /></p>
 
-<h4>Pseudocode</h4>
+<h4 id="pseudocode">Pseudocode</h4>
 
 <p>Recursion will handle the lower and upper halves. The algorithm relies on a
 helper to find the crossing subarray. Any maximum subarray crossing the
 midpoint must include arrays ending at A[<em>mid</em>] and starting at A[<em>mid</em>+1]:</p>
 
-<p><img src="fig/Fig-4-4-b-Crossing.jpg" alt=""></p>
+<p><img src="fig/Fig-4-4-b-Crossing.jpg" alt="" /></p>
 
 <p>Therefore the pseudocode finds the maximum array on each side and adds them
 up:</p>
 
-<p><img src="fig/find-max-crossing-subarray.jpg" alt=""></p>
+<p><img src="fig/find-max-crossing-subarray.jpg" alt="" /></p>
 
 <p>It should be clear that the above is Θ(n). The recursive solution follows.</p>
 
-<p><img src="fig/find-maximum-subarray.jpg" alt=""></p>
+<p><img src="fig/find-maximum-subarray.jpg" alt="" /></p>
 
 <p><em>Check your understanding: Where is the work done? What adds up the values in
 the left and right subarrays?</em></p>
 
-<h4>Analysis</h4>
+<h4 id="analysis">Analysis</h4>
 
 <p>The analysis relies on the simplifying assumption that the problem size is a
 power of 2 (the same assumption for merge sort). Let T(<em>n</em>) denote the running
@@ -182,50 +183,54 @@ time of FIND-MAXIMUM-SUBARRAY on a subarray of <em>n</em> elements.</p>
 <p><strong>Recursive Case</strong> (when <em>n</em>&gt;1):</p>
 
 <ul>
-<li>Dividing takes Θ(1) time. </li>
-<li>Conquering solves two subproblems, each on an array of n/2 elements: 2T(<em>n</em>/2). </li>
-<li>Combining calls FIND-MAX-CROSSING-SUBARRAY, which takes Θ(<em>n</em>), and some constant tests: Θ(<em>n</em>) + Θ(1). 
+  <li>Dividing takes Θ(1) time. </li>
+  <li>Conquering solves two subproblems, each on an array of n/2 elements: 2T(<em>n</em>/2). </li>
+  <li>Combining calls FIND-MAX-CROSSING-SUBARRAY, which takes Θ(<em>n</em>), and some constant tests: Θ(<em>n</em>) + Θ(1). 
 T(<em>n</em>)   =   Θ(1) + 2T(<em>n</em>/2) + Θ(<em>n</em>) + Θ(1)   =   2T(<em>n</em>/2) + Θ(<em>n</em>).</li>
 </ul>
 
 <p>The resulting recurrence is the same as for merge sort:</p>
 
-<p><img src="fig/recurrence-merge-subarray.jpg" alt=""></p>
+<p><img src="fig/recurrence-merge-subarray.jpg" alt="" /></p>
 
 <p>So how do we solve these? We have three methods: Substitution, Recursion
 Trees, and the Master Method.</p>
 
-<hr>
+<hr />
 
-<h2>Substitution Method</h2>
+<h2 id="substitution-method">Substitution Method</h2>
 
-<p>Don&#39;t you love it when a &quot;solution method&quot; starts with ...</p>
+<p>Don’t you love it when a “solution method” starts with …</p>
 
 <ol>
-<li>Guess the solution!</li>
-<li>Use induction to find any unspecified constants and show that the solution works.</li>
+  <li>Guess the solution!</li>
+  <li>Use induction to find any unspecified constants and show that the solution works.</li>
 </ol>
 
 <p>Recursion trees (next section) are one way to guess solutions. Experience
 helps too. For example, if a problem is divided in half we may expect to see
 lg <em>n</em> behavior.</p>
 
-<p>As an example, let&#39;s solve the recurrence for merge sort and maximum subarray.
-We&#39;ll start with an exact rather than asymptotic version:</p>
+<p>As an example, let’s solve the recurrence for merge sort and maximum subarray.
+We’ll start with an exact rather than asymptotic version:</p>
 
-<p><img src="fig/recurrence-merge-subarray-exact.jpg" alt=""></p>
+<p><img src="fig/recurrence-merge-subarray-exact.jpg" alt="" /></p>
 
 <ol>
-<li><p><strong>Guess:</strong>   T(<em>n</em>) = <em>n</em> lg <em>n</em> + <em>n</em>.  <em>(Why this guess?)</em></p></li>
-<li><p><strong>Induction:</strong></p></li>
+  <li>
+    <p><strong>Guess:</strong>   T(<em>n</em>) = <em>n</em> lg <em>n</em> + <em>n</em>.  <em>(Why this guess?)</em></p>
+  </li>
+  <li>
+    <p><strong>Induction:</strong></p>
+  </li>
 </ol>
 
 <p><strong><em>Basis:</em></strong>
     <em>n</em> = 1   ⇒   <em>n</em> lg <em>n</em> + <em>n</em>   =   1 lg 1 + 1   =   1   =   T(<em>n</em>). </p>
 
 <p><strong><em>Inductive Step:</em></strong>
-    Inductive hypothesis is that T(<em>k</em>) = <em>k</em> lg <em>k</em> + <em>k</em> for all <em>k &lt; n</em>. We&#39;ll use <em>k = n/2</em>, and show that this implies that T(<em>n</em>) = <em>n</em> lg <em>n</em> + <em>n</em>. First we start with the definition of T(<em>n</em>); then we substitute ...<br>
-<img src="fig/proof-merge-subarray-exact.jpg" alt=""></p>
+    Inductive hypothesis is that T(<em>k</em>) = <em>k</em> lg <em>k</em> + <em>k</em> for all <em>k &lt; n</em>. We’ll use <em>k = n/2</em>, and show that this implies that T(<em>n</em>) = <em>n</em> lg <em>n</em> + <em>n</em>. First we start with the definition of T(<em>n</em>); then we substitute … <br />
+<img src="fig/proof-merge-subarray-exact.jpg" alt="" /></p>
 
 <p>Induction would require that we show our solution holds for the boundary
 conditions. This is discussed in the textbook.</p>
@@ -233,20 +238,20 @@ conditions. This is discussed in the textbook.</p>
 <p>Normally we use asymptotic notation rather than exact forms:</p>
 
 <ul>
-<li>writing T(<em>n</em>) = 2T(<em>n/2</em>) + O(<em>n</em>),</li>
-<li>assuming T(<em>n</em>) = O(1) for sufficiently small <em>n</em>,</li>
-<li>not worrying about boundary or base cases, and</li>
-<li>writing solutions in asymptotic notation, e.g., T(<em>n</em>) = O(<em>n</em> lg <em>n</em>).</li>
+  <li>writing T(<em>n</em>) = 2T(<em>n/2</em>) + O(<em>n</em>),</li>
+  <li>assuming T(<em>n</em>) = O(1) for sufficiently small <em>n</em>,</li>
+  <li>not worrying about boundary or base cases, and</li>
+  <li>writing solutions in asymptotic notation, e.g., T(<em>n</em>) = O(<em>n</em> lg <em>n</em>).</li>
 </ul>
 
-<p>If we want Θ, sometimes we can prove big-O and Ω separately &quot;squeezing&quot; the Θ
+<p>If we want Θ, sometimes we can prove big-O and Ω separately “squeezing” the Θ
 result.</p>
 
 <p>But be careful when using asymptotic notation. For example, suppose you have
 the case where <em>a</em>=4 and <em>b</em>=4 and want to prove T(<em>n</em>) = O(<em>n</em>) by guessing
 that T(<em>n</em>) ≤ <em>cn</em> and writing:</p>
 
-<p><img src="fig/false-proof.jpg" alt=""></p>
+<p><img src="fig/false-proof.jpg" alt="" /></p>
 
 <p>One must prove the <em>exact form</em> of the inductive hypothesis, T(<em>n</em>) ≤ <em>cn</em>.</p>
 
@@ -254,57 +259,57 @@ that T(<em>n</em>) ≤ <em>cn</em> and writing:</p>
 
 <p>Problems 4.3-1 and 4.3-2 are good practice problems.</p>
 
-<hr>
+<hr />
 
-<h2>Recursion Trees</h2>
+<h2 id="recursion-trees">Recursion Trees</h2>
 
 <p>Although recursion trees can be considered a proof format, they are normally
 used to generate guesses that are verified by substitution.</p>
 
 <ul>
-<li>Each node represents the cost of a single subproblem in the set of recursive invocations</li>
-<li>Sum the costs with each level of the tree to obtain per-level costs</li>
-<li>Sum the costs across levels for the total cost.</li>
+  <li>Each node represents the cost of a single subproblem in the set of recursive invocations</li>
+  <li>Sum the costs with each level of the tree to obtain per-level costs</li>
+  <li>Sum the costs across levels for the total cost.</li>
 </ul>
 
-<h3>A Familiar Example</h3>
+<h3 id="a-familiar-example">A Familiar Example</h3>
 
 <p>We have already seen recursion trees when analyzing the recurrence relations
 for Merge Sort:</p>
 
-<p><img src="fig/recurrence-mergesort-c.jpg" alt=""><br>
-<img src="fig/recurrence-tree-mergesort-3.jpg" alt=""></p>
+<p><img src="fig/recurrence-mergesort-c.jpg" alt="" /><br />
+<img src="fig/recurrence-tree-mergesort-3.jpg" alt="" /></p>
 
-<p>The subproblems are of size <em>n</em>/20, <em>n</em>/21, <em>n</em>/22, .... The tree ends when
-<em>n</em>/2<em>p</em> = <em>n</em>/<em>n</em> = 1, the trivial subproblem of size 1.</p>
+<p>The subproblems are of size <em>n</em>/20, <em>n</em>/21, <em>n</em>/22, …. The tree ends when
+<em>n</em>/2_p_ = <em>n</em>/<em>n</em> = 1, the trivial subproblem of size 1.</p>
 
 <p>Thus the height of the tree is the power <em>p</em> to which we have to raise 2
 before it becomes <em>n</em>, i.e., <em>p</em> = lg <em>n</em>. Since we start at 20 there are lg
 <em>n</em> + 1 levels. Multiplying by the work <em>cn</em> at each level, we get <em>cn</em> lg
 <em>n</em> + <em>cn</em> for the total time.</p>
 
-<h3>A More Complex Example</h3>
+<h3 id="a-more-complex-example">A More Complex Example</h3>
 
 <p>A more complex example is developed in the textbook for</p>
 
 <blockquote>
-<p>T(<em>n</em>) = 3T(<em>n</em>/4) + Θ(<em>n</em>2)</p>
+  <p>T(<em>n</em>) = 3T(<em>n</em>/4) + Θ(_n_2)</p>
 </blockquote>
 
 <p>which is rewritten (making the implied constant explicit) as</p>
 
 <blockquote>
-<p>T(<em>n</em>) = 3T(<em>n</em>/4)+ <em>cn</em>2</p>
+  <p>T(<em>n</em>) = 3T(<em>n</em>/4)+ _cn_2</p>
 </blockquote>
 
-<p><img src="fig/Fig-4-5-Recursion-Tree-a.jpg" alt=""> node, T(<em>n</em>) = 3T(<em>n</em>/4)
-+<em>cn</em>2.</p>
+<p><img src="fig/Fig-4-5-Recursion-Tree-a.jpg" alt="" /> node, T(<em>n</em>) = 3T(<em>n</em>/4)
++_cn_2.</p>
 
 <p>We can develop the recursion tree in steps, as follows. First, we begin the
-tree with its root <img src="fig/Fig-4-5-Recursion-Tree-b.jpg" alt=""></p>
+tree with its root <img src="fig/Fig-4-5-Recursion-Tree-b.jpg" alt="" /></p>
 
-<p>Now let&#39;s branch the tree for the three recursive terms 3T(<em>n</em>/4). There are
-three children nodes with T(<em>n</em>/4) as their cost, and we leave the cost <em>cn</em>2
+<p>Now let’s branch the tree for the three recursive terms 3T(<em>n</em>/4). There are
+three children nodes with T(<em>n</em>/4) as their cost, and we leave the cost _cn_2
 behind at the root node.</p>
 
 <p>We repeat this for the subtrees rooted at each of the nodes for T(<em>n/4</em>):
@@ -312,45 +317,45 @@ Since each of these costs 3T((<em>n</em>/4)/4) +<em>c</em>(<em>n</em>/4)2, we ma
 each costing T((<em>n</em>/4)/4) = T(<em>n</em>/16), and leave the <em>c</em>(<em>n</em>/4)2 terms behind
 at their roots.</p>
 
-<p><img src="fig/Fig-4-5-Recursion-Tree-c.jpg" alt=""></p>
+<p><img src="fig/Fig-4-5-Recursion-Tree-c.jpg" alt="" /></p>
 
 <p>Continuing this way until we reach the leaf nodes where the recursion ends at
 trivial subproblems T(1), the tree looks like this:</p>
 
-<p><img src="fig/Fig-4-5-Recursion-Tree-d.jpg" alt=""></p>
+<p><img src="fig/Fig-4-5-Recursion-Tree-d.jpg" alt="" /></p>
 
-<p>Subproblem size for a node at depth <em>i</em> is <em>n</em>/4<em>i</em>, so the subproblem size
-reaches <em>n</em> = 1 when (assuming <em>n</em> a power of 4) <em>n</em>/4<em>i</em> = 1, or when <em>i</em> =
-log4<em>n</em>.<br>
-Including <em>i</em> = 0, there are log4<em>n</em> + 1 levels. Each level has 3<em>i</em> nodes.<br>
-Substituting <em>i</em> = log4<em>n</em> into 3<em>i</em>, there are 3log4<em>n</em> nodes in the bottom
-level.<br>
-Using alogbc = clogba, there are <em>n</em>log43 in the bottom level (<em>not</em> <em>n</em>, as
+<p>Subproblem size for a node at depth <em>i</em> is <em>n</em>/4_i<em>, so the subproblem size
+reaches _n</em> = 1 when (assuming <em>n</em> a power of 4) <em>n</em>/4_i_ = 1, or when <em>i</em> =
+log4_n<em>.<br />
+Including _i</em> = 0, there are log4_n_ + 1 levels. Each level has 3_i_ nodes.<br />
+Substituting <em>i</em> = log4_n_ into 3_i<em>, there are 3log4_n</em> nodes in the bottom
+level.<br />
+Using alogbc = clogba, there are <em>n_log43 in the bottom level (_not</em> <em>n</em>, as
 in the previous problem).</p>
 
-<p>Adding up the levels, we get:<br>
-<img src="fig/solution-recursion-tree-1.jpg" alt=""></p>
+<p>Adding up the levels, we get:<br />
+<img src="fig/solution-recursion-tree-1.jpg" alt="" /></p>
 
 <p>It is easier to solve this summation if we change the equation to an
 inequality and let the summation go to infinity (the terms are decreasing
-geometrically), allowing us to apply equation A.6 (∑<em>k</em>=0,∞<em>xk</em> = 1/1-<em>x</em>):<br>
-<img src="fig/gsolution-recursion-tree-2.jpg" alt=""></p>
+geometrically), allowing us to apply equation A.6 (∑<em>k</em>=0,∞<em>xk</em> = 1/1-<em>x</em>):<br />
+<img src="fig/gsolution-recursion-tree-2.jpg" alt="" /></p>
 
 <p>Additional observation: since the root contributes <em>cn2</em>, the root dominates
-the cost of the tree, and the recurrence must also be Ω(<em>n</em>2), so we have
-Θ(<em>n</em>2).</p>
+the cost of the tree, and the recurrence must also be Ω(_n_2), so we have
+Θ(_n_2).</p>
 
 <p>Please see the text for an example involving unequal subtrees. For practice,
-exercises 4.4-6 and 4.4-9 have solutions posted on the book&#39;s web site.</p>
+exercises 4.4-6 and 4.4-9 have solutions posted on the book’s web site.</p>
 
-<hr>
+<hr />
 
-<h2>Master Theorem &amp; Method</h2>
+<h2 id="master-theorem--method">Master Theorem &amp; Method</h2>
 
 <p>If we have a divide and conquer recurrence of the form</p>
 
 <blockquote>
-<p>T(<em>n</em>) = <em>a</em>T(<em>n/b</em>) + <em>f(n)</em>  </p>
+  <p>T(<em>n</em>) = <em>a_T(_n/b</em>) + <em>f(n)</em>  </p>
 </blockquote>
 
 <p>where <em>a ≥ 1</em>, <em>b &gt; 1</em>, and <em>f(n) &gt; 0</em> is asymptotically positive,</p>
@@ -358,76 +363,79 @@ exercises 4.4-6 and 4.4-9 have solutions posted on the book&#39;s web site.</p>
 <p>then we can apply the <strong>master method</strong>, which is based on the <strong>master
 theorem</strong>. We compare <em>f(n)</em> to <em>nlogba</em> under asymptotic (in)equality:</p>
 
-<p><strong>Case 1: <em>f(n)</em> = O(<em>nlogba - ε</em>)</strong> for some constant <em>ε</em> &gt; 0.<br>
-    (That is, <em>f(n)</em> is polynomially smaller than <em>nlogba</em>.)<br>
-    <strong><em>Solution:</em></strong> T(<em>n</em>) = <strong>Θ(<em>nlogba</em>).</strong><br>
+<p><strong>Case 1: <em>f(n)</em> = O(<em>nlogba - ε</em>)</strong> for some constant <em>ε</em> &gt; 0.<br />
+    (That is, <em>f(n)</em> is polynomially smaller than <em>nlogba</em>.)<br />
+    <strong><em>Solution:</em></strong> T(<em>n</em>) = <strong>Θ(<em>nlogba</em>).</strong> <br />
     Intuitively: the cost is dominated by the leaves.</p>
 
-<p><strong>Case 2: <em>f(n)</em> = Θ(<em>nlogba</em>)</strong>, or more generally (exercise 4.6-2): <em>f(n)</em> = Θ(<em>nlogba</em>lg<em>k</em><em>n</em>), where <em>k</em> ≥ 0.<br>
-    (That is, <em>f(n)</em> is within a polylog factor of <em>nlogba</em>, but not smaller.)<br>
-    <em><strong>Solution:</strong></em> T(<em>n</em>) = <strong>Θ(<em>nlogba</em>lg<em>n</em>),</strong> or T(<em>n</em>) = Θ(<em>nlogba</em>lg<em>k+1</em><em>n</em>) in the more general case.<br>
-    Intuitively: the cost is <em>nlogba</em>lg<em>k</em> at each level and there are Θ(lg<em>n</em>) levels.</p>
+<p><strong>Case 2: <em>f(n)</em> = Θ(<em>nlogba</em>)</strong>, or more generally (exercise 4.6-2): <em>f(n)</em> = Θ(<em>nlogba_lg_k__n</em>), where <em>k</em> ≥ 0.<br />
+    (That is, <em>f(n)</em> is within a polylog factor of <em>nlogba</em>, but not smaller.)<br />
+    <em><strong>Solution:</strong></em> T(<em>n</em>) = <strong>Θ(<em>nlogba_lg_n</em>),</strong> or T(<em>n</em>) = Θ(<em>nlogba_lg_k+1__n</em>) in the more general case.<br />
+    Intuitively: the cost is <em>nlogba_lg_k</em> at each level and there are Θ(lg_n_) levels.</p>
 
-<p><strong>Case 3: <em>f(n)</em>= Ω(<em>nlogba + ε</em>)</strong> for some constant <em>ε</em> &gt; 0, and <em>f(n)</em> satisfies the regularity condition <em>af(n/b) ≤ cf(n)</em> for some constant <em>c&lt;1</em> and all sufficiently large <em>n</em>.<br>
-    (That is, <em>f(n)</em> is polynomially greater than <em>nlogba</em>.)<br>
-    <em><strong>Solution:</strong></em> T(<em>n</em>) = <strong>Θ(<em>f(n)</em>)</strong>,<br>
+<p><strong>Case 3: <em>f(n)</em>= Ω(<em>nlogba + ε</em>)</strong> for some constant <em>ε</em> &gt; 0, and <em>f(n)</em> satisfies the regularity condition <em>af(n/b) ≤ cf(n)</em> for some constant <em>c&lt;1</em> and all sufficiently large <em>n</em>. <br />
+    (That is, <em>f(n)</em> is polynomially greater than <em>nlogba</em>.)<br />
+    <em><strong>Solution:</strong></em> T(<em>n</em>) = <strong>Θ(<em>f(n)</em>)</strong>,<br />
     Intuitively: the cost is dominated by the root.</p>
 
 <p>Important: there are functions that fall between the cases!</p>
 
-<h3>Examples</h3>
+<h3 id="examples">Examples</h3>
 
-<p><strong>T(<em>n</em>) = 5T(<em>n</em>/2) + Θ(<em>n</em>2)</strong></p>
-
-<ul>
-<li><em>a</em> = 5, <em>b</em> = 2, <em>f</em>(<em>n</em>) = <em>n</em>2</li>
-<li>Compare   <em>n</em>2   to   <em>n</em>log<em>b</em><em>a</em> = <em>n</em>log25. </li>
-<li>log25 - ε = 2 for some constant ε &gt; 0. </li>
-<li>Case 1: T(<em>n</em>) = Θ(<em>n</em>lg 5). </li>
-</ul>
-
-<p><strong>T(<em>n</em>) = 27T(<em>n</em>/3) + Θ(<em>n</em>3 lg <em>n</em>)</strong></p>
+<p><strong>T(<em>n</em>) = 5T(<em>n</em>/2) + Θ(_n_2)</strong></p>
 
 <ul>
-<li><em>a</em> = 27, <em>b</em> = 3, <em>f</em>(<em>n</em>) = <em>n</em>3 lg <em>n</em></li>
-<li>Compare   <em>n</em>3 lg <em>n</em>   to   <em>n</em>log327 = <em>n</em>3</li>
-<li>Case 2 with <em>k</em> = 1: T(<em>n</em>) = Θ(<em>n</em>3 lg2 <em>n</em>). </li>
+  <li><em>a</em> = 5, <em>b</em> = 2, <em>f</em>(<em>n</em>) = _n_2</li>
+  <li>Compare   <em>n_2   to   _n_log_b__a</em> = _n_log25. </li>
+  <li>log25 - ε = 2 for some constant ε &gt; 0. </li>
+  <li>Case 1: T(<em>n</em>) = Θ(_n_lg 5). </li>
 </ul>
 
-<p><strong>T(<em>n</em>) = 5T(<em>n</em>/2) + Θ(<em>n</em>3)</strong></p>
+<p><strong>T(<em>n</em>) = 27T(<em>n</em>/3) + Θ(<em>n_3 lg _n</em>)</strong></p>
 
 <ul>
-<li><em>a</em> = 5, <em>b</em> = 2, <em>f</em>(<em>n</em>) = <em>n</em>3</li>
-<li>Compare   <em>n</em>3   to   <em>n</em>log25</li>
-<li>log25 + ε = 3 for some constant ε &gt; 0. </li>
-<li><p>Check regularity condition (not necessary since <em>f</em>(<em>n</em>) is polynomial:<br>
-<em>a</em><em>f</em>(<em>n</em>/<em>b</em>) = 5(<em>n</em>/2)3 = 5<em>n</em>3/8 ≤ <em>cn</em>3 for <em>c</em> = 5/8 &lt; 1.</p></li>
-<li><p>Case 3: T(<em>n</em>) = Θ(<em>n</em>3). </p></li>
+  <li><em>a</em> = 27, <em>b</em> = 3, <em>f</em>(<em>n</em>) = <em>n_3 lg _n</em></li>
+  <li>Compare   <em>n_3 lg _n</em>   to   _n_log327 = _n_3</li>
+  <li>Case 2 with <em>k</em> = 1: T(<em>n</em>) = Θ(<em>n_3 lg2 _n</em>). </li>
 </ul>
 
-<p><strong>T(<em>n</em>) = 27T(<em>n</em>/3) + Θ(<em>n</em>3 / lg <em>n</em>)</strong></p>
+<p><strong>T(<em>n</em>) = 5T(<em>n</em>/2) + Θ(_n_3)</strong></p>
 
 <ul>
-<li><em>a</em> = 27, <em>b</em> = 3, <em>f</em>(<em>n</em>) = <em>n</em>3 / lg <em>n</em></li>
-<li>Compare   <em>n</em>3/lg <em>n</em>   to   <em>n</em>log327 = <em>n</em>3</li>
-<li>Cases 1 and 3 won&#39;t work as no ε can adjust the exponent of 3 to account for the 1/lg<em>n</em> = lg−1<em>n</em> factor. Only hope is Case 2. </li>
-<li>But <em>n</em>3/lg <em>n</em> = <em>n</em>3 lg−1<em>n</em> ≠ Θ(<em>n</em>3 lg<em>k</em> <em>n</em>) for any <em>k</em> ≥ 0. </li>
-<li>Cannot use master method. </li>
-<li>Could try substitution, which requires a guess. Drawing the full recursion tree would be tedious, but perhaps visualizing its general form would help with the guess. </li>
+  <li><em>a</em> = 5, <em>b</em> = 2, <em>f</em>(<em>n</em>) = _n_3</li>
+  <li>Compare   _n_3   to   _n_log25</li>
+  <li>log25 + ε = 3 for some constant ε &gt; 0. </li>
+  <li>
+    <p>Check regularity condition (not necessary since <em>f</em>(<em>n</em>) is polynomial:<br />
+<em>a__f</em>(<em>n</em>/<em>b</em>) = 5(<em>n</em>/2)3 = 5_n_3/8 ≤ <em>cn_3 for _c</em> = 5/8 &lt; 1.</p>
+  </li>
+  <li>Case 3: T(<em>n</em>) = Θ(_n_3). </li>
 </ul>
 
-<hr>
+<p><strong>T(<em>n</em>) = 27T(<em>n</em>/3) + Θ(<em>n_3 / lg _n</em>)</strong></p>
 
-<h2>Next</h2>
+<ul>
+  <li><em>a</em> = 27, <em>b</em> = 3, <em>f</em>(<em>n</em>) = <em>n_3 / lg _n</em></li>
+  <li>Compare   <em>n_3/lg _n</em>   to   _n_log327 = _n_3</li>
+  <li>Cases 1 and 3 won’t work as no ε can adjust the exponent of 3 to account for the 1/lg_n_ = lg−1_n_ factor. Only hope is Case 2. </li>
+  <li>But <em>n_3/lg _n</em> = <em>n_3 lg−1_n</em> ≠ Θ(<em>n_3 lg_k</em> <em>n</em>) for any <em>k</em> ≥ 0. </li>
+  <li>Cannot use master method. </li>
+  <li>Could try substitution, which requires a guess. Drawing the full recursion tree would be tedious, but perhaps visualizing its general form would help with the guess. </li>
+</ul>
+
+<hr />
+
+<h2 id="next">Next</h2>
 
 <p>Chapter 12, Binary Search Trees (entire chapter), to which we can apply divide
 &amp; conquer and use recurrence relations.</p>
 
-<hr>
+<hr />
 
-<p>Dan Suthers Last modified: Sat Feb 8 02:42:12 HST 2014<br>
-Images are from the instructor&#39;s material for Cormen et al. Introduction to
+<p>Dan Suthers Last modified: Sat Feb 8 02:42:12 HST 2014<br />
+Images are from the instructor’s material for Cormen et al. Introduction to
 Algorithms, Third Edition.  </p>
+
 
 </div>
 
@@ -437,12 +445,12 @@ Algorithms, Third Edition.  </p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

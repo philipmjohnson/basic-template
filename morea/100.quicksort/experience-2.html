@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,13 +48,15 @@
 
 
 <div class="container">
-  <h3>Quicksort</h3>
+  <h3 id="quicksort">Quicksort</h3>
 
-<h4>12 points</h4>
+<h4 id="points">12 points</h4>
 
 <p>Show the operation of Partition (not randomized) on this 1-based array:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> A = [1, 6, 2, 8, 3, 9, 4, 7, 5], p=1, q=9 
-</code></pre></div>
+
+<pre><code> A = [1, 6, 2, 8, 3, 9, 4, 7, 5], p=1, q=9 
+</code></pre>
+
 <p>and the two sub-partitions that result as directed below. In other words, you
 will trace the three calls to Partition that are highest in the recursion
 tree. (They are <em>not</em> the first three calls: #1 is the first call and #2 is
@@ -64,11 +65,12 @@ recursive calls breaking down #2.)</p>
 
 <p>In order to make the desired response format clear and to make it easy for the
 TA to grade, I am providing a template for your response. You are to fill in
-wherever the underscore character &quot;<em>&quot; appears. Use a plain text editor with
+wherever the underscore character “<em>” appears. Use a plain text editor with
 _fixed-width font</em>. Be sure to fill in all fields marked with underscore: use
 search to make sure you get them all. I start you off with the first few
 lines: continue in the same pattern.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">**(#1) Call to Partition (A, 1, 9) made in Line 2 of the initial call to Quicksort:**
+
+<pre><code>**(#1) Call to Partition (A, 1, 9) made in Line 2 of the initial call to Quicksort:**
 
   Initially: 
   A = [1, 6, 2, 8, 3, 9, 4, 7, 5], i=0, j=1, pivot = A[r] = A[9] = 5 
@@ -128,18 +130,20 @@ What does this second call to Partition return? __
   A = [_, _, _, _, _, _, _, _, _], i=_, j=_, exchanged A[_] with A[_] 
 
 What does this third call to Partition return? __
-</code></pre></div>
+</code></pre>
+
 <p>Not graded, but you might think about:</p>
 
 <ul>
-<li>What pattern do you see in the second call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? </li>
-<li>What pattern do you see in the third call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? </li>
-<li>What do these observations tell us about the runtime of Quicksort on data organized as in these partitions? </li>
+  <li>What pattern do you see in the second call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? </li>
+  <li>What pattern do you see in the third call to Partition? Will this pattern continue in the subsequent calls to Partition in that half of the array? </li>
+  <li>What do these observations tell us about the runtime of Quicksort on data organized as in these partitions? </li>
 </ul>
 
-<hr>
+<hr />
 
 <p>Dan Suthers Last modified: Wed Mar 19 23:22:39 HST 2014</p>
+
 
 </div>
 
@@ -149,12 +153,12 @@ What does this third call to Partition return? __
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

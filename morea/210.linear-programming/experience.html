@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,43 +48,46 @@
 
 
 <div class="container">
-  <h3>Modeling Shortest-Paths Problems with Linear Programming:</h3>
+  <h3 id="modeling-shortest-paths-problems-with-linear-programming">Modeling Shortest-Paths Problems with Linear Programming:</h3>
 
-<p><img src="fig/Problem-Set-12-Shortest-Paths-Graph-for-LP.jpg" alt=""></p>
+<p><img src="fig/Problem-Set-12-Shortest-Paths-Graph-for-LP.jpg" alt="" /></p>
 
-<p><strong>1. Single-Source, Single-Destination (2 pts)</strong><br>
+<p><strong>1. Single-Source, Single-Destination (2 pts)</strong><br />
 <em>Write the explicit linear program for finding the shortest path from node
 <strong>a</strong> to node <strong>e</strong></em> in the graph above (single-source, single destination
-shortest paths). By &quot;explicit&quot; I mean <em>write all the inequalities and
-equations</em> using variables <em>d</em>a, <em>d</em>b, <em>d</em>c, <em>d</em>d, and <em>d</em>e, and the actual
-numbers for <em>w</em>(<em>u</em>,<em>v</em>), not the generic form on page 860. The first line is
+shortest paths). By “explicit” I mean <em>write all the inequalities and
+equations</em> using variables <em>d_a, _d_b, _d_c, _d_d, and _d_e, and the actual
+numbers for _w</em>(<em>u</em>,<em>v</em>), not the generic form on page 860. The first line is
 shown.</p>
 
 <p><strong>Maximize:</strong>  </p>
 
 <p><strong>Subject to constraints:</strong>  </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    _d__b_ ≤ _d__a_ \+ 1 
-</code></pre></div>
+
+<pre><code>    _d__b_ ≤ _d__a_ \+ 1 
+</code></pre>
+
 <p><em>Do you see how this gets _shortest</em> paths even though we are maximizing
 distances?_</p>
 
-<p>*<em>2. Single-Source, All-Destinations (1 pt) *</em>  </p>
+<p>**2. Single-Source, All-Destinations (1 pt) **  </p>
 
 <p><em>How would you generalize the program you wrote above to solve the single
 source shortest paths problem from <strong>a</strong> to <strong>all vertices</strong></em> in the graph
 above? Write the part that changes.</p>
 
-<p><strong>3. Slack Form (2 pts)</strong><br>
+<p><strong>3. Slack Form (2 pts)</strong> <br />
 Rewrite your equations and inequalities to be in slack form. Every variable
 you used above should appear in every equation, even if they have 0
 coefficients. Make all the coefficients explicit, including 0 and 1
 coefficients (this will help you see what goes into the matrix). Use slack
-variables <em>y</em>1, <em>y</em>2, ... in addition to the variables above. There should be
+variables _y_1, _y_2, … in addition to the variables above. There should be
 only one constant on the right hand side.</p>
 
-<p>-1<em>d</em><em>a</em> + 1<em>d</em><em>b</em> + 0<em>d</em><em>c</em> + 0<em>d</em><em>d</em> + 0<em>d</em><em>e</em> + <em>y</em>1 = 1</p>
+<p>-1_d__a_ + 1_d__b_ + 0_d__c_ + 0_d__d_ + 0_d__e_ + _y_1 = 1</p>
 
 <p><strong>Got time? All-Pairs Shortest Paths:</strong> How would you need to modify the linear program you wrote in part 1 and 2 to solve the all-pairs shortest paths problem in the graph above?</p>
+
 
 </div>
 
@@ -95,12 +97,12 @@ only one constant on the right hand side.</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

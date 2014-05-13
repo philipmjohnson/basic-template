@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,26 +48,26 @@
 
 
 <div class="container">
-  <h2>#1. Peer Credit Assignment</h2>
+  <h2 id="peer-credit-assignment">#1. Peer Credit Assignment</h2>
 
-<h3>1 Point Extra Credit for replying</h3>
+<h3 id="point-extra-credit-for-replying">1 Point Extra Credit for replying</h3>
 
 <p>Please list the names of the other members of your peer group for this week
 and the number of extra credit points you think they deserve for their
 participation in group work on Tuesday and Thursday combined.</p>
 
 <ul>
-<li>If three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
-<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
-<li>If only one other member was present, you have a total of 6 points to allocate.</li>
-<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+  <li>If three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+  <li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+  <li>If only one other member was present, you have a total of 6 points to allocate.</li>
+  <li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
 </ul>
 
-<h2>#2. Correctness of <code>LinearSearch</code></h2>
+<h2 id="correctness-of-linearsearch">#2. Correctness of <code>LinearSearch</code></h2>
 
-<h3>5 points</h3>
+<h3 id="points">5 points</h3>
 
-<p><strong>(a)</strong> Show the pseudocode for <code>LinearSearch</code> that you will be analyzing. It should be code that you understand and believe is correct, so you may revise your group&#39;s solution if you wish. Give each line a number for reference in your analysis.</p>
+<p><strong>(a)</strong> Show the pseudocode for <code>LinearSearch</code> that you will be analyzing. It should be code that you understand and believe is correct, so you may revise your group’s solution if you wish. Give each line a number for reference in your analysis.</p>
 
 <p><strong>(b)</strong> Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the three necessary properties (page 19).</p>
 
@@ -78,32 +77,33 @@ write a simpler one that gets part of the work done, and reason about the two
 exit conditions when you show how the invariant _helps</em> to prove
 correctness.)_</p>
 
-<h2>#3. Runtime of <code>BinarySearch</code></h2>
+<h2 id="runtime-of-binarysearch">#3. Runtime of <code>BinarySearch</code></h2>
 
-<h3>5 points</h3>
+<h3 id="points-1">5 points</h3>
 
 <p>This problem steps you through a recursion tree analysis of BinarySearch (the
 algorithm for searching a sorted array that was reviewed in class) to show
 that it is Θ(lg <em>n</em>) in the worst case (that is, O(lg <em>n</em>) in general). Θ and
-&quot;big-O&quot; are concepts introduced in Topic 3: if they are not familiar to you,
+“big-O” are concepts introduced in Topic 3: if they are not familiar to you,
 just think of this as meaning the longest possible execution on input of size
 <em>n</em> will take time proportional to lg <em>n</em>.</p>
 
-<p><strong>(a)</strong> Write the recurrence relation for <code>BinarySearch</code>, using the formula T(<em>n</em>) = <em>a</em>T(<em>n</em>/<em>b</em>) + D(<em>n</em>) + C(<em>n</em>). (We&#39;ll assume T(1) = some constant <em>c</em>, and you can use <em>c</em> to represent other constants as well, since we can choose <em>c</em> to be large enough to work as an upper bound everywhere it is used.)</p>
+<p><strong>(a)</strong> Write the recurrence relation for <code>BinarySearch</code>, using the formula T(<em>n</em>) = <em>a_T(_n</em>/<em>b</em>) + D(<em>n</em>) + C(<em>n</em>). (We’ll assume T(1) = some constant <em>c</em>, and you can use <em>c</em> to represent other constants as well, since we can choose <em>c</em> to be large enough to work as an upper bound everywhere it is used.)</p>
 
-<p><strong>(b)</strong> Draw the recursion tree for <code>BinarySearch</code>, in the style shown in podcast 2E and in Figure 2.5. (Don&#39;t just copy the example for <code>MergeSort</code>: it will be incorrect. Make use of the recurrence relation you just wrote!)</p>
+<p><strong>(b)</strong> Draw the recursion tree for <code>BinarySearch</code>, in the style shown in podcast 2E and in Figure 2.5. (Don’t just copy the example for <code>MergeSort</code>: it will be incorrect. Make use of the recurrence relation you just wrote!)</p>
 
 <p><strong>(c)</strong> Using a format similar to the counting argument in Figure 2.5 of the text or of podcast 2E, use the tree to show that <code>BinarySearch</code> is Θ(lg <em>n</em>) in the worst case. Specifically,</p>
 
 <ol>
-<li>show what the row totals are,</li>
-<li>write an expression for the tree height (justifying it), and</li>
-<li>use this information to determine the total computation represented by the tree.</li>
+  <li>show what the row totals are,</li>
+  <li>write an expression for the tree height (justifying it), and</li>
+  <li>use this information to determine the total computation represented by the tree.</li>
 </ol>
 
 <p>Since this problem involves mathematical expressions and diagrams, you may
 want to do your work on paper and digitize it (please compress images) and
 submit as jpg or pdf. Alternatively, use a drawing program.</p>
+
 
 </div>
 
@@ -113,12 +113,12 @@ submit as jpg or pdf. Alternatively, use a drawing program.</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

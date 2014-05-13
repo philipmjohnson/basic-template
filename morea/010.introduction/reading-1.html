@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,14 +48,14 @@
 
 
 <div class="container">
-  <h2>Algorithms and Programs</h2>
+  <h2 id="algorithms-and-programs">Algorithms and Programs</h2>
 
-<p>By now you have a working idea of what a &quot;program&quot; is because you have written
+<p>By now you have a working idea of what a “program” is because you have written
 many. Programs are particular instructions that work on specific machines.</p>
 
 <p>In this course we work with an abstraction of programs: algorithms.</p>
 
-<h3>Algorithms</h3>
+<h3 id="algorithms">Algorithms</h3>
 
 <p>Informally, an algorithm is a well-defined computational procedure that takes
 some value(s) as input and produces some value(s) as output.</p>
@@ -66,11 +65,11 @@ chosen from a finite, fixed set of instructions, where the sequence of
 instructions satisfies the following criteria:</p>
 
 <ul>
-<li><strong>Input:</strong> It has zero or more input parameters. </li>
-<li><strong>Output:</strong> It produces at least one output parameter. </li>
-<li><strong>Definiteness:</strong> Each instruction must be clear and unambiguous. </li>
-<li><strong>Finiteness:</strong> For every input, it executes only a finite number of instructions (it eventually halts). </li>
-<li><strong>Effectiveness:</strong> Every instruction must be sufficiently basic so that a machine can execute the instruction.</li>
+  <li><strong>Input:</strong> It has zero or more input parameters. </li>
+  <li><strong>Output:</strong> It produces at least one output parameter. </li>
+  <li><strong>Definiteness:</strong> Each instruction must be clear and unambiguous. </li>
+  <li><strong>Finiteness:</strong> For every input, it executes only a finite number of instructions (it eventually halts). </li>
+  <li><strong>Effectiveness:</strong> Every instruction must be sufficiently basic so that a machine can execute the instruction.</li>
 </ul>
 
 <p><em>Discussion:</em> What is the difference between an algorithm and a program?</p>
@@ -78,9 +77,9 @@ instructions satisfies the following criteria:</p>
 <p><em>Discussion:</em> What kinds of algorithms do you think are needed when you use
 your smartphone (or any mobile phone for that matter?)</p>
 
-<hr>
+<hr />
 
-<h2>Algorithm Design &amp; Analysis</h2>
+<h2 id="algorithm-design--analysis">Algorithm Design &amp; Analysis</h2>
 
 <p>Here is how algorithm design is situated within the phases of problem solving
 in software development:</p>
@@ -93,9 +92,9 @@ input and output of the problem clearly.</p>
 <p>Phase 2: <strong>Design and Analysis of an Algorithm</strong> for the Problem (our focus)</p>
 
 <ul>
-<li>Step 1: <strong>Specification</strong> of an Algorithm - <strong>what is it?</strong></li>
-<li>Step 2: <strong>Verification</strong> of the Algorithm - <strong>is it correct?</strong></li>
-<li>Step 3: <strong>Analysis</strong> of the Algorithms - <strong>what is its time and space complexity?</strong></li>
+  <li>Step 1: <strong>Specification</strong> of an Algorithm - <strong>what is it?</strong></li>
+  <li>Step 2: <strong>Verification</strong> of the Algorithm - <strong>is it correct?</strong></li>
+  <li>Step 3: <strong>Analysis</strong> of the Algorithms - <strong>what is its time and space complexity?</strong></li>
 </ul>
 
 <p>Phase 3: <strong>Implementation of the Algorithm</strong></p>
@@ -113,9 +112,9 @@ language control structures, mathematical notation, and natural language
 written to be as unambiguous as possible. Examples will be given in the next
 lecture. In this course, we will use mostly the notation used in the book.</p>
 
-<hr>
+<hr />
 
-<h3>Why not just test programs?</h3>
+<h3 id="why-not-just-test-programs">Why not just test programs?</h3>
 
 <p>Why not just run experimental studies on programs? We can implement the
 algorithms of interest, run them on a modern computer on various input sizes,
@@ -125,27 +124,27 @@ and compare the results. Why bother with all this math in the book?</p>
 experimental studies:</p>
 
 <ul>
-<li>To run experiments, you have to implement and run the algorithm. Implementation takes time, and some of these runs may take a long time.</li>
-<li>Experiments can only be done on a limited set of test inputs. Are you sure your results generalize to all possible inputs? </li>
-<li>It is difficult to compare the efficency of tests run on one hardware and software environment to what will happen on others. Are you sure that your results generalize across platforms? </li>
+  <li>To run experiments, you have to implement and run the algorithm. Implementation takes time, and some of these runs may take a long time.</li>
+  <li>Experiments can only be done on a limited set of test inputs. Are you sure your results generalize to all possible inputs? </li>
+  <li>It is difficult to compare the efficency of tests run on one hardware and software environment to what will happen on others. Are you sure that your results generalize across platforms? </li>
 </ul>
 
 <p>Formal analysis of algorithms:</p>
 
 <ul>
-<li>Can be performed on a high-level description of the algorithm without implementation.</li>
-<li>Takes into account all possible inputs. </li>
-<li>Allows comparisons of algorithms independently of hardware and software.</li>
+  <li>Can be performed on a high-level description of the algorithm without implementation.</li>
+  <li>Takes into account all possible inputs. </li>
+  <li>Allows comparisons of algorithms independently of hardware and software.</li>
 </ul>
 
 <p>So, there is a good reason ICS 311 is THE central course of the ICS
 curriculum! Stick with us.</p>
 
-<hr>
+<hr />
 
-<h2>Computational Complexity</h2>
+<h2 id="computational-complexity">Computational Complexity</h2>
 
-<h3>Input Size</h3>
+<h3 id="input-size">Input Size</h3>
 
 <p>The computational complexity of an algorithm generally depends on the amount
 of information given as input to the algorithm.</p>
@@ -161,17 +160,17 @@ bounded length, or data record).</p>
 <p>These units are a <em>constant factor</em> larger than a single bit, and are operated
 on as a unit, so the result of the analysis is the same.</p>
 
-<h3>Measures of Complexity</h3>
+<h3 id="measures-of-complexity">Measures of Complexity</h3>
 
 <p>The choice of algorithms and data structures has a critical impact on the
 following, both of which are used as measures of computational complexity:</p>
 
 <ul>
-<li>Run <strong>time</strong> to solve a problem of a given input size</li>
-<li>Storage <strong>space</strong> for data, including auxiliary structures</li>
+  <li>Run <strong>time</strong> to solve a problem of a given input size</li>
+  <li>Storage <strong>space</strong> for data, including auxiliary structures</li>
 </ul>
 
-<h3>Example (preview of next lecture)</h3>
+<h3 id="example-preview-of-next-lecture">Example (preview of next lecture)</h3>
 
 <p>For example, suppose you have an input size of n elements, such as n strings
 to be sorted in lexicographic order. Suppose further that you have two
@@ -181,15 +180,15 @@ the next lecture):</p>
 <p><strong>Insertion sort</strong>:</p>
 
 <ol>
-<li>start with an empty list </li>
-<li>take each item to be sorted and insert it in its proper location </li>
+  <li>start with an empty list </li>
+  <li>take each item to be sorted and insert it in its proper location </li>
 </ol>
 
 <p><strong>Merge sort</strong>:</p>
 
 <ol>
-<li>if the list has only one item, return it </li>
-<li>otherwise, split the list in half, sort each half with this procedure, and then merge the results </li>
+  <li>if the list has only one item, return it </li>
+  <li>otherwise, split the list in half, sort each half with this procedure, and then merge the results </li>
 </ol>
 
 <p>We will see that given <em>n</em> items to be sorted (it does not matter what they
@@ -197,8 +196,12 @@ are as long as they are bounded by a constant size and can be compared by an &lt
 operator),</p>
 
 <ul>
-<li><p><em>Insertion sort</em> takes time proportional to <em>c</em>1<em>n</em>2 steps, where <em>c</em>1 is a constant depending on the implementation, and requires space proportional to <em>n</em>.</p></li>
-<li><p><em>Merge sort</em> takes <em>c</em>2<em>n</em> lg(<em>n</em>) steps, where <em>c</em>2 is another constant depending on the merge sort implementation, and requires space proportional to 2<em>n</em>. </p></li>
+  <li>
+    <p><em>Insertion sort</em> takes time proportional to <em>c_1_n_2 steps, where _c_1 is a constant depending on the implementation, and requires space proportional to _n</em>.</p>
+  </li>
+  <li>
+    <p><em>Merge sort</em> takes <em>c_2_n</em> lg(<em>n</em>) steps, where <em>c_2 is another constant depending on the merge sort implementation, and requires space proportional to 2_n</em>. </p>
+  </li>
 </ul>
 
 <p><em>Exercise:</em> This would be a good place for you to pause and do excercise
@@ -208,7 +211,7 @@ operator),</p>
 the same machine, where c1=8 and c2=16. For which values of n does insertion
 sort beat merge sort?</p>
 
-<p>Constants matter for small input sizes, but since constants don&#39;t grow we
+<p>Constants matter for small input sizes, but since constants don’t grow we
 ignore them when concerned with the time complexity of large inputs: it is the
 growth in terms of <em>n</em> that matters.</p>
 
@@ -217,7 +220,7 @@ each term shows that the difference in growth rate is <em>n</em> versus lg(<em>n
 one million items to sort, this would be a time factor of one million for
 insertion sort, but about 20 for merge sort.</p>
 
-<h3>Models of Computation</h3>
+<h3 id="models-of-computation">Models of Computation</h3>
 
 <p>Rather than bother with determining the constant factors for any given
 implementation or computer, algorithms for a problem are analyzed by using an
@@ -229,12 +232,13 @@ executed on them are <em>deterministic</em> and <em>sequential</em>. Commonly us
 are <em>Turing Machines</em> and <em>Random Access Machines</em> (see Section 2.2 of the
 textbook).</p>
 
-<h3>Run Times for Different Complexities</h3>
+<h3 id="run-times-for-different-complexities">Run Times for Different Complexities</h3>
 
 <p>In general, suppose that you have a computer of speed 107 steps per second.
 The running time of algorithms of the given complexity (rows) as a function of
 <em>n</em> would be:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  --------------------------------------------------------------------
+
+<pre><code>  --------------------------------------------------------------------
   size n    10       20       30       50      100       1000    10000
   --------------------------------------------------------------------
   n         0.001ms  0.002ms  0.003ms  0.005ms  0.01ms   0.1ms     1ms
@@ -246,7 +250,8 @@ The running time of algorithms of the given complexity (rows) as a function of
 
   2^n       0.1ms    0.1s     100s     3yr      3x10^13c  inf     inf
   --------------------------------------------------------------------
-</code></pre></div>
+</code></pre>
+
 <p><em>Discussion:</em> What is the difference between analysis of an algorithm and
 analysis of an implementation (a program)?</p>
 
@@ -259,7 +264,7 @@ algorithms for solving the problem, one more efficient than the other. Is it
 possible to make a statement about the time efficiency of <em>any possible</em>
 algorithm for the problem of sorting? (We address this question in Topic #10.)</p>
 
-<h3>Easy vs Hard Problems</h3>
+<h3 id="easy-vs-hard-problems">Easy vs Hard Problems</h3>
 
 <p>Theoretical computer science has made substantial progress on understanding
 the intrinsic difficulty of <em>problems</em> (across all possible algorithms),
@@ -277,7 +282,7 @@ of the minimum complexity of <em>any</em> algorithm that solves the problem, and
 proofs of equivalences between problems (translating one into another). Here
 is a graphic:</p>
 
-<p><img src="Complexity-Hierarchy.jpg" alt=""></p>
+<p><img src="Complexity-Hierarchy.jpg" alt="" /></p>
 
 <p>(Although algorithms can be ranked by this hierarchy, the above figure refers
 to problem classes, not algorithms.)</p>
@@ -290,10 +295,10 @@ weighted edges between the vertices representing the distance via the best
 road traveling directly between the cities.</p>
 
 <ul>
-<li>The <strong>Single Pair Shortest Paths</strong> problem: what is the shortest path between a single pair of vertices (from one start vertex to one destination vertex) in the weighted graph? </li>
-<li>The <strong>Shortest Paths</strong> problem: what is the shortest path from one vertex to all of the other vertices in the weighted graph? </li>
-<li>The <strong>All Pairs Shortest Paths</strong> problem: what is the shortest path between every pair of vertices in the weighted graph? </li>
-<li>The <strong>Traveling Salesman</strong> problem: what is the shortest path that starts at given vertex in a weighted graph and visits all (or a specified set of) other vertices once before returning to the start vertex?</li>
+  <li>The <strong>Single Pair Shortest Paths</strong> problem: what is the shortest path between a single pair of vertices (from one start vertex to one destination vertex) in the weighted graph? </li>
+  <li>The <strong>Shortest Paths</strong> problem: what is the shortest path from one vertex to all of the other vertices in the weighted graph? </li>
+  <li>The <strong>All Pairs Shortest Paths</strong> problem: what is the shortest path between every pair of vertices in the weighted graph? </li>
+  <li>The <strong>Traveling Salesman</strong> problem: what is the shortest path that starts at given vertex in a weighted graph and visits all (or a specified set of) other vertices once before returning to the start vertex?</li>
 </ul>
 
 <p><em>Discussion:</em> How do these problems differ from each other? Which are easier
@@ -302,21 +307,21 @@ time) and which are potentially intractable (e.g, require exponential time)?</p>
 
 <p>Complexity theory will be the topic of our second to last lecture.</p>
 
-<hr>
+<hr />
 
-<h2>Abstract Data Types</h2>
+<h2 id="abstract-data-types">Abstract Data Types</h2>
 
 <p>Algorithms and data structures go together. We often study algorithms in the
-context of Abstract Data Types (ADTs). But let&#39;s start with Data Structures.</p>
+context of Abstract Data Types (ADTs). But let’s start with Data Structures.</p>
 
-<h3>Data Structures</h3>
+<h3 id="data-structures">Data Structures</h3>
 
 <p>You are already familiar with Data Structures. They are defined by:</p>
 
 <ul>
-<li><strong>Operations:</strong> Specifications of external appearance of a data structure. </li>
-<li><strong>Storage Structures:</strong> Organizations of data implemented in lower level data structures. (We are almost always building abstractions on layers of abstractions above the actual physical implementation.) </li>
-<li><strong>Algorithms:</strong> Description of how to manipulate information in the storage structures to obtain the results defined for the operations </li>
+  <li><strong>Operations:</strong> Specifications of external appearance of a data structure. </li>
+  <li><strong>Storage Structures:</strong> Organizations of data implemented in lower level data structures. (We are almost always building abstractions on layers of abstractions above the actual physical implementation.) </li>
+  <li><strong>Algorithms:</strong> Description of how to manipulate information in the storage structures to obtain the results defined for the operations </li>
 </ul>
 
 <p>The definition of a data structure requires that you specify implementation
@@ -325,11 +330,11 @@ these details until we are ready to deal with them.</p>
 
 <p>Also we may want to write a specification in terms of desired behavior
 (Operations) and then compare alternative storage structures and algorithms as
-possible solutions meeting those specifications. Data structures don&#39;t work
+possible solutions meeting those specifications. Data structures don’t work
 because they already assume a given solution. Abstract Data Types or ADTs let
 us do this by abstracting the representations and algorithms.</p>
 
-<h3>Definition of Abstract Data Types (ADTs)</h3>
+<h3 id="definition-of-abstract-data-types-adts">Definition of Abstract Data Types (ADTs)</h3>
 
 <p>An ADT is a class of instances (i.e., data objects) with a set of the
 operations that can be applied to the data objects.</p>
@@ -341,83 +346,91 @@ part.</p>
 <p>An ADT is specified by</p>
 
 <ol>
-<li>*<em>the type(s) of data objects involved *</em></li>
-<li><strong>a set of operations that can be applied to those objects</strong>, and </li>
-<li><strong>a set of properties (called axioms) that all the objects and operations must satisfy</strong>.</li>
+  <li>**the type(s) of data objects involved **</li>
+  <li><strong>a set of operations that can be applied to those objects</strong>, and </li>
+  <li><strong>a set of properties (called axioms) that all the objects and operations must satisfy</strong>.</li>
 </ol>
 
-<h3>Example: Stack ADT</h3>
+<h3 id="example-stack-adt">Example: Stack ADT</h3>
 
 <p>Objects:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Stack, and Elements (of arbitrary type) 
-</code></pre></div>
+
+<pre><code>Stack, and Elements (of arbitrary type) 
+</code></pre>
+
 <p>Operations (categorized into three types):</p>
 
 <p>Constructor</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">`new()` creates the empty stack and returns it.
-</code></pre></div>
+
+<pre><code>`new()` creates the empty stack and returns it.
+</code></pre>
+
 <p>Accessors</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> `empty(_s_)` returns whether stack _s_ is empty.  
-</code></pre></div>
-<p><code>top(_s_)</code> returns the element of stack <em>s</em> that has been inserted into s
-last.</p>
+
+<pre><code> `empty(_s_)` returns whether stack _s_ is empty.   `top(_s_)` returns the element of stack _s_ that has been inserted into s last.
+</code></pre>
 
 <p>Mutators (or Modifiers)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> `push(_s_,_e_)` inserts an element _e_ into _s_.  
-</code></pre></div>
-<p><code>pop(_s_)</code> deletes the top element from stack <em>s</em>.</p>
+
+<pre><code> `push(_s_,_e_)` inserts an element _e_ into _s_.   `pop(_s_)` deletes the top element from stack _s_.
+</code></pre>
 
 <p>Properties:</p>
 
 <ul>
-<li><code>top(push(_s_,_e_)) returns value _e_</code></li>
-<li><code>pop(push(_s_,_e_)) leaves _s_</code> in the same state </li>
-<li><code>empty(new()) = true</code></li>
-<li><code>empty(push(_s_,_i_)) = false</code></li>
-<li><code>pop(new()) is an error</code></li>
-<li><code>top(new()) is an error</code></li>
+  <li><code>top(push(_s_,_e_)) returns value _e_</code></li>
+  <li><code>pop(push(_s_,_e_)) leaves _s_</code> in the same state </li>
+  <li><code>empty(new()) = true </code></li>
+  <li><code>empty(push(_s_,_i_)) = false </code></li>
+  <li><code>pop(new()) is an error </code></li>
+  <li><code>top(new()) is an error </code></li>
 </ul>
 
-<h3>Specification and Implementation</h3>
+<h3 id="specification-and-implementation">Specification and Implementation</h3>
 
 <p>ADTs can be specified in different languages:</p>
 
 <ul>
-<li>formal languages (axiomatic, algebraic, functional, denotational semantics, etc.)</li>
-<li>natural language</li>
+  <li>formal languages (axiomatic, algebraic, functional, denotational semantics, etc.)</li>
+  <li>natural language</li>
 </ul>
 
 <p>Implementation of an ADT requires</p>
 
 <ul>
-<li>defining the storage for the data structures</li>
-<li>implementing the algorithms for the operations</li>
+  <li>defining the storage for the data structures</li>
+  <li>implementing the algorithms for the operations</li>
 </ul>
 
-<h3>Advantages of ADTs</h3>
+<h3 id="advantages-of-adts">Advantages of ADTs</h3>
 
 <p>Modularity (Encapsulation)</p>
 
 <p>Abstract operations mean a program using an ADT are isolated from (need not know about or be affected by) the implementation of the ADT.</p>
 
 <ul>
-<li>Implementation of ADT can be changed without modifying programs using ADT.</li>
-<li>Makes a program smaller, simpler, and have less side effects<br></li>
-<li>Helps to construct correct programs </li>
+  <li>Implementation of ADT can be changed without modifying programs using ADT.</li>
+  <li>Makes a program smaller, simpler, and have less side effects   </li>
+  <li>Helps to construct correct programs </li>
 </ul>
 
 <p>Hierarchical Specification</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> Supports Top-Down Design and Stepwise Refinement
-</code></pre></div>
+
+<pre><code> Supports Top-Down Design and Stepwise Refinement
+</code></pre>
+
 <p>Implementation</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">ADTs map well to Object-Oriented Programming Languages
-</code></pre></div>
+
+<pre><code>ADTs map well to Object-Oriented Programming Languages
+</code></pre>
+
 <p><em>Discussion:</em> What is the difference between an ADT and a data structure?</p>
 
-<hr>
+<hr />
 
 <p><em>Some of the material in this page was adopted with permission (and
-significant editing) from Kazuo Sugihara&#39;s spring 2011 Lecture Notes #02.</em></p>
+significant editing) from Kazuo Sugihara’s spring 2011 Lecture Notes #02.</em></p>
+
 
 </div>
 
@@ -427,12 +440,12 @@ significant editing) from Kazuo Sugihara&#39;s spring 2011 Lecture Notes #02.</e
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

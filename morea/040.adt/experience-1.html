@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,27 +48,26 @@
 
 
 <div class="container">
-  <h1>Battle of the Dynamic Sets</h1>
+  <h1 id="battle-of-the-dynamic-sets">Battle of the Dynamic Sets</h1>
 
 <p>Late submissions with <strong>penalty of 1% per hour</strong> accepted until 2AM Saturday
 March 15th, at which time the deduction reaches 50%. (If you used all that
-time and turned in a perfect &quot;A+&quot; project, you would get a &quot;C&quot;.)</p>
+time and turned in a perfect “A+” project, you would get a “C”.)</p>
 
-<h3>Change Log</h3>
+<h3 id="change-log">Change Log</h3>
 
 <p>Mar 10, 2014</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Assignment extended three days. Corrected the late deadline on March 11th.
-</code></pre></div>
-<p>Mar 1, 2014</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Changed the interface to Robert Ward&#39;s version with generics and comparable.
-</code></pre></div>
-<p>Feb 7, 2014</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Added delete to operations to be tested. 
-</code></pre></div>
-<p>Feb 6, 2014</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">First released version. This differs from the 2012 and 2013 versions. 
-</code></pre></div>
-<h2>Overview</h2>
+
+<pre><code>Assignment extended three days. Corrected the late deadline on March 11th. Mar 1, 2014
+
+Changed the interface to Robert Ward's version with generics and comparable. Feb 7, 2014
+
+Added delete to operations to be tested.  Feb 6, 2014
+
+First released version. This differs from the 2012 and 2013 versions. 
+</code></pre>
+
+<h2 id="overview">Overview</h2>
 
 <p>You will provide four implementations of the Dynamic Set ADT (see below,
 modified from <a href="/morea/040.adt/reading-notes-4.html">Topic 4 Notes</a>). You will then analyze their expected
@@ -79,30 +77,30 @@ performance. You will write a report on the results. The project is worth 60
 points.</p>
 
 <p>You may either use open source implementations of the following data
-structures (see the <a href="/morea/010.introduction/reading-assignments.html">Assignments Page</a> Section &quot;Including Open Source Software&quot;
+structures (see the <a href="/morea/010.introduction/reading-assignments.html">Assignments Page</a> Section “Including Open Source Software”
 for requirements), or implement them yourself:</p>
 
 <ul>
-<li><strong>Sorted Doubly Linked Lists</strong> (Chapter 10 or <a href="morea/040.adt/reading-notes-4.html">Notes/Topic-04</a>) </li>
-<li><strong>Skip Lists</strong> (<a href="morea/050.probabilistic/reading-notes-5.html">Notes/Topic-05</a> or ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf) </li>
-<li><strong>Binary Search Trees</strong> (Chapter 12 or <a href="morea/080.binary-search-trees/reading-notes-8.html"> Notes/Topic-08</a>) </li>
-<li><strong>Red-Black trees</strong> (Chapter 13 or [Notes/Topic-11]morea/110.balanced-trees/reading-notes-11.html)): for this, use Java TreeMap. </li>
+  <li><strong>Sorted Doubly Linked Lists</strong> (Chapter 10 or <a href="morea/040.adt/reading-notes-4.html">Notes/Topic-04</a>) </li>
+  <li><strong>Skip Lists</strong> (<a href="morea/050.probabilistic/reading-notes-5.html">Notes/Topic-05</a> or ftp://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf) </li>
+  <li><strong>Binary Search Trees</strong> (Chapter 12 or <a href="morea/080.binary-search-trees/reading-notes-8.html"> Notes/Topic-08</a>) </li>
+  <li><strong>Red-Black trees</strong> (Chapter 13 or [Notes/Topic-11]morea/110.balanced-trees/reading-notes-11.html)): for this, use Java TreeMap. </li>
 </ul>
 
 <p>There are several advantages to implementing at least some of these
 yourself:</p>
 
 <ul>
-<li>Others&#39; implementations may have incompatible assumptions.</li>
-<li>You will understand the data structures and algorithms better</li>
-<li>You can then offer your implementation to other students for extra credit in Implementation Project 2.</li>
+  <li>Others’ implementations may have incompatible assumptions.</li>
+  <li>You will understand the data structures and algorithms better</li>
+  <li>You can then offer your implementation to other students for extra credit in Implementation Project 2.</li>
 </ul>
 
 <p>You will then write your own code, including:</p>
 
 <ul>
-<li>Implementations of Dynamic Sets that use these data structures;</li>
-<li>A main method to read in a file of strings, insert these in the dynamic set as keys, and run tests on all four implementations as specified below.</li>
+  <li>Implementations of Dynamic Sets that use these data structures;</li>
+  <li>A main method to read in a file of strings, insert these in the dynamic set as keys, and run tests on all four implementations as specified below.</li>
 </ul>
 
 <p>We will provide you with data in the form of files of keywords (automatically
@@ -121,7 +119,7 @@ timing tests, we will test that deletion works.</p>
 <p>Details follow. Questions and requests for clarification are welcome and
 should be submitted early.</p>
 
-<h2>Dynamic Set ADT</h2>
+<h2 id="dynamic-set-adt">Dynamic Set ADT</h2>
 
 <p>Note that this <strong>ADT has been changed</strong>: it is not the same as the one in the
 lecture notes, and it is not the same as the ones used in my 2012 or 2013
@@ -241,7 +239,7 @@ classes. Also, it was changed to use generics.</p>
 <span class="lineno">112</span>     
 <span class="lineno">113</span>     <span class="o">}</span></code></pre></div>
 
-<h3>Comments on ADT</h3>
+<h3 id="comments-on-adt">Comments on ADT</h3>
 
 <p>If you wish, to simplify things you may change KeyType to String. The data
 <code>Object d</code> stored under a key is not important for our testing: just give it
@@ -253,22 +251,22 @@ and <code>predecessor</code> would be inefficient if the client then has to use
 abstraction, or by returning multiple values (key + data). But for our
 purposes we only need the key to test runtime.</p>
 
-<h3>Implementing the ADT</h3>
+<h3 id="implementing-the-adt">Implementing the ADT</h3>
 
 <p>You will have four classes implementing this interface, named to reflect the
 implementation:</p>
 
 <ul>
-<li><strong><code>DLLDynamicSet</code></strong>: Doubly Linked List implementation, using OSS </li>
-<li><strong><code>SkipListDynamicSet</code></strong>: Skip List implementation, using OSS</li>
-<li><strong><code>BSTDynamicSet</code></strong>: Binary Search Tree implementation, using OSS</li>
-<li><strong><code>RedBlackDynamicSet</code></strong>: Red Black Tree implementation, <em>using Java TreeMap</em></li>
+  <li><strong><code>DLLDynamicSet</code></strong>: Doubly Linked List implementation, using OSS </li>
+  <li><strong><code>SkipListDynamicSet</code></strong>: Skip List implementation, using OSS</li>
+  <li><strong><code>BSTDynamicSet</code></strong>: Binary Search Tree implementation, using OSS</li>
+  <li><strong><code>RedBlackDynamicSet</code></strong>: Red Black Tree implementation, <em>using Java TreeMap</em></li>
 </ul>
 
 <p>To implement the ADT you need to write the methods that are specified by the
 interface but map to the underlying implementation. As a simple example, in
 RedBlackDynamicSet the interface method   <code>retrieve (KeyType k)</code> will be
-implemented by calling TreeMap&#39;s <code>get(Object key)</code>. This is trivial code, but
+implemented by calling TreeMap’s <code>get(Object key)</code>. This is trivial code, but
 it accomplishes an important objective: hiding the details of the
 implementation behind the interface.</p>
 
@@ -279,21 +277,23 @@ either write or look for OSS of the other three and add them to the testing.</p>
 <p>In general, you are free to make your own implementation decisions and use the
 best practices you are capable of. This includes whether or not you use
 Comparable or generics, whether you use locator abstractions (such as Goodrich
-&amp; Tamassia&#39;s &quot;position&quot;) rather than returning pointers to data stored, how
+&amp; Tamassia’s “position”) rather than returning pointers to data stored, how
 much error checking is done, etc. The important thing is that you have
 implemented the set operations in a general way, and in particular can run the
 tests.</p>
 
 <p>We suggest that you organize your code in packages, but this is not required.</p>
 
-<hr>
+<hr />
 
-<h2>Test Data</h2>
+<h2 id="test-data">Test Data</h2>
 
 <p>Files including from 100 to 1,000,000 keys, sorted and unsorted, are available
-in <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Projects%0A/Project-1/">this directory</a>. Each file has one name on each line. There are no quotations or
+in <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Projects
+/Project-1/">this directory</a>. Each file has one name on each line. There are no quotations or
 other delimiters other than newline. For example:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Hugh Moreno 
+
+<pre><code>Hugh Moreno 
 Traci Obrien 
 Doug Moore 
 Sammy West 
@@ -304,16 +304,17 @@ Clyde Walton
 Matthew Rios 
 Jacqueline Robertson
 ...
-</code></pre></div>
+</code></pre>
+
 <p>Your program will take the input file name as an argument at the command line
 (i.e., read into String args). It will read the file into an array until end
 of file is reached. We need to read into an array because we will be randomly
 selecting elements for test runs. You do not need to test the input for any
 properties: just read each line from the file as if it is a string.</p>
 
-<hr>
+<hr />
 
-<h2>Input</h2>
+<h2 id="input">Input</h2>
 
 <p>Your program will read an argument from the command line: the name of the file
 to be loaded in this test run.</p>
@@ -326,9 +327,9 @@ next section.  </p>
 <p>Screencasts are available showing how to read in data from a file if you have
 forgotten.</p>
 
-<hr>
+<hr />
 
-<h2>Tests</h2>
+<h2 id="tests">Tests</h2>
 
 <p>Each <code>runtest</code> run will use <code>System.nanoTime()</code> (we have found that
 <code>System.currentTimeMillis()</code> is not precise enough for O(lg n) algorithms) to
@@ -336,23 +337,37 @@ time the following operations and report <strong>minimum</strong>, <strong>avera
 <strong>maximum</strong> times required:</p>
 
 <ul>
-<li><p><code>insert(k):</code> min, avg and max across all keys. (You have all the keys in the array. Insert all of them into the data structure, timing the time it takes for each insertion and keeping track of min, max and sum of times as you go so you can compute average at the end.) </p></li>
-<li><p><code>retrieve(k):</code> Use the <code>Random</code> class to produce 10 integers in the range of the data array. Then search for the 10 keys (name strings) indexed by these random numbers, timing each search. Report min, avg and max across these 10 searches.</p></li>
-<li><p><code>successor(k):</code> run 10 trials on the same keys you used in the above retrieval tests. Report min, avg and max. </p></li>
-<li><p><code>predecessor(k):</code> run 10 trials on the same keys you used in the above retrieval tests. Report min, avg and max.</p></li>
-<li><p><code>minimum:</code> Report time to run one call (since there is only one minimum). </p></li>
-<li><p><code>maximum:</code> Report time to run one call (since there is only one maximum). </p></li>
-<li><p><code>delete(k):</code> Last, delete the 10 randomly chosen keys you used above, timing the deletion. Report min, avg and max.</p></li>
+  <li>
+    <p><code>insert(k):</code> min, avg and max across all keys. (You have all the keys in the array. Insert all of them into the data structure, timing the time it takes for each insertion and keeping track of min, max and sum of times as you go so you can compute average at the end.) </p>
+  </li>
+  <li>
+    <p><code>retrieve(k):</code> Use the <code>Random</code> class to produce 10 integers in the range of the data array. Then search for the 10 keys (name strings) indexed by these random numbers, timing each search. Report min, avg and max across these 10 searches.</p>
+  </li>
+  <li>
+    <p><code>successor(k):</code> run 10 trials on the same keys you used in the above retrieval tests. Report min, avg and max. </p>
+  </li>
+  <li>
+    <p><code>predecessor(k):</code> run 10 trials on the same keys you used in the above retrieval tests. Report min, avg and max.</p>
+  </li>
+  <li>
+    <p><code>minimum:</code> Report time to run one call (since there is only one minimum). </p>
+  </li>
+  <li>
+    <p><code>maximum:</code> Report time to run one call (since there is only one maximum). </p>
+  </li>
+  <li>
+    <p><code>delete(k):</code> Last, delete the 10 randomly chosen keys you used above, timing the deletion. Report min, avg and max.</p>
+  </li>
 </ul>
 
 <p>(_Note: _ 10 has been specified as the number of trials because the smallest
 data set has only 100 elements. 10 trials will give you meaningful results,
-but in real world testing you&#39;d run many more trials for more reliable and
+but in real world testing you’d run many more trials for more reliable and
 convincing averages. Compared to the cost of programming this test, computer
 trials are cheap! One approach is to use a percentage, e.g., 10% of the keys
 would give you 100 trials on the data set of 1000.)</p>
 
-<h4>Memory:</h4>
+<h4 id="memory">Memory:</h4>
 
 <p>If you run out of memory, increase the heap size available to Java using the
 -Xmx argument (or set the corresponding preference in your IDE). Try 1024M, or
@@ -368,11 +383,12 @@ collected before loading into the next one from the file.</p>
 <p>If you are unable to run the test file of one million, turn in up to 100,000
 along with an explanation.</p>
 
-<h2>Output</h2>
+<h2 id="output">Output</h2>
 
 <p>Each <code>runtest</code> run will generate an output table as follows (this layout is
 designed to enable you to print the table out incrementally as you go).</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Size: N
+
+<pre><code>Size: N
 --------------------------------------------------------------------------------------
             | Insert   | Retrieve | Pred     | Succ     | Min    | Max    | Delete   |
 --------------------------------------------------------------------------------------
@@ -384,12 +400,15 @@ Binary Tree |          |          |          |          |        |        |     
 --------------------------------------------------------------------------------------
 RB Tree     |          |          |          |          |        |        |          |
 --------------------------------------------------------------------------------------
-</code></pre></div>
+</code></pre>
+
 <p>The entry in each cell of this table will be of form</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">         -------------------
+
+<pre><code>         -------------------
          | min / avg / max |
          -------------------
-</code></pre></div>
+</code></pre>
+
 <p>(except <code>minimum</code> and <code>maximum</code>), each being in nanoseconds. (Resize the table
 as needed to fit.)</p>
 
@@ -403,19 +422,19 @@ algorithms.</p>
 <p>The TA may use other data sets, which may include reverse sorted items,
 duplicates, etc.</p>
 
-<hr>
+<hr />
 
-<h2>Documentation and Report</h2>
+<h2 id="documentation-and-report">Documentation and Report</h2>
 
 <p>Requirements stated on the <a href="/morea/010.introduction/reading-assignments.html"> Assignments Page</a> are included in the requirements
 for this project. Read that first. Further comments are below.</p>
 
-<h3>Readme.txt</h3>
+<h3 id="readmetxt">Readme.txt</h3>
 
 <p>The Readme file should be clear and enable the TA to compile and run your
 program.</p>
 
-<h3>Operation and Reference Manuals</h3>
+<h3 id="operation-and-reference-manuals">Operation and Reference Manuals</h3>
 
 <p>For this assignment, the Operation manual is not required _ as long as you put
 the instructions on how to run the program in your Readme.txt._ The Reference
@@ -424,7 +443,7 @@ distributed for general use. Describe the organization of your program and the
 source of the implemenatations: anything that you as a programmer maintaining
 the code would want to know.</p>
 
-<h3>Testing Document (30% of grade)</h3>
+<h3 id="testing-document-30-of-grade">Testing Document (30% of grade)</h3>
 
 <p>The Testing Document will include a summary of your empirical test results and
 a discussion of how these results compare to the asymptotic analyses of the
@@ -437,31 +456,32 @@ Did implementations behave as expected as <em>n</em> gets bigger? Does the diffe
 between sorted and unsorted data make sense? How do they compare to each
 other?</p>
 
-<p><strong>This document is 30% of your grade:</strong> be thorough (showing you have thought carefully about the results in relation to the theoretical analyses and your implementation), yet concise (don&#39;t put in a lot of blather to make it look bigger). </p>
+<p><strong>This document is 30% of your grade:</strong> be thorough (showing you have thought carefully about the results in relation to the theoretical analyses and your implementation), yet concise (don’t put in a lot of blather to make it look bigger). </p>
 
-<hr>
+<hr />
 
-<h2>Grading</h2>
+<h2 id="grading">Grading</h2>
 
-<h3>Program: 60%</h3>
-
-<ul>
-<li>5% for correct handling of input as specified. This includes reading command line arguments and error handling. </li>
-<li>40% = 10% x 4 for each correct implementation of the Dynamic Set ADT. </li>
-<li>10% for proper organization of the tests (reading data into array; running one ADT at a time and recording values; able to run up to one million). </li>
-<li>5% for providing output table as specified. </li>
-</ul>
-
-<h3>Analysis and Documentation: 40%</h3>
+<h3 id="program-60">Program: 60%</h3>
 
 <ul>
-<li>30% for adequate analysis of the results (in the Testing Document)</li>
-<li>10% for Readme and Reference manuals</li>
+  <li>5% for correct handling of input as specified. This includes reading command line arguments and error handling. </li>
+  <li>40% = 10% x 4 for each correct implementation of the Dynamic Set ADT. </li>
+  <li>10% for proper organization of the tests (reading data into array; running one ADT at a time and recording values; able to run up to one million). </li>
+  <li>5% for providing output table as specified. </li>
 </ul>
 
-<hr>
+<h3 id="analysis-and-documentation-40">Analysis and Documentation: 40%</h3>
+
+<ul>
+  <li>30% for adequate analysis of the results (in the Testing Document)</li>
+  <li>10% for Readme and Reference manuals</li>
+</ul>
+
+<hr />
 
 <p>Dan Suthers Last modified: Tue Mar 11 03:27:03 HST 2014</p>
+
 
 </div>
 
@@ -471,12 +491,12 @@ other?</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

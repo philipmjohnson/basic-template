@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,15 +48,16 @@
 
 
 <div class="container">
-  <h1>Deletion under Open Addressing</h1>
+  <h1 id="deletion-under-open-addressing">Deletion under Open Addressing</h1>
 
 <p>Following the directions below, write pseudocode for <code>HASH-DELETE</code> to delete
 by writing a special <code>DELETED</code> value, and modify <code>HASH-INSERT</code> to handle the
 <code>DELETED</code> value. You will write your response in the exact same form as the
-book&#39;s pseudocode (shown).</p>
+book’s pseudocode (shown).</p>
 
 <p><strong>1.</strong> Write <code>HASH-DELETE</code> by renaming <code>HASH-SEARCH</code> and adding or changing ONE line in the body.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Hash-Search (T,k)  // rename to Hash-Delete and remove this line 
+
+<pre><code>Hash-Search (T,k)  // rename to Hash-Delete and remove this line 
    i = 0
    repeat
        j = h(k,i)
@@ -66,9 +66,11 @@ book&#39;s pseudocode (shown).</p>
        i = i + 1
    until T[j] == NIL or i == m
   return NIL
-</code></pre></div>
+</code></pre>
+
 <p><strong>2.</strong> Write the new <code>HASH-INSERT</code> by changing only ONE line in the following. </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Hash-Insert (T,k)
+
+<pre><code>Hash-Insert (T,k)
    i = 0
    repeat
        j = h(k,i)
@@ -77,13 +79,14 @@ book&#39;s pseudocode (shown).</p>
            return j
        else i = i + 1
    until i == m
-   error &quot;hash table overflow&quot; 
-</code></pre></div>
+   error "hash table overflow" 
+</code></pre>
+
 <p><strong>3.</strong> What is the Θ runtime complexity of the worst case for the modified <code>HASH-INSERT</code> and <code>HASH-DELETE</code> in terms of <em>n</em> (number of elements stored) and <em>m</em> (table size)? (_ Describe the worst possible situation. Express its runtime with Θ. _) </p>
 
-<h3>Deletion from Skip Lists</h3>
+<h3 id="deletion-from-skip-lists">Deletion from Skip Lists</h3>
 
-<p><img src="fig/SgkipList-Small.jpg" alt=""></p>
+<p><img src="fig/SgkipList-Small.jpg" alt="" /></p>
 
 <p><code>SkipSearch(k)</code> returns a pointer <code>p</code> to the bottom most element of the tower
 you want to delete. Suppose this were passed to a method <code>SkipDelete(p)</code> −
@@ -93,26 +96,29 @@ how it works! Then, if you have time, you can write pseudocode for it for
 extra credit.</p>
 
 <ul>
-<li>Assume that a skip list node has fields <code>p.next</code>, <code>p.prev</code>, <code>p.above</code> and <code>p.below</code>.</li>
-<li>Assume that <code>SkipInsert(k,d)</code> has built the skip list using <code>random(0,1)</code> with cutoff of 0.5. </li>
-<li>The delete procedure climbs the tower of linked lists above <code>p</code>, doing repeated deletion from each doubly linked list that the element occurs in. </li>
+  <li>Assume that a skip list node has fields <code>p.next</code>, <code>p.prev</code>, <code>p.above</code> and <code>p.below</code>.</li>
+  <li>Assume that <code>SkipInsert(k,d)</code> has built the skip list using <code>random(0,1)</code> with cutoff of 0.5. </li>
+  <li>The delete procedure climbs the tower of linked lists above <code>p</code>, doing repeated deletion from each doubly linked list that the element occurs in. </li>
 </ul>
 
 <p><strong>4.</strong> Assuming a uniform distribution of keys stored in random order, what is the Θ expected case performance of <code>SkipDelete</code> in terms of <em>n</em>, the number of keys stored in the skiplist?</p>
 
-<p><strong>5.</strong> What is the probability that a given call to <code>SkipDelete</code> would have to <em>delete at least _k</em> nodes<em>? (</em>Hint: Think of the probability that SkipInsert builds a &quot;tower&quot; of <em>k</em> nodes for a given key._) </p>
+<p><strong>5.</strong> What is the probability that a given call to <code>SkipDelete</code> would have to <em>delete at least _k</em> nodes<em>? (_Hint: Think of the probability that SkipInsert builds a “tower” of _k</em> nodes for a given key._) </p>
 
-<h4>Extra Credit</h4>
+<h4 id="extra-credit">Extra Credit</h4>
 
 <p><strong>6.</strong> If you finish early, write the recursive pseudocode for <code>SkipDelete(p)</code>. </p>
 
 <p>Hint:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">SkipDelete(p)
+
+<pre><code>SkipDelete(p)
 if p ≠ null {
 // splice out of this doubly linked list
 // recurse to splice out of list above
 }
-</code></pre></div>
+</code></pre>
+
+
 </div>
 
 
@@ -121,12 +127,12 @@ if p ≠ null {
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,13 +48,13 @@
 
 
 <div class="container">
-  <h2>In Class: Mixing and Matching with <code>BinarySearch</code></h2>
+  <h2 id="in-class-mixing-and-matching-with-binarysearch">In Class: Mixing and Matching with <code>BinarySearch</code></h2>
 
-<h4>5 points</h4>
+<h4 id="points">5 points</h4>
 
-<p><strong>1. (1 pt):</strong> The while loop of <code>InsertionSort</code> uses a Θ(<em>n</em>) linear search to scan backwards through the sorted subarray A[1 .. <em>j</em>-1]. Since this subarray is sorted, can we use <code>BinarySearch</code> for this search to improve the overall worst case running time of InsertionSort to Θ(<em>n</em> lg <em>n</em>)? If yes, argue why the hybrid algorithm would be Θ(<em>n</em> lg <em>n</em>). If no, explain why it won&#39;t work. </p>
+<p><strong>1. (1 pt):</strong> The while loop of <code>InsertionSort</code> uses a Θ(<em>n</em>) linear search to scan backwards through the sorted subarray A[1 .. <em>j</em>-1]. Since this subarray is sorted, can we use <code>BinarySearch</code> for this search to improve the overall worst case running time of InsertionSort to Θ(<em>n</em> lg <em>n</em>)? If yes, argue why the hybrid algorithm would be Θ(<em>n</em> lg <em>n</em>). If no, explain why it won’t work. </p>
 
-<p><strong>2. (4 pts):</strong> We know from Tuesday&#39;s class work that <code>LinearSearch</code> is Θ(<em>n</em>), so one might think it is always better to use the Θ(lg <em>n</em>) <code>BinarySearch</code>. However, in order to apply <code>BinarySearch</code> we have to sort the data, which (we will soon learn) requires Θ(<em>n</em> lg <em>n</em>) time for the best known algorithms (e.g., <code>MergeSort</code>). This question explores when it is worth paying this extra cost of sorting the data in order to get fast search.</p>
+<p><strong>2. (4 pts):</strong> We know from Tuesday’s class work that <code>LinearSearch</code> is Θ(<em>n</em>), so one might think it is always better to use the Θ(lg <em>n</em>) <code>BinarySearch</code>. However, in order to apply <code>BinarySearch</code> we have to sort the data, which (we will soon learn) requires Θ(<em>n</em> lg <em>n</em>) time for the best known algorithms (e.g., <code>MergeSort</code>). This question explores when it is worth paying this extra cost of sorting the data in order to get fast search.</p>
 
 <p>Suppose you will be <strong>searching a list of <em>n</em> items <em>m</em> times</strong>. When is <em>m</em>
 big enough relative to <em>n</em> to make it worth sorting and using binary search
@@ -80,6 +79,7 @@ the analysis. So, if you are really concerned about performance, once the
 analysis gives you the ballpark tradeoff, empirical studies can be used to
 decide the best cutoff for a given implementation.)</p>
 
+
 </div>
 
 
@@ -88,12 +88,12 @@ decide the best cutoff for a given implementation.)</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

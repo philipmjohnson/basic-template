@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,37 +48,37 @@
 
 
 <div class="container">
-  <h3>1. Peer Credit Assignment</h3>
+  <h3 id="peer-credit-assignment">1. Peer Credit Assignment</h3>
 
 <p>Please list the names of the other members of your peer group for this week
 and the number of extra credit points you think they deserve for their
 participation in group work on Tuesday and Thursday combined.</p>
 
 <ul>
-<li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
-<li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
-<li>If only one other member was present, you have a total of 6 points to allocate.</li>
-<li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
+  <li>If all three members besides yourself were present at some time, you have a total of 3 points to allocate.</li>
+  <li>If only two members besides yourself were present, you have a total of 4 points to allocate.</li>
+  <li>If only one other member was present, you have a total of 6 points to allocate.</li>
+  <li>You need not allocate all the points available to you. Points allocated to yourself will not be recorded.</li>
 </ul>
 
-<hr>
+<hr />
 
-<h3>2. DAG-Shortest-Paths for Job Scheduling</h3>
+<h3 id="dag-shortest-paths-for-job-scheduling">2. DAG-Shortest-Paths for Job Scheduling</h3>
 
 <p>In class we learned how the problem of scheduling a set of jobs with time
 required and precedence constraints can be modeled using a Directed Acyclic
 Graph.</p>
 
 <ul>
-<li>Edges from j<em>i</em>s to j<em>i</em>f are weighted with the time required to do job j<em>i</em>.</li>
-<li>If job j<em>j</em> cannot start until job j<em>i</em> finishes, a 0 weighted edge is put from j<em>i</em>f to j<em>j</em>s. </li>
-<li>There is an implicit 0 weight edge from start node s to every j<em>j</em> s and from every j<em>j</em> f to f.</li>
+  <li>Edges from j_i_s to j_i_f are weighted with the time required to do job j_i_.</li>
+  <li>If job j_j_ cannot start until job j_i_ finishes, a 0 weighted edge is put from j_i_f to j_j_s. </li>
+  <li>There is an implicit 0 weight edge from start node s to every j_j_ s and from every j_j_ f to f.</li>
 </ul>
 
-<p><img src="fig/PS-11-Jobs.jpg" alt=""></p>
+<p><img src="fig/PS-11-Jobs.jpg" alt="" /></p>
 
 <p>We also discussed how it would be preferable to use an existing algorithm so
-we don&#39;t have to go to the trouble of developing a new one and proving that it
+we don’t have to go to the trouble of developing a new one and proving that it
 is correct. The <code>DAG-Shortest-Paths</code> algorithm is promising, but it computes
 shortest paths while we need longest paths in order to find the longest chain
 of precedence constraints. A simple transformation to the problem
@@ -92,12 +91,13 @@ run <code>DAG-Shortest-Paths</code> on the modified DAG, and transform the resul
 table for each job of the time that it can start running and the time it will
 finish. (The start time of s is time 0.)</p>
 
-<h4>DAG with edge weights filled in:</h4>
+<h4 id="dag-with-edge-weights-filled-in">DAG with edge weights filled in:</h4>
 
-<p><img src="fig/PS-11-DAG-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-DAG-Template.jpg" alt="" /></p>
 
-<h4>Start and End Times for Jobs:</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text">job    start   end 
+<h4 id="start-and-end-times-for-jobs">Start and End Times for Jobs:</h4>
+
+<pre><code>job    start   end 
 -----  -----  -----
 j1
 j2
@@ -108,20 +108,22 @@ j6
 j7
 
 Last job finishes at: 
-</code></pre></div>
-<hr>
+</code></pre>
 
-<h3>3. Dijkstra&#39;s Algorithm on Negative Weight Graphs</h3>
+<hr />
 
-<p><img src="fig/PS-11-Graph.jpg" alt=""></p>
+<h3 id="dijkstras-algorithm-on-negative-weight-graphs">3. Dijkstra’s Algorithm on Negative Weight Graphs</h3>
 
-<p>Run <strong>Dijkstra&#39;s algorithm</strong> on the graph shown, using vertex <code>a</code> as the start
+<p><img src="fig/PS-11-Graph.jpg" alt="" /></p>
+
+<p>Run <strong>Dijkstra’s algorithm</strong> on the graph shown, using vertex <code>a</code> as the start
 vertex. For each step of the algorithm, show what vertex is dequeued and the
 distance estimate <em>v</em>.<em>d</em> it had at the time it is put into <em>S</em>. (To help the
 TA debug, you may wish to show the entire graph each iteration.) Then identify
 the final distance estimates and explain what distance estimate is in error
 and why.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Step  v put in S  v.d
+
+<pre><code>Step  v put in S  v.d
 ----  ----------  ---
 1.
 2.
@@ -131,25 +133,26 @@ and why.</p>
 
 (Final distance estimates are in column v.d.)
 **What distance estimate(s) is(are) in error, and explanation of why:**
-</code></pre></div>
-<hr>
+</code></pre>
 
-<h4>The next two problems are the steps of Johnson&#39;s Algorithm that fix the</h4>
+<hr />
 
+<h4 id="the-next-two-problems-are-the-steps-of-johnsons-algorithm-that-fix-the">The next two problems are the steps of Johnson’s Algorithm that fix the</h4>
 <p>problem we just showed above.</p>
 
-<hr>
+<hr />
 
-<h3>4. Bellman-Ford on Johnson&#39;s <em>G</em>&#39;</h3>
+<h3 id="bellman-ford-on-johnsons-g">4. Bellman-Ford on Johnson’s <em>G</em>’</h3>
 
-<p><strong>(a)</strong> First we construct the graph <em>G</em>&#39; defined in the first step of Johnson&#39;s algorithm by adding a new vertex <code>s</code> with edges of cost 0 to all other vertices. Run <code>Initialize-Single-Source</code> (the first step of <code>Bellman-Ford</code>) on this graph (so vertices are labeled by <em>v</em>.<em>d</em>, either 0 or ∞). Use the template below to show the resulting graph. (Large version of templates will be emailed to you.)</p>
+<p><strong>(a)</strong> First we construct the graph <em>G</em>’ defined in the first step of Johnson’s algorithm by adding a new vertex <code>s</code> with edges of cost 0 to all other vertices. Run <code>Initialize-Single-Source</code> (the first step of <code>Bellman-Ford</code>) on this graph (so vertices are labeled by <em>v</em>.<em>d</em>, either 0 or ∞). Use the template below to show the resulting graph. (Large version of templates will be emailed to you.)</p>
 
-<h4>Graph <em>G</em>&#39; after Bellman-Ford calls Initialize-Single-Source:</h4>
+<h4 id="graph-g-after-bellman-ford-calls-initialize-single-source">Graph <em>G</em>’ after Bellman-Ford calls Initialize-Single-Source:</h4>
 
-<p><img src="fig/PS-11-Graph-Prime.jpg" alt=""></p>
+<p><img src="fig/PS-11-Graph-Prime.jpg" alt="" /></p>
 
-<p><strong>(b)</strong> Complete running the <strong><code>Bellman-Ford</code></strong> algorithm on the graph you just constructed, using vertex <code>s</code> as the start vertex. For Pass #0 (first line), copy the values of <em>v</em>.d from the graph above and nil for <em>v</em>.π. Then show updated values of <em>d</em> and π for each vertex after each pass of loop at line 2 (at the end, <em>v</em>.d = δ(<em>s</em>,<em>v</em>), which will be used in problem 5). To make it easier for the TA to grade, let&#39;s all relax the edges in the same order, namely lexical order of pairs: <code>(a,b), (a,c), (a,d), (b,c), (b,e), (c,d), (d,e), (e,d), (s,a), (s,b), (s,c), (s,d), (s,e).</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Pass#    a._d_  a.π    b._d_  b.π    c._d_  c.π    d._d_  d.π    e._d_  e.π
+<p><strong>(b)</strong> Complete running the <strong><code>Bellman-Ford</code></strong> algorithm on the graph you just constructed, using vertex <code>s</code> as the start vertex. For Pass #0 (first line), copy the values of <em>v</em>.d from the graph above and nil for <em>v</em>.π. Then show updated values of <em>d</em> and π for each vertex after each pass of loop at line 2 (at the end, <em>v</em>.d = δ(<em>s</em>,<em>v</em>), which will be used in problem 5). To make it easier for the TA to grade, let’s all relax the edges in the same order, namely lexical order of pairs: ` (a,b), (a,c), (a,d), (b,c), (b,e), (c,d), (d,e), (e,d), (s,a), (s,b), (s,c), (s,d), (s,e).`</p>
+
+<pre><code>Pass#    a._d_  a.π    b._d_  b.π    c._d_  c.π    d._d_  d.π    e._d_  e.π
 -----    ---  ---    ---  ---    ---  ---    ---  ---    ---  ---
 0.
 1.
@@ -157,53 +160,54 @@ and why.</p>
 3.
 4.
 5.
-</code></pre></div>
-<h4>Graph <em>G</em>&#39; after Bellman-Ford completes (vertices labeled by <em>h</em>(<em>v</em>) =</h4>
+</code></pre>
 
+<h4 id="graph-g-after-bellman-ford-completes-vertices-labeled-by-hv-">Graph <em>G</em>’ after Bellman-Ford completes (vertices labeled by <em>h</em>(<em>v</em>) =</h4>
 <p>δ(<em>s</em>,<em>v</em>)):</p>
 
-<p><img src="fig/PS-11-Graph-Prime.jpg" alt=""></p>
+<p><img src="fig/PS-11-Graph-Prime.jpg" alt="" /></p>
 
-<hr>
+<hr />
 
-<h3>5. Iterated Dijkstra with <em>ŵ</em></h3>
+<h3 id="iterated-dijkstra-with-">5. Iterated Dijkstra with <em>ŵ</em></h3>
 
 <p><strong>(a)</strong> Using the results of problem 4 and defining <em>h</em>(<em>v</em>) = δ(<em>s</em>,<em>v</em>) ∀ <em>v</em> ∈ <em>V</em>, draw the revised graph <em>G</em> (with <code>s</code> removed) with edge weights <em>ŵ</em>(<em>u</em>,<em>v</em>) = <em>w</em>(<em>u</em>,<em>v</em>) + <em>h</em>(<em>u</em>) − <em>h</em>(<em>v</em>) and after <code>Initialize-Single-Source</code> (vertices are labeled by <em>v</em>.d, either 0 or ∞). (Refer to 4b above for <em>h</em> values.) </p>
 
-<h4>Graph <em>G</em> showing edge weights <em>ŵ</em>(<em>u</em>,<em>v</em>) after Initialize-Single-</h4>
-
+<h4 id="graph-g-showing-edge-weights-uv-after-initialize-single-">Graph <em>G</em> showing edge weights <em>ŵ</em>(<em>u</em>,<em>v</em>) after Initialize-Single-</h4>
 <p>Source:</p>
 
-<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt=""></p>
+<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt="" /></p>
 
-<p><strong>(b)</strong> Run Dijkstra&#39;s algorithm on the resulting graph, again using vertex <code>a</code> as the start vertex. Show the resulting δ̂(<em>a</em>,<em>v</em>) as labels inside the vertices.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Step  v put in S   v.d
+<p><strong>(b)</strong> Run Dijkstra’s algorithm on the resulting graph, again using vertex <code>a</code> as the start vertex. Show the resulting δ̂(<em>a</em>,<em>v</em>) as labels inside the vertices.</p>
+
+<pre><code>Step  v put in S   v.d
 ----  ----------  -----
 1.
 2.
 3.
 4.
 5. 
-</code></pre></div>
-<h4>Graph <em>G</em> with edge weights <em>ŵ</em>(<em>u</em>,<em>v</em>) and vertex labels δ̂(<em>a</em>,<em>v</em>):</h4>
+</code></pre>
 
-<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt=""></p>
+<h4 id="graph-g-with-edge-weights-uv-and-vertex-labels-av">Graph <em>G</em> with edge weights <em>ŵ</em>(<em>u</em>,<em>v</em>) and vertex labels δ̂(<em>a</em>,<em>v</em>):</h4>
+
+<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt="" /></p>
 
 <p><strong>(c)</strong> Now map the distances above back to what they would be under <em>w</em> by using δ(<em>a</em>,<em>v</em>) = δ̂(<em>a</em>,<em>v</em>) − <em>h</em>(<em>u</em>) + <em>h</em>(<em>v</em>), referring to your results of 4b for <em>h</em>. Note that this should get the correct path that was missed in problem 2! </p>
 
-<h4>Graph <em>G</em> with edge weights <em>w</em>(<em>u</em>,<em>v</em>) and vertex labels δ(<em>a</em>,<em>v</em>):</h4>
+<h4 id="graph-g-with-edge-weights-wuv-and-vertex-labels-av">Graph <em>G</em> with edge weights <em>w</em>(<em>u</em>,<em>v</em>) and vertex labels δ(<em>a</em>,<em>v</em>):</h4>
 
-<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt=""></p>
+<p><img src="fig/PS-11-Graph-NoWeights.jpg" alt="" /></p>
 
-<hr>
+<hr />
 
-<p>Johnson&#39;s algorithm would now repeat 5(a) and 5(b) on each of the other
+<p>Johnson’s algorithm would now repeat 5(a) and 5(b) on each of the other
 vertices b, c, d, and e. However, you do not need to turn in the other runs of
-Dijkstra. We&#39;ll compute the other paths below.</p>
+Dijkstra. We’ll compute the other paths below.</p>
 
-<hr>
+<hr />
 
-<h3>6. Floyd-Warshall</h3>
+<h3 id="floyd-warshall">6. Floyd-Warshall</h3>
 
 <p>Construct and show the matrix <em>D</em>(0) for the graph shown again here. Then run
 Floyd-Warshall, showing the matrix <em>D</em>(<em>k</em>) for each value of <em>k</em>. The final
@@ -213,33 +217,34 @@ clear what order to process the vertices and easier for the TA to grade, we
 will number the vertices in alphabetical order: for <em>k</em>=1, <em>k</em> is vertex a;
 for <em>k</em>=2, <em>k</em> is vertex b, etc.</p>
 
-<h4><em>D</em>(0)</h4>
+<h4 id="d0"><em>D</em>(0)</h4>
 
-<p><img src="fig/PS-11-Graph.jpg" alt=""> <img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Graph.jpg" alt="" /> <img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<h4><em>D</em>(1)</h4>
+<h4 id="d1"><em>D</em>(1)</h4>
 
-<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<h4><em>D</em>(2)</h4>
+<h4 id="d2"><em>D</em>(2)</h4>
 
-<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<h4><em>D</em>(3)</h4>
+<h4 id="d3"><em>D</em>(3)</h4>
 
-<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<h4><em>D</em>(4)</h4>
+<h4 id="d4"><em>D</em>(4)</h4>
 
-<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<h4><em>D</em>(5)</h4>
+<h4 id="d5"><em>D</em>(5)</h4>
 
-<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt=""></p>
+<p><img src="fig/PS-11-Floyd-Warshall-Matrix-Template.jpg" alt="" /></p>
 
-<hr>
+<hr />
 
 <p>Dan Suthers Last modified: Sun Apr 20 03:32:41 HST 2014</p>
+
 
 </div>
 
@@ -249,12 +254,12 @@ for <em>k</em>=2, <em>k</em> is vertex b, etc.</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,18 +48,18 @@
 
 
 <div class="container">
-  <h2>Basic Data Structures</h2>
+  <h2 id="basic-data-structures">Basic Data Structures</h2>
 
-<h4>5 points</h4>
+<h4 id="points">5 points</h4>
 
 <p><strong>1. (4 pts)</strong> For each of the four types of lists in the following table, what is the <em>asymptotic worst-case running time</em> for each dynamic set operation listed, given a list of length <em>n</em>? </p>
 
 <ul>
-<li>Assume that _<em>k</em> is the key<em>, _d</em> the data associated with the key, and _<em>p</em> a position_ in the data structure.</li>
-<li>As explained in class, positions abstract and provide encapsulated access to elements of a data structure. We don&#39;t have to search for the item if we have a position p for it.</li>
-<li>Sorted lists are sorted in <em>ascending order</em>.</li>
-<li>Predecessor, successor, minimum, and maximum are <em>with respect to ordering of keys in the set under &quot;&lt;&quot;</em>, not necessarily ordering of the list data structure.</li>
-<li>The cells filled in are from the quiz.</li>
+  <li>Assume that <em>_k</em> is the key<em>, _d</em> the data associated with the key, and <em>_p</em> a position_ in the data structure.</li>
+  <li>As explained in class, positions abstract and provide encapsulated access to elements of a data structure. We don’t have to search for the item if we have a position p for it.</li>
+  <li>Sorted lists are sorted in <em>ascending order</em>.</li>
+  <li>Predecessor, successor, minimum, and maximum are <em>with respect to ordering of keys in the set under “&lt;”</em>, not necessarily ordering of the list data structure.</li>
+  <li>The cells filled in are from the quiz.</li>
 </ul>
 
 <table width="100%" border="1">
@@ -110,16 +109,18 @@
     <td><strong>&nbsp;</strong></td>
   </tr>
 </tbody></table>
-  
 
 <p><strong>2. (1 pt)</strong> Write a Θ(<em>n</em>)-time recursive procedure that, <em>given an _n</em>-node binary tree, prints out the key of each node of the tree_ in any order you wish. Assume that trees consist of vertices of class <code>TreeNode</code> with instance variables <code>parent</code>, <code>left</code>, <code>right</code>, and <code>key</code>. Your recursive procedure takes a <code>TreeNode</code> as its argument (the root of the tree or subtree being considered by the recursive call).</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">**
+
+<pre><code>**
 printTreeNodes(TreeNode root)
     if (root != null) {
 
 
 **
-</code></pre></div>
+</code></pre>
+
+
 </div>
 
 
@@ -128,12 +129,12 @@ printTreeNodes(TreeNode root)
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

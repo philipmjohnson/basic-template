@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -54,9 +53,9 @@
 <p>This page discusses general procedures for implementation assignments and
 extra credit projects. See the individual assignment pages for details.</p>
 
-<h2>Implementation Assignments</h2>
+<h2 id="implementation-assignments">Implementation Assignments</h2>
 
-<h3>Overview</h3>
+<h3 id="overview">Overview</h3>
 
 <p>There will be three implementation assignments. These will involve writing
 Java implementations of abstract data types and associated algorithms, and
@@ -70,38 +69,41 @@ choices. The second assignment will be weighted 10% (100 points). The third
 assignment will require some research and decision making on your part to
 solve the problem. It will be weighted 10% (100 points).</p>
 
-<h3>Software Requirements</h3>
+<h3 id="software-requirements">Software Requirements</h3>
 
 <p>The following requirements have been adopted from Dr. Sugihara:</p>
 
-<h4>Programming Language</h4>
+<h4 id="programming-language">Programming Language</h4>
 
 <p>All software must be written in Java. Other programming languages may not be
 used except where specified by the assignment.</p>
 
-<p><strong>The software must be compilable on the default version of Java available on uhunix.hawaii.edu</strong> at the time of the submission deadline. The reason for this is to ensure that there is a common reference environment against which we can resolve disputes. We can&#39;t grade projects on claims that &quot;it compiled on my machine&quot;.</p>
+<p><strong>The software must be compilable on the default version of Java available on uhunix.hawaii.edu</strong> at the time of the submission deadline. The reason for this is to ensure that there is a common reference environment against which we can resolve disputes. We can’t grade projects on claims that “it compiled on my machine”.</p>
 
-<p>Uhunix is running <a href="http://www.oracle.com/technetwork/server-%0Astorage/solaris/overview/index.html">Solaris</a>. At this writing, the Java version is:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">java version &quot;1.7.0_51&quot;
+<p>Uhunix is running <a href="http://www.oracle.com/technetwork/server-
+storage/solaris/overview/index.html">Solaris</a>. At this writing, the Java version is:</p>
+
+<pre><code>java version "1.7.0_51"
 Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
 Java HotSpot(TM) Server VM (build 24.51-b03, mixed mode)
-</code></pre></div>
+</code></pre>
+
 <p>Projects submitted with higher versions of Java (if they become available) are
 at your risk. Note that the instructor is presently running research projects
 in Java 1.6 in Snow Leopard on which Java 1.7 is not available. Some features
 of Java 1.7 do not compile in 1.6, so if you could stick to 1.6 features he
-won&#39;t have to go to UH Unix to run your code.</p>
+won’t have to go to UH Unix to run your code.</p>
 
-<h4>Program Type and Interface</h4>
+<h4 id="program-type-and-interface">Program Type and Interface</h4>
 
 <p>The software should run as a Java application.</p>
 
 <ul>
-<li>Command line (console) applications are acceptable.</li>
-<li>GUI (graphical user interface versions) are also permissible.</li>
+  <li>Command line (console) applications are acceptable.</li>
+  <li>GUI (graphical user interface versions) are also permissible.</li>
 </ul>
 
-<h4>Source Code Requirements</h4>
+<h4 id="source-code-requirements">Source Code Requirements</h4>
 
 <p>The student shall <strong>submit .java source files</strong> (not class or jar files),
 organized in folders as required for your package structure, along with
@@ -109,14 +111,13 @@ instructions for compiling the program and other documentation discussed in
 the next section.</p>
 
 <ul>
-<li>The Teaching Assistant will verify that the programs compile on the current version of Java on uhunix, as specified above.</li>
-<li>Submissions will only be evaluated for credit if they successfully compile.</li>
-<li>This procedure is intended to (1) enable us to verify that the software is based on the student&#39;s own source code and (2) provide an objective basis for evaluating whether code works..</li>
+  <li>The Teaching Assistant will verify that the programs compile on the current version of Java on uhunix, as specified above.</li>
+  <li>Submissions will only be evaluated for credit if they successfully compile.</li>
+  <li>This procedure is intended to (1) enable us to verify that the software is based on the student’s own source code and (2) provide an objective basis for evaluating whether code works..</li>
 </ul>
 
 <p>Source files should include the BSD License Header based on <a href="../Resources/bsd_license_header.txt"> this
-template,</a> with &quot;<year>&quot;, &quot;<copyright
-holder>&quot; and &quot;<organization>&quot; replaced appropriately.</p>
+template,</a> with “<year>", "<copyright holder="">" and "<organization>" replaced appropriately.</organization></copyright></year></p>
 
 <p>Other open source licenses (e.g., <a href="http://www.apache.org/licenses/">Apache</a> or
 <a href="http://www.gnu.org/licenses/">GNU</a>) may be used with prior permission from
@@ -125,14 +126,14 @@ understands the consequences. See the discussion under Other Licenses two
 sections below.</p>
 
 <p>Source should include appropriate in-line comments documenting the software
-design. Comments should not document the obvious (e.g., &quot;this line adds 1 to
-the index variable&quot;), but rather document functional intent and constraints
+design. Comments should not document the obvious (e.g., “this line adds 1 to
+the index variable”), but rather document functional intent and constraints
 such as loop invariants, explain something that would otherwise be obscure,
 mark places that need improvement, etc. Descriptive use of variable and method
 names also constitutes internal documentation. See next section for external
 documentation requirements.</p>
 
-<h4>Including Open Source Software</h4>
+<h4 id="including-open-source-software">Including Open Source Software</h4>
 
 <p>Each assignment will specify where you are allowed to reuse source code of
 open source software developed by other authors, and where you must write your
@@ -140,23 +141,25 @@ own code for the assignment. Where allowed by the assignment, reuse of open
 source code is allowed if the following conditions are also met:</p>
 
 <ul>
-<li>The software license of the reused open source code is compatible with the <a href="http://www.opensource.org/licenses/bsd-license.php"> BSD license</a> (see discussion under Other Licenses below).</li>
-<li>The license header of reused source code is also inserted into the source files containing the reused source code.</li>
-<li>The <code>Readme.txt</code> of your product clearly gives credit to the authors of the reused source code (i.e., including information such as the name of an author, the name of a reused product and a list of file names of the reused source code).</li>
+  <li>The software license of the reused open source code is compatible with the <a href="http://www.opensource.org/licenses/bsd-license.php"> BSD license</a> (see discussion under Other Licenses below).</li>
+  <li>The license header of reused source code is also inserted into the source files containing the reused source code.</li>
+  <li>The <code>Readme.txt </code> of your product clearly gives credit to the authors of the reused source code (i.e., including information such as the name of an author, the name of a reused product and a list of file names of the reused source code).</li>
 </ul>
 
 <p>When source code of a module is reused, add the name(s) of its original
 author(s) to an <code>@author</code> tag at the beginning of the reused module. If you
 modified the source code for more than bug fixes, add your name as an author
 of a derivative from the original source code:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">/**
+
+<pre><code>/**
  *
  * @author     Original Author     James Brown
  * @author     Derivative Author   Robert Smith
  *
  */
-</code></pre></div>
-<h4>Other Licenses</h4>
+</code></pre>
+
+<h4 id="other-licenses">Other Licenses</h4>
 
 <p>I am often asked whether one can use code under another license. You may use
 other open source licenses as long as (1) they give you the right to use the
@@ -167,7 +170,7 @@ license, all the code you write <em>must</em> also be under GPL. See
 <a href="http://en.wikipedia.org/wiki/Free_software_license">http://en.wikipedia.org/wiki/Free_software_license</a> for an overview, and read
 some blogs about this hotly debated issue.</p>
 
-<h3>Documentation Requirements</h3>
+<h3 id="documentation-requirements">Documentation Requirements</h3>
 
 <p>Software will be submitted with appropriate documentation, including the
 following. (Think of your audience for this documentation as any potential
@@ -178,11 +181,11 @@ users, including your classmates as well as the TA and instructor.)</p>
 <p>Critical information that a user should know about your product first, including:</p>
 
 <ul>
-<li>step-wise instructions for the user to reconstruct an application from your source code (including the version of JDK used),</li>
-<li>credits (acknowledgments to authors of open source reused at least in part for this product) including information such as the name of an author, the name of a reused product and a list of source file names of the reused product,</li>
-<li>revision history (a log of changes on the product), </li>
-<li>bug report (description of known bugs), and </li>
-<li>a listing of other documentation available (below).</li>
+  <li>step-wise instructions for the user to reconstruct an application from your source code (including the version of JDK used),</li>
+  <li>credits (acknowledgments to authors of open source reused at least in part for this product) including information such as the name of an author, the name of a reused product and a list of source file names of the reused product,</li>
+  <li>revision history (a log of changes on the product), </li>
+  <li>bug report (description of known bugs), and </li>
+  <li>a listing of other documentation available (below).</li>
 </ul>
 
 <p><strong>Operation Manual (plaintext or PDF)</strong></p>
@@ -197,20 +200,20 @@ users, including your classmates as well as the TA and instructor.)</p>
 
 <p>Test plan describing objective(s) of testing, method(s) used for testing, assumption(s) of testing, and hardware/software environment in testing; test case specification describing classification of test cases; test data and I/O of test runs; and whatever else is useful to convince other people about the correctness and good features of your program. <strong>For ICS 311 assignments the testing document will include your conclusions related to the purpose of the assignment.</strong></p>
 
-<h3>Submission Requirements</h3>
+<h3 id="submission-requirements">Submission Requirements</h3>
 
 <ol>
-<li>Place the files and folders required (as discussed above under Software and Documentation Requirements) in a folder titled using the scheme Last-First-A#, for example, Suthers-Dan-A1 for assignment 1, Suthers-Dan-A2 for assignment 2, etc. Extra credit projects should be submitted with extentions -E1, etc.</li>
-<li>Zip (.zip) or gzip (.gz) this folder using commands by those names on uhunix, or appropriate equivalents on your platform.</li>
-<li>It is suggested that you test unzipping, compiling and running the software per the instructions you gave before submitting the assignment.</li>
-<li>Upload the zip file to the Laulima area for the given assignment.</li>
-<li>You should receive email confirmation of your submission at the address registered in Laulima.</li>
-<li>Unlimited resubmissions are allowed up to the assignment deadline. Extra credit for early submission, if any, will be based on the date of the last submission, not the first!</li>
+  <li>Place the files and folders required (as discussed above under Software and Documentation Requirements) in a folder titled using the scheme Last-First-A#, for example, Suthers-Dan-A1 for assignment 1, Suthers-Dan-A2 for assignment 2, etc. Extra credit projects should be submitted with extentions -E1, etc.</li>
+  <li>Zip (.zip) or gzip (.gz) this folder using commands by those names on uhunix, or appropriate equivalents on your platform.</li>
+  <li>It is suggested that you test unzipping, compiling and running the software per the instructions you gave before submitting the assignment.</li>
+  <li>Upload the zip file to the Laulima area for the given assignment.</li>
+  <li>You should receive email confirmation of your submission at the address registered in Laulima.</li>
+  <li>Unlimited resubmissions are allowed up to the assignment deadline. Extra credit for early submission, if any, will be based on the date of the last submission, not the first!</li>
 </ol>
 
-<h3>Evaluation Criteria for Implementation Assignments</h3>
+<h3 id="evaluation-criteria-for-implementation-assignments">Evaluation Criteria for Implementation Assignments</h3>
 
-<h3>Warning: these will be revised for spring 2014</h3>
+<h3 id="warning-these-will-be-revised-for-spring-2014">Warning: these will be revised for spring 2014</h3>
 
 <p>These are our default grading criteria. Some adjustments may be made when we
 see where the greatest effort is required.</p>
@@ -218,20 +221,23 @@ see where the greatest effort is required.</p>
 <p>Program: 60%</p>
 
 <ul>
-<li>50% if all operations and all ADTs are implemented.</li>
-<li>5% for following instructions for input and output (although many more points will be deducted if the interface is so bad we can&#39;t verify that the operations and ADTs are implemented). </li>
-<li><p>5% for adequate error handling. 
-Analysis and Documentation 40%</p></li>
-<li><p>30% for adequate analysis of the results</p></li>
-<li><p>10% for Readme, Operation, Reference manuals</p></li>
+  <li>50% if all operations and all ADTs are implemented.</li>
+  <li>5% for following instructions for input and output (although many more points will be deducted if the interface is so bad we can’t verify that the operations and ADTs are implemented). </li>
+  <li>
+    <p>5% for adequate error handling. 
+Analysis and Documentation 40%</p>
+  </li>
+  <li>30% for adequate analysis of the results</li>
+  <li>10% for Readme, Operation, Reference manuals</li>
 </ul>
 
-<h2>Use of Software by Other Students</h2>
+<h2 id="use-of-software-by-other-students">Use of Software by Other Students</h2>
 
 <p>If others elect to use your software in a subsequent assignment (e.g., using
 your graph ADT implementation in the third assignment), we will give extra
 credit. See discussion in <a href="Assessment.html">Assessement</a> page. Use should be
 credited in the Readme and Reference Manual.</p>
+
 
 </div>
 
@@ -241,12 +247,12 @@ credited in the Readme and Reference Manual.</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

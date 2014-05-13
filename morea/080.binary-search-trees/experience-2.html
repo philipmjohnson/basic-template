@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,11 +48,11 @@
 
 
 <div class="container">
-  <h3>Binary Search Trees</h3>
+  <h3 id="binary-search-trees">Binary Search Trees</h3>
 
 <p><strong>4.</strong> (4 pts) Suppose you have some data keys sorted in an array and you want to construct a <em><strong>balanced binary search tree</strong></em> from them. Assume a tree node representation <code>TreeNode</code> that includes instance variables <code>key</code>, <code>left</code>, and <code>right</code>.</p>
 
-<p><strong>a.</strong>  Write pseudocode (or Java if you wish) for an algorithm that constructs the tree and returns the root node. (We won&#39;t worry about making the enclosing <code>BinaryTree</code> class instance.) You will need to use methods for making a new <code>TreeNode</code>, and for setting its left and right children.</p>
+<p><strong>a.</strong>  Write pseudocode (or Java if you wish) for an algorithm that constructs the tree and returns the root node. (We won’t worry about making the enclosing <code>BinaryTree</code> class instance.) You will need to use methods for making a new <code>TreeNode</code>, and for setting its left and right children.</p>
 
 <p><em>Hints: First, identify the array location of the key that would have to be
 the root of the balanced BST. Now think about how BinarySearch works on the
@@ -65,7 +64,8 @@ with? Using a similar strategy a simple recursive algorithm is possible.</em></p
 <p><strong>5.</strong> (3 pts) In <code>Tree-Delete</code> (page 298 or as shown in the web notes), when node <em>z</em> has two children, we arbitrarily decide to replace it with its successor. We could just as well replace it with its predecessor. </p>
 
 <p><strong>a.</strong>   Rewrite <code>Tree-Delete</code> to use the predecessor rather than the successor. Modify this code just as you need to.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  TREE-DELETE(T, z)
+
+<pre><code>  TREE-DELETE(T, z)
   1  if z.left == NIL
   2      TRANSPLANT(T, z, z.right)
   3  elseif z.right == NIL
@@ -78,8 +78,9 @@ with? Using a similar strategy a simple recursive algorithm is possible.</em></p
   10      TRANSPLANT(T, z, y)
   11      y.left = z.left
   12      y.left.p = y
-</code></pre></div>
-<p><strong>b.</strong>   Some computer scientists have argued that if equal priority were given to replacing the successor and the predecessor to not skew deletions on one side, better performance might result. How might <code>Tree-Delete</code> be modified to implement such a strategy? (<em>Hint:</em> think about last week&#39;s topics.)</p>
+</code></pre>
+
+<p><strong>b.</strong>   Some computer scientists have argued that if equal priority were given to replacing the successor and the predecessor to not skew deletions on one side, better performance might result. How might <code>Tree-Delete</code> be modified to implement such a strategy? (<em>Hint:</em> think about last week’s topics.)</p>
 
 </div>
 
@@ -89,12 +90,12 @@ with? Using a similar strategy a simple recursive algorithm is possible.</em></p
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

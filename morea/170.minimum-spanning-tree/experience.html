@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,48 +48,55 @@
 
 
 <div class="container">
-  <h2>Basics of minimum spanning trees</h2>
+  <h2 id="basics-of-minimum-spanning-trees">Basics of minimum spanning trees</h2>
 
 <p>Below is pseudocode for three different algorithms. Each one takes a connected
 graph <em>G</em> = (<em>V</em>,<em>E</em>) and a weight function <em>w</em> as input and returns a set of
 edges <em>T</em>.</p>
 
-<h4>Is it an MST algorithm?</h4>
+<h4 id="is-it-an-mst-algorithm">Is it an MST algorithm?</h4>
 
 <p>For each algorithm, either prove that the set of edges <em>T</em> produced by the
 algorithm is always a minimum spanning tree, or find a counter-example where
 <em>T</em> is not a minimum spanning tree</p>
 
 <p><strong>1. <code>Maybe-MST-A</code></strong></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-A (G, w)
+
+<pre><code>Maybe-MST-A (G, w)
 1  sort the edges into nonincreasing order of edge weights w
 2  T = E
 3  for each edge e, taken in sorted order
 4      if T − {e} is a connected graph
 5          T = T − {e}
 6  return T
-</code></pre></div>
+</code></pre>
+
 <p><strong>2. <code>Maybe-MST-B</code></strong></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-B (G, w)
+
+<pre><code>Maybe-MST-B (G, w)
 1  T = {} // empty set
 2  for each edge e ∈ E, taken in arbitrary order
 3      if T ∪ {e} has no cycles
 4          T = T ∪ {e}
 5  return T
-</code></pre></div>
+</code></pre>
+
 <p><strong>3. <code>Maybe-MST-C</code></strong></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Maybe-MST-C (G, w)
+
+<pre><code>Maybe-MST-C (G, w)
 1  T = {}
 2  for each edge e ∈ E, taken in arbitrary order
 3      T = T ∪ {e}
 4      if T has a cycle _c_
-5          let e&#39; be a maximum weight edge on c
-6          T = T − {e&#39;}
+5          let e' be a maximum weight edge on c
+6          T = T − {e'}
 7  return T
-</code></pre></div>
-<h4>Efficient Implementation</h4>
+</code></pre>
+
+<h4 id="efficient-implementation">Efficient Implementation</h4>
 
 <p><strong>4.</strong> Once you are done, pick on of the above algorithms that you think computes a MST. Then describe an efficient implementation of that algorithm. Each algorithm above uses utility methods such as sorting, testing connectivity, detecting cycles, and finding the maximum weight edge on a cycle. Your response should focus on efficient implementations of these utility methods. </p>
+
 
 </div>
 
@@ -100,12 +106,12 @@ algorithm is always a minimum spanning tree, or find a counter-example where
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

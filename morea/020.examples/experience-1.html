@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,45 +48,50 @@
 
 
 <div class="container">
-  <h2>In Class: Linear Search</h2>
+  <h2 id="in-class-linear-search">In Class: Linear Search</h2>
 
-<h4>5 points</h4>
+<h4 id="points">5 points</h4>
 
 <ol>
-<li>Consider the <strong>searching problem</strong>:</li>
+  <li>Consider the <strong>searching problem</strong>:</li>
 </ol>
 
 <p>Input:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> A sequence of _n_ numbers _A_ = ⟨ _a_1, _a_2, .... _a__n_ ⟩ (in _no particular order_), and a value _v_.
-</code></pre></div>
+
+<pre><code> A sequence of _n_ numbers _A_ = ⟨ _a_1, _a_2, .... _a__n_ ⟩ (in _no particular order_), and a value _v_.
+</code></pre>
+
 <p>Output:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> An index _i_ such that _v_ = _A_[_i_] or the special value NIL if _v_ does not appear in _A_.
-</code></pre></div>
+
+<pre><code> An index _i_ such that _v_ = _A_[_i_] or the special value NIL if _v_ does not appear in _A_.
+</code></pre>
+
 <p><strong>a. (1 pt):</strong> Write pseudocode for <code>LinearSearch(A,v)</code>, an algorithm that scans through sequence <em>A</em> looking for <em>v</em>, and provides the desired output (<em>i</em> or NIL). Use Java style 0-based indexing, A[<em>i</em>] to access elements, and A.length to get <em>n</em>. </p>
 
-<p><strong>b. (2 pts):</strong> Let <strong><em>p</em></strong> be the number of array positions checked. (<em>p</em> will be replaced with a function of <em>n</em>. For example, when the element is not present, <em>p</em> = <em>n</em>.) Let <em>c</em>1 be the cost of executing line 1, <em>c</em>2 the cost of executing line 2, etc. As was done in the lecture notes: </p>
+<p><strong>b. (2 pts):</strong> Let <strong><em>p</em></strong> be the number of array positions checked. (<em>p</em> will be replaced with a function of <em>n</em>. For example, when the element is not present, <em>p</em> = <em>n</em>.) Let _c_1 be the cost of executing line 1, _c_2 the cost of executing line 2, etc. As was done in the lecture notes: </p>
 
 <ul>
-<li>Write the expression for the cost to execute each line in terms of <em>p</em> and the <em>c</em><em>i</em>. </li>
-<li>Sum these to get the total cost <em>T</em>(<em>n</em>). </li>
-<li>Then collect the constants and rename them &quot;a&quot; and &quot;b&quot;.</li>
+  <li>Write the expression for the cost to execute each line in terms of <em>p</em> and the <em>c__i</em>. </li>
+  <li>Sum these to get the total cost <em>T</em>(<em>n</em>). </li>
+  <li>Then collect the constants and rename them “a” and “b”.</li>
 </ul>
 
 <p><strong>c. (1 pt):</strong> What is <em>p</em> for the <em>worst case</em>: precisely how many elements of the input sequence need to be checked? </p>
 
 <ul>
-<li>Rewrite your last expression for this <em>p</em>. </li>
-<li>In what Θ (Theta) complexity class is this? (Write as Θ(____).) </li>
+  <li>Rewrite your last expression for this <em>p</em>. </li>
+  <li>In what Θ (Theta) complexity class is this? (Write as Θ(<em>__</em>).) </li>
 </ul>
 
 <p><strong>d. (1pt):</strong> What is <em>p</em> for the <em>average case</em>: precisely how many elements of the input sequence need to be checked on average, assuming that the element being searched for is present and equally likely to be any element in the array? </p>
 
 <ul>
-<li>Rewrite your expression for this <em>p</em>. </li>
-<li>In what Θ (Theta) complexity class is this? (Write as Θ (____).) </li>
+  <li>Rewrite your expression for this <em>p</em>. </li>
+  <li>In what Θ (Theta) complexity class is this? (Write as Θ (<em>__</em>).) </li>
 </ul>
 
 <p>Justify all your answers!</p>
+
 
 </div>
 
@@ -97,12 +101,12 @@
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

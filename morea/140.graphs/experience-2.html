@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,24 +48,27 @@
 
 
 <div class="container">
-  <h2>Finding SCC of a graph with DFS</h2>
+  <h2 id="finding-scc-of-a-graph-with-dfs">Finding SCC of a graph with DFS</h2>
 
 <p><strong>1.</strong> <em>Run DFS on this graph</em>. To make grading easier, <em>visit vertices in alphabetical order</em> (both in the main loop of DFS and the adjacency list loop of DFS-Visit). For each vertex, show values <em>d</em> (discovery), <em>f</em> (finish), and π (parent). </p>
 
-<p><img src="fig/SCC-Class-Problem-Graph.jpg" alt=""></p>
+<p><img src="fig/SCC-Class-Problem-Graph.jpg" alt="" /></p>
 
 <p>The finish times from largest to smallest order the nodes in a manner
 consistent with a topological sort of their SCCs.</p>
 
 <p><strong>2.</strong> Now run DFS on the transpose graph, visiting vertices in order of finish time (highest to lowest) from the DFS of step 1 (as required by the SCC algorithm). Again, show values <em>d</em> (discovery), <em>f</em> (finish), and π (parent).</p>
 
-<p><img src="fig/SCC-Class-Problem-Graph-Transpose.jpg" alt=""></p>
+<p><img src="fig/SCC-Class-Problem-Graph-Transpose.jpg" alt="" /></p>
 
 <p><strong>3.</strong> List the strongly connected components you found by first <em>listing the tree edges</em> in the transpose graph that define the SCC, and then <em>listing the vertices</em> in the SCC (the first is shown): </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">SCC 1:  Tree edges: { }; Vertices: {l} 
+
+<pre><code>SCC 1:  Tree edges: { }; Vertices: {l} 
 SCC 2:  Tree edges: {...}; Vertices: {...} 
 SCC 3:  ... 
-</code></pre></div>
+</code></pre>
+
+
 </div>
 
 
@@ -75,12 +77,12 @@ SCC 3:  ...
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

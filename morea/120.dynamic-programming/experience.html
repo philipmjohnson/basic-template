@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,7 +48,7 @@
 
 
 <div class="container">
-  <h1>Longest Simple Path in a Directed Acylic Graph</h1>
+  <h1 id="longest-simple-path-in-a-directed-acylic-graph">Longest Simple Path in a Directed Acylic Graph</h1>
 
 <p>Given a directed weighted acyclic graph G=(V,E) with real valued edge weights
 representing the length of each edge and two vertices s (start) and t
@@ -59,10 +58,18 @@ weighted simple path from s to t.</p>
 <p>Definitions:</p>
 
 <ul>
-<li><p>directed: it has arrows on the edges and you only go in the direction of the arrows </p></li>
-<li><p>acyclic: one can never get back to where one started</p></li>
-<li><p>path: a sequence of vertices connected by edges, e.g., ⟨u, v, w⟩ when (u,v) and (v,w) are in E. </p></li>
-<li><p>simple path: a path that does not repeat vertices. </p></li>
+  <li>
+    <p>directed: it has arrows on the edges and you only go in the direction of the arrows </p>
+  </li>
+  <li>
+    <p>acyclic: one can never get back to where one started</p>
+  </li>
+  <li>
+    <p>path: a sequence of vertices connected by edges, e.g., ⟨u, v, w⟩ when (u,v) and (v,w) are in E. </p>
+  </li>
+  <li>
+    <p>simple path: a path that does not repeat vertices. </p>
+  </li>
 </ul>
 
 <p>Note: in a DAG without self loops (v, v) all paths are simple. Well assume no
@@ -71,11 +78,29 @@ self loops.</p>
 <p>Notations:</p>
 
 <ul>
-<li><p>Write |V| for number of vertices and |E| for number of edges. </p></li>
-<li><p>(u, v) - the directed edge from vertex to vertex v. </p></li>
-<li><p>w(u, v) - the weight on the edge (u, v), here interpreted as length.</p></li>
-<li><p>G.V - a list of vertices in G. </p></li>
-<li><p>G.Adj[u] - a list of edges in G that begin on u (e.g., (u,v), (u,w), (u,x) ). </p></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Write</td>
+          <td>V</td>
+          <td>for number of vertices and</td>
+          <td>E</td>
+          <td>for number of edges.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>(u, v) - the directed edge from vertex to vertex v. </p>
+  </li>
+  <li>
+    <p>w(u, v) - the weight on the edge (u, v), here interpreted as length.</p>
+  </li>
+  <li>
+    <p>G.V - a list of vertices in G. </p>
+  </li>
+  <li>G.Adj[u] - a list of edges in G that begin on u (e.g., (u,v), (u,w), (u,x) ). </li>
 </ul>
 
 <p>Also, lets assume that vertices are named by integers {1, 2,  |V|} so we can
@@ -85,7 +110,7 @@ graphs!</p>
 <p>Follow these steps:</p>
 
 <ol>
-<li>Characterize the Structure of an Optimal Solution</li>
+  <li>Characterize the Structure of an Optimal Solution</li>
 </ol>
 
 <p>Since we need to reason about subpaths, well start at u (which can be s or
@@ -123,7 +148,17 @@ all entries of dist to -∞.</p>
 
 <p>Longest-Path-Value-Memoized (G, u, t, dist)</p>
 
-<p>5. Analyze the runtime of your solution in #4 in terms of |V| and |E|.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>5. Analyze the runtime of your solution in #4 in terms of</td>
+      <td>V</td>
+      <td>and</td>
+      <td>E</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Include the runtime (a) to initialize dist and (b) of Longest-Path-Value-
 Memoized.</p>
@@ -146,6 +181,7 @@ it here).</p>
 <p>How would you analyze the runtime of procedure Longest-Path-Recursive in terms
 of |V| and |E|? How does it compare to that of Longest-Path-Memoized?</p>
 
+
 </div>
 
 
@@ -154,12 +190,12 @@ of |V| and |E|? How does it compare to that of Longest-Path-Memoized?</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

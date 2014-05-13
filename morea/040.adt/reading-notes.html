@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,14 +48,14 @@
 
 
 <div class="container">
-  <h2>Outline</h2>
+  <h2 id="outline">Outline</h2>
 
 <ol>
-<li>Stacks </li>
-<li>Queues </li>
-<li>Lists </li>
-<li>First peek at Trees </li>
-<li>Dynamic Set ADT</li>
+  <li>Stacks </li>
+  <li>Queues </li>
+  <li>Lists </li>
+  <li>First peek at Trees </li>
+  <li>Dynamic Set ADT</li>
 </ol>
 
 <p>Here we review some basic Abstract Data Types that organize information in
@@ -64,7 +63,7 @@ useful ways. This should be review, so will be covered briefly, although some
 nuances of implementation are discussed and we will also do asymptotic
 analyses of the main operations of implementations.</p>
 
-<h2>Stacks</h2>
+<h2 id="stacks">Stacks</h2>
 
 <p>Stacks follow the <strong>Last In, First Out (LIFO)</strong> principle. They are useful
 when a problem has goal-subgoal structure, and we need to keep track of higher
@@ -72,10 +71,10 @@ level goals or processes when we set them aside to pursue subgoals or sub-
 processes (e.g., the run-time stack of a computer operating system, or keeping
 track of neighbor vertices yet to be visited when searching a graph).</p>
 
-<h3>Stack ADT</h3>
+<h3 id="stack-adt">Stack ADT</h3>
 
 <p>We start by specifying the desired behavior of stacks before looking at
-implementations. Here&#39;s the Stack ADT written as a simple Java interface:</p>
+implementations. Here’s the Stack ADT written as a simple Java interface:</p>
 
 <div class="highlight"><pre><code class="java"><span class="c1">// ADT that stores and retrieves Objects in a LIFO manner</span>
       <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Stack</span> <span class="o">{</span>
@@ -104,15 +103,15 @@ implementations. Here&#39;s the Stack ADT written as a simple Java interface:</p
 <p><strong>Properties</strong>, given <code>s</code> a stack instance:</p>
 
 <ol>
-<li>{ <code>push(_s_,_e_); _s_.top()</code> } returns value <code>_e_</code></li>
-<li>{ <code>push(_s_,_e_); _s_.pop()</code> } returns value <code>_e_</code> and leaves <code>_s_</code> in the same state </li>
-<li>{ <code>_s_ = new(); _s_.isEmpty() } returns true</code></li>
-<li>{ <code>push(_s_,_i_); _s_.isEmpty() } returns false</code></li>
-<li>if <code>s.isEmpty()</code> then <code>s.top()</code> is an error, and does not change <code>s</code></li>
-<li>if <code>s.isEmpty()</code> then <code>s.pop()</code> is an error, and does not change <code>s</code></li>
-<li>if <code>s.isEmpty()</code> then <code>s.size() == 0</code></li>
-<li>if <code>s.size() == _n_</code> then after <code>s.push(o), s.size() == _n_+1</code></li>
-<li>if <code>¬s.isEmpty()</code> and <code>s.size() == _n_</code> then after <code>s.pop(o), s.size() == _n_-1.</code></li>
+  <li>{ <code>push(_s_,_e_); _s_.top()</code> } returns value <code>_e_</code></li>
+  <li>{ <code>push(_s_,_e_); _s_.pop()</code> } returns value <code>_e_</code> and leaves <code>_s_</code> in the same state </li>
+  <li>{ <code>_s_ = new(); _s_.isEmpty() } returns true </code></li>
+  <li>{ <code>push(_s_,_i_); _s_.isEmpty() } returns false </code></li>
+  <li>if <code>s.isEmpty()</code> then <code>s.top()</code> is an error, and does not change <code>s</code></li>
+  <li>if <code>s.isEmpty()</code> then <code>s.pop()</code> is an error, and does not change <code>s</code></li>
+  <li>if <code>s.isEmpty()</code> then <code>s.size() == 0</code></li>
+  <li>if <code>s.size() == _n_</code> then after ` s.push(o), s.size() == <em>n</em>+1`</li>
+  <li>if <code>¬s.isEmpty()</code> and <code>s.size() == _n_</code> then after <code>s.pop(o), s.size() == _n_-1.</code></li>
 </ol>
 
 <p><em>What is the relationship of stacks to method execution in the Java Virtual
@@ -120,14 +119,15 @@ Machine?</em></p>
 
 <p><em>What is the relationship of stacks to recursion?</em></p>
 
-<h3>Array Implementation</h3>
+<h3 id="array-implementation">Array Implementation</h3>
 
 <p>Assume instance variables (fields) of object array <code>S</code> and <code>int top</code>. The
-three essential operations follow. (I am modifying the book&#39;s pseudocode
+three essential operations follow. (I am modifying the book’s pseudocode
 slightly.)</p>
 
-<p><img src="fig/Fig-10-1-a-Stack.jpg" alt=""></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  boolean **isEmpty** ( ) 
+<p><img src="fig/Fig-10-1-a-Stack.jpg" alt="" /></p>
+
+<pre><code>  boolean **isEmpty** ( ) 
   1     if top == 0 
   2       return TRUE
   3     else
@@ -139,55 +139,59 @@ slightly.)</p>
 
   Object **pop**( )
   1     if isEmpty()
-  2       error &quot;stack underflow&quot; // or throw new StackException (...) 
+  2       error "stack underflow" // or throw new StackException (...) 
   3     else
   4       top = top - 1
   5       return S[top+1]         // we comment on this later 
-</code></pre></div>
+</code></pre>
+
 <p><em>What is the asymptotic complexity of these operations?</em></p>
 
 <p>The potential error in <code>push</code> is an implementation concern outside of the
 scope of the <em>logical</em> definition of the stack ADT. How might it be handled?</p>
 
-<h4>Example</h4>
+<h4 id="example">Example</h4>
 
-<p>Let&#39;s start with this stack:</p>
+<p>Let’s start with this stack:</p>
 
-<p><img src="fig/Fig-10-1-a-Stack.jpg" alt="">  </p>
+<p><img src="fig/Fig-10-1-a-Stack.jpg" alt="" />  </p>
 
 <p>Push 17, and then 3:</p>
 
 <p>Pop once:</p>
 
-<p><img src="fig/Fig-10-1-b-Stack.jpg" alt=""></p>
+<p><img src="fig/Fig-10-1-b-Stack.jpg" alt="" /></p>
 
-<p><img src="fig/Fig-10-1-c-Stack.jpg" alt=""></p>
+<p><img src="fig/Fig-10-1-c-Stack.jpg" alt="" /></p>
 
 <p><em>What is the status of S[top+1] after pop returns? Why might that be a
 problem?</em></p>
 
-<h4>An Improvement</h4>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  Object **pop**( )  // version that dereferences objects for garbage collection
+<h4 id="an-improvement">An Improvement</h4>
+
+<pre><code>  Object **pop**( )  // version that dereferences objects for garbage collection
   1     if isEmpty()
-  2       error &quot;stack underflow&quot; 
+  2       error "stack underflow" 
   3     else
   4       o = S[top]
-  5       S[top] = null  // don&#39;t keep references to objects not really there 
+  5       S[top] = null  // don't keep references to objects not really there 
   6       top = top - 1
   7       return o 
-</code></pre></div>
-<hr>
+</code></pre>
 
-<h2>Queues</h2>
+<hr />
+
+<h2 id="queues">Queues</h2>
 
 <p>Queues operate in a <strong>First In, First Out (FIFO)</strong>, like what the British call
-a &quot;queue&quot; at the post office or bank. They are also very useful for managing
+a “queue” at the post office or bank. They are also very useful for managing
 prioritization of tasks in computing.</p>
 
-<h3>Queue ADT</h3>
+<h3 id="queue-adt">Queue ADT</h3>
 
 <p>Again, expressed as a simple Java interface:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  public interface **Queue**{
+
+<pre><code>  public interface **Queue**{
   // ADT that stores and retrieves Objects in a FIFO manner
 
     public **Queue**( ); 
@@ -210,37 +214,39 @@ prioritization of tasks in computing.</p>
     // Return the front (least recently queued) object in the queue, without 
     // removing it. Error occurs if the queue is empty.
   }
-</code></pre></div>
+</code></pre>
+
 <p><strong>Properties</strong> (given <code>q</code> a queue instance): are very similar to those for Stack, except for operations where ordering matters (FIFO rather than LIFO). Replace the first two properties for Stack with:</p>
 
 <ol>
-<li>if <code>q.enqueue(o1)</code> occurs before <code>q.enqueue(o2)</code> then successive <code>q.dequeue()</code> returns <code>o1</code> before <code>o2</code></li>
-<li><code>q.front()</code> returns the least recently enqueued element that has not been dequeued.</li>
+  <li>if <code>q.enqueue(o1) </code> occurs before <code>q.enqueue(o2)</code> then successive <code>q.dequeue()</code> returns <code>o1</code> before <code>o2</code></li>
+  <li><code>q.front() </code> returns the least recently enqueued element that has not been dequeued.</li>
 </ol>
 
 <p>Then rewrite the other properties with substitution <code>{enqueue/push,
 dequeue/pop, front/top}</code>.</p>
 
-<h3>Array Implementation</h3>
+<h3 id="array-implementation-1">Array Implementation</h3>
 
 <p>Assume three instance variables (fields): object array <code>Q</code>; <code>int head</code>
 indexing the next element to dequeue; and <code>int tail</code> indexing the next place a
 new element may be placed.</p>
 
-<p><img src="fig/Fig-10-2-a-Queue.jpg" alt=""></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  boolean **isEmpty** ( ) 
+<p><img src="fig/Fig-10-2-a-Queue.jpg" alt="" /></p>
+
+<pre><code>  boolean **isEmpty** ( ) 
   1     if head == tail
   2       return TRUE
   3     else
   4       return FALSE
-
+  
   void **enqueue**(Object o) 
   1     Q[tail] = o
   2     if tail == length  
   3       tail = 1           // wrap around
   4     else
   5       tail = tail + 1
-
+  
   Object **dequeue**( )     
   1     o = Q[head]
   2     if head == length
@@ -248,53 +254,56 @@ new element may be placed.</p>
   4     else 
   5       head = head + 1
   6     return o
-</code></pre></div>
+</code></pre>
+
 <p>The queue is full when <code>head == tail + 1</code>; an error results if enqueue is
 called (again, this is an implementation concern outside the logical
 definition of the ADT).</p>
 
-<h4>Example</h4>
+<h4 id="example-1">Example</h4>
 
 <p>Beginning with this Queue:</p>
 
-<p><img src="fig/Fig-10-2-a-Queue.jpg" alt="">  </p>
+<p><img src="fig/Fig-10-2-a-Queue.jpg" alt="" />  </p>
 
 <p>Enqueue 17, 3 and 5 (notice wrap-around):</p>
 
 <p>Dequeue once:</p>
 
-<p><img src="fig/Fig-10-2-b-Queue.jpg" alt=""></p>
+<p><img src="fig/Fig-10-2-b-Queue.jpg" alt="" /></p>
 
-<p><img src="fig/Fig-10-2-c-Queue.jpg" alt=""></p>
+<p><img src="fig/Fig-10-2-c-Queue.jpg" alt="" /></p>
 
 <p>The same issue concerning object dereferencing applies.</p>
 
-<h4>Variation using modular arithmetic</h4>
+<h4 id="variation-using-modular-arithmetic">Variation using modular arithmetic</h4>
 
 <p>This version handles dereferencing but does not check for overflow or
 underflow. It assumes that the array index starts with 0, but can be changed
 for 1-based indexing.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  void **enqueue**(Object o) 
+
+<pre><code>  void **enqueue**(Object o) 
   1     Q[tail] = o
   2     tail = (tail + 1) mod length // mod is % in Java 
-
+  
   Object **dequeue**( )
   1     o = Q[head]
   2     Q[head] = null               // allow garbage collection!
   3     head = (head + 1) mod length 
   4     return o
-</code></pre></div>
+</code></pre>
+
 <p><em>What is the asymptotic complexity of these operations?</em></p>
 
-<h3>Deques</h3>
+<h3 id="deques">Deques</h3>
 
 <p>One can combine the stack and queue concepts into a double-ended queue (deque)
 that allows insertion and deletion at both ends. O(1) procedures are possible
 for all insertion and deletion algorithms.</p>
 
-<hr>
+<hr />
 
-<h2>Lists</h2>
+<h2 id="lists">Lists</h2>
 
 <p>Lists store objects in linear order. We will assume that list elements have a
 <code>key</code> and may have other satellite data.</p>
@@ -305,14 +314,14 @@ key.</p>
 
 <p>A suitable ADT for lists will be given later, in the form of <code>DynamicSet</code>.</p>
 
-<h3>Linked Lists</h3>
+<h3 id="linked-lists">Linked Lists</h3>
 
 <p><strong>Linked lists</strong> use list element objects to hold the data (here in the form of a <code>key</code>), and record the linear order using <code>next</code> pointers. <strong>Doubly linked lists</strong> also have <code>prev</code> pointers.</p>
 
 <ul>
-<li><code>L.head</code> points to the first element in the list.</li>
-<li>If <code>x.next == nil</code> then x is the last element of the list.</li>
-<li>If <code>x.prev == nil</code> then x is the first element of the list.</li>
+  <li><code>L.head</code> points to the first element in the list.</li>
+  <li>If <code>x.next == nil</code> then x is the last element of the list.</li>
+  <li>If <code>x.prev == nil</code> then x is the first element of the list.</li>
 </ul>
 
 <p><em>What are the advantages of adding <code>prev</code> pointers?</em></p>
@@ -322,57 +331,63 @@ ListElement instance variables <code>key</code>, <code>next</code>, and <code>pr
 interfaces for ADTs would probably not expose listElement: see discussion
 under Dynamic Sets later.)</p>
 
-<h3>Searching</h3>
+<h3 id="searching">Searching</h3>
 
 <p>The procedure for seaching is the same for singly and doubly linked lists:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  ListElement **listSearch**(Key k)
+
+<pre><code>  ListElement **listSearch**(Key k)
   1     e = head
   2     while e ≠ null and e.key ≠ k
   3       e = e.next 
   4     return e
-</code></pre></div>
-<p><img src="fig/Fig-10-3-a-DLL.jpg" alt=""></p>
+</code></pre>
+
+<p><img src="fig/Fig-10-3-a-DLL.jpg" alt="" /></p>
 
 <p><em>What is returned if <code>k</code> is not in the list?</em></p>
 
 <p><em>What is the worst case complexity of this algorithm?</em></p>
 
-<h3>Inserting and Deleting</h3>
+<h3 id="inserting-and-deleting">Inserting and Deleting</h3>
 
 <p>Since you are familiar with singularly linked lists from your previous
-studies, we&#39;ll go direct to doubly linked lists, but recall that with singly
+studies, we’ll go direct to doubly linked lists, but recall that with singly
 linked lists you had to be careful to keep track of the tail end of the list
-that you had &quot;snipped off&quot; during an insertion or deletion. The same applies
+that you had “snipped off” during an insertion or deletion. The same applies
 here, but we also have to manage prev pointers.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listInsert**(ListElement e) // inserts at beginning of list
+
+<pre><code>  void **listInsert**(ListElement e) // inserts at beginning of list
   1     e.next = head
   2     if head ≠ null
   3       head.prev = e 
   4     head = e
   5     e.prev = null
-</code></pre></div>
-<p>Inserting 25:<br>
-<img src="fig/Fig-10-3-b-DLL.jpg" alt=""></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listDelete**(ListElement e) // removes from list, wherever it is 
+</code></pre>
+
+<p>Inserting 25:<br />
+<img src="fig/Fig-10-3-b-DLL.jpg" alt="" /></p>
+
+<pre><code>  void **listDelete**(ListElement e) // removes from list, wherever it is 
   1     if e.prev ≠ null
   2       e.prev.next = e.next
   3     else 
   4       head = e.next 
   5     if e.next ≠ null
   6       e.next.prev = e.prev
-</code></pre></div>
-<p>Deleting the element keyed by 4:<br>
-<img src="fig/Fig-10-3-c-DLL.jpg" alt=""></p>
+</code></pre>
+
+<p>Deleting the element keyed by 4:<br />
+<img src="fig/Fig-10-3-c-DLL.jpg" alt="" /></p>
 
 <p><em>What is the worst case complexity of these algorithms?</em></p>
 
 <p><em>What about garbage collection in listDelete? Same problem as for pop and
 dequeue?</em></p>
 
-<h3>Circular DLLs with Sentinels</h3>
+<h3 id="circular-dlls-with-sentinels">Circular DLLs with Sentinels</h3>
 
 <p>CLRS discuss adding an extra <strong>sentinel</strong> element that marks the beginning of
-the list and making the linked list circular so that we don&#39;t have to check
+the list and making the linked list circular so that we don’t have to check
 for null (falling off the end of the list). It also enables us to get to the
 end of the list quickly</p>
 
@@ -384,65 +399,67 @@ the list.</p>
 <p>For example, here is the above list as a circular doubly linked list. (<code>L.nil</code>
 references the sentinel.)</p>
 
-<p><img src="fig/Fig-10-4-b-DLL-Sentinel.jpg" alt=""></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  void **listInsert**(ListElement e) // Sentinel version 
+<p><img src="fig/Fig-10-4-b-DLL-Sentinel.jpg" alt="" /></p>
+
+<pre><code>  void **listInsert**(ListElement e) // Sentinel version 
   1     e.next = nil.next           
   2     nil.next.prev = e 
   3     nil.next = e 
   5     e.prev = nil
-</code></pre></div>
-<p>Insert 25: <img src="fig/Fig-10-4-c-DLL-Sentinel.jpg" alt=""></p>
+</code></pre>
 
-<p><em>Let&#39;s insert something into the empty list ...</em><br>
-<img src="fig/Fig-10-4-a-DLL-Sentinel.jpg" alt=""></p>
+<p>Insert 25: <img src="fig/Fig-10-4-c-DLL-Sentinel.jpg" alt="" /></p>
+
+<p><em>Let’s insert something into the empty list …</em><br />
+<img src="fig/Fig-10-4-a-DLL-Sentinel.jpg" alt="" /></p>
 
 <p>(Left for you to try.)</p>
 
 <p>You might check your understanding by doing exercises 10.2-1, 10.2-2 and
 10.2-3.</p>
 
-<hr>
+<hr />
 
-<h2>Array Representations of Lists</h2>
+<h2 id="array-representations-of-lists">Array Representations of Lists</h2>
 
 <p>We generally do not need to be concerned with the topic of this section in
 modern programming languages, but if you ever have to program in FORTRAN, the
 section shows how to store objects such as listElement in arrays:</p>
 
-<p><img src="fig/Fig-10-5-DLL-Array.jpg" alt=""></p>
+<p><img src="fig/Fig-10-5-DLL-Array.jpg" alt="" /></p>
 
-<p>... and how to manage your own <strong>free list</strong> of available listElements
+<p>… and how to manage your own <strong>free list</strong> of available listElements
 (languages like Java and LISP do this automatically, but (cue old fart voice)
-&quot;when I was your age ...&quot;). Here is an array with both a DLL and a free list
+“when I was your age …”). Here is an array with both a DLL and a free list
 embedded in it:</p>
 
-<p><img src="fig/Fig-10-7-a-Allocate-Free.jpg" alt=""></p>
+<p><img src="fig/Fig-10-7-a-Allocate-Free.jpg" alt="" /></p>
 
 <p>After allocating one free cell to add 7 to the front of the list:</p>
 
 <p>After deleting list item 2 at array position 5:</p>
 
-<p><img src="fig/Fig-10-7-b-Allocate-Free.jpg" alt=""></p>
+<p><img src="fig/Fig-10-7-b-Allocate-Free.jpg" alt="" /></p>
 
-<p><img src="fig/Fig-10-7-c-Allocate-Free.jpg" alt=""></p>
+<p><img src="fig/Fig-10-7-c-Allocate-Free.jpg" alt="" /></p>
 
 <p>Of course, someone has to implement the memory management, and there is a
 large literature on methods of <strong>garbage collection</strong>.</p>
 
-<hr>
+<hr />
 
-<h2>Binary Trees (A First Look)</h2>
+<h2 id="binary-trees-a-first-look">Binary Trees (A First Look)</h2>
 
 <p>Trees in general and binary trees in particular are <em>hugely</em> important data
 structures in computer science. There are many ways to represent them. A
 linked represention provides great flexibility and is widely used. In a few
-weeks we&#39;ll also see how trees can be embedded in arrays.</p>
+weeks we’ll also see how trees can be embedded in arrays.</p>
 
 <p>Assume that class <code>BinaryTree</code> has instance variable <code>root</code>, and it consists
 of vertices of class <code>TreeNode</code> with instance variables <code>parent</code>, <code>left</code> and
 <code>right</code>, as well as possibly other data.</p>
 
-<p><img src="fig/Fig-10-9-Binary-Tree.jpg" alt=""></p>
+<p><img src="fig/Fig-10-9-Binary-Tree.jpg" alt="" /></p>
 
 <p>In a few weeks we will study methods for search, insertion and deletion in
 special types of tree, <strong>heaps</strong> and <strong>binary search trees</strong>.</p>
@@ -450,18 +467,18 @@ special types of tree, <strong>heaps</strong> and <strong>binary search trees</s
 <p><em>Do you have any thoughts on what insertion and deletion might involve, in
 general?</em></p>
 
-<p><em>Exercises:</em><br>
+<p><em>Exercises:</em><br />
 10.4-2: write an O(n) recursive procedure to visit (e.g., print out) the nodes
-of the tree.<br>
+of the tree.<br />
 10.4-3: write an O(n) non-recursive procedure to visit the nodes of the tree.
 Use a stack.</p>
 
-<hr>
+<hr />
 
-<h2>N-ary Trees</h2>
+<h2 id="n-ary-trees">N-ary Trees</h2>
 
 <p>We can represent n-ary trees by providing each node with a fixed number <em>n</em>
-child fields (child1, child2, child3 ... childn). An equivalent approach is
+child fields (child1, child2, child3 … childn). An equivalent approach is
 used for <strong>b-trees,</strong> which are used for efficient disk access.</p>
 
 <p>But a fixed <em>n</em> is only viable if we can bound the number of children, and can
@@ -470,22 +487,22 @@ be wasteful of memory if many nodes do not have <em>n</em> children.</p>
 <p>An alternative representation allows each TreeNode to have an arbitrary number
 of children while still using O(n) space.</p>
 
-<h3>Left-Child Right-Sibling Representation</h3>
+<h3 id="left-child-right-sibling-representation">Left-Child Right-Sibling Representation</h3>
 
 <p>This implementation has instance variable <code>root</code>, but consists of vertices
-that are instances of a class we&#39;ll call LCRSTreeNode with instance variables
+that are instances of a class we’ll call LCRSTreeNode with instance variables
 <code>parent</code>, <code>left-child</code> and <code>right-sibling</code>, as well as possibly other data.
 (Alternatively, we can just use TreeNode, but understand <code>left</code> to refer to
 the left-child and <code>right</code> to refer to the right sibling.)</p>
 
-<p><img src="fig/Fig-10-10-LC-RS-Tree.jpg" alt=""></p>
+<p><img src="fig/Fig-10-10-LC-RS-Tree.jpg" alt="" /></p>
 
 <p>A good practice problem is to write a procedure for visiting (printing out)
 all the nodes of these kinds of trees.</p>
 
-<hr>
+<hr />
 
-<h2>Dynamic Set ADT</h2>
+<h2 id="dynamic-set-adt">Dynamic Set ADT</h2>
 
 <p>Above we have been reviewing basic data structures for keeping track of
 objects under specific organizational schemes (e.g., FIFO, LIFO, sequential,
@@ -501,37 +518,51 @@ captures the requirements that implementations must meet. Many of the ADTs
 (and their implementations as data structures and algorithms) we will study
 can be seen as specializations of the Dynamic Set ADT.</p>
 
-<h3>Text&#39;s Dynamic Set ADT</h3>
+<h3 id="texts-dynamic-set-adt">Text’s Dynamic Set ADT</h3>
 
 <p>The introduction to Part III of the textbook, page 230, gives this
 specification:</p>
 
 <p>SEARCH(S; k)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given a set S and a key value k, returns a pointer x to an element in S such that x.key = k, or NIL if no such element belongs to S.
-</code></pre></div>
+
+<pre><code>A query that, given a set S and a key value k, returns a pointer x to an element in S such that x.key = k, or NIL if no such element belongs to S.
+</code></pre>
+
 <p>INSERT(S; x)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A modifying operation that augments the set S with the element pointed to by x. We usually assume that any attributes in element x needed by the set implementation have already been initialized.
-</code></pre></div>
+
+<pre><code>A modifying operation that augments the set S with the element pointed to by x. We usually assume that any attributes in element x needed by the set implementation have already been initialized.
+</code></pre>
+
 <p>DELETE(S; x)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A modifying operation that, given a pointer x to an element in the set S, removes x from S. (Note that this operation takes a pointer to an element x, not a key value.)
-</code></pre></div>
+
+<pre><code>A modifying operation that, given a pointer x to an element in the set S, removes x from S. (Note that this operation takes a pointer to an element x, not a key value.)
+</code></pre>
+
 <p>MINIMUM(S)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the smallest key.
-</code></pre></div>
+
+<pre><code>A query on a totally ordered set S that returns a pointer to the element of S with the smallest key.
+</code></pre>
+
 <p>MAXIMUM(S)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A query on a totally ordered set S that returns a pointer to the element of S with the largest key.
-</code></pre></div>
+
+<pre><code>A query on a totally ordered set S that returns a pointer to the element of S with the largest key.
+</code></pre>
+
 <p>SUCCESSOR(S; x)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next larger element in S, or NIL if x is the maximum element.
-</code></pre></div>
+
+<pre><code>A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next larger element in S, or NIL if x is the maximum element.
+</code></pre>
+
 <p>PREDECESSOR(S; x)</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next smaller element in S, or NIL if x is the minimum element.
-</code></pre></div>
+
+<pre><code>A query that, given an element x whose key is from a totally ordered set S, returns a pointer to the next smaller element in S, or NIL if x is the minimum element.
+</code></pre>
+
 <p>There are some issues with this specification, particularly in the use of x.</p>
 
 <ul>
-<li>The specification seems to require that the client know about the the internal implementation of the set (&quot;We usually assume that any attributes in element x needed by the set implementation have already been initialized&quot;).</li>
-<li>Alternatively, if the elements are client objects, the set implementation would have to know how to access these to get the key. </li>
+  <li>The specification seems to require that the client know about the the internal implementation of the set (“We usually assume that any attributes in element x needed by the set implementation have already been initialized”).</li>
+  <li>Alternatively, if the elements are client objects, the set implementation would have to know how to access these to get the key. </li>
 </ul>
 
 <p>A safer specification would give INSERT and DELETE the key k rather than the
@@ -539,46 +570,48 @@ element x, hiding implementation details and reducing dependencies between
 client and ADT. This in turn leads to a performance problem, dicussed below,
 but it can be resolved.</p>
 
-<h3>Encapsulated Dynamic Set ADT</h3>
+<h3 id="encapsulated-dynamic-set-adt">Encapsulated Dynamic Set ADT</h3>
 
 <p>An encapsulated version of the ADT is given as a Java interface below. It
 communicates with clients primarily through keys and associated elements that
 only the client need understand.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  public interface **DynamicSet** {
-  // ADT that stores and retrieves Objects according to keys of type KeyType
 
+<pre><code>  public interface **DynamicSet** {
+  // ADT that stores and retrieves Objects according to keys of type KeyType
+ 
      public **DynamicSet**( ); 
      // Creates an instance of ADT DynamicSet and initializes it to the empty set.   
-
+ 
      public void **insert**(KeyType k; Object e); 
      // Inserts element e in the set under key k.
-
+ 
      public void **delete**(KeyType k); 
      // Given a key k, removes elements indexed by k from the set.
-
+ 
      public Object **search**(KeyType k); 
      // Finds an Object with key k and returns a pointer to it,
      // or null if not found. 
-
+ 
      // The following operations apply when there is a total ordering on KeyType   
-
+ 
      public Object **minimum**( ); 
      // Finds an Object that has the smallest key, and returns a pointer to it,
      // or null if the set is empty. 
-
+ 
      public Object **maximum**( ); 
      // Finds an Object that has the largest key, and returns a pointer to it,
      // or null if the set is empty.
-
+ 
      public Object **successor**(KeyType k); 
      // Finds an Object that has the next larger key in the set above k, 
      // and returns a pointer to it, or null if k is the maximum element.
-
+ 
      public Object **predecessor**(KeyType k); 
      // Finds an Object that has the next smaller key in the set below k,
      // and returns a pointer to it, or null if k is the minimum element.
  }
-</code></pre></div>
+</code></pre>
+
 <p>As hinted above, we may pay a cost for proper encapsulation. For example,
 suppose an application must frequently pair <code>search</code> and <code>delete</code> operations
 to find elements we want to remove. If <code>search</code> cannot communicate the
@@ -589,9 +622,9 @@ have to search again to find what to operate on.</p>
 <strong>position</strong> in a data structure, and passing around position objects that
 hide implementation details. This solution is not discussed here as it is more
 of a software engineering rather than algorithm design and analysis concern:
-see Goodrich &amp; Tamassia&#39;s Algorithms textbook for one approach.</p>
+see Goodrich &amp; Tamassia’s Algorithms textbook for one approach.</p>
 
-<h3>Alternative Dynamic Set Implementations</h3>
+<h3 id="alternative-dynamic-set-implementations">Alternative Dynamic Set Implementations</h3>
 
 <p>Linked lists can be used to support a viable Dynamic Set implementation for
 small sets, for example using <code>listInsert</code> and <code>listSearch</code> to implement
@@ -602,10 +635,11 @@ Trees as alternative implementations of DynamicSet. You will use some of these
 in your assignments (and often as a working professional), so need to
 understand them well.</p>
 
-<hr>
+<hr />
 
-<p>Dan Suthers Last modified: Tue Apr 15 16:30:23 HST 2014<br>
+<p>Dan Suthers Last modified: Tue Apr 15 16:30:23 HST 2014<br />
 Images are from Cormen et al. Introduction to Algorithms, Third Edition.  </p>
+
 
 </div>
 
@@ -615,12 +649,12 @@ Images are from Cormen et al. Introduction to Algorithms, Third Edition.  </p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,59 +48,59 @@
 
 
 <div class="container">
-  <h2>Outline</h2>
+  <h2 id="outline">Outline</h2>
 
 <ol>
-<li>Don&#39;t Let This Happen to You</li>
-<li>Problem Classes</li>
-<li>P and NP Classes</li>
-<li>Encoding Problems and Polynomial Time Verification </li>
-<li>NP Completeness </li>
-<li>Constructing NPC </li>
-<li>NP Complete Problems</li>
+  <li>Don’t Let This Happen to You</li>
+  <li>Problem Classes</li>
+  <li>P and NP Classes</li>
+  <li>Encoding Problems and Polynomial Time Verification </li>
+  <li>NP Completeness </li>
+  <li>Constructing NPC </li>
+  <li>NP Complete Problems</li>
 </ol>
 
-<h2>Don&#39;t Let This Happen to You</h2>
+<h2 id="dont-let-this-happen-to-you">Don’t Let This Happen to You</h2>
 
 <p>Suppose you worked in industry, and your boss calls you to your office and
-says they want to enter the emerging &quot;iThingy&quot; market. He wants to offer
-customized iThingies, and it&#39;s important to have an algorithm that, given a
+says they want to enter the emerging “iThingy” market. He wants to offer
+customized iThingies, and it’s important to have an algorithm that, given a
 specification, can efficiently construct a design that meets the maximum
 number of requirements in the lowest cost way.</p>
 
-<p><img src="fig/garey-johnson-cartoon-1.jpg" alt=""></p>
+<p><img src="fig/garey-johnson-cartoon-1.jpg" alt="" /></p>
 
-<p>You try for weeks but just can&#39;t seem to find an efficient solution. Every
+<p>You try for weeks but just can’t seem to find an efficient solution. Every
 solution that you come up with amounts to trying all combinations of
 components, in exponential time. More efficient algorithms fail to find
 optimal solutions.</p>
 
-<p>You don&#39;t want to have to go your boss and say &quot;I&#39;m sorry I can&#39;t find an
-efficient solution. I guess I&#39;m just too dumb.&quot;</p>
+<p>You don’t want to have to go your boss and say “I’m sorry I can’t find an
+efficient solution. I guess I’m just too dumb.”</p>
 
-<p><img src="fig/garey-johnson-cartoon-2-you.jpg" alt=""></p>
+<p><img src="fig/garey-johnson-cartoon-2-you.jpg" alt="" /></p>
 
-<p>You would like to be able to confidently stride into his office and say &quot;I
-can&#39;t find an efficient solution because no such solution exists!&quot;
+<p>You would like to be able to confidently stride into his office and say “I
+can’t find an efficient solution because no such solution exists!”
 Unfortunately, proving that the problem is inherently intractable is also very
 hard: in fact, no one has succeeded in doing so.</p>
 
-<p><img src="fig/garey-johnson-cartoon-3.jpg" alt=""></p>
+<p><img src="fig/garey-johnson-cartoon-3.jpg" alt="" /></p>
 
 <p>Today we introduce a class of problems that no one has been able to prove is
 intractable, but nor has anyone been able to find an efficient solution to any
 of them.</p>
 
 <p>If you can show that the iThingy configuration problem is one of these
-problems, you can go to your boss and say, &quot;I can&#39;t find an efficient
-solution, but neither can all these smart and famous computer scientists!&quot;</p>
+problems, you can go to your boss and say, “I can’t find an efficient
+solution, but neither can all these smart and famous computer scientists!”</p>
 
-<p>(Next week we&#39;ll cover what you would say next. Thanks to Garey &amp; Johnson
+<p>(Next week we’ll cover what you would say next. Thanks to Garey &amp; Johnson
 (1979) for the story &amp; images.)</p>
 
-<hr>
+<hr />
 
-<h2>Problem Classes</h2>
+<h2 id="problem-classes">Problem Classes</h2>
 
 <p>For most of this semester, we abstracted away from the study of particular
 <strong><em>implementations</em></strong> to study the computational complexity of
@@ -113,67 +112,67 @@ constant factors of each other.</p>
 <p>Now we abstract further, to study the the computational complexity of
 <strong><em>problems</em></strong>, independently of the algorithms used to solve them. We will be
 trying to make universally quantified statements about the computational
-complexity of all possible algorithms for a problem. (We won&#39;t always succeed
+complexity of all possible algorithms for a problem. (We won’t always succeed
 in doing this.)</p>
 
 <p>For example, when we showed that any comparison-based sorting algorithm is
-O(<em>n</em> lg <em>n</em>) in <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-10.html">Topic
+O(<em>n</em> lg <em>n</em>) in <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-10.html">Topic
 10</a>, we
 were making a claim about a class of algorithms for a problem.</p>
 
-<h3>Tractability and Decidability</h3>
+<h3 id="tractability-and-decidability">Tractability and Decidability</h3>
 
 <p>Broadly, we are concerned with three classes of problems:</p>
 
 <ul>
-<li><p><strong>Tractable problems</strong>, generally considered to be those solvable in polynomial time (most of the problems considered so far in this course). </p>
-
-<ul>
-<li><em>Examples:</em> Any problem studied this semester for which we have solutions bounded by <em>nk</em> for fixed <em>k</em>. </li>
-<li>Some solutions are not strictly polynomial but are bounded above by a polynomial (e.g., <em>n</em> lg <em>n</em> for sorting is bounded by <em>n2</em>), so sorting is considered polynomial.</li>
-</ul></li>
-<li><p><strong>Intractable problems</strong> are those solvable in super-polynomial but not polynomial time. Today we will be concerned with the question of which problems are in this class. </p>
-
-<ul>
-<li><em>Examples:</em> Enumerate all binary strings of length <em>n</em>; Compute the power set (set of all sets) of <em>n</em> items. The solutions consist of 2<em>n</em> binary strings, or 2<em>n</em> sets, respectively, so even if the solution were available instantly exponential time would be required just to output the result!</li>
-<li><em>Unknown:</em> Integer linear programming, finding longest simple paths in a graph, finding the optimal way to schedule tasks on factory machines under scheduling and deadline constraints, determining whether certain boolean formulas can be simultaneously satisfied, optimizing circuit layouts under certain constraints, finding the cheapest way to visit all of a set of cities without repeating any and returning to your starting city, finding the optimal partition of graphs under a modularity metric, and many many more ...</li>
-</ul></li>
-<li><p><strong>Unsolvable problems</strong> for which no algorithm can be given guaranteed to solve all instances of the problem. These problems are also known as <em><strong>Undecidable</strong></em>. </p>
-
-<ul>
-<li>Example: the <em><strong>halting problem</strong></em> (given a description of a program and arbitrary input, decide whether the program will halt on that input), demonstrated by Alan Turing.</li>
-</ul></li>
+  <li><strong>Tractable problems</strong>, generally considered to be those solvable in polynomial time (most of the problems considered so far in this course). 
+    <ul>
+      <li><em>Examples:</em> Any problem studied this semester for which we have solutions bounded by <em>nk</em> for fixed <em>k</em>. </li>
+      <li>Some solutions are not strictly polynomial but are bounded above by a polynomial (e.g., <em>n</em> lg <em>n</em> for sorting is bounded by <em>n2</em>), so sorting is considered polynomial.</li>
+    </ul>
+  </li>
+  <li><strong>Intractable problems</strong> are those solvable in super-polynomial but not polynomial time. Today we will be concerned with the question of which problems are in this class. 
+    <ul>
+      <li><em>Examples:</em> Enumerate all binary strings of length <em>n</em>; Compute the power set (set of all sets) of <em>n</em> items. The solutions consist of 2_n_ binary strings, or 2_n_ sets, respectively, so even if the solution were available instantly exponential time would be required just to output the result!</li>
+      <li><em>Unknown:</em> Integer linear programming, finding longest simple paths in a graph, finding the optimal way to schedule tasks on factory machines under scheduling and deadline constraints, determining whether certain boolean formulas can be simultaneously satisfied, optimizing circuit layouts under certain constraints, finding the cheapest way to visit all of a set of cities without repeating any and returning to your starting city, finding the optimal partition of graphs under a modularity metric, and many many more …</li>
+    </ul>
+  </li>
+  <li><strong>Unsolvable problems</strong> for which no algorithm can be given guaranteed to solve all instances of the problem. These problems are also known as <em><strong>Undecidable</strong></em>. 
+    <ul>
+      <li>Example: the <em><strong>halting problem</strong></em> (given a description of a program and arbitrary input, decide whether the program will halt on that input), demonstrated by Alan Turing.</li>
+    </ul>
+  </li>
 </ul>
 
-<h3>Hierarchy of Problem Classes</h3>
+<h3 id="hierarchy-of-problem-classes">Hierarchy of Problem Classes</h3>
 
 <p>The hierarchy of problem classes was illustrated at the beginning of the
 semester with this diagram:</p>
 
-<p><img src="fig/Complexity-Hierarchy.jpg" alt=""></p>
+<p><img src="fig/Complexity-Hierarchy.jpg" alt="" /></p>
 
 <p>We have spent most of our time on problems in the lower half of this diagram.
 Now we consider whether there are problems that are <em>intrisically</em> in the
 upper half.</p>
 
-<hr>
+<hr />
 
-<h2>P and NP Classes</h2>
+<h2 id="p-and-np-classes">P and NP Classes</h2>
 
 <p><strong>P</strong> denotes the class of problems solvable in polynomial time, such as most of the problems we have considered this semester.</p>
 
-<h3>Nondeterministic Polynomial</h3>
+<h3 id="nondeterministic-polynomial">Nondeterministic Polynomial</h3>
 
-<p><strong>NP</strong> denotes the class of problems for which solutions are <em><strong>verifiable</strong></em> in polynomial time: given a description of the problem <em>x</em> and a &quot;certificate&quot; <em>y</em> describing a solution (or providing enough information to show that a solution exists) that is polynomial in the size of <em>x</em>, we can check the solution (or verify that a solution exists) in polynomial time as a function of <em>x</em> and <em>y</em>.</p>
+<p><strong>NP</strong> denotes the class of problems for which solutions are <em><strong>verifiable</strong></em> in polynomial time: given a description of the problem <em>x</em> and a “certificate” <em>y</em> describing a solution (or providing enough information to show that a solution exists) that is polynomial in the size of <em>x</em>, we can check the solution (or verify that a solution exists) in polynomial time as a function of <em>x</em> and <em>y</em>.</p>
 
-<p>Problems in NP are <strong>decision problems</strong>: we answer &quot;yes&quot; or &quot;no&quot; to whether
+<p>Problems in NP are <strong>decision problems</strong>: we answer “yes” or “no” to whether
 the certificate is a solution. The polynomial size requirement on <em>y</em> rules
 out problems that take exponential time just to output their results, such as
 the enumeration of all binary strings of length <em>n</em>. (One could check the
 solution in time polynomial in <em>y</em>, but <em>y</em> would be exponential in <em>x</em>, so
 overall the problem is not tractable.)</p>
 
-<p>These problems are called &quot;nondeterministic polynomial&quot; because one way of
+<p>These problems are called “nondeterministic polynomial” because one way of
 defining them is to suppose we have a <strong>nondeterministic machine</strong> that,
 whenever faced with a choice, can guess the correct alternative, producing a
 solution in polynomial time based on this guess. (Amazingly, no one has been
@@ -182,25 +181,28 @@ able to prove that such a fanciful machine would help!)</p>
 <p>Another way to think of this is that the machine can copy itself at each
 choice point, essentially being multithreaded on an infinite number of
 processors and returning the solution as soon as the solution is found down a
-span of polynomial depth (see <a href="http://www2.hawaii.edu%0A/%7Esuthers/courses/ics311s14/Notes/Topic-22.html">Topic on Multithreading</a>).</p>
+span of polynomial depth (see <a href="http://www2.hawaii.edu
+/~suthers/courses/ics311s14/Notes/Topic-22.html">Topic on Multithreading</a>).</p>
 
 <p>(Your text does not take either of these approaches, preferring the
-&quot;certificate&quot; definition. We elaborate on this later, but not in depth.)</p>
+“certificate” definition. We elaborate on this later, but not in depth.)</p>
 
-<p><img src="fig/money.jpg" alt=""></p>
+<p><img src="fig/money.jpg" alt="" /></p>
 
-<h3>Relationship of P to NP</h3>
+<h3 id="relationship-of-p-to-np">Relationship of P to NP</h3>
 
 <p>Clearly, P is a subset of NP.</p>
 
-<p>The million dollar question (literally, see the <a href="http://www.claymath.org/millennium-problems/rules-millennium-%0Aprizes"> Clay Mathematics Institute
-Millenium Prize</a> for the <a href="http://www.claymath.org/millenium-%0Aproblems/p-vs-np-problem"> P vs NP Problem </a>), is whether P is a strict subset of NP (i.e.,
+<p>The million dollar question (literally, see the <a href="http://www.claymath.org/millennium-problems/rules-millennium-
+prizes"> Clay Mathematics Institute
+Millenium Prize</a> for the <a href="http://www.claymath.org/millenium-
+problems/p-vs-np-problem"> P vs NP Problem </a>), is whether P is a strict subset of NP (i.e.,
 whether there are problems in NP that are not in P, so are inherently
 exponential).</p>
 
-<p><img src="fig/P-NP-NPC-NPH.jpg" alt=""></p>
+<p><img src="fig/P-NP-NPC-NPH.jpg" alt="" /></p>
 
-<h3>NP Completeness</h3>
+<h3 id="np-completeness">NP Completeness</h3>
 
 <p>Theorists <em>have</em> been able to show that there are problems that are just as
 hard as any problem in NP, in that if any of these <strong>NP-Hard</strong> problems are
@@ -212,58 +214,66 @@ denoted **NPC</strong>, in that if <em>any</em> NPC problem can be solved in pol
 then <em>all</em> problems in NP can also be solved in polynomial time.</p>
 
 <p>The study of NP Completeness is important: the <em>most cited reference in all of
-Computer Science</em> is Garey &amp; Johnson&#39;s (1979) book Computers and
+Computer Science</em> is Garey &amp; Johnson’s (1979) book Computers and
 Intractability: A Guide to the Theory of NP-Completeness. (Your textbook is
 the second most cited reference in Computer Science!)</p>
 
-<p>In 1979 Garey &amp; Johnson wrote, &quot;The question of whether or not the NP-complete
+<p>In 1979 Garey &amp; Johnson wrote, “The question of whether or not the NP-complete
 problems are intractable is now considered to be one of the foremost open
-questions of contemporary mathematics and computer science.&quot;</p>
+questions of contemporary mathematics and computer science.”</p>
 
-<p><img src="fig/shrug.jpg" alt=""></p>
+<p><img src="fig/shrug.jpg" alt="" /></p>
 
 <p>Over 30 years later, in spite of a million dollar prize offer and intensive
 study by many of the best minds in computer science, this is still true: No
 one has been able to either</p>
 
 <ul>
-<li>Prove that there are problems in NP that cannot be solved in polynomial time (which would mean P ≠ NP), or </li>
-<li>Find a polynomial time solution for a single NP Complete Problem (which would mean P=NP).</li>
+  <li>Prove that there are problems in NP that cannot be solved in polynomial time (which would mean P ≠ NP), or </li>
+  <li>Find a polynomial time solution for a single NP Complete Problem (which would mean P=NP).</li>
 </ul>
 
 <p>Although either alternative is possible, most computer scientists believe that
 P ≠ NP.</p>
 
-<h3>Discriminating P and NP problems</h3>
+<h3 id="discriminating-p-and-np-problems">Discriminating P and NP problems</h3>
 
 <p>Problems that look very similar to each other may belong to different
 complexity classes (if P ≠ NP), for example:</p>
 
 <ul>
-<li><p><strong>Linear programming</strong> can be solved in polynomial time (the <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-21.html">simplex algorithm</a>), but if we require that the assigned values be integers we have the <strong>integer linear programming problem</strong>, which is NP-Hard. </p></li>
-<li><p><strong>Shortest paths</strong> in a graph <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-18.html">can be found in O(<em>VE</em>) or better</a>, but the problem of finding <strong>longest simple paths</strong> is NP-Hard (deciding whether there is a path longer than length <em>k</em> is NP-Complete).</p></li>
-<li><p>An <strong>Euler tour</strong> that traverses each edge of a graph once can be found in O(<em>E</em>) time, but finding a <strong>Hamiltonian cycle</strong> that traverses each vertex exactly once via a simple cycle is NP-Hard.</p></li>
-<li><p>We can determine whether a boolean formula in <strong>2-Conjunctive Normal Form</strong> is satisfiable in polynomial time, but doing the same for a formula in <strong>3-Conjunctive Normal Form</strong> is NP-Complete.</p></li>
+  <li>
+    <p><strong>Linear programming</strong> can be solved in polynomial time (the <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-21.html">simplex algorithm</a>), but if we require that the assigned values be integers we have the <strong>integer linear programming problem</strong>, which is NP-Hard. </p>
+  </li>
+  <li>
+    <p><strong>Shortest paths</strong> in a graph <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-18.html">can be found in O(<em>VE</em>) or better</a>, but the problem of finding <strong>longest simple paths</strong> is NP-Hard (deciding whether there is a path longer than length <em>k</em> is NP-Complete).</p>
+  </li>
+  <li>
+    <p>An <strong>Euler tour</strong> that traverses each edge of a graph once can be found in O(<em>E</em>) time, but finding a <strong>Hamiltonian cycle</strong> that traverses each vertex exactly once via a simple cycle is NP-Hard.</p>
+  </li>
+  <li>
+    <p>We can determine whether a boolean formula in <strong>2-Conjunctive Normal Form</strong> is satisfiable in polynomial time, but doing the same for a formula in <strong>3-Conjunctive Normal Form</strong> is NP-Complete.</p>
+  </li>
 </ul>
 
 <p>Clearly, it is important that we be able to recognize such problems when we
 encounter them and not share the fate of the iThingy algorithm designer. (In
-<a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-25.html">the next
+<a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-25.html">the next
 topic</a>
-we&#39;ll discuss approximation algorithms for dealing with them in a practical
+we’ll discuss approximation algorithms for dealing with them in a practical
 way.)</p>
 
-<hr>
+<hr />
 
-<h2>Encoding Problems and Polynomial Time Verification</h2>
+<h2 id="encoding-problems-and-polynomial-time-verification">Encoding Problems and Polynomial Time Verification</h2>
 
 <p><em>This section discuses some concepts used in the study of complexity classes.
 We are not delving into formal proofs such as those provided in the text, so
 some of the material of this section is not essential to the discussion
 following, but familiarity with the terminology may help you understand why
-the remaining notes talk about &quot;languages&quot;.</em></p>
+the remaining notes talk about “languages”.</em></p>
 
-<h3>Abstract Problems</h3>
+<h3 id="abstract-problems">Abstract Problems</h3>
 
 <p>An <strong>abstract problem</strong> <em>Q</em> is a binary relation mapping problem <strong>instances</strong>
 <em>I</em> to problem <strong>solutions</strong> <em>S</em>.</p>
@@ -278,29 +288,29 @@ paths).</p>
 <p>We can easily convert an optimization problem to a decision problem by asking:
 is there a solution that has value lower than (or higher than) a given value?</p>
 
-<h3>Encodings and Concrete Problems</h3>
+<h3 id="encodings-and-concrete-problems">Encodings and Concrete Problems</h3>
 
 <p>To specify whether an abstract problem is solvable in polynomial time, we need
 to carefully specify the size of the input.</p>
 
 <p>An <strong>encoding</strong> of a problem maps problem instances to binary strings. We
-consider only &quot;reasonable&quot; encodings</p>
+consider only “reasonable” encodings</p>
 
 <ul>
-<li>For example, we do not represent numbers in unary format. 
-
-<ul>
-<li>(If we did, the input to the problem of enumerating all binary strings of length <em>n</em> would itself be of length 2<em>n</em>, so an &quot;O(<em>n</em>)&quot; solution would be possible!)</li>
-</ul></li>
-<li>A &quot;reasonable&quot; encoding an integer is polynomial related to its representation, and a set of objects polynomially related to its encoding. Standard codings such as ASCII meet this requirement.</li>
+  <li>For example, we do not represent numbers in unary format. 
+    <ul>
+      <li>(If we did, the input to the problem of enumerating all binary strings of length <em>n</em> would itself be of length 2_n<em>, so an “O(_n</em>)” solution would be possible!)</li>
+    </ul>
+  </li>
+  <li>A “reasonable” encoding an integer is polynomial related to its representation, and a set of objects polynomially related to its encoding. Standard codings such as ASCII meet this requirement.</li>
 </ul>
 
 <p>Once problems and their solutions are encoded, we are dealing with <strong>concrete
 problem instances</strong>. Then a problem <em>Q</em> can be thought of as a function <em>Q</em> :
-{0, 1}* -&gt; {0, 1}<em>, or if it is a decision problem, <em>Q</em> : {0, 1}</em> -&gt; {0, 1}.
+{0, 1}* -&gt; {0, 1}<em>, or if it is a decision problem, _Q_ : {0, 1}</em> -&gt; {0, 1}.
 (<em>Q</em>(<em>x</em>) = 0 for any string <em>x</em> ∈ Σ* that is not a legal encoding.)</p>
 
-<h3>Accepting and Deciding Formal Langauges</h3>
+<h3 id="accepting-and-deciding-formal-langauges">Accepting and Deciding Formal Langauges</h3>
 
 <p>By casting computational problems as decision problems, theorists can use
 concepts from formal language theory in their proofs. We are not doing these
@@ -328,7 +338,7 @@ time O(<em>nk</em>) for any encoded input of length <em>n</em> and some constant
 Similarly, a language is <strong>decided in polynomial time</strong> by A if it is decided
 by A in time O(<em>nk</em>).</p>
 
-<h3>Polynomial Time Verification</h3>
+<h3 id="polynomial-time-verification">Polynomial Time Verification</h3>
 
 <p>A <strong>complexity class</strong> is a set of languages for which membership is
 determined by a complexity measure. (Presently we are interested in the
@@ -337,7 +347,7 @@ classes can also be defined by other measures, such as space required.) For
 example, we can now define P more formally as:</p>
 
 <blockquote>
-<p><strong>P</strong> = {<em>L</em> ⊆ {0, 1}* : ∃ algorithm <em>A</em> that decides <em>L</em> in polynomial
+  <p><strong>P</strong> = {<em>L</em> ⊆ {0, 1}* : ∃ algorithm <em>A</em> that decides <em>L</em> in polynomial
 time}.</p>
 </blockquote>
 
@@ -349,23 +359,29 @@ verify the proposed solution.)</p>
 <p>The <strong>language verified</strong> by a verification algorithm <em>A</em> is</p>
 
 <blockquote>
-<p>L = {<em>x</em> ∈ {0, 1}<em>: ∃ <em>y</em> ∈ {0, 1}</em> such that <em>A</em>(<em>x</em>, <em>y</em>) = 1}.</p>
+  <p>L = {<em>x</em> ∈ {0, 1}<em>: ∃ _y_ ∈ {0, 1}</em> such that <em>A</em>(<em>x</em>, <em>y</em>) = 1}.</p>
 </blockquote>
 
 <p>We can now define the complexity class <strong>NP</strong> as the class of languages that
 can be verified by a polynomial time algorithm, or formally:</p>
 
 <blockquote>
-<p><em>L</em> ∈ NP iff ∃ polynomial time algorithm <em>A</em>(<em>x</em>, <em>y</em>) and constant <em>c</em> such
+  <p><em>L</em> ∈ NP iff ∃ polynomial time algorithm <em>A</em>(<em>x</em>, <em>y</em>) and constant <em>c</em> such
 that:</p>
+</blockquote>
 
 <blockquote>
-<p><em>L</em> = {<em>x</em> ∈ {0,1}* : ∃ certificate <em>y</em> with |<em>y</em>| = O(|<em>x</em>|<em>c</em>) such that
-<em>A</em>(<em>x</em>,<em>y</em>) = 1}.</p>
-</blockquote>
+
 </blockquote>
 
-<p><img src="fig/Fig-34-2-Hamilton-Examples-a.jpg" alt=""></p>
+<blockquote>
+  <blockquote>
+    <p><em>L</em> = {<em>x</em> ∈ {0,1}* : ∃ certificate <em>y</em> with |<em>y</em>| = O(|<em>x</em>|<em>c</em>) such that
+<em>A</em>(<em>x</em>,<em>y</em>) = 1}.</p>
+  </blockquote>
+</blockquote>
+
+<p><img src="fig/Fig-34-2-Hamilton-Examples-a.jpg" alt="" /></p>
 
 <p>The constant <em>c</em> ensures that the size of the certificate <em>y</em> is polynomial in
 the problem size, and also we require that <em>A</em> runs in time polynomial in its
@@ -375,40 +391,40 @@ input, which therefore must be polynomial in both |<em>x</em>| and |<em>y</em>|.
 Hamiltonian Cycle problem, a proposed solution can be encoded as a sequence of
 vertices and verified in polynomial time.</p>
 
-<hr>
+<hr />
 
-<hr>
+<hr />
 
-<h2>NP Completeness</h2>
+<h2 id="np-completeness-1">NP Completeness</h2>
 
-<p>The NP-Complete problems are the &quot;hardest&quot; problems in NP, in that if one of
+<p>The NP-Complete problems are the “hardest” problems in NP, in that if one of
 them can be solved in polynomial time then every problem in NP can be solved
 in polynomial time. This relies on the concept of <em>reducibility</em>.</p>
 
-<h3>Reducibility</h3>
+<h3 id="reducibility">Reducibility</h3>
 
-<p><img src="fig/Fig-34-1-reduction-algorithm.jpg" alt=""></p>
+<p><img src="fig/Fig-34-1-reduction-algorithm.jpg" alt="" /></p>
 
 <p>A problem <em>A</em> can be polynomially reduced to a problem <em>B</em> if there exists a
 polynomial-time computable function <em>f</em> that converts an instance α of <em>A</em>
 into an instance β of <em>B</em>.</p>
 
-<p><img src="fig/Fig-34-4-Polynomial-Reduction.jpg" alt=""></p>
+<p><img src="fig/Fig-34-4-Polynomial-Reduction.jpg" alt="" /></p>
 
-<p>Stated in terms of formal languages, <em>L</em>1 is reducible to <em>L</em>2 if there exists
-a polynomial-time computable function <em>f</em> : {0, 1}* -&gt; {0, 1}* such that:</p>
+<p>Stated in terms of formal languages, <em>L_1 is reducible to _L_2 if there exists
+a polynomial-time computable function _f</em> : {0, 1}* -&gt; {0, 1}* such that:</p>
 
 <blockquote>
-<p><em>x</em> ∈ <em>L</em>1 iff <em>f</em>(<em>x</em>) ∈ <em>L</em>2, ∀ <em>x</em> ∈{0, 1}*.</p>
+  <p><em>x</em> ∈ <em>L_1 iff _f</em>(<em>x</em>) ∈ <em>L_2, ∀ _x</em> ∈{0, 1}*.</p>
 </blockquote>
 
-<h3>NP Completeness Defined</h3>
+<h3 id="np-completeness-defined">NP Completeness Defined</h3>
 
 <p>A language <em>L</em> ⊆ {0, 1}* is <strong>NP-Complete (in NPC) if</strong></p>
 
 <ol>
-<li><strong><em>L</em> ∈ NP</strong>, and </li>
-<li><strong>Every <em>L&#39;</em> ∈ NP is polynomial reducible to <em>L</em>.</strong></li>
+  <li><strong><em>L</em> ∈ NP</strong>, and </li>
+  <li><strong>Every <em>L’</em> ∈ NP is polynomial reducible to <em>L</em>.</strong></li>
 </ol>
 
 <p>Languages satisfying 2 but not 1 are said to be <strong>NP-Hard</strong>. (This includes
@@ -417,69 +433,83 @@ optimization problems that can be converted to decision problems in NP.)</p>
 <p>The major Theorem of this lecture is:</p>
 
 <blockquote>
-<p>*<em>If any NP-Complete problem is polynomial-time solvable, then P = NP. *</em></p>
+  <p>**If any NP-Complete problem is polynomial-time solvable, then P = NP. **</p>
 </blockquote>
 
-<p><img src="fig/Fig-34-6-Complexity-Class-Relations.jpg" alt=""></p>
+<p><img src="fig/Fig-34-6-Complexity-Class-Relations.jpg" alt="" /></p>
 
 <blockquote>
-<p>Equivalently, <strong>if any problem in NP is not polynomial-time solvable, then
+  <p>Equivalently, <strong>if any problem in NP is not polynomial-time solvable, then
 no NP-Complete problem is polynomial time solvable.</strong></p>
 </blockquote>
 
 <p>The expected situation (but by no means proven) corresponds to the second
 statement of the theorem, as depicted to the right.</p>
 
-<hr>
+<hr />
 
-<hr>
+<hr />
 
-<h2>Constructing NPC</h2>
+<h2 id="constructing-npc">Constructing NPC</h2>
 
 <p>In order to construct the class NPC, we need to have one problem known to be
 in NPC. Then we can show that other problems are in NPC by reducibility proofs
 (reducing the other candidates to this known problem).</p>
 
-<h3>Circuit Satisfiability: An Initial Problem</h3>
+<h3 id="circuit-satisfiability-an-initial-problem">Circuit Satisfiability: An Initial Problem</h3>
 
 <p>In 1971, Cook defined the class NPC and proved that it is nonempty by proving
 that the <strong>Circuit Satisfiability _ (CIRCUIT-SAT)_</strong> problem is NP-Complete.</p>
 
-<p><img src="fig/Fig-34-10-CircuitSat-FormulaSat.jpg" alt=""></p>
+<p><img src="fig/Fig-34-10-CircuitSat-FormulaSat.jpg" alt="" /></p>
 
 <p>This problem asks: given an acyclic boolean combinatorial circuit composed of
 AND, OR and NOT gates, does there exist an assignment of values to the input
-gates that produces a &quot;1&quot; at a designated output wire? Such a circuit is said
+gates that produces a “1” at a designated output wire? Such a circuit is said
 to be <strong>satisfiable</strong>.</p>
 
 <p>The first part of the proof, that CIRCUIT-SAT is in NP, is straightforward.</p>
 
 <ul>
-<li>Given as certifiate an assignment of boolean values to each of the wires in a circuit, one can check that the assignment meets the logic conditions of each component, which clearly can be done in polynomial time in the size of the description of the circuit.</li>
-<li>Alternatively, one can give as certificate only the input values, and verify by simulating the circuit, propagating values through the gates and to the designated output wire, in polynomial time.</li>
+  <li>Given as certifiate an assignment of boolean values to each of the wires in a circuit, one can check that the assignment meets the logic conditions of each component, which clearly can be done in polynomial time in the size of the description of the circuit.</li>
+  <li>Alternatively, one can give as certificate only the input values, and verify by simulating the circuit, propagating values through the gates and to the designated output wire, in polynomial time.</li>
 </ul>
 
 <p>The second part of the proof, that CIRCUIT-SAT is NP-Hard, was complex. The
 gist was as follows.</p>
 
 <ul>
-<li><p>Given any language <em>L</em> corresponding to a problem in NP, there must exist an algorithm <em>A</em> that verifies <em>L</em> in polynomial time.</p></li>
-<li><p>We can represent the computation of <em>A</em> as a sequence of configurations or states of a machine <em>M</em> on which the algorithm runs. (A configuration represents the state of the computer, including program, storage and program counters.) </p></li>
-<li><p>First, a boolean circuit corresponding to <em>M</em> is constructed. </p></li>
-<li><p>Then the reduction makes a copy of the boolean circuit for each possible state (computational configuration) of <em>M</em>, feeding the output of one configuration into the input of another configuration in such a manner that computer memory is no longer needed: all state is encoded in the circuit wiring. The result is a single combinatorial circuit.</p></li>
-<li><p>Crucially, this transformation can be done in polynomial time, as <em>A</em> verifies <em>L</em> in polynomial time, so only needs to make a polynomial number of copies of the circuit for <em>M</em>. (Since state changes only with new input, the number of copies of <em>M</em> is bounded by the input size <em>n</em>.)</p></li>
-<li><p>Then an algorithm that solves CIRCUIT-SAT can be used to simulate <em>A</em>, deciding <em>L</em>.</p></li>
+  <li>
+    <p>Given any language <em>L</em> corresponding to a problem in NP, there must exist an algorithm <em>A</em> that verifies <em>L</em> in polynomial time.</p>
+  </li>
+  <li>
+    <p>We can represent the computation of <em>A</em> as a sequence of configurations or states of a machine <em>M</em> on which the algorithm runs. (A configuration represents the state of the computer, including program, storage and program counters.) </p>
+  </li>
+  <li>
+    <p>First, a boolean circuit corresponding to <em>M</em> is constructed. </p>
+  </li>
+  <li>
+    <p>Then the reduction makes a copy of the boolean circuit for each possible state (computational configuration) of <em>M</em>, feeding the output of one configuration into the input of another configuration in such a manner that computer memory is no longer needed: all state is encoded in the circuit wiring. The result is a single combinatorial circuit.</p>
+  </li>
+  <li>
+    <p>Crucially, this transformation can be done in polynomial time, as <em>A</em> verifies <em>L</em> in polynomial time, so only needs to make a polynomial number of copies of the circuit for <em>M</em>. (Since state changes only with new input, the number of copies of <em>M</em> is bounded by the input size <em>n</em>.)</p>
+  </li>
+  <li>
+    <p>Then an algorithm that solves CIRCUIT-SAT can be used to simulate <em>A</em>, deciding <em>L</em>.</p>
+  </li>
 </ul>
 
-<h3>NP Completeness Proofs by Reduction</h3>
+<h3 id="np-completeness-proofs-by-reduction">NP Completeness Proofs by Reduction</h3>
 
 <p>Polynomial reduction is transitive:</p>
 
 <blockquote>
-<p>If <em>L</em> is a language such that <em>L&#39;</em> reduces polynomially to <em>L</em> for some
-<em>L&#39;</em> ∈ NPC, then <em>L</em> is NP-Hard.</p>
+  <p>If <em>L</em> is a language such that <em>L’</em> reduces polynomially to <em>L</em> for some
+<em>L’</em> ∈ NPC, then <em>L</em> is NP-Hard.</p>
+</blockquote>
 
-<p>Furthermore, if <em>L</em> ∈ NP, then <em>L</em> ∈ NPC.</p>
+<blockquote>
+  <p>Furthermore, if <em>L</em> ∈ NP, then <em>L</em> ∈ NPC.</p>
 </blockquote>
 
 <p>Transitivity follows from the definitions and that the sum of two polynomials
@@ -490,75 +520,72 @@ reduce every possible problem to them. The general procedure for proving that
 <em>L</em> is in NPC is:</p>
 
 <ol>
-<li><strong>Prove <em>L</em> ∈ NP</strong> (show one can check solutions in polynomial time).</li>
-<li><strong>Prove <em>L</em> is NP-Hard</strong>:
-
-<ol>
-<li>Select a known language <em>L&#39;</em> in NPC</li>
-<li>Describe an algorithm <em>A</em> that computes function <em>f</em> mapping <em>every</em> instance <em>x</em> ∈ {0, 1}* of <em>L&#39;</em> to <em>some appropriately constructed</em> instance <em>f</em>(<em>x</em>) of <em>L</em>. </li>
-<li>Prove that x ∈ <em>L&#39;</em> iff <em>f</em>(<em>x</em>) ∈ <em>L</em>, ∀ <em>x</em> ∈ {0, 1}*. </li>
-<li>Prove that <em>A</em> runs in polynomial time.</li>
-</ol></li>
+  <li><strong>Prove <em>L</em> ∈ NP</strong> (show one can check solutions in polynomial time).</li>
+  <li><strong>Prove <em>L</em> is NP-Hard</strong>:
+    1. Select a known language <em>L’</em> in NPC
+    2. Describe an algorithm <em>A</em> that computes function <em>f</em> mapping <em>every</em> instance <em>x</em> ∈ {0, 1}* of <em>L’</em> to <em>some appropriately constructed</em> instance <em>f</em>(<em>x</em>) of <em>L</em>. 
+    3. Prove that x ∈ <em>L’</em> iff <em>f</em>(<em>x</em>) ∈ <em>L</em>, ∀ <em>x</em> ∈ {0, 1}*. 
+    4. Prove that <em>A</em> runs in polynomial time.</li>
 </ol>
 
-<p><em>Important:</em> Why doesn&#39;t mapping <em>every</em> instance of <em>L</em> to <em>some</em> instances
-of <em>L</em>&#39; work?</p>
+<p><em>Important:</em> Why doesn’t mapping <em>every</em> instance of <em>L</em> to <em>some</em> instances
+of <em>L</em>’ work?</p>
 
 <p>Now we can populate the class NPC, first by reducing some problems to CIRCUIT-
 SAT, and then other problems to these new problems. Literally thousands of
-problems have been proven to be in NPC by this means. Let&#39;s look at a few.</p>
+problems have been proven to be in NPC by this means. Let’s look at a few.</p>
 
-<p><img src="fig/Fig-34-13-Structure-of-NPC-Proofs.jpg" alt=""></p>
+<p><img src="fig/Fig-34-13-Structure-of-NPC-Proofs.jpg" alt="" /></p>
 
-<hr>
+<hr />
 
-<h2>NP Complete Problems</h2>
+<h2 id="np-complete-problems">NP Complete Problems</h2>
 
 <p>The text steps through reduction of problems as shown in the figure. We do not
 have time to go through the proofs, and it is more important that you are
 aware of the diversity of problems in NPC than that you are able to do NP-
 Completeness proofs. So we just list them briefly.</p>
 
-<h3>Satisfiability (SAT)</h3>
+<h3 id="satisfiability-sat">Satisfiability (SAT)</h3>
 
 <p>An instance is a boolean formula φ composed of</p>
 
 <ul>
-<li><em>n</em> boolean variables <em>x</em>1 ... <em>x</em><em>n</em>, </li>
-<li><em>m</em> boolean connectives of two inputs and one output: ∧, ∨ ¬ -&gt; ↔, and </li>
-<li>parentheses.</li>
+  <li><em>n</em> boolean variables <em>x_1 … _x__n</em>, </li>
+  <li><em>m</em> boolean connectives of two inputs and one output: ∧, ∨ ¬ -&gt; ↔, and </li>
+  <li>parentheses.</li>
 </ul>
 
 <p>A <strong>truth assignment</strong> is a set of values for the variables of φ and a **
 satisfying assignment** is a truth assignment that evaluates to 1 (true).</p>
 
 <blockquote>
-<p>SAT = {⟨φ⟩ : φ is a satisfiable boolean formula}</p>
+  <p>SAT = {⟨φ⟩ : φ is a satisfiable boolean formula}</p>
 </blockquote>
 
-<p>There are 2<em>n</em> possible assignments, but a given assignment can be checked in
+<p>There are 2_n_ possible assignments, but a given assignment can be checked in
 polynomial time.</p>
 
-<p><img src="fig/Fig-34-10-CircuitSat-FormulaSat.jpg" alt=""></p>
+<p><img src="fig/Fig-34-10-CircuitSat-FormulaSat.jpg" alt="" /></p>
 
 <p>CIRCUIT-SAT is reduced to SAT in polynomial time through a construction that
 turns CIRCUIT-SAT gates into small logical formulas for SAT:</p>
 
 <ol>
-<li>Define a variable <em>xi</em> for each of the wires.</li>
-<li>Write a formula φ that is the conjunction of the variable for the output wire plus a logical expression for each of the logic gates.</li>
+  <li>Define a variable <em>xi</em> for each of the wires.</li>
+  <li>Write a formula φ that is the conjunction of the variable for the output wire plus a logical expression for each of the logic gates.</li>
 </ol>
 
 <p>The resulting boolean formula is satisfied just when the circuit is satisfied.
 (You can verify that the formula shown is equivalent to the circuit.)</p>
 
 <blockquote>
-<p><em>x</em>10 ∧ (<em>x</em>4 ↔ ¬ <em>x</em>3) ∧ (<em>x</em>5 ↔ (<em>x</em>1 ∨ <em>x</em>2)) ∧ (<em>x</em>6 ↔ ¬ <em>x</em>4) ∧ (<em>x</em>7 ↔
-(<em>x</em>1 ∧ <em>x</em>2 ∧ <em>x</em>4)) ∧ (<em>x</em>8 ↔ (<em>x</em>5 ∨ <em>x</em>6)) ∧ (<em>x</em>9 ↔ (<em>x</em>6 ∨ <em>x</em>7)) ∧
-(<em>x</em>10 ↔ (<em>x</em>7 ∧ <em>x</em>8 ∧ <em>x</em>9))</p>
+  <p>_x_10 ∧ (_x_4 ↔ ¬ _x_3) ∧ (_x_5 ↔ (_x_1 ∨ _x_2)) ∧ (_x_6 ↔ ¬ _x_4) ∧ (_x_7 ↔
+(_x_1 ∧ _x_2 ∧ _x_4)) ∧ (_x_8 ↔ (_x_5 ∨ _x_6)) ∧ (_x_9 ↔ (_x_6 ∨ _x_7)) ∧
+(_x_10 ↔ (_x_7 ∧ _x_8 ∧ _x_9))</p>
 </blockquote>
 
-<h3>3-Conjunctive Normal Form Satisfiability (3-CNF-SAT)</h3>
+<h3 id="conjunctive-normal-form-satisfiability-3-cnf-sat">3-Conjunctive Normal Form Satisfiability (3-CNF-SAT)</h3>
 
 <p>Reduction proofs require that we handle any possible case of a known NPC
 problem. It would be complicated to handle all the possible forms of SAT
@@ -576,7 +603,7 @@ literals.</p>
 has exactly three distinct literals. For example:</p>
 
 <blockquote>
-<p>(<em>x</em>1∨ ¬<em>x</em>1 ∨ ¬<em>x</em>2) ∧ (<em>x</em>3 ∨ <em>x</em>2 ∨ <em>x</em>4) ∧ (¬<em>x</em>1 ∨ ¬<em>x</em>3 ∨ ¬<em>x</em>4)</p>
+  <p>(_x_1∨ ¬_x_1 ∨ ¬_x_2) ∧ (_x_3 ∨ _x_2 ∨ _x_4) ∧ (¬_x_1 ∨ ¬_x_3 ∨ ¬_x_4)</p>
 </blockquote>
 
 <p>3-CNF-SAT asks whether a boolean formula is satisfiable by an assignment of
@@ -589,44 +616,44 @@ the expression.</p>
 <p>SAT can be reduced to 3-CNF-SAT through a polynomial-time process of:</p>
 
 <ol>
-<li>parsing the SAT expression into a binary tree with literals as leaves and connectives as internal nodes; </li>
-<li>introducing a variable <em>yi</em> for the output of each internal node; </li>
-<li>rewriting as the conjunction of the root variable and a clause for each node of the binary tree (<em>yi</em> ↔ the literal for its child nodes); </li>
-<li>converting each clause to conjunctive normal form (see text), first by converting to disjunctive normal form and then applying DeMorgan&#39;s laws to convert to CNF; and then </li>
-<li>supplying dummy variables as needed to convert clauses of 1 or 2 variables into 3-CNF.</li>
+  <li>parsing the SAT expression into a binary tree with literals as leaves and connectives as internal nodes; </li>
+  <li>introducing a variable <em>yi</em> for the output of each internal node; </li>
+  <li>rewriting as the conjunction of the root variable and a clause for each node of the binary tree (<em>yi</em> ↔ the literal for its child nodes); </li>
+  <li>converting each clause to conjunctive normal form (see text), first by converting to disjunctive normal form and then applying DeMorgan’s laws to convert to CNF; and then </li>
+  <li>supplying dummy variables as needed to convert clauses of 1 or 2 variables into 3-CNF.</li>
 </ol>
 
-<p><img src="fig/Fig-34-11-Phi-Tree.jpg" alt=""></p>
+<p><img src="fig/Fig-34-11-Phi-Tree.jpg" alt="" /></p>
 
-<p>For ((<em>x</em>1 -&gt; <em>x</em>2) ∨ ¬((¬<em>x</em>1 ↔ <em>x</em>3) ∨ <em>x</em>4)) ∧ ¬<em>x</em>2, the tree is shown to
+<p>For ((_x_1 -&gt; _x_2) ∨ ¬((¬_x_1 ↔ _x_3) ∨ _x_4)) ∧ ¬_x_2, the tree is shown to
 the right and the expression resulting from the tree is shown below.</p>
 
 <blockquote>
-<p><em>y</em>1 ∧ (<em>y</em>1 ↔ (<em>y</em>2 ∧ ¬<em>x</em>2)) ∧ (<em>y</em>2 ↔ (<em>y</em>3 ∨ <em>x</em>4))<br>
-    ∧ (<em>y</em>3 ↔ (<em>x</em>1 -&gt; <em>x</em>2)) ∧ (<em>y</em>4 ↔ ¬<em>y</em>5)<br>
-    ∧ (<em>y</em>5 ↔ (<em>y</em>6 ∨ <em>x</em>4)) ∧ (<em>y</em>6 ↔ (¬<em>x</em>1 ↔ <em>x</em>3)) </p>
+  <p>_y_1 ∧ (_y_1 ↔ (_y_2 ∧ ¬_x_2)) ∧ (_y_2 ↔ (_y_3 ∨ _x_4))<br />
+    ∧ (_y_3 ↔ (_x_1 -&gt; _x_2)) ∧ (_y_4 ↔ ¬_y_5) <br />
+    ∧ (_y_5 ↔ (_y_6 ∨ _x_4)) ∧ (_y_6 ↔ (¬_x_1 ↔ _x_3)) </p>
 </blockquote>
 
-<p>The remainder of the conversion uses DeMorgan&#39;s laws (see the text for the
+<p>The remainder of the conversion uses DeMorgan’s laws (see the text for the
 step by step description):</p>
 
 <blockquote>
-<p>¬(<em>a</em> ∧ <em>b</em>) ≡ ¬<em>a</em> ∨ ¬<em>b</em><br>
+  <p>¬(<em>a</em> ∧ <em>b</em>) ≡ ¬<em>a</em> ∨ ¬<em>b</em><br />
 ¬(<em>a</em> ∨ <em>b</em>) ≡ ¬<em>a</em> ∧ ¬<em>b</em></p>
 </blockquote>
 
 <p>resulting in:</p>
 
 <blockquote>
-<p>(¬<em>y</em>1 ∨ ¬<em>y</em>2 ∨ ¬<em>x</em>2) ∧ (¬<em>y</em>1 ∨ <em>y</em>2 ∨ ¬<em>x</em>2) ∧ (¬<em>y</em>1 ∨ <em>y</em>2 ∨ <em>x</em>2) ∧
-(<em>y</em>1 ∨ ¬<em>y</em>2 ∨ <em>x</em>2).</p>
+  <p>(¬_y_1 ∨ ¬_y_2 ∨ ¬_x_2) ∧ (¬_y_1 ∨ _y_2 ∨ ¬_x_2) ∧ (¬_y_1 ∨ _y_2 ∨ _x_2) ∧
+(_y_1 ∨ ¬_y_2 ∨ _x_2).</p>
 </blockquote>
 
-<p><img src="fig/cliques.jpg" alt=""></p>
+<p><img src="fig/cliques.jpg" alt="" /></p>
 
-<h3>CLIQUE</h3>
+<h3 id="clique">CLIQUE</h3>
 
-<p>A <strong>clique</strong> in an undirected graph <em>G</em> = (<em>V</em>, <em>E</em>) is a subset <em>V&#39;</em> ⊆ <em>V</em>,
+<p>A <strong>clique</strong> in an undirected graph <em>G</em> = (<em>V</em>, <em>E</em>) is a subset <em>V’</em> ⊆ <em>V</em>,
 each pair of which is connected by an edge in <em>E</em> (a complete subgraph of
 <em>G</em>). (Example cliques are shown.)</p>
 
@@ -635,10 +662,10 @@ each pair of which is connected by an edge in <em>E</em> (a complete subgraph of
 a given size <em>k</em> exists in the graph:</p>
 
 <blockquote>
-<p>CLIQUE = {⟨<em>G</em>, <em>k</em>⟩ : <em>G</em> is a graph containing a clique of size <em>k</em>}</p>
+  <p>CLIQUE = {⟨<em>G</em>, <em>k</em>⟩ : <em>G</em> is a graph containing a clique of size <em>k</em>}</p>
 </blockquote>
 
-<p><img src="fig/Fig-34-14-3-CNF-to-Clique.jpg" alt=""></p>
+<p><img src="fig/Fig-34-14-3-CNF-to-Clique.jpg" alt="" /></p>
 
 <p>One can check a solution in polynomial time.</p>
 
@@ -646,17 +673,17 @@ a given size <em>k</em> exists in the graph:</p>
 figure.</p>
 
 <ul>
-<li>There is a vertex for every literal</li>
-<li>There is an edge between vertices only if the corresponding literals are in different triples <em>and</em> the literals are consistent (i.e., one is not the negation of the other).</li>
+  <li>There is a vertex for every literal</li>
+  <li>There is an edge between vertices only if the corresponding literals are in different triples <em>and</em> the literals are consistent (i.e., one is not the negation of the other).</li>
 </ul>
 
 <p>If there are <em>k</em> clauses we ask whether the graph has a <em>k</em>-clique. Such a
 clique exists if and only if there is a satisfying assignment.</p>
 
 <ul>
-<li>The fact that there is a <em>k</em>-clique means there are <em>k</em> vertices that are all connected to each other. </li>
-<li>The fact that two vertices are connected to each other means that they can receive a consistent boolean assignment, <em>and</em> that they are in different clauses.</li>
-<li>Since there are <em>k</em> vertices then a literal from each of the <em>k</em> clauses must be satisfied. </li>
+  <li>The fact that there is a <em>k</em>-clique means there are <em>k</em> vertices that are all connected to each other. </li>
+  <li>The fact that two vertices are connected to each other means that they can receive a consistent boolean assignment, <em>and</em> that they are in different clauses.</li>
+  <li>Since there are <em>k</em> vertices then a literal from each of the <em>k</em> clauses must be satisfied. </li>
 </ul>
 
 <p>Any arbitrary instance of 3-CNF-SAT can be converted to an instance of CLIQUE
@@ -664,22 +691,22 @@ with this particular structure. That means if we can solve CLIQUE we can solve
 any instance of 3-CNF-SAT. Mapping an arbitrary instance of CLIQUE to a
 specialized instance of 3-CNF-SAT would not work.</p>
 
-<h3>Vertex Cover</h3>
+<h3 id="vertex-cover">Vertex Cover</h3>
 
-<p>A vertex cover of an undirected graph <em>G</em> = (<em>V</em>, <em>E</em>) is a subset <em>V&#39;</em> ⊆ <em>V</em>
-such that if (<em>u</em>, <em>v</em>) ∈ <em>E</em> then <em>u</em> ∈ <em>V&#39;</em> or <em>v</em> ∈ <em>V&#39;</em> or both.</p>
+<p>A vertex cover of an undirected graph <em>G</em> = (<em>V</em>, <em>E</em>) is a subset <em>V’</em> ⊆ <em>V</em>
+such that if (<em>u</em>, <em>v</em>) ∈ <em>E</em> then <em>u</em> ∈ <em>V’</em> or <em>v</em> ∈ <em>V’</em> or both.</p>
 
-<p>Each vertex &quot;covers&quot; its incident edges, and a vertex cover for <em>G</em> is a set
+<p>Each vertex “covers” its incident edges, and a vertex cover for <em>G</em> is a set
 of vertices that covers all the edges in <em>E</em>.</p>
 
 <p>The <strong>Vertex Cover Problem</strong> is to find a vertex cover of minimum size in <em>G</em>.
 Phrased as a decision problem,</p>
 
 <blockquote>
-<p>VERTEX-COVER = {⟨<em>G</em>, <em>k</em>⟩ : graph <em>G</em> has a vertex cover of size <em>k</em>}</p>
+  <p>VERTEX-COVER = {⟨<em>G</em>, <em>k</em>⟩ : graph <em>G</em> has a vertex cover of size <em>k</em>}</p>
 </blockquote>
 
-<p><img src="fig/Fig-34-15-Clique-to-Vertex-Cover.jpg" alt=""></p>
+<p><img src="fig/Fig-34-15-Clique-to-Vertex-Cover.jpg" alt="" /></p>
 
 <p>There is a straightforward reduction of CLIQUE to VERTEX-COVER, illustrated in
 the figure. Given an instance <em>G</em>=(<em>V</em>,<em>E</em>) of CLIQUE, one computes the
@@ -687,21 +714,21 @@ complement of <em>G</em>, which we will call <em>Gc</em> = (<em>V</em>,<em>Ē</e
 iff (<em>u</em>,<em>v</em>) ∉ <em>E</em>. The graph <em>G</em> has a clique of size <em>k</em> iff the complement
 graph has a vertex cover of size |<em>V</em>| - <em>k</em>.</p>
 
-<h3>Hamiltonian Cycle (HAM-CYCLE)</h3>
+<h3 id="hamiltonian-cycle-ham-cycle">Hamiltonian Cycle (HAM-CYCLE)</h3>
 
 <blockquote>
-<p>HAM-CYCLE = {⟨<em>G</em>⟩ : <em>G</em> is a Hamiltonian graph}</p>
+  <p>HAM-CYCLE = {⟨<em>G</em>⟩ : <em>G</em> is a Hamiltonian graph}</p>
 </blockquote>
 
 <p>The Hamiltonian Cycle problem is shown to be in NPC by reduction of VERTEX-
 COVER to HAM-CYCLE.</p>
 
 <p>The construction converts edges of <em>G</em> an instance of VERTEX-COVER into
-subgraph &quot;widgets&quot; through which one can find a portion of a Hamiltonian Cycle
+subgraph “widgets” through which one can find a portion of a Hamiltonian Cycle
 only if one or both of the vertices of the edge are in a covering set. There
 is one such widget per edge.</p>
 
-<p><img src="fig/Fig-34-16-Vertex-Cover-Ham-Cycle.jpg" alt=""></p>
+<p><img src="fig/Fig-34-16-Vertex-Cover-Ham-Cycle.jpg" alt="" /></p>
 
 <p>Any Hamiltonian cycle must include all the vertices in the widget (a), but
 there are only three ways to pass through each widget (b, c, and d in the
@@ -712,26 +739,26 @@ only vertex <em>v</em> then path (d); otherwise path (c) to include both.</p>
 that involve a given vertex, so if the vertex is selected all of the widgets
 corresponding to its edges will be reached.</p>
 
-<p><img src="fig/Fig-34-17-Vertex-Cover-Ham-Cycle.jpg" alt=""></p>
+<p><img src="fig/Fig-34-17-Vertex-Cover-Ham-Cycle.jpg" alt="" /></p>
 
 <p>Finally, <em>k</em> selector vertices are added, and wired such that each will select
-the <em>k</em>th vertex in the cover of size <em>k</em>. I leave it to you to examine the
+the <em>k_th vertex in the cover of size _k</em>. I leave it to you to examine the
 discussion in the text, to see how clever these reductions can be!</p>
 
-<h3>Traveling Salesperson Problem (TSP)</h3>
+<h3 id="traveling-salesperson-problem-tsp">Traveling Salesperson Problem (TSP)</h3>
 
 <p>Finally, one of the more famous problems: Suppose you are a traveling
 salesperson, and you want to visit <em>n</em> cities exactly once in a Hamiltonian
 cycle, but choosing a <strong>tour</strong> with minimum cost.</p>
 
 <blockquote>
-<p>TSP = {⟨<em>G</em>, <em>c</em>, <em>k</em>⟩ : <em>G</em> = (<em>V</em>, <em>E</em>) is a complete graph,<br>
-              <em>c</em> : <em>V</em> x <em>V</em> -&gt; ℕ,<br>
-              <em>k</em> ∈ ℕ, and<br>
+  <p>TSP = {⟨<em>G</em>, <em>c</em>, <em>k</em>⟩ : <em>G</em> = (<em>V</em>, <em>E</em>) is a complete graph,<br />
+              <em>c</em> : <em>V</em> x <em>V</em> -&gt; ℕ, <br />
+              <em>k</em> ∈ ℕ, and <br />
               <em>G</em> has a traveling-salesperson tour with cost at most <em>k</em>} </p>
 </blockquote>
 
-<p><img src="fig/travelling_salesman_problem.jpg" alt=""></p>
+<p><img src="fig/travelling_salesman_problem.jpg" alt="" /></p>
 
 <p>Only exponential solutions have been found to date, although it is easy to
 check a solution in polynomial time.</p>
@@ -740,9 +767,9 @@ check a solution in polynomial time.</p>
 graph, but with the cost of the edges in TSP being 0 if the edge is in the
 HAM-CYCLE problem, or 1 if not.</p>
 
-<h3>Subset-Sum Problem (SUBSET-SUM)</h3>
+<h3 id="subset-sum-problem-subset-sum">Subset-Sum Problem (SUBSET-SUM)</h3>
 
-<p><img src="fig/np_complete.jpg" alt=""></p>
+<p><img src="fig/np_complete.jpg" alt="" /></p>
 
 <p>Many NP-Complete problems are of a numerical nature. We already mentioned
 integer linear programming. Another example is the subset-sum problem: given a
@@ -750,120 +777,95 @@ finite set <em>S</em> of positive integers and an integer target <em>t</em> &gt;
 exist a subset of <em>S</em> that sums to <em>t</em>?</p>
 
 <blockquote>
-<p>SUBSET-SUM = {⟨<em>S</em>, <em>t</em> : ∃ subset <em>S&#39;</em> ⊆ <em>S</em> such that <em>t</em> = Σ<em>s</em>∈<em>S&#39;</em><em>s</em>}</p>
+  <p>SUBSET-SUM = {⟨<em>S</em>, <em>t</em> : ∃ subset <em>S’</em> ⊆ <em>S</em> such that <em>t</em> = Σ_s<em>∈_S’__s</em>}</p>
 </blockquote>
 
 <p>The proof reduces 3-CNF-SAT to SUBSET-SUM. Please see the text for the details
 of yet another clever reduction! Briefly:</p>
 
-<p><img src="fig/Fig-34-19-3-CNF-Sat-to-Subset-Sum.jpg" alt=""></p>
+<p><img src="fig/Fig-34-19-3-CNF-Sat-to-Subset-Sum.jpg" alt="" /></p>
 
 <ul>
-<li>It involves constructing two numbers for each variable <em>xi</em> (one for the varaible and one for its negation), and two numbers for each clause <em>Cj</em> (these will hold &quot;slack variables&quot; needed to meet the target sum). </li>
-<li>The digits of the numbers are arranged in columns. </li>
-<li>The numbers for literals (variables and their negations) have a &quot;1&quot; in the column that indicates which variable it corresponds to, and also a &quot;1&quot; in the columns for the clauses in which that literal occurs.</li>
-<li>The numbers for clauses have either a 1 or a 2 in the column corresponding to that clause.</li>
-<li>The target value <em>t</em> has a 1 in each digit labeled by a variable and a 4 in each digit labeled by a clause. </li>
-<li>The only way one can achieve this target sum is to select those numbers corresponding to the literals that are satisfied in each clause, plus the required slack variables to reach 4. </li>
+  <li>It involves constructing two numbers for each variable <em>xi</em> (one for the varaible and one for its negation), and two numbers for each clause <em>Cj</em> (these will hold “slack variables” needed to meet the target sum). </li>
+  <li>The digits of the numbers are arranged in columns. </li>
+  <li>The numbers for literals (variables and their negations) have a “1” in the column that indicates which variable it corresponds to, and also a “1” in the columns for the clauses in which that literal occurs.</li>
+  <li>The numbers for clauses have either a 1 or a 2 in the column corresponding to that clause.</li>
+  <li>The target value <em>t</em> has a 1 in each digit labeled by a variable and a 4 in each digit labeled by a clause. </li>
+  <li>The only way one can achieve this target sum is to select those numbers corresponding to the literals that are satisfied in each clause, plus the required slack variables to reach 4. </li>
 </ul>
 
 <p>For example, see how this clause maps to the table shown:</p>
 
 <blockquote>
-<p>(<em>x</em>1 ∨ ¬<em>x</em>2 ∨ ¬<em>x</em>3) ∧ (¬<em>x</em>1 ∨ ¬<em>x</em>2 ∨ ¬<em>x</em>3) ∧ (¬<em>x</em>1 ∨ ¬<em>x</em>2 ∨ <em>x</em>3) ∧
-(<em>x</em>1 ∨ <em>x</em>2 ∨ <em>x</em>3).</p>
+  <p>(_x_1 ∨ ¬_x_2 ∨ ¬_x_3) ∧ (¬_x_1 ∨ ¬_x_2 ∨ ¬_x_3) ∧ (¬_x_1 ∨ ¬_x_2 ∨ _x_3) ∧
+(_x_1 ∨ _x_2 ∨ _x_3).</p>
 </blockquote>
 
-<h3>Other Problems</h3>
+<h3 id="other-problems">Other Problems</h3>
 
 <p>One can find large catalogs of other problems online, starting with those
 identified in the book Garey &amp; Johnson (1979), Computers and Intractability.
-See for example <a href="http://en.wikipedia.org/wiki/List_of_NP-%0Acomplete_problems">Wikipedia</a>. Following Garey &amp; Johnson&#39;s outline they list problems in:</p>
+See for example <a href="http://en.wikipedia.org/wiki/List_of_NP-
+complete_problems">Wikipedia</a>. Following Garey &amp; Johnson’s outline they list problems in:</p>
 
 <ol>
-<li>Graph theory 
-
-<ol>
-<li>Covering and partitioning</li>
-<li>Subgraphs and supergraphs</li>
-<li>Vertex ordering</li>
-<li>Iso- and other morphisms</li>
-<li>Miscellaneous</li>
-</ol></li>
-<li>Network design 
-
-<ol>
-<li>Spanning trees</li>
-<li>Cuts and connectivity</li>
-<li>Routing problems</li>
-<li>Flow problems</li>
-<li>Miscellaneous</li>
-<li>Graph Drawing</li>
-</ol></li>
-<li>Sets and partitions 
-
-<ol>
-<li>Covering, hitting, and splitting</li>
-<li>Weighted set problems</li>
-<li>Set partitions</li>
-</ol></li>
-<li>Storage and retrieval 
-
-<ol>
-<li>Data storage</li>
-<li>Compression and representation</li>
-<li>Database problems</li>
-</ol></li>
-<li>Sequencing and scheduling 
-
-<ol>
-<li>Sequencing on one processor</li>
-<li>Multiprocessor scheduling</li>
-<li>Shop scheduling</li>
-<li>Miscellaneous</li>
-</ol></li>
-<li>Mathematical programming</li>
-<li>Algebra and number theory
-
-<ol>
-<li>Divisibility problems</li>
-<li>Solvability of equations</li>
-<li>Miscellaneous</li>
-</ol></li>
-<li>Games and puzzles</li>
-<li>Logic 
-
-<ol>
-<li>Propositional logic</li>
-<li>Miscellaneous</li>
-</ol></li>
-<li>Automata and language theory 
-
-<ol>
-<li>1 Automata theory</li>
-<li>2 Formal languages</li>
-</ol></li>
-<li>Computational geometry</li>
-<li>Program optimization
-
-<ol>
-<li>1 Code generation</li>
-<li>2 Programs and schemes</li>
-</ol></li>
-<li>Miscellaneous</li>
+  <li>Graph theory 
+    1. Covering and partitioning
+    2. Subgraphs and supergraphs
+    3. Vertex ordering
+    4. Iso- and other morphisms
+    5. Miscellaneous</li>
+  <li>Network design 
+    1. Spanning trees
+    2. Cuts and connectivity
+    3. Routing problems
+    4. Flow problems
+    5. Miscellaneous
+    6. Graph Drawing</li>
+  <li>Sets and partitions 
+    1. Covering, hitting, and splitting
+    2. Weighted set problems
+    3. Set partitions</li>
+  <li>Storage and retrieval 
+    1. Data storage
+    2. Compression and representation
+    3. Database problems</li>
+  <li>Sequencing and scheduling 
+    1. Sequencing on one processor
+    2. Multiprocessor scheduling
+    3. Shop scheduling
+    4. Miscellaneous</li>
+  <li>Mathematical programming</li>
+  <li>Algebra and number theory
+    1. Divisibility problems
+    2. Solvability of equations
+    3. Miscellaneous</li>
+  <li>Games and puzzles</li>
+  <li>Logic 
+    1. Propositional logic
+    2. Miscellaneous</li>
+  <li>Automata and language theory 
+    1. 1 Automata theory
+    2. 2 Formal languages</li>
+  <li>Computational geometry</li>
+  <li>Program optimization
+    1. 1 Code generation
+    2. 2 Programs and schemes</li>
+  <li>Miscellaneous</li>
 </ol>
 
 <p>There are also problems for which their status is as of yet unknown. Much work
 to do!</p>
 
-<hr>
+<hr />
 
-<p>Dan Suthers Last modified: Mon Apr 21 11:46:18 HST 2014<br>
-Images are from the instructor&#39;s material for Cormen et al. Introduction to
+<p>Dan Suthers Last modified: Mon Apr 21 11:46:18 HST 2014<br />
+Images are from the instructor’s material for Cormen et al. Introduction to
 Algorithms, Third Edition; Garey &amp; Johnson (1979), Computers and
-Intractability; and Weisstein, Eric W. &quot;Complete Graph.&quot; From MathWorld--A
+Intractability; and Weisstein, Eric W. “Complete Graph.” From MathWorld–A
 Wolfram Web Resource. http://mathworld.wolfram.com/CompleteGraph.html,
 xkcd.com, and possibly other sites whom I thank for not suing me.  </p>
+
 
 </div>
 
@@ -873,12 +875,12 @@ xkcd.com, and possibly other sites whom I thank for not suing me.  </p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

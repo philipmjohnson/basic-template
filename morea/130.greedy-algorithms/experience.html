@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,11 +48,11 @@
 
 
 <div class="container">
-  <h3>Activity Scheduling</h3>
+  <h3 id="activity-scheduling">Activity Scheduling</h3>
 
-<p>The activity scheduling problem is to <em>*<em>find the largest possible set *</em></em>
-(maximum <em>number</em>, not duration) <em><strong>of activities that do not overlap with
-each other</strong></em>, given their start and finish times.</p>
+<p>The activity scheduling problem is to <em><strong>find the largest possible set **_
+(maximum _number_, not duration) _</strong>of activities that do not overlap with
+each other**</em>, given their start and finish times.</p>
 
 <p>CLRS show that this problem has the <em><strong>greedy choice property</strong></em>: a globally
 optimal solution can be assembled from locally optimal choices. They show it
@@ -63,16 +62,20 @@ activities that start after this activity. The local optimization is to select
 the activity that finishes first, and the global optimization is scheduling
 the maximum number of activities possible.</p>
 
-<p>There are other greedy strategies, but some work and some don&#39;t.</p>
+<p>There are other greedy strategies, but some work and some don’t.</p>
 
-<h4>Alternative Greedy Strategies</h4>
+<h4 id="alternative-greedy-strategies">Alternative Greedy Strategies</h4>
 
 <p>In the following three problems you determine whether alternative locally
 greedy strategies lead to globally optimal solutions. For each strategy below,</p>
 
 <ul>
-<li><p>either show that the strategy leads to an optimal solution by outlining the algorithm or approach,</p></li>
-<li><p>or give a counterexample: write down a set of activities (defined by their start and finish times) that the strategy fails on, and show what goes wrong.</p></li>
+  <li>
+    <p>either show that the strategy leads to an optimal solution by outlining the algorithm or approach,</p>
+  </li>
+  <li>
+    <p>or give a counterexample: write down a set of activities (defined by their start and finish times) that the strategy fails on, and show what goes wrong.</p>
+  </li>
 </ul>
 
 <p><strong>1.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that has the <strong>least duration</strong>. <em>Rationale:</em> Leave the most time remaining for other activities. </p>
@@ -81,15 +84,16 @@ greedy strategies lead to globally optimal solutions. For each strategy below,</
 
 <p><strong>3.</strong> <em>Greedy strategy</em>: Always select the remaining compatible activity that <strong>overlaps with the fewest number of remaining activities</strong>. <em>Rationale:</em> Eliminate the fewest number of remaining activities from consideration.</p>
 
-<h4>Value Optimization</h4>
+<h4 id="value-optimization">Value Optimization</h4>
 
-<p><strong>4.</strong> Suppose now that different activities earn different amounts of revenue. In addition to their start and finish times <em>s</em><em>i</em> and <em>f</em><em>i</em>, each activity <em>a</em><em>i</em> has <em>revenue</em> <em>r</em><em>i</em>, and our objective is now to maximize the total revenue Σ<em>a</em><em>i</em>∈<em>A</em> <em>r</em><em>i</em>. </p>
+<p><strong>4.</strong> Suppose now that different activities earn different amounts of revenue. In addition to their start and finish times <em>s__i</em> and <em>f__i</em>, each activity <em>a__i</em> has <em>revenue</em> <em>r__i</em>, and our objective is now to maximize the total revenue Σ_a__i<em>∈_A</em> <em>r__i</em>. </p>
 
 <ul>
-<li>Does this problem exhibit the greedy choice property?</li>
-<li>If so, do any of the above strategies apply, or another greedy strategy you can think of?</li>
-<li>If not, why not, and what alternative problem solving strategy would work on this problem? </li>
+  <li>Does this problem exhibit the greedy choice property?</li>
+  <li>If so, do any of the above strategies apply, or another greedy strategy you can think of?</li>
+  <li>If not, why not, and what alternative problem solving strategy would work on this problem? </li>
 </ul>
+
 
 </div>
 
@@ -99,12 +103,12 @@ greedy strategies lead to globally optimal solutions. For each strategy below,</
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

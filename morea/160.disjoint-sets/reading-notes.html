@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,80 +48,95 @@
 
 
 <div class="container">
-  <h2>Outline</h2>
+  <h2 id="outline">Outline</h2>
 
 <ol>
-<li>Disjoint Dynamic Sets </li>
-<li>Finding Connected Components with Disjoint Sets </li>
-<li>Linked List Representations of Disjoint Sets </li>
-<li>Forest Representations of Disjoint Sets</li>
+  <li>Disjoint Dynamic Sets </li>
+  <li>Finding Connected Components with Disjoint Sets </li>
+  <li>Linked List Representations of Disjoint Sets </li>
+  <li>Forest Representations of Disjoint Sets</li>
 </ol>
 
-<h2>Dynamic Disjoint Sets (Union Find)</h2>
+<h2 id="dynamic-disjoint-sets-union-find">Dynamic Disjoint Sets (Union Find)</h2>
 
 <p>Two sets <em>A</em> and <em>B</em> are <strong>disjoint</strong> if they have no element in common.</p>
 
 <p>Sometimes we need to group n distinct elements into a collection  of disjoint
-sets  = {<em>S</em>1, ..., <em>Sk</em>} that may change over time.</p>
+sets  = {<em>S_1, …, _Sk</em>} that may change over time.</p>
 
 <ul>
-<li> is a set of sets: { { <em>x</em>, ... }, ..., { <em>y</em>, ... } } </li>
-<li>Each set <em>Si</em> ∈  is identified by a <strong>representative</strong>, which is some member of the set (e.g., <em>x</em> and <em>y</em>).</li>
-<li>It does not matter which member is the representative, as long as the representative remains the same while the set is not modified.</li>
+  <li> is a set of sets: { { <em>x</em>, … }, …, { <em>y</em>, … } } </li>
+  <li>Each set <em>Si</em> ∈  is identified by a <strong>representative</strong>, which is some member of the set (e.g., <em>x</em> and <em>y</em>).</li>
+  <li>It does not matter which member is the representative, as long as the representative remains the same while the set is not modified.</li>
 </ul>
 
 <p>Disjoint set data structures are also known as <strong>Union-Find</strong> data structures,
 after the two operations in addition to creation. (Applications often involve
 a mixture of searching for set membership and merging sets.)</p>
 
-<h3>Operations</h3>
+<h3 id="operations">Operations</h3>
 
 <blockquote>
-<p><strong>Make-Set(<em>x</em>)</strong>: make a new set <em>Si</em> = {<em>x</em>} <em>(</em>x_ will be its
+  <p><strong>Make-Set(<em>x</em>)</strong>: make a new set <em>Si</em> = {<em>x</em>} <em>(_x</em> will be its
 representative)_ and add <em>Si</em> to .</p>
-
-<p><strong>Union(<em>x</em>, <em>y</em>)</strong>: if <em>x</em> ∈ <em>Sx</em> and <em>y</em> ∈ <em>Sy</em>, then  &lt;-  − <em>Sx</em> − <em>Sy</em>
-∪ {<em>Sx</em> ∪ <em>Sy</em>} <em>(that is, combine the two sets _Sx</em> and <em>Sy</em>)_.</p>
-
-<ul>
-<li><p>The representative of <em>Sx</em> ∪ <em>Sy</em> is any member of that new set
-(implementations often use the representative of one of <em>Sx</em> or <em>Sy</em>.)</p></li>
-<li><p>Destroys <em>Sx</em> and <em>Sy</em>, since the sets must be disjoint (they cannot co-
-exist with <em>Sx</em> ∪ <em>Sy</em>).</p></li>
-</ul>
-
-<p><strong>Find-Set(<em>x</em>)</strong>: return the representative of the set containing <em>x</em>.</p>
 </blockquote>
 
-<h3>Analysis</h3>
+<blockquote>
+  <p><strong>Union(<em>x</em>, <em>y</em>)</strong>: if <em>x</em> ∈ <em>Sx</em> and <em>y</em> ∈ <em>Sy</em>, then  &lt;-  − <em>Sx</em> − <em>Sy</em>
+∪ {<em>Sx</em> ∪ <em>Sy</em>} <em>(that is, combine the two sets _Sx</em> and <em>Sy</em>)_.</p>
+</blockquote>
+
+<blockquote>
+
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>The representative of <em>Sx</em> ∪ <em>Sy</em> is any member of that new set
+(implementations often use the representative of one of <em>Sx</em> or <em>Sy</em>.)</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>Destroys <em>Sx</em> and <em>Sy</em>, since the sets must be disjoint (they cannot co-
+exist with <em>Sx</em> ∪ <em>Sy</em>).</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Find-Set(<em>x</em>)</strong>: return the representative of the set containing <em>x</em>.</p>
+</blockquote>
+
+<h3 id="analysis">Analysis</h3>
 
 <p>We analyze in terms of:</p>
 
 <ul>
-<li><em>n</em> = number of Make-Set operations, i.e., the number of sets initially involved</li>
-<li><em>m</em> = total number of operations</li>
+  <li><em>n</em> = number of Make-Set operations, i.e., the number of sets initially involved</li>
+  <li><em>m</em> = total number of operations</li>
 </ul>
 
 <p>Some facts we can rely on:</p>
 
 <ul>
-<li><em>m</em> ≥ <em>n</em></li>
-<li>Can have at most <em>n</em>−1 Union operations, since after <em>n</em>−1 Unions, only 1 set remains.</li>
-<li>It can be helpful for analysis to assume that the first <em>n</em> operations are Make-Set operations (put all the elements we will be working with in singleton sets to start with).</li>
+  <li><em>m</em> ≥ <em>n</em></li>
+  <li>Can have at most <em>n</em>−1 Union operations, since after <em>n</em>−1 Unions, only 1 set remains.</li>
+  <li>It can be helpful for analysis to assume that the first <em>n</em> operations are Make-Set operations (put all the elements we will be working with in singleton sets to start with).</li>
 </ul>
 
-<hr>
+<hr />
 
-<h2>Applications of Disjoint Sets</h2>
+<h2 id="applications-of-disjoint-sets">Applications of Disjoint Sets</h2>
 
 <p>Union-Find on disjoint sets is used to find structure in other data
 structures, such as a graph. We initially assume that all the elements are
 distinct by putting them in singleton sets, and then we merge sets as we
 discover the structure by which the elements are related.</p>
 
-<h3>Finding Connected Components</h3>
+<h3 id="finding-connected-components">Finding Connected Components</h3>
 
-<p>Recall from <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-14.html">Topic
+<p>Recall from <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-14.html">Topic
 14</a>
 that for a graph <em>G</em> = (<em>V</em>, <em>E</em>), vertices <em>u</em> and <em>v</em> are in the same
 <strong>connected component</strong> if and only if there is a path between them.</p>
@@ -130,86 +144,86 @@ that for a graph <em>G</em> = (<em>V</em>, <em>E</em>), vertices <em>u</em> and 
 <p>Here are the algorithms for computing connected components and then for
 testing whether two items are in the same component:</p>
 
-<p><img src="fig/pseudocode-connected-components.jpg" alt=""> <img src="fig/pseudocode-same-components.jpg" alt=""></p>
+<p><img src="fig/pseudocode-connected-components.jpg" alt="" /> <img src="fig/pseudocode-same-components.jpg" alt="" /></p>
 
 <p><em>Would that work with a directed graph?</em></p>
 
-<h4>Example</h4>
+<h4 id="example">Example</h4>
 
-<p><img src="fig/Fig-21-1-finding-connected-components.jpg" alt="">
-<img src="fig/ti-chats.jpg" alt=""></p>
+<p><img src="fig/Fig-21-1-finding-connected-components.jpg" alt="" />
+<img src="fig/ti-chats.jpg" alt="" /></p>
 
 <p>Although it is easy to see the connected components above, the utility of the
 algorithm becomes more obvious when we deal with large graphs (such as
 pictured)!</p>
 
-<h4>Alternatives</h4>
+<h4 id="alternatives">Alternatives</h4>
 
 <p>In a <em>static</em> undirected graph, it is faster to run Depth-First Search
 (exercise 22.3-12), or for static directed graphs the strongly connected
-components algorithm of <a href="http://www2.hawaii.edu/%7Esuthers/courses/ics311s14/Notes/Topic-14.html">Topic
+components algorithm of <a href="http://www2.hawaii.edu/~suthers/courses/ics311s14/Notes/Topic-14.html">Topic
 14</a>
 (section 22.5), which consists of two DFS. But in some applications edges may
 be added to the graph. In this case, union-find with disjoint sets is faster
 than re-running the DFS.</p>
 
-<h3>Minimum Spanning Trees</h3>
+<h3 id="minimum-spanning-trees">Minimum Spanning Trees</h3>
 
 <p>Next week we cover algorithms to find <em>minimum spanning trees</em> of graphs.
-Kruskal&#39;s algorithm will use Union-Find operations.</p>
+Kruskal’s algorithm will use Union-Find operations.</p>
 
-<hr>
+<hr />
 
-<h2>Linked List Representations of Disjoint Sets</h2>
+<h2 id="linked-list-representations-of-disjoint-sets">Linked List Representations of Disjoint Sets</h2>
 
 <p>One might think that lists are the simplest approach, but there is a better
 approach that is not any more complex: this section is mainly for comparision
 purposes.</p>
 
-<h3>Representation</h3>
+<h3 id="representation">Representation</h3>
 
 <p>Each set is represented using an unordered singly linked list. The list object
 has attributes:</p>
 
 <ul>
-<li><strong>head</strong>: pointing to the first element in the list, the set&#39;s representative.</li>
-<li><strong>tail</strong>: pointing to the last element in the list.</li>
+  <li><strong>head</strong>: pointing to the first element in the list, the set’s representative.</li>
+  <li><strong>tail</strong>: pointing to the last element in the list.</li>
 </ul>
 
-<p><img src="fig/Fig-21-2-linked-list-S1.jpg" alt=""></p>
+<p><img src="fig/Fig-21-2-linked-list-S1.jpg" alt="" /></p>
 
 <p>Each object in the list has attributes for:</p>
 
 <ul>
-<li><strong>next</strong></li>
-<li>The <strong>set member</strong> (e.g., the vertex in the graph being analyzed)</li>
-<li>A pointer to the list object that represents the <strong>set</strong></li>
+  <li><strong>next</strong></li>
+  <li>The <strong>set member</strong> (e.g., the vertex in the graph being analyzed)</li>
+  <li>A pointer to the list object that represents the <strong>set</strong></li>
 </ul>
 
-<h3>Operations</h3>
+<h3 id="operations-1">Operations</h3>
 
 <p>First try:</p>
 
 <ul>
-<li>Make-Set(<em>x</em>): create a singleton list containing <em>x</em></li>
-<li>Find-Set(<em>x</em>): follow the pointer back to the list object, and then follow the <code>head</code> pointer to the representative</li>
-<li>Union(<em>x</em>, <em>y</em>): append <em>y</em>&#39;s lists onto the end of <em>x</em>&#39;s list. 
-
-<ul>
-<li>Use <em>x</em>&#39;s tail pointer to find the end.</li>
-<li>Need to update the pointer back to the set object for every node on <em>y</em>&#39;s list.</li>
-</ul></li>
+  <li>Make-Set(<em>x</em>): create a singleton list containing <em>x</em></li>
+  <li>Find-Set(<em>x</em>): follow the pointer back to the list object, and then follow the <code>head</code> pointer to the representative</li>
+  <li>Union(<em>x</em>, <em>y</em>): append <em>y</em>’s lists onto the end of <em>x</em>’s list. 
+    <ul>
+      <li>Use <em>x</em>’s tail pointer to find the end.</li>
+      <li>Need to update the pointer back to the set object for every node on <em>y</em>’s list.</li>
+    </ul>
+  </li>
 </ul>
 
-<p>For example, let&#39;s take the union of <em>S</em>1 and <em>S</em>2, replacing <em>S</em>1:</p>
+<p>For example, let’s take the union of _S_1 and _S_2, replacing _S_1:</p>
 
-<p><img src="fig/Fig-21-2-linked-list-representation.jpg" alt=""></p>
+<p><img src="fig/Fig-21-2-linked-list-representation.jpg" alt="" /></p>
 
 <p>This can be slow for large data sets. For example, suppose we start with <em>n</em>
 singletons and always happend to append the larger list onto the smaller one
 in a sequence of merges:</p>
 
-<p><img src="fig/Fig-21-3-worst-case-alt.jpg" alt=""></p>
+<p><img src="fig/Fig-21-3-worst-case-alt.jpg" alt="" /></p>
 
 <p>If there are <em>n</em> Make-Sets and <em>n</em> Unions, the amortized time per operation is
 O(<em>n</em>)!</p>
@@ -220,66 +234,66 @@ single union can still take Ω(<em>n</em>) time (e.g., when both sets have <em>n
 members), a sequence of <em>m</em> operations on <em>n</em> elements takes O(<em>m</em> + <em>n</em> lg
 <em>n</em>) time.</p>
 
-<p><strong><em>Sketch of proof:</em></strong> Each Make-Set and Find-Set still takes O(1). Consider how many times each object&#39;s set representative pointer must be updated during a sequence of <em>n</em> Union operations. It must be in the smaller set each time, and after each Union the size of this smaller set is at least double the size. So: </p>
+<p><strong><em>Sketch of proof:</em></strong> Each Make-Set and Find-Set still takes O(1). Consider how many times each object’s set representative pointer must be updated during a sequence of <em>n</em> Union operations. It must be in the smaller set each time, and after each Union the size of this smaller set is at least double the size. So: </p>
 
-<p><img src="fig/representative-update-bound.jpg" alt=""></p>
+<p><img src="fig/representative-update-bound.jpg" alt="" /></p>
 
 <p>Each representative set for a given element is updated ≤ lg <em>n</em> times, and
 there are <em>n</em> elements plus <em>m</em> operations. However, we can do better!</p>
 
-<hr>
+<hr />
 
-<h2>Forest Representations of Disjoint Sets</h2>
+<h2 id="forest-representations-of-disjoint-sets">Forest Representations of Disjoint Sets</h2>
 
 <p>The following is a classic representation of Union-Find, due to Tarjan (1975).
 The set of sets is represented by a forest of trees. The code is as simple as
 the analysis of runtime is complex.</p>
 
-<h3>Representation</h3>
+<h3 id="representation-1">Representation</h3>
 
-<p><img src="fig/disjoint-set-forest.jpg" alt=""></p>
-
-<ul>
-<li>Each tree represents a set.</li>
-<li>The root of the tree is the set representative.</li>
-<li>Each node points only to its parent (no child pointers needed).</li>
-<li>The root points to itself as parent. </li>
-</ul>
-
-<h3>Operations</h3>
+<p><img src="fig/disjoint-set-forest.jpg" alt="" /></p>
 
 <ul>
-<li>Make-Set(<em>x</em>): create a single node tree with <em>x</em> at the root</li>
-<li>Find-Set(<em>x</em>): follow parent pointers back to the root</li>
-<li>Union(<em>x</em>, <em>y</em>): make one root a child of the other. (This in itself could degenerate to a linear list-like tree, but we will fix this below.)</li>
+  <li>Each tree represents a set.</li>
+  <li>The root of the tree is the set representative.</li>
+  <li>Each node points only to its parent (no child pointers needed).</li>
+  <li>The root points to itself as parent. </li>
 </ul>
 
-<p><img src="fig/disjoint-set-union-alt.jpg" alt=""></p>
+<h3 id="operations-2">Operations</h3>
 
-<h4>Heuristics</h4>
+<ul>
+  <li>Make-Set(<em>x</em>): create a single node tree with <em>x</em> at the root</li>
+  <li>Find-Set(<em>x</em>): follow parent pointers back to the root</li>
+  <li>Union(<em>x</em>, <em>y</em>): make one root a child of the other. (This in itself could degenerate to a linear list-like tree, but we will fix this below.)</li>
+</ul>
+
+<p><img src="fig/disjoint-set-union-alt.jpg" alt="" /></p>
+
+<h4 id="heuristics">Heuristics</h4>
 
 <p>In order to avoid degeneration to linear trees, and achieve amazing amortized
 performance, these two heuristics are applied:</p>
 
-<p><strong>Union by Rank</strong>: make the root of the &quot;smaller&quot; tree a child of the root of the &quot;larger&quot; tree. But rather than size we use <strong>rank</strong>, an upper bound on the height of each node (stored in the node).</p>
+<p><strong>Union by Rank</strong>: make the root of the “smaller” tree a child of the root of the “larger” tree. But rather than size we use <strong>rank</strong>, an upper bound on the height of each node (stored in the node).</p>
 
 <ul>
-<li>Rank of singleton sets is 0.</li>
-<li>When taking the Union of two trees of equal rank, choose one arbitrarily to be the parent and increment its rank by one. <em>(Why is it incremented?)</em></li>
-<li>When taking the Union of two trees of unequal rank, the tree with lower rank becomes the child, and ranks are unchanged. <em>(Why does this make sense?)</em></li>
+  <li>Rank of singleton sets is 0.</li>
+  <li>When taking the Union of two trees of equal rank, choose one arbitrarily to be the parent and increment its rank by one. <em>(Why is it incremented?)</em></li>
+  <li>When taking the Union of two trees of unequal rank, the tree with lower rank becomes the child, and ranks are unchanged. <em>(Why does this make sense?)</em></li>
 </ul>
 
 <p><strong>Path Compression</strong>: When running Find-Set(<em>x</em>), make all nodes on the path from <em>x</em> to the root direct children of the root. For example, Find-Set(a):</p>
 
-<p><img src="fig/Fig-21-5-path-compression-alt.jpg" alt=""></p>
+<p><img src="fig/Fig-21-5-path-compression-alt.jpg" alt="" /></p>
 
-<h3>Algorithms</h3>
+<h3 id="algorithms">Algorithms</h3>
 
 <p>The algorithms are very simple! (But their analysis is complex!) We assume
-that nodes <em>x</em> and <em>y</em> are tree nodes with the client&#39;s element data already
+that nodes <em>x</em> and <em>y</em> are tree nodes with the client’s element data already
 initialized.</p>
 
-<p><img src="fig/pseudocode-disjoint-set-forest.jpg" alt=""></p>
+<p><img src="fig/pseudocode-disjoint-set-forest.jpg" alt="" /></p>
 
 <p>Link implements the union by rank heuristic.</p>
 
@@ -289,26 +303,26 @@ each node on the path to point directly to the root. (This means it is not
 tail recursive, but as the analysis shows, the paths are very unlikely to be
 long.)</p>
 
-<h3>Time Complexity</h3>
+<h3 id="time-complexity">Time Complexity</h3>
 
 <p>The analysis can be found in section 21.4. It is very involved, and I only
 expect you to know what is discussed below. It is based on a very fast growing
 function:</p>
 
-<p><img src="fig/A_k-j.jpg" alt=""></p>
+<p><img src="fig/A_k-j.jpg" alt="" /></p>
 
-<p><em>Ak</em>(<em>j</em>) is a variation of <strong>Ackerman&#39;s Function</strong>, which is what you will
+<p><em>Ak</em>(<em>j</em>) is a variation of <strong>Ackerman’s Function</strong>, which is what you will
 find in most classic texts on the subject. The function grows so fast that
-<em>A</em>4(1) = 16512 is <em>much</em> larger than the number of atoms in the observable
+<em>A_4(1) = 16512 is _much</em> larger than the number of atoms in the observable
 universe (1080)!</p>
 
 <p>The result uses <strong>α(<em>n</em>),</strong> a single parameter inverse of <em>Ak</em>(<em>j</em>) defined as
 the lowest <em>k</em> for which <em>Ak</em>(1) is at least <em>n</em>:</p>
 
-<p><img src="fig/growth-inverse-ackermann.jpg" alt=""></p>
+<p><img src="fig/growth-inverse-ackermann.jpg" alt="" /></p>
 
 <blockquote>
-<p>α(<em>n</em>) = min{<em>k</em> : <em>Ak</em>(1) ≥ <em>n</em>}</p>
+  <p>α(<em>n</em>) = min{<em>k</em> : <em>Ak</em>(1) ≥ <em>n</em>}</p>
 </blockquote>
 
 <p>α(<em>n</em>) grows <em>very</em> slowly, as shown in the table. We are highly unlikely to
@@ -321,18 +335,19 @@ for a sequence of <em>m</em> <code>Make-Set</code>, <code>Find-Set</code> and <c
 all practical purposes, the cost of a sequence of <em>m</em> such operations is
 O(<em>m</em>), or O(1) amortized cost per operation!</p>
 
-<hr>
+<hr />
 
-<h2>Wrapup</h2>
+<h2 id="wrapup">Wrapup</h2>
 
-<p>We now return to Graphs. We&#39;ll see Union-Find used when we cover minimum
+<p>We now return to Graphs. We’ll see Union-Find used when we cover minimum
 spanning trees.</p>
 
-<hr>
+<hr />
 
-<p>Dan Suthers Last modified: Thu Apr 17 15:35:22 HST 2014<br>
-Images are from the instructor&#39;s material for Cormen et al. Introduction to
+<p>Dan Suthers Last modified: Thu Apr 17 15:35:22 HST 2014<br />
+Images are from the instructor’s material for Cormen et al. Introduction to
 Algorithms, Third Edition.  </p>
+
 
 </div>
 
@@ -342,12 +357,12 @@ Algorithms, Third Edition.  </p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

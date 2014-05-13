@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,28 +48,29 @@
 
 
 <div class="container">
-  <h3>Computing Transpose Under Different Representations</h3>
+  <h3 id="computing-transpose-under-different-representations">Computing Transpose Under Different Representations</h3>
 
-<p>The <strong>transpose</strong> of a directed graph <em>G</em> = (<em>V</em>, <em>E</em>) is the graph <em>G</em><em>T</em> =
-(<em>V</em>, <em>E</em><em>T</em>), where <em>E</em><em>T</em> = {(<em>v</em>, <em>u</em>) such that (<em>u</em>, <em>v</em>) ∈ <em>E</em>}. In
-other words, <em>G</em><em>T</em> is the graph <em>G</em> with all of its edges reversed.</p>
+<p>The <strong>transpose</strong> of a directed graph <em>G</em> = (<em>V</em>, <em>E</em>) is the graph <em>G__T</em> =
+(<em>V</em>, <em>E__T</em>), where <em>E__T</em> = {(<em>v</em>, <em>u</em>) such that (<em>u</em>, <em>v</em>) ∈ <em>E</em>}. In
+other words, <em>G__T</em> is the graph <em>G</em> with all of its edges reversed.</p>
 
 <p>Algorithms for computing transpose by copying to a new graph are trivial to
 write under matrix and adjacency list representations. However, we will be
 working with very large graphs and want to avoid copies. Can we transpose a
-graph &quot;in place&quot; without making a copy, and minimizing the amount of extra
+graph “in place” without making a copy, and minimizing the amount of extra
 space needed? What is the time and space cost to do so?</p>
 
-<p>(In the following, you are writing algorithms that work &quot;inside&quot; the ADT: you
+<p>(In the following, you are writing algorithms that work “inside” the ADT: you
 are allowed to access the matrix and list representations directly.)</p>
 
-<p><strong>1.</strong> Describe an efficient algorithm for computing <em>G</em><em>T</em> from <em>G</em>, <em>in place</em> (don&#39;t make a copy), for the <em>adjacency-matrix</em> representation of <em>G</em>. Do this by actually <em>modifying the matrix</em>. Analyze the space and time requirements of your algorithm. </p>
+<p><strong>1.</strong> Describe an efficient algorithm for computing <em>G__T</em> from <em>G</em>, <em>in place</em> (don’t make a copy), for the <em>adjacency-matrix</em> representation of <em>G</em>. Do this by actually <em>modifying the matrix</em>. Analyze the space and time requirements of your algorithm. </p>
 
-<p><strong>2.</strong> Now describe a way to compute <em>G</em><em>T</em> from <em>G</em> under the <em>adjacency-matrix</em> representation <em>without modifying the matrix</em>, and by <em>using only one bit</em> of extra storage! Analyze space and time requirements. (<em>Hint:</em> You need only make it <em>appear</em> to the client to be transposed.)</p>
+<p><strong>2.</strong> Now describe a way to compute <em>G__T</em> from <em>G</em> under the <em>adjacency-matrix</em> representation <em>without modifying the matrix</em>, and by <em>using only one bit</em> of extra storage! Analyze space and time requirements. (<em>Hint:</em> You need only make it <em>appear</em> to the client to be transposed.)</p>
 
-<p><strong>3.</strong> Describe an efficient algorithm for computing <em>G</em><em>T</em> from <em>G</em> using the <em>adjacency-list</em> representation of <em>G</em>, using <em>as little space as possible</em>. Can you do it &quot;in place&quot;? Analyze the space and time requirements of your algorithm. </p>
+<p><strong>3.</strong> Describe an efficient algorithm for computing <em>G__T</em> from <em>G</em> using the <em>adjacency-list</em> representation of <em>G</em>, using <em>as little space as possible</em>. Can you do it “in place”? Analyze the space and time requirements of your algorithm. </p>
 
-<p><strong>4.</strong> Now suppose you have an <em>edge-list</em> representation of <em>G</em>. What algorithm would efficiently compute <em>G</em><em>T</em> with the edge-list, and with what space and time requirements? </p>
+<p><strong>4.</strong> Now suppose you have an <em>edge-list</em> representation of <em>G</em>. What algorithm would efficiently compute <em>G__T</em> with the edge-list, and with what space and time requirements? </p>
+
 
 </div>
 
@@ -80,12 +80,12 @@ are allowed to access the matrix and list representations directly.)</p>
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>

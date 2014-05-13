@@ -41,7 +41,6 @@
         <li><a href="/ics311s14/experiences/">Experiences</a></li>
         <li><a href="/ics311s14/assessments/">Assessments</a></li>
         <li><a href="/ics311s14/schedule/">Schedule</a></li>
-        
       </ul>
     </div>
   </div>
@@ -49,17 +48,17 @@
 
 
 <div class="container">
-  <h2>Amortized Analysis: Accounting Method</h2>
+  <h2 id="amortized-analysis-accounting-method">Amortized Analysis: Accounting Method</h2>
 
 <p><em>(This is similar to the problem that was solved using aggregate analysis in
 my lecture notes, but the numbers are slightly different: in the lecture, the
 table grows at sizes 2i-1; here at 2i; and here you use the accounting method.
-Don&#39;t do it with aggregate analysis: that won&#39;t count! I provide guidance on
+Don’t do it with aggregate analysis: that won’t count! I provide guidance on
 approaching the accounting analysis. The problem is relevant to Java hash
 tables.)</em></p>
 
 <p>Suppose we perform a sequence of <em>n</em> operations on a data structure in which
-the <em>i</em>th operation costs <em>i</em> if <em>i</em> is an exact power of 2, and 1 otherwise.
+the <em>i_th operation costs _i</em> if <em>i</em> is an exact power of 2, and 1 otherwise.
 <em>Use the <strong>accounting method</strong> to determine the amortized cost per operation.</em></p>
 
 <p><strong>(a)</strong> Choose the (fixed) cost per operation ĉ that you will charge. </p>
@@ -67,18 +66,19 @@ the <em>i</em>th operation costs <em>i</em> if <em>i</em> is an exact power of 2
 <p><strong>(b)</strong> Make a table showing </p>
 
 <ul>
-<li>operation number (<em>i</em> = 1, 2, 3, ... up to about 20 to see the pattern), </li>
-<li>actual cost of the <em>i</em>th operation</li>
-<li>credit available at the conclusion of the <em>i</em>th operation (credit<em>i</em> = credit<em>i</em>−1 + ĉ − actual cost). </li>
+  <li>operation number (<em>i</em> = 1, 2, 3, … up to about 20 to see the pattern), </li>
+  <li>actual cost of the _i_th operation</li>
+  <li>credit available at the conclusion of the <em>i_th operation (credit_i</em> = credit_i_−1 + ĉ − actual cost). </li>
 </ul>
 
-<p><strong>(c)</strong> Write an expression for credit at each power of two, 2<em>i</em>. Does this credit increase, decrease, or stay the same? </p>
+<p><strong>(c)</strong> Write an expression for credit at each power of two, 2_i_. Does this credit increase, decrease, or stay the same? </p>
 
 <p><strong>(d)</strong> Does credit increase, decrease or stay the same <em>between</em> each power of 2? </p>
 
 <p><strong>(e)</strong> Say why this shows that the amortized cost ĉ that you chose in step (a) is an upper bound on the actual cost. </p>
 
 <p><strong>(f)</strong> Conclude by giving the big-O upper bound on amortized per-operation cost that (a) and (e) imply. </p>
+
 
 </div>
 
@@ -88,12 +88,12 @@ the <em>i</em>th operation costs <em>i</em> if <em>i</em> is an exact power of 2
 <footer>
   <div class="container page-footer">
     
-      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br>
+      <p>Daniel Suthers | Information and Computer Sciences | University of Hawaii <br />
 suthers@hawaii.edu</p>
 
     
     <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: cerulean)<br>
-       Last update on: <span>2014-05-11 13:25:29 -1000</span></p>
+       Last update on: <span>2014-05-13 09:04:38 -1000</span></p>
   </div>
 </footer>
 </div>
