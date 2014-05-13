@@ -1,8 +1,6 @@
 name: ICS 311 Spring 2014
-markdown: redcarpet
 highlighter: pygments
 safe: false
 baseurl: /ics311s14
 exclude: [morea]
-morea_debug: false
 morea_theme: cerulean

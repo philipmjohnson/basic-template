@@ -248,7 +248,7 @@ module Jekyll
 
       # Check for optional tags for non-home, footer pages
       if (morea_page.data['morea_type'] != 'home') && (morea_page.data['morea_type'] != 'footer')
-        if !morea_page.data['published']
+        if !morea_page.data.has_key?('published')
           morea_page.missing_optional << "published (set to true)"
           morea_page.data['published'] = true
           @summary.yaml_warnings += 1
@@ -301,7 +301,7 @@ module Jekyll
     # Whether the file is published or not, as indicated in YAML front-matter
     # Ruby Newbie Alert: copied this from Convertible cause 'include Convertible' didn't work for me.
     def published?
-      !(data.has_key?('published') && data['published'] == false)
+      !(self.data.has_key?('published') && self.data['published'] == false)
     end
 
     # Prints a string listing warnings or errors if there were any, otherwise does nothing.
