@@ -18,7 +18,7 @@ title: Learning Outcomes
 
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-    <h2><small>Outcome:</small> {{ outcome.title }}</h2>
+    <a style="padding-top: 50px; margin-top: -50px; display: table-caption;" name="{{ outcome.morea_id }}"></a><h3><small>{{ forloop.index }}.</small> {{ outcome.title }}</h3>
     <p>
       {% for label in outcome.morea_labels %}
          <span class="badge">{{ label }}</span>
@@ -28,9 +28,18 @@ title: Learning Outcomes
     <p>
     <em>Referencing modules:</em>
     {% for module in outcome.referencing_modules %}
-      <a href="../modules/{{ module.morea_id }}">{{ module.title }}</a>
+      <a href="../modules/{{ module.morea_id }}">{{ module.title }}</a>{% unless forloop.last %}, {% endunless %}
     {% endfor %}
     </p>
+    {% unless outcome.morea_referencing_assessments.size == 0 %}
+       <p>
+        <em>Assessed by:</em>
+        {% for assessment in outcome.morea_referencing_assessments %}
+          <a href="../assessments/#{{ assessment.morea_id }}">{{ assessment.title }}</a>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+        </p>
+    {% endunless %}
+
   </div>
 </div>
 

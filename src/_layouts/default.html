@@ -36,10 +36,18 @@
       <ul class="nav navbar-nav">
         <li><a href="{{ site.baseurl }}/index.html">Home</a></li>
         <li><a href="{{ site.baseurl }}/modules/">Modules</a></li>
-        <li><a href="{{ site.baseurl }}/outcomes/">Outcomes</a></li>
-        <li><a href="{{ site.baseurl }}/readings/">Readings</a></li>
-        <li><a href="{{ site.baseurl }}/experiences/">Experiences</a></li>
-        <li><a href="{{ site.baseurl }}/assessments/">Assessments</a></li>
+        {% unless site.morea_outcome_pages.size == 0 %}
+          <li><a href="{{ site.baseurl }}/outcomes/">Outcomes</a></li>
+        {% endunless %}
+        {% unless site.morea_reading_pages.size == 0 %}
+          <li><a href="{{ site.baseurl }}/readings/">Readings</a></li>
+        {% endunless %}
+        {% unless site.morea_experience_pages.size == 0 %}
+          <li><a href="{{ site.baseurl }}/experiences/">Experiences</a></li>
+        {% endunless %}
+        {% unless site.morea_assessment_pages.size == 0 %}
+          <li><a href="{{ site.baseurl }}/assessments/">Assessments</a></li>
+        {% endunless %}
         <li><a href="{{ site.baseurl }}/schedule/">Schedule</a></li>
       </ul>
     </div>
@@ -63,8 +71,23 @@
     {% else %}
       No footer page content supplied.
     {% endif %}
-    <p style="margin: 0">Powered by the <a style="color: white" href="http://morea-framework.github.io/">Morea Framework</a> (Theme: {{ site.morea_theme }})<br>
+    <p style="margin: 0">Powered by the <a href="http://morea-framework.github.io/">Morea Framework</a> (Theme: {{ site.morea_theme }})<br>
        Last update on: <span>{{ site.time }}</span></p>
+    <p style="margin: 0">
+      {{ site.morea_module_pages.size }} modules
+      {% unless site.morea_outcome_pages.size == 0 %}
+        | {{ site.morea_outcome_pages.size }} outcomes
+      {% endunless %}
+      {% unless site.morea_reading_pages.size == 0 %}
+        | {{ site.morea_reading_pages.size }} readings
+      {% endunless %}
+      {% unless site.morea_experience_pages.size == 0 %}
+        | {{ site.morea_experience_pages.size }} experiences
+      {% endunless %}
+      {% unless site.morea_assessment_pages.size == 0 %}
+        | {{ site.morea_assessment_pages.size }} assessments
+      {% endunless %}
+    </p>
   </div>
 </footer>
 </div>
