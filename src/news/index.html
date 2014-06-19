@@ -1,0 +1,17 @@
+---
+layout: default
+title: Schedule
+---
+
+<div class="container">
+  <h1>News</h1>
+<p>(Note: if you use a news reader, you can subscribe to these announcements using this <a href="{{ "/feed.xml" | prepend: site.baseurl }}">feed</a>)</p>
+</div>
+
+{% for post in site.posts %}
+  <div class="{% cycle 'section-background-1', 'section-background-2' %}">
+    <div class="container">
+    <h4>{{ post.title }} <small>{{ post.date | date: "%b %-d, %Y"  }}</small></h4>
+    {{ post.content }}
+    </div>
+{% endfor %}
