@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>ICS 311 Spring 2014</title>
+		<description></description>		
+		<link></link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Project due dates</title>
+				<description>&lt;p&gt;The project specifications are likely to be updated in response to requests for clarification.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Project 1: Battle of the Dynamic Sets - due by 23:55 (11:55 pm) Wednesday March 12th (extended from Sunday March 9th)&lt;/li&gt;
+  &lt;li&gt;Project 2: Graph ADT and Algorithms - due by 23:55 (11:55 pm) Friday April 18th (extended from Sunday April 13th)&lt;/li&gt;
+  &lt;li&gt;Project 3: Network Metrics - due by 23:55 (11:55 pm) Saturday May 10th (No extensions. Your mother will thank me for not scheduling this Sunday)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Sat, 01 Mar 2014 04:29:39 -1000</pubDate>
+				<link>/2014/03/01/project-due-dates.html</link>
+				<guid isPermaLink="true">/2014/03/01/project-due-dates.html</guid>
+			</item>
+		
+			<item>
+				<title>Extra credit</title>
+				<description>&lt;p&gt;Due to fact that the grading workload is already too great for the TA time allocated, we will not have extra credit programming or problem solving assignments. Extra credit will be built in to the three projects and some of the homework assignments. So, don’t slack: you won’t be given other opportunities to earn credit!&lt;/p&gt;
+</description>
+				<pubDate>Sat, 01 Feb 2014 04:29:39 -1000</pubDate>
+				<link>/2014/02/01/extra-credit.html</link>
+				<guid isPermaLink="true">/2014/02/01/extra-credit.html</guid>
+			</item>
+		
+			<item>
+				<title>Exam Dates</title>
+				<description>&lt;p&gt;Assuming no unanticipated events, exams will be held in BusAd A102 on these dates:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tuesday 02/25 BusAd A102 3:00-4:15 - Midterm 1 (Topics 1-8)&lt;/li&gt;
+  &lt;li&gt;Tuesday 04/01 BusAd A102 3:00-4:15 - Midterm 2 (Topics 9-14 + review; delayed a week by spring break)&lt;/li&gt;
+  &lt;li&gt;Tuesday 04/22 BusAd A102 3:00-4:15 - Midterm 3 (Topics 15-21 + review)&lt;/li&gt;
+  &lt;li&gt;Thursday 05/15 BusAd A102 2:15-4:15 p.m - Final Exam: Cumulative on all topics excluding 22-23 (Special Topics) but including 24-25 (NP Completeness)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Tue, 14 Jan 2014 04:29:39 -1000</pubDate>
+				<link>/2014/01/14/exam-dates.html</link>
+				<guid isPermaLink="true">/2014/01/14/exam-dates.html</guid>
+			</item>
+		
+	</channel>
+</rss>
