@@ -28,7 +28,7 @@ module Jekyll
       morea_dir = site.config['morea_dir'] || 'morea'
       morea_file_paths = Dir["#{site.source}/#{morea_dir}/**/*"]
       morea_file_paths.each do |f|
-        if File.file?(f) and !f.include?("_ignore")
+        if File.file?(f) and !hasIgnoreDirectory?(f)
           file_name = f.match(/[^\/]*$/)[0]
           relative_file_path = f.gsub(/^#{morea_dir}\//, '')
           relative_file_path = relative_file_path[(site.source.size + morea_dir.size + 1)..relative_file_path.size]
@@ -59,6 +59,13 @@ module Jekyll
         puts "Errors found. Exiting."
         exit
       end
+    end
+
+    def hasIgnoreDirectory?(path)
+      #if Pathname(path).each_filename.to_a.include?("_ignore")
+      #  puts "  Ignoring " + path
+      #end
+      return Pathname(path).each_filename.to_a.include?("_ignore")
     end
 
     def sort_pages(site)
@@ -174,9 +181,14 @@ module Jekyll
 
     # Copy all non-markdown files to destination directory unchanged.
     # Jekyll will create a morea directory in the destination that holds these files.
+    # If the file suffix is '.markdown', it becomes a Page, otherwise a StaticPage.
     def processNonMoreaFile(site, relative_dir, file_name, morea_dir)
       source_dir = morea_dir + "/" + relative_dir
-      site.static_files << Jekyll::StaticFile.new(site, site.source, source_dir, file_name)
+      if File.extname(file_name) == '.markdown'
+        site.pages << Jekyll::Page.new(site, site.source, source_dir, file_name)
+      else
+        site.static_files << Jekyll::StaticFile.new(site, site.source, source_dir, file_name)
+      end
     end
 
     def processMoreaFile(site, subdir, file_name, morea_dir)
@@ -299,7 +311,7 @@ module Jekyll
   end
 
 
-  # Every markdown file in the morea directory becomes a MoreaPage.
+  # Every .md file in the morea directory becomes a MoreaPage.
   class MoreaPage < Page
     attr_accessor :missing_required, :missing_optional, :duplicate_id, :undefined_id
 
@@ -378,6 +390,20 @@ module Jekyll
       self.data['morea_page'] = morea_page
       morea_page.data['module_page'] = self
       self.data['title'] = morea_page.data['title']
+    end
+  end
+
+  # Markdown pages have the .markdown suffix. We add a default layout and topdiv value.
+  class MarkdownPage < Page
+    def initialize(site, base, dir, file_name)
+      self.read_yaml(File.join(base, '_layouts'), 'default.html')
+      @site = site
+      @base = base
+      @dir = dir
+      @name = file_name
+
+      self.process(@name)
+      self.data['topdiv'] = 'container'
     end
   end
 
