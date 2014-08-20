@@ -12,3 +12,5 @@ This is a representation of a subset of the course material for ICS 311 Algorith
 Morea Framework.
 
 As of April, 2014, the site contains the Modules, Readings, and Experiences from ICS 311.  It does not include actual Outcome or Assessment entities. We plan to update the site with Outcomes and Assessments in the near future.
+
+![](/morea/images/cormen.jpg)
