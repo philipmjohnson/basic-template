@@ -10,7 +10,7 @@ morea_readings:
   - reading-cormen-29
   - reading-notes-21
 morea_experiences:
-  - experience-linear-programming
+  # - experience-linear-programming
 morea_type: module
 morea_icon_url: /morea/210.linear-programming/logo.jpg
 morea_sort_order: 210

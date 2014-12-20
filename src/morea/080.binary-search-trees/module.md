@@ -12,7 +12,7 @@ morea_readings:
   - reading-cormen-12
   - reading-notes-8
 morea_experiences:
-  - experience-binary-search-trees
+  # - experience-binary-search-trees
   - experience-binary-search-trees-2
   - experience-project-1
 morea_type: module

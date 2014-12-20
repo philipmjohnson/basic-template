@@ -14,7 +14,7 @@ morea_readings:
   - reading-screencast-mit-hash-tables-1
   - reading-screencast-mit-hash-tables-2
 morea_experiences:
-  - experience-deletion
+  # - experience-deletion
   - experience-data-structures-homework
 morea_type: module
 morea_icon_url: /morea/060.hash-tables/logo.png

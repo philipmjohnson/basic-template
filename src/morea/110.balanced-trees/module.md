@@ -13,7 +13,7 @@ morea_readings:
   - reading-sedgewick-15
   - reading-notes-11
 morea_experiences:
-  - experience-balanced-trees
+  # - experience-balanced-trees
   - experience-balanced-trees-2
   - experience-project-1
 morea_type: module

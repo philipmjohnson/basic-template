@@ -13,7 +13,7 @@ morea_readings:
   - reading-notes-3
   - reading-screencast-mit-2
 morea_experiences:
-  - experience-asymptotic-concepts
+  # - experience-asymptotic-concepts
 morea_assessments:
 morea_type: module
 morea_icon_url: /morea/030.growth/logo.png

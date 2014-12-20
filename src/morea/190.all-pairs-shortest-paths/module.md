@@ -11,7 +11,7 @@ morea_readings:
   - reading-cormen-25
   - reading-notes-19
 morea_experiences:
-  - experience-all-pairs-shortest-paths
+  # - experience-all-pairs-shortest-paths
 morea_type: module
 morea_icon_url: /morea/190.all-pairs-shortest-paths/logo.jpg
 morea_sort_order: 190

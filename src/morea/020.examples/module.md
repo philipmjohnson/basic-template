@@ -14,8 +14,8 @@ morea_readings:
   - reading-screencast-mit-1
   - reading-notes-2
 morea_experiences:
-  - experience-1
-  - experience-2
+  # - experience-1
+  # - experience-2
   - experience-3
 morea_type: module
 morea_icon_url: /morea/020.examples/logo.gif

@@ -14,7 +14,7 @@ morea_readings:
   - reading-notes-7
   - reading-screencast-mit-divide-conquer
 morea_experiences:
-  - experience-substitution
+  # - experience-substitution
   - experience-master-method
 morea_type: module
 morea_icon_url: /morea/070.divide-conquer/logo.gif

@@ -12,7 +12,7 @@ morea_readings:
   - reading-cormen-8
   - reading-notes-10
 morea_experiences:
-  - experience-quicksort
+  # - experience-quicksort
   - experience-quicksort-2
 morea_type: module
 morea_icon_url: /morea/100.quicksort/logo.png

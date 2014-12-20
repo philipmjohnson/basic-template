@@ -12,7 +12,7 @@ morea_readings:
   - reading-cormen-6
   - reading-notes-9
 morea_experiences:
-  - experience-heaps
+  # - experience-heaps
   - experience-heaps-2
 morea_type: module
 morea_icon_url: /morea/090.heaps/logo.jpg

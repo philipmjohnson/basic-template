@@ -10,7 +10,7 @@ morea_readings:
   - reading-cormen-10
   - reading-notes-4
 morea_experiences:
-  - experience-asymptotic-basic-data-structures
+  # - experience-asymptotic-basic-data-structures
   - experience-asymptotic-homework
   - experience-project-1
 morea_type: module

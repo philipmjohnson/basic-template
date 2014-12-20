@@ -17,8 +17,8 @@ morea_readings:
   - reading-goodrich-graphs
   - reading-notes-14
 morea_experiences:
-  - experience-graph-transpose
-  - experience-graph-scc
+  # - experience-graph-transpose
+  # - experience-graph-scc
   - experience-graph-bfs-dfs
 morea_type: module
 morea_icon_url: /morea/140.graphs/logo.png

@@ -13,7 +13,7 @@ morea_readings:
   - reading-sedgewick-37
   - reading-notes-12
 morea_experiences:
-  - experience-dynamic-programming
+  # - experience-dynamic-programming
   - experience-dynamic-programming-2
 morea_type: module
 morea_icon_url: /morea/120.dynamic-programming/logo.gif
